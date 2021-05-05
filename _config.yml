@@ -12,27 +12,27 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme             : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "plum" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "WOOKS LAB"
+title                    : "WOOKS BOARD"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "SungwookLE"
 description              : ""
 url                      : "https://sungwookle.github.io/"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes" 
+repository               : "SungwookLE/SungwookLE.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes" 
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : sungwookle # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -97,14 +97,9 @@ author:
   name             : "SungwookLE"
   avatar           : "/assets/images/forfun.jpeg"
   bio              : ""
-  location         : "서울, 대한민국"
+  location         : "Seoul, Korea"
   email            : 
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:joker1251@naver.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/SungwookLE"
