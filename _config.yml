@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 
 # Site Settings
 locale                   : "en-US"
-title                    : "#WOOKS LAB"
+title                    : "Wooks LAB"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "SungwookLE"
@@ -97,7 +97,7 @@ author:
   name             : "Wooks"
   avatar           : #"/assets/images/img.png"
   bio              : "To infinity"
-  location         : "Seoul, Korea"
+  location         : "Hwaseong, Korea"
   email            : 
   links:
     - label: "GitHub"
