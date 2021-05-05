@@ -1,5 +1,12 @@
 # main links
 main:
+  - title: "Research Project"
+    url: /research_project/
+  - title: "Coding Algorithm"
+    url: /coding_algorithm/
+  - title: "Thought"
+    url: /thought/
+
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
