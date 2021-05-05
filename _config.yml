@@ -94,18 +94,18 @@ analytics:
 
 # Site Author
 author:
-  name             : "Wooks"
+  name             : #"Wooks"
   avatar           : #"/assets/images/img.png"
-  bio              : "To infinity"
-  location         : "Hwaseong, Korea"
+  bio              : #"To infinity"
+  location         : #"Hwaseong, Korea"
   email            : 
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/SungwookLE"
+      #url: "https://github.com/SungwookLE"
     - label: "LinkedIn"
       icon : "fab fa-fw fa-linkedin-in"
-      url  : "https://www.linkedin.com/in/sungwookle/"
+      #url  : "https://www.linkedin.com/in/sungwookle/"
 
 
 # Site Footer
