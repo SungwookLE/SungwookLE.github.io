@@ -12,11 +12,11 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme             : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "WOOKS BOARD"
+title                    : "#WOOKS LAB"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "SungwookLE"
@@ -32,7 +32,7 @@ words_per_minute         : 200
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname            : sungwookle # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : https-sungwookle-github-io # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -95,8 +95,8 @@ analytics:
 # Site Author
 author:
   name             : "SungwookLE"
-  avatar           : "/assets/images/forfun.jpeg"
-  bio              : ""
+  avatar           : "/assets/images/img.png"
+  bio              : "To infinity"
   location         : "Seoul, Korea"
   email            : 
   links:
@@ -117,9 +117,6 @@ footer:
     - label: "LinkedIn"
       icon : "fab fa-fw fa-linkedin-in"
       url  : "https://www.linkedin.com/in/sungwookle/"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:joker1251@naver.com"
 
 # Reading Files
 include:
