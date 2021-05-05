@@ -2,9 +2,9 @@
 main:
   - title: "Algorithm"
     url: "/algorithm/"
-  - title: "Python Project"
+  - title: "Python_project"
     url: "/python_project/"
-  - title: "C++ project"
+  - title: "C++_project"
     url: "/c++_project/"
   - title: "Book"
     url: "/book/"
