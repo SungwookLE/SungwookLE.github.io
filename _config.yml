@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "WOOKS 랩"
+title                    : "WOOKS LAB"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "SungwookLE"
@@ -95,8 +95,8 @@ analytics:
 # Site Author
 author:
   name             : "SungwookLE"
-  avatar           : "/_images/forfun.jpeg"
-  bio              : "TO INFINITY"
+  avatar           : "/assets/images/forfun.jpeg"
+  bio              : ""
   location         : "서울, 대한민국"
   email            : 
   links:
@@ -119,9 +119,6 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/SungwookLE"
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
     - label: "LinkedIn"
       icon : "fab fa-fw fa-linkedin-in"
       url  : "https://www.linkedin.com/in/sungwookle/"
@@ -264,6 +261,6 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
-      share: true
+      comments: true
+      share: false
       related: true
