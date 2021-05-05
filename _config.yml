@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "INFI::LAB"
+title                    : "WOOKS 랩"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "SungwookLE"
@@ -96,8 +96,8 @@ analytics:
 author:
   name             : "SungwookLE"
   avatar           : "/_images/forfun.jpeg"
-  bio              : "to infinity"
-  location         : "Hwaseong-si, Gyeonggi-do, Korea"
+  bio              : "TO INFINITY"
+  location         : "서울, 대한민국"
   email            : 
   links:
     - label: "Email"
@@ -108,6 +108,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/SungwookLE"
+    - label: "LinkedIn"
+      icon : "fab fa-fw fa-linkedin-in"
+      url  : "https://www.linkedin.com/in/sungwookle/"
 
 
 # Site Footer
@@ -115,10 +118,16 @@ footer:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/SungwookLE"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
+    - label: "LinkedIn"
+      icon : "fab fa-fw fa-linkedin-in"
+      url  : "https://www.linkedin.com/in/sungwookle/"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:joker1251@naver.com"
 
 # Reading Files
 include:
