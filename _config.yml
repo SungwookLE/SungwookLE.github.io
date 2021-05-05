@@ -94,8 +94,8 @@ analytics:
 
 # Site Author
 author:
-  name             : "SungwookLE"
-  avatar           : "/assets/images/img.png"
+  name             : "Wooks"
+  avatar           : #"/assets/images/img.png"
   bio              : "To infinity"
   location         : "Seoul, Korea"
   email            : 
