@@ -2,12 +2,14 @@
 main:
   - title: "Algorithm"
     url: "/algorithm/"
-  - title: "Python_Project"
+  - title: "Python Project"
     url: "/python_project/"
-  - title: "C++_project"
+  - title: "C++ project"
     url: "/c++_project/"
-  - title: "Books"
-    url: "/books/"
+  - title: "Book"
+    url: "/book/"
+  - title: "Memo"
+    url: "/memo/"
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

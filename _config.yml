@@ -245,6 +245,9 @@ compress_html:
 
 # Defaults
 defaults:
+  - scope:
+    values:
+      author_profile: false
   # _posts
   - scope:
       path: ""
