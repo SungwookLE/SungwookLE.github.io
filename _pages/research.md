@@ -8,4 +8,4 @@ toc_ads : true
 taxonomy: research
 ---
 
-Software Research&Discussion <c++, python>
+Software Research&Discussion <C++, python>
