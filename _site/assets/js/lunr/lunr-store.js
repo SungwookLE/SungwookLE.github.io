@@ -18,8 +18,14 @@ var store = [{
         "teaser": null
       },{
         "title": "지은이랑 서울 데이트",
-        "excerpt":"지은이랑 데이트~~&lt;3 날짜: ‘21.5/9 일요일 도착: 12시 30분 (남부터미널) [1] 첫번째, 맛있는 점심!! 1.5 hour 1번 식당: 프랑스요리 CUISSON82 2번 식당: 스타 쉐프 코스 마누테라스 3번 식당: 이태원 버거 다운타우너 [2] 두번째, 파이썬 배우기 1.5 hour 근처 카페 [3] 세번째, 재밌는 거 3+alpha hour 뭐를 좋아할지, 좋아하는지 아직 정보 부족,,ㅎㅎ...","categories": ["day"],
+        "excerpt":"지은이랑 데이트~~&lt;3 날짜: ‘21.5/9 일요일 도착: 12시 30분 (남부터미널) [1] 첫번째, 맛있는 점심!! 1.5 hour 1번 식당: 프랑스요리 CUISSON82 2번 식당: 스타 쉐프 코스 마누테라스 3번 식당: 이태원 버거 다운타우너 [2] 두번째, 파이썬 배우기 1.5 hour 근처 카페에서 알려줄게 ㅋㅋ [3] 세번째, 재밌는 거 3+alpha hour 뭐를 좋아할지, 좋아하는지 아직...","categories": ["day"],
         "tags": ["day"],
         "url": "/day/date/",
+        "teaser": null
+      },{
+        "title": "Robotics: Chapter1-1",
+        "excerpt":"PROJECT1 AUTHOR: SungwookLE DATE: ‘21.5/7 프로젝트 치트시트라는데 참고 Download: pdf 이번 프로젝트에서 시키는 건, Summary of Tasks Let’s summarize what you should do in this project to create a simulation world for all your projects in this Robotics Software Engineer Nanodegree Program. Build a single floor wall structure using the...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/ND_Robotics_1/",
         "teaser": null
       }]

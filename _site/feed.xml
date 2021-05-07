@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-05-06T20:56:38+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">개인 페이지 오픈</title><link href="sungwookle.github.io/day/hello/" rel="alternate" type="text/html" title="개인 페이지 오픈" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/hello</id><content type="html" xml:base="sungwookle.github.io/day/hello/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-05-07T21:00:36+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">Robotics: Chapter1-1</title><link href="sungwookle.github.io/research/ND_Robotics_1/" rel="alternate" type="text/html" title="Robotics: Chapter1-1" /><published>2021-05-07T00:00:00+09:00</published><updated>2021-05-07T00:00:00+09:00</updated><id>sungwookle.github.io/research/ND_Robotics_1</id><content type="html" xml:base="sungwookle.github.io/research/ND_Robotics_1/">&lt;h3 id=&quot;project1&quot;&gt;PROJECT1&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;AUTHOR: SungwookLE&lt;br /&gt;
+DATE: ‘21.5/7&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로젝트 치트시트라는데 참고&lt;br /&gt;
+ Download: &lt;a href=&quot;https://classroom.udacity.com/nanodegrees/nd209/parts/852e258d-b6c9-4823-b0af-0a7f77379583/modules/8a9ec5d0-dbd1-4f9b-80c5-c01a46aee151/lessons/962ef39a-4b29-4756-8dc1-05aca4075619/concepts/fdc36211-c805-4dde-b3b2-7b77624fe04d&quot;&gt;pdf&lt;/a&gt; 
+ &lt;img src=&quot;/assets/images/project1_description.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이번 프로젝트에서 시키는 건,&lt;/li&gt;
+  &lt;li&gt;Summary of Tasks&lt;br /&gt;
+  Let’s summarize what you should do in this project to create a simulation world for all your projects in this Robotics Software Engineer Nanodegree Program.  Build a single floor wall structure using the Building Editor tool in Gazebo. Apply at least one feature, one color, and optionally one texture to your   structure. Make sure there’s enough space between the walls for a robot to navigate.&lt;br /&gt;
+  Model any object of your choice using the Model Editor tool in Gazebo. Your model links should be connected with joints.&lt;br /&gt;
+  Import your structure and two instances of your model inside an empty Gazebo World.&lt;br /&gt;
+  Import at least one model from the Gazebo online library and implement it in your existing Gazebo world.&lt;br /&gt;
+  Write a C++ World Plugin to interact with your world. Your code should display “Welcome to ’s World!” message as soon as you launch the Gazebo world file.  These tasks are just the basic requirements for you to pass the project! Feel free to have fun designing and importing multiple models.&lt;/li&gt;
+  &lt;li&gt;Rubrics(Requirements)
+  HERE &lt;a href=&quot;https://review.udacity.com/#!/rubrics/2346/view&quot;&gt;LINK&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">Robotics Nanodegree: Introduction to Robotics</summary></entry><entry><title type="html">개인 페이지 오픈</title><link href="sungwookle.github.io/day/hello/" rel="alternate" type="text/html" title="개인 페이지 오픈" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/hello</id><content type="html" xml:base="sungwookle.github.io/day/hello/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;day 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">앞으로 어떻게 사용할까</summary></entry><entry><title type="html">지은이랑 서울 데이트</title><link href="sungwookle.github.io/day/date/" rel="alternate" type="text/html" title="지은이랑 서울 데이트" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/date</id><content type="html" xml:base="sungwookle.github.io/day/date/">&lt;h2 id=&quot;지은이랑-데이트3&quot;&gt;지은이랑 데이트~~&amp;lt;3&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;날짜: ‘21.5/9 일요일&lt;br /&gt;
@@ -18,7 +39,7 @@
 &lt;h4 id=&quot;2-두번째-파이썬-배우기&quot;&gt;[2] 두번째, 파이썬 배우기&lt;/h4&gt;
 &lt;p&gt;&lt;em&gt;1.5 hour&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;근처 카페&lt;/li&gt;
+  &lt;li&gt;근처 카페에서 알려줄게 ㅋㅋ&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;3-세번째-재밌는-거&quot;&gt;[3] 세번째, 재밌는 거&lt;/h4&gt;
@@ -28,16 +49,15 @@
 &lt;ul&gt;
   &lt;li&gt;1안: 나는 카페에서 이야기만 해도 좋아~&lt;/li&gt;
   &lt;li&gt;2안: 근처 공원(양재시민의숲? 한강공원?) 놀러가서 산책도 하고, 자전거도 타고?,&lt;/li&gt;
-  &lt;li&gt;3안(*): 여유롭게 카페도 가고 이야기도 하고, 드라이브도 하면서, 편하게 있다가 영화보러가기!
-오후 8시! &lt;a href=&quot;http://drivemovie.co.kr/index.php&quot;&gt;용인자동차극장&lt;/a&gt;
-영화 끝나고, 원주로 가치 고고 (+월요일 저녁에도 데이트ㅎㅎ)
+  &lt;li&gt;3안: 여유롭게 카페도 가고 이야기도 하고, 드라이브도 하면서, 편하게 있다가 영화보러가기!&lt;br /&gt;
+오후 8시~ &lt;a href=&quot;http://drivemovie.co.kr/index.php&quot;&gt;용인자동차극장&lt;/a&gt;
 &lt;img src=&quot;https://t1.daumcdn.net/liveboard/chutcha/13507242de664daf8ba9087c6b7964cc.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;4안: 제안 가능,,&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;4-결재-의견&quot;&gt;[4] 결재 의견&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;2번 식당 + (1+2안)&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">'21.5/9 일요일 서울에서 만나는 날 계획</summary></entry><entry><title type="html">시작3</title><link href="sungwookle.github.io/algorithm/me3/" rel="alternate" type="text/html" title="시작3" /><published>2021-05-05T00:00:00+09:00</published><updated>2021-05-05T00:00:00+09:00</updated><id>sungwookle.github.io/algorithm/me3</id><content type="html" xml:base="sungwookle.github.io/algorithm/me3/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;algorithm 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="algorithm" /><category term="algorithm" /><summary type="html">카테고리에 넣기 연습</summary></entry><entry><title type="html">연습4</title><link href="sungwookle.github.io/research/me4/" rel="alternate" type="text/html" title="연습4" /><published>2021-05-05T00:00:00+09:00</published><updated>2021-05-05T00:00:00+09:00</updated><id>sungwookle.github.io/research/me4</id><content type="html" xml:base="sungwookle.github.io/research/me4/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;research 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">카테고리에 넣기 연습</summary></entry></feed>
