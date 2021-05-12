@@ -44,95 +44,94 @@ date: 2021-05-07
   3. script 폴더 만들고 cpp 파일 작성해서 넣기  
    - 사실 프로그래밍을 해야하는 나에게 이쪽 폴더가 제일 중요한건데 소스코드를 넣고 플로그인에 따라 인터렉티브하여 작동하면 됨
 
-  Simple steps to interact with a World in Gazebo through a World plugin
-  1- Create a directory for scripts inside “myrobot” to store a hello.cpp file
-  ```
+  * Simple steps to interact with a World in Gazebo through a World plugin  
+  3-1. Create a directory for scripts inside “myrobot” to store a hello.cpp file
+
+   ```
+   $ cd /home/workspace/myrobot
+   $ mkdir script
+   $ cd script
+   $ gedit hello.cpp
+   ```
+   Inside hello.cpp, include this code:
+
+   ```c++
+   #include <gazebo/gazebo.hh>
+
+    namespace gazebo
+    {
+      class WorldPluginMyRobot : public WorldPlugin
+      {
+        public: WorldPluginMyRobot() : WorldPlugin()
+                {
+                  printf("Hello World!\n");
+                }
+
+        public: void Load(physics::WorldPtr _world, sdf::ElementPtr _sdf)
+                {
+                }
+      };
+      GZ_REGISTER_WORLD_PLUGIN(WorldPluginMyRobot)
+    }
+   ```
+
+  3-2. Create a CMakeLists.txt file
+   ```
   $ cd /home/workspace/myrobot
-  $ mkdir script
-  $ cd script
-  $ gedit hello.cpp
-  ```
-  Inside hello.cpp, include this code:
+  $ gedit CMakeLists.txt
+   ```
+   Inside, CMakeLists.txt, include the following:
+   ```
+   cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-```c++
-#include <gazebo/gazebo.hh>
+   find_package(gazebo REQUIRED)
+   include_directories(${GAZEBO_INCLUDE_DIRS})
+   link_directories(${GAZEBO_LIBRARY_DIRS})
+   list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
-namespace gazebo
-{
-  class WorldPluginMyRobot : public WorldPlugin
-  {
-    public: WorldPluginMyRobot() : WorldPlugin()
-            {
-              printf("Hello World!\n");
-            }
+   add_library(hello SHARED script/hello.cpp)
+   target_link_libraries(hello ${GAZEBO_LIBRARIES})
 
-    public: void Load(physics::WorldPtr _world, sdf::ElementPtr _sdf)
-            {
-            }
-  };
-  GZ_REGISTER_WORLD_PLUGIN(WorldPluginMyRobot)
-}
-```
+   ```
 
-  2- Create a CMakeLists.txt file
-```
-$ cd /home/workspace/myrobot
-$ gedit CMakeLists.txt
-```
-Inside, CMakeLists.txt, include the following:
-```
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+  3-3. Create a build directory and compile the code
+   ```
+   $ cd /home/workspace/myrobot
+   $ mkdir build
+   $ cd build/
+   $ cmake ../
+   $ make # You might get errors if your system is not up to date!
+   $ export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/workspace/myrobot/build
+   ```
 
-find_package(gazebo REQUIRED)
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
+  3-4. Open your world file and attach the plugin to it
+   ```
+   $ cd /home/workspace/myrobot/world/
+   $ gedit myworld
+   ``` 
 
-add_library(hello SHARED script/hello.cpp)
-target_link_libraries(hello ${GAZEBO_LIBRARIES})
+   Copy this code
+   ```
+   <plugin name="hello" filename="libhello.so"/>
+   ```
+   and paste it under
+   ```
+   <world name="default">
+   ```
+  3-5. Launch the world file in Gazebo to load both the world and the plugin
+   ```
+   $ cd /home/workspace/myrobot/world/
+   $ gazebo myworld
+   ```
+  3-6. Visualize the output  
+   A Hello World! message is printed in the terminal. This message interacts with the Gazebo World that includes your two-wheeled robot.
+   Troubleshooting
+   In case your plugins failed to load, you'll have to check and troubleshoot your error. The best way to troubleshoot errors with Gazebo is to launch it with the verbose as such:
+   ```
+   $ gazebo myworld --verbose
+   ```
+  4. 최종적으로는 아래와 같은 폴더트리로 gazebo 환경을 만들면 되고, 그렇게 제출하엿음
 
-```
-  3- Create a build directory and compile the code
-```
-$ cd /home/workspace/myrobot
-$ mkdir build
-$ cd build/
-$ cmake ../
-$ make # You might get errors if your system is not up to date!
-$ export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/workspace/myrobot/build
-```
-
-4- Open your world file and attach the plugin to it
-```
-$ cd /home/workspace/myrobot/world/
-$ gedit myworld
-```
-
-Copy this code
-```
-<plugin name="hello" filename="libhello.so"/>
-```
-and paste it under
-```
-<world name="default">
-```
-  5- Launch the world file in Gazebo to load both the world and the plugin
-  ```
-$ cd /home/workspace/myrobot/world/
-$ gazebo myworld
-```
-6- Visualize the output
-A Hello World! message is printed in the terminal. This message interacts with the Gazebo World that includes your two-wheeled robot.
-Troubleshooting
-In case your plugins failed to load, you'll have to check and troubleshoot your error. The best way to troubleshoot errors with Gazebo is to launch it with the verbose as such:
-```
-$ gazebo myworld --verbose
-```
-
-
-   4. 최종적으로는 아래와 같은 폴더트리로 gazebo 환경을 만들면 되고, 그렇게 제출하엿음
-
-Directory Structure
 The sample simulation world folder has the following directory structure:
 
     .Project1                          # Build My World Project 
@@ -150,3 +149,5 @@ The sample simulation world folder has the following directory structure:
     ├── CMakeLists.txt                 # Link libraries 
     └──                              
 
+  5. (5/12) 재제출하였음,
+  * 이런 모델링을 왜 해야하나 싶어서 대충하려고 했는데, 로봇 컨피규레이션도 할줄알아서 내가 원하는 시뮬레이션을 할 수 있는것이죠,, 

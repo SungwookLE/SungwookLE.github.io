@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-05-10T23:50:08+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">Robotics: Chapter1-1</title><link href="sungwookle.github.io/research/ND_Robotics_1/" rel="alternate" type="text/html" title="Robotics: Chapter1-1" /><published>2021-05-07T00:00:00+09:00</published><updated>2021-05-07T00:00:00+09:00</updated><id>sungwookle.github.io/research/ND_Robotics_1</id><content type="html" xml:base="sungwookle.github.io/research/ND_Robotics_1/">&lt;h3 id=&quot;project1&quot;&gt;PROJECT1&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-05-12T20:27:39+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">스터디에 대하여,</title><link href="sungwookle.github.io/day/planplan/" rel="alternate" type="text/html" title="스터디에 대하여," /><published>2021-05-12T00:00:00+09:00</published><updated>2021-05-12T00:00:00+09:00</updated><id>sungwookle.github.io/day/planplan</id><content type="html" xml:base="sungwookle.github.io/day/planplan/">&lt;h4 id=&quot;계획&quot;&gt;계획&lt;/h4&gt;
+&lt;p&gt;최근, 뭔가 루즈해졌다, 그게 나쁜건 아닌데 이런 순간이 오면 조만간 슬럼프가 찾아올 수 있기 때문에 정리가 필요한듯싶다,
+어디까지를 탐구하고, 어디까지를 내 것으로 만들어야 할지, 좀 더 쉽고 간결한 미션을 가져야 하는데, 어렵다,,&lt;/p&gt;
+
+&lt;h4 id=&quot;세팅&quot;&gt;세팅&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;원래 하던 것에 있어선, 잘해야,,
+    &lt;ul&gt;
+      &lt;li&gt;SIMULINK/C기반 위치추정/제어 로직, 동역학/제어이론&lt;/li&gt;
+      &lt;li&gt;C++기반 위치추정(localization), 확률기반 필터&lt;/li&gt;
+      &lt;li&gt;칼만 필터, 최적화기법 등&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;새로운 분야에 있어선, 인사이트 ex: 프로젝트 참가 등
+    &lt;ul&gt;
+      &lt;li&gt;카메라 기반 opencv 알고리즘&lt;/li&gt;
+      &lt;li&gt;python기반 딥러닝 tensorflow&lt;/li&gt;
+      &lt;li&gt;ROS &amp;lt;- 로직개발에 좀 더 편리한 나에게 유용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SW 이슈/관리 능력
+    &lt;ul&gt;
+      &lt;li&gt;git, SVN, conda, docker&lt;/li&gt;
+      &lt;li&gt;vcdm, jira,, testing/realese&lt;/li&gt;
+      &lt;li&gt;아키텍트 연습/고민, (품질있는 SW가 경쟁력)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;출입권: 코딩 테스트(알고리즘)
+    &lt;ul&gt;
+      &lt;li&gt;이건 문제 꾸준히 많이 푸는게,&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;go-further&quot;&gt;GO FURTHER,&lt;/h4&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">어디까지를 해나가야 할까</summary></entry><entry><title type="html">Robotics: Chapter1-1</title><link href="sungwookle.github.io/research/ND_Robotics_1/" rel="alternate" type="text/html" title="Robotics: Chapter1-1" /><published>2021-05-07T00:00:00+09:00</published><updated>2021-05-07T00:00:00+09:00</updated><id>sungwookle.github.io/research/ND_Robotics_1</id><content type="html" xml:base="sungwookle.github.io/research/ND_Robotics_1/">&lt;h3 id=&quot;project1&quot;&gt;PROJECT1&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;AUTHOR: SungwookLE&lt;br /&gt;
 DATE: ‘21.5/7&lt;/p&gt;
@@ -44,89 +78,91 @@ DATE: ‘21.5/7&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ol&gt;
 
-    &lt;p&gt;Simple steps to interact with a World in Gazebo through a World plugin
-1- Create a directory for scripts inside “myrobot” to store a hello.cpp file&lt;/p&gt;
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot
-$ mkdir script
-$ cd script
-$ gedit hello.cpp
+    &lt;ul&gt;
+      &lt;li&gt;Simple steps to interact with a World in Gazebo through a World plugin&lt;br /&gt;
+3-1. Create a directory for scripts inside “myrobot” to store a hello.cpp file&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ cd /home/workspace/myrobot
+ $ mkdir script
+ $ cd script
+ $ gedit hello.cpp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;Inside hello.cpp, include this code:&lt;/p&gt;
+
+    &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;gazebo/gazebo.hh&amp;gt;
+&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gazebo&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WorldPluginMyRobot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPlugin&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPluginMyRobot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;physics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WorldPtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_world&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sdf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElementPtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_sdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;GZ_REGISTER_WORLD_PLUGIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WorldPluginMyRobot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;3-2. Create a CMakeLists.txt file&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot
+$ gedit CMakeLists.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Inside, CMakeLists.txt, include the following:&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
+ find_package(gazebo REQUIRED)
+ include_directories(${GAZEBO_INCLUDE_DIRS})
+ link_directories(${GAZEBO_LIBRARY_DIRS})
+ list(APPEND CMAKE_CXX_FLAGS &quot;${GAZEBO_CXX_FLAGS}&quot;)
+
+ add_library(hello SHARED script/hello.cpp)
+ target_link_libraries(hello ${GAZEBO_LIBRARIES})
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;3-3. Create a build directory and compile the code&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ cd /home/workspace/myrobot
+ $ mkdir build
+ $ cd build/
+ $ cmake ../
+ $ make # You might get errors if your system is not up to date!
+ $ export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/workspace/myrobot/build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;3-4. Open your world file and attach the plugin to it&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ cd /home/workspace/myrobot/world/
+ $ gedit myworld
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Copy this code&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;lt;plugin name=&quot;hello&quot; filename=&quot;libhello.so&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;and paste it under&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;lt;world name=&quot;default&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;3-5. Launch the world file in Gazebo to load both the world and the plugin&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ cd /home/workspace/myrobot/world/
+ $ gazebo myworld
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;3-6. Visualize the output&lt;br /&gt;
+ A Hello World! message is printed in the terminal. This message interacts with the Gazebo World that includes your two-wheeled robot.
+ Troubleshooting
+ In case your plugins failed to load, you’ll have to check and troubleshoot your error. The best way to troubleshoot errors with Gazebo is to launch it with the verbose as such:&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ gazebo myworld --verbose
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ol&gt;
+      &lt;li&gt;최종적으로는 아래와 같은 폴더트리로 gazebo 환경을 만들면 되고, 그렇게 제출하엿음&lt;/li&gt;
+    &lt;/ol&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;gazebo/gazebo.hh&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gazebo&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WorldPluginMyRobot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPlugin&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPluginMyRobot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WorldPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-              &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;physics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WorldPtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_world&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sdf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElementPtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_sdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;GZ_REGISTER_WORLD_PLUGIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WorldPluginMyRobot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;2- Create a CMakeLists.txt file&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot
-$ gedit CMakeLists.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Inside, CMakeLists.txt, include the following:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-
-find_package(gazebo REQUIRED)
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-list(APPEND CMAKE_CXX_FLAGS &quot;${GAZEBO_CXX_FLAGS}&quot;)
-
-add_library(hello SHARED script/hello.cpp)
-target_link_libraries(hello ${GAZEBO_LIBRARIES})
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;3- Create a build directory and compile the code&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot
-$ mkdir build
-$ cd build/
-$ cmake ../
-$ make # You might get errors if your system is not up to date!
-$ export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/workspace/myrobot/build
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;4- Open your world file and attach the plugin to it&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot/world/
-$ gedit myworld
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Copy this code&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;plugin name=&quot;hello&quot; filename=&quot;libhello.so&quot;/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;and paste it under&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;world name=&quot;default&quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;5- Launch the world file in Gazebo to load both the world and the plugin&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /home/workspace/myrobot/world/
-$ gazebo myworld
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;6- Visualize the output
-A Hello World! message is printed in the terminal. This message interacts with the Gazebo World that includes your two-wheeled robot.
-Troubleshooting
-In case your plugins failed to load, you’ll have to check and troubleshoot your error. The best way to troubleshoot errors with Gazebo is to launch it with the verbose as such:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gazebo myworld --verbose
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;최종적으로는 아래와 같은 폴더트리로 gazebo 환경을 만들면 되고, 그렇게 제출하엿음&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Directory Structure
-The sample simulation world folder has the following directory structure:&lt;/p&gt;
+&lt;p&gt;The sample simulation world folder has the following directory structure:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.Project1                          # Build My World Project 
 ├── model                          # Model files 
@@ -142,7 +178,15 @@ The sample simulation world folder has the following directory structure:&lt;/p&
 │   ├── UdacityOffice.world
 ├── CMakeLists.txt                 # Link libraries 
 └──                              
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">Robotics Nanodegree: Introduction to Robotics</summary></entry><entry><title type="html">개인 페이지 오픈</title><link href="sungwookle.github.io/day/hello/" rel="alternate" type="text/html" title="개인 페이지 오픈" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/hello</id><content type="html" xml:base="sungwookle.github.io/day/hello/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;(5/12) 재제출하였음,
+    &lt;ul&gt;
+      &lt;li&gt;이런 모델링을 왜 해야하나 싶어서 대충하려고 했는데, 로봇 컨피규레이션도 할줄알아서 내가 원하는 시뮬레이션을 할 수 있는것이죠,,&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">Robotics Nanodegree: Introduction to Robotics</summary></entry><entry><title type="html">개인 페이지 오픈</title><link href="sungwookle.github.io/day/hello/" rel="alternate" type="text/html" title="개인 페이지 오픈" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/hello</id><content type="html" xml:base="sungwookle.github.io/day/hello/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;day 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">앞으로 어떻게 사용할까</summary></entry><entry><title type="html">지은이랑 서울 데이트</title><link href="sungwookle.github.io/day/date/" rel="alternate" type="text/html" title="지은이랑 서울 데이트" /><published>2021-05-06T00:00:00+09:00</published><updated>2021-05-06T00:00:00+09:00</updated><id>sungwookle.github.io/day/date</id><content type="html" xml:base="sungwookle.github.io/day/date/">&lt;h2 id=&quot;지은이랑-데이트3&quot;&gt;지은이랑 데이트~~&amp;lt;3&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;날짜: ‘21.5/9 일요일&lt;br /&gt;
@@ -180,7 +224,8 @@ The sample simulation world folder has the following directory structure:&lt;/p&
 
 &lt;h4 id=&quot;4-결재-의견&quot;&gt;[4] 결재 의견&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;2번 식당 + (1+2안)&lt;/li&gt;
+  &lt;li&gt;2번 식당 + (1+2안): –&amp;gt; 다운타우너 가서 버거먹고 이태원 구경하고 카페갓다가 한번 더 산책한 날,&lt;/li&gt;
+  &lt;li&gt;요새는 날씨가 좋아 걷기만 해도 참 좋은 날입니다,,&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">'21.5/9 일요일 서울에서 만나는 날 계획</summary></entry><entry><title type="html">시작3</title><link href="sungwookle.github.io/algorithm/me3/" rel="alternate" type="text/html" title="시작3" /><published>2021-05-05T00:00:00+09:00</published><updated>2021-05-05T00:00:00+09:00</updated><id>sungwookle.github.io/algorithm/me3</id><content type="html" xml:base="sungwookle.github.io/algorithm/me3/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;algorithm 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="algorithm" /><category term="algorithm" /><summary type="html">카테고리에 넣기 연습</summary></entry><entry><title type="html">연습4</title><link href="sungwookle.github.io/research/me4/" rel="alternate" type="text/html" title="연습4" /><published>2021-05-05T00:00:00+09:00</published><updated>2021-05-05T00:00:00+09:00</updated><id>sungwookle.github.io/research/me4</id><content type="html" xml:base="sungwookle.github.io/research/me4/">&lt;h2 id=&quot;test&quot;&gt;TEST&lt;/h2&gt;
 &lt;p&gt;research 카테고리에 넣어보자&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">카테고리에 넣기 연습</summary></entry></feed>
