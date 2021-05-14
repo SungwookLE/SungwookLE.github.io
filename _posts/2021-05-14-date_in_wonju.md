@@ -1,6 +1,6 @@
 ---
-title:  "혁도 원주"
-excerpt: "평일에 원주"
+title:  "혁도 원주 데이트"
+excerpt: "'21.5/14 금요일 평일에 원주"
 
 categories:
   - day
