@@ -15,7 +15,7 @@ date: 2021-05-29
 
 ## 경주 여행
 > 날짜: '21.6/3(목), 6/4(금), 6/5(일)  
-> 숙소: [라한호텔 경주](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=gyeongju_e&logNo=220662575410)
+> 숙소: [라한호텔 경주](https://www.lahanhotels.com/gyeongju/index.do)
 
 #### [1] 목요일, 첫째날
   - 경주 가는 길
@@ -24,7 +24,6 @@ date: 2021-05-29
 
   - 도착해서 늦은 점심 먹기
   - 보문호수(호반길) 산책하기? / 호텔 수영장?  
-  ![image](https://media-cdn.tripadvisor.com/media/photo-s/0d/31/79/cf/caption.jpg)  
   ![image](https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/f8/41/86/caption.jpg)  
 
   - 저녁 8시: 안압지 야경보러  
@@ -38,6 +37,5 @@ date: 2021-05-29
   ![image](https://www.gyeongju.go.kr/design/tour2019/img/sub/HroadMap_front.jpg)
 
 #### [4] 토요일, 셋째날
-
 
 #### [5] 집으로 가는 길
