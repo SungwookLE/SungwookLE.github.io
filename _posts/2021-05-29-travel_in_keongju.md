@@ -18,7 +18,7 @@ date: 2021-05-29
 > 숙소: [라한호텔 경주](https://www.lahanhotels.com/gyeongju/index.do)
 
 #### [1] 목요일, 첫째날
-  - 경주 가는 길
+  - 경주 가는 길:  
   천안역에서 점심12시에 만나, 차타고 경주 내려가기
   ![image](/assets/images/cheonan_keongju.png)
 
@@ -37,5 +37,4 @@ date: 2021-05-29
   ![image](https://www.gyeongju.go.kr/design/tour2019/img/sub/HroadMap_front.jpg)
 
 #### [4] 토요일, 셋째날
-
-#### [5] 집으로 가는 길
+  - 집으로 가는 길:  
