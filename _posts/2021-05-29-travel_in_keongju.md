@@ -20,7 +20,7 @@ date: 2021-05-29
 #### [1] 목요일, 첫째날
   - 경주 가는 길
   천안역에서 점심12시에 만나, 차타고 경주 내려가기
-  ![image](../assets/images/cheonan_keongju.png)
+  ![image](/assets/images/cheonan_keongju.png)
 
   - 도착해서 늦은 점심 먹기
   - 보문 호수 산책하기? / 호텔 수영장?
@@ -29,10 +29,10 @@ date: 2021-05-29
   ![image](http://www.k-heritage.tv/jnrepo/mig/upload/itm/contents/10518/YL8L0734.jpg)
 
 #### [3] 금요일, 둘째날
-  - 자전거 2~3시간 빌려서 투어하기: [코스추천 블로그](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=gyeongju_e&logNo=220662575410)
+  - 자전거 2~3시간 빌려서 투어하기: [코스추천 블로그](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=gyeongju_e&logNo=220662575410)  
   ![image](https://lh3.googleusercontent.com/proxy/rPvX0VZmygdQVsr860uX7qZiYCpxL9OoB-rODpl6yFBaC8U98OhiJZvEpYtZsx_FVEga5sBVrCF2fY8taAAKmYtx08ZS62hhnzbARZUB19Ae8djP8sMX)
 
 #### [4] 토요일, 셋째날
-  
+
 
 #### [5] 집으로 가는 길
