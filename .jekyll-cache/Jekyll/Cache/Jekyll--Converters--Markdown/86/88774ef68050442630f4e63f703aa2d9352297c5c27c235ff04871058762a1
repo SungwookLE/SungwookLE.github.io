@@ -1,0 +1,77 @@
+I"�<h3 id="project-go-chase-it">PROJECT: Go Chase It</h3>
+<blockquote>
+  <p>AUTHOR: SungwookLE<br />
+DATE: ‘21.6/1</p>
+</blockquote>
+
+<h4 id="1">[1]</h4>
+<ul>
+  <li>채워나가야 함</li>
+  <li>
+    <p>프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고,</p>
+  </li>
+  <li>이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯,</li>
+</ul>
+
+<h4 id="2-source-code">[2] source code</h4>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// : drive_bot.cpp</span>
+
+<span class="cp">#include "ros/ros.h"
+#include "geometry_msgs/Twist.h"
+</span><span class="c1">//TODO: Include the ball_chaser "DriveToTarget" header file</span>
+<span class="cp">#include "ball_chaser/DriveToTarget.h"
+</span>
+<span class="c1">// ROS::Publisher motor commands;</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">motor_command_publisher</span><span class="p">;</span>
+
+<span class="c1">// TODO: Create a handle_drive_request callback function that executes whenever a drive_bot service is requested</span>
+<span class="c1">// This function should publish the requested linear x and angular velocities to the robot wheel joints</span>
+<span class="c1">// After publishing the requested velocities, a message feedback should be returned with the requested wheel velocities</span>
+
+<span class="kt">bool</span> <span class="nf">handle_drive_request</span><span class="p">(</span><span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span><span class="o">::</span><span class="n">Request</span><span class="o">&amp;</span> <span class="n">req</span><span class="p">,</span> <span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span><span class="o">::</span><span class="n">Response</span><span class="o">&amp;</span> <span class="n">res</span><span class="p">){</span>
+
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"handle_drive_request service is called - linear_x: %1.2f, angular_z: %1.2f"</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">req</span><span class="p">.</span><span class="n">linear_x</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">req</span><span class="p">.</span><span class="n">angular_z</span><span class="p">);</span>
+
+    <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Twist</span> <span class="n">motor_command</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">req</span><span class="p">.</span><span class="n">linear_x</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">req</span><span class="p">.</span><span class="n">angular_z</span><span class="p">;</span>
+
+    <span class="n">motor_command_publisher</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">motor_command</span><span class="p">);</span>
+    
+    <span class="c1">// Wait 2 seconds</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">sleep</span><span class="p">();</span>
+
+    <span class="n">res</span><span class="p">.</span><span class="n">msg_feedback</span> <span class="o">=</span> <span class="s">"linear_x: "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">" , angular_z: "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">msg_feedback</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize a ROS node</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"drive_bot"</span><span class="p">);</span>
+
+    <span class="c1">// Create a ROS NodeHandle object</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="c1">// Inform ROS master that we will be publishing a message of type geometry_msgs::Twist on the robot actuation topic with a publishing queue size of 10</span>
+    <span class="n">motor_command_publisher</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Twist</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"/cmd_vel"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+    <span class="c1">// TODO: Define a drive /ball_chaser/command_robot service with a handle_drive_request callback function</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">ServiceServer</span> <span class="n">service</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertiseService</span><span class="p">(</span><span class="s">"/ball_chaser/command_robot"</span><span class="p">,</span> <span class="n">handle_drive_request</span><span class="p">);</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Ready to send motor velocity"</span><span class="p">);</span>
+   
+    <span class="c1">// TODO: Handle ROS communication events</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="results">RESULTS</h4>
+<p><img src="/assets/images/GoChaseIt1.gif" alt="image" /><br />
+<img src="/assets/images/GoChaseIt2.gif" alt="image" /><br />
+<img src="/assets/images/GoChaseIt3.gif" alt="image" /></p>
+:ET

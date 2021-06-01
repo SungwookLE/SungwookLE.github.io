@@ -46,4 +46,10 @@ var store = [{
         "tags": ["day"],
         "url": "/day/travel_in_keongju/",
         "teaser": null
+      },{
+        "title": "Robotics: Go Chase It",
+        "excerpt":"PROJECT: Go Chase It AUTHOR: SungwookLE DATE: ‘21.6/1 [1] 채워나가야 함 프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고, 이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯, [2] source code drive_bot.cpp, process_image.cpp // : process_image.cpp #include \"ros/ros.h\"...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/ND_GoChaseIt/",
+        "teaser": null
       }]

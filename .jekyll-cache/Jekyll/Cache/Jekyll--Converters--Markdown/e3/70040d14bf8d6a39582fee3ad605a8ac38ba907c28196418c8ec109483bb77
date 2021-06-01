@@ -1,0 +1,199 @@
+I"�V<h3 id="project-go-chase-it">PROJECT: Go Chase It</h3>
+<blockquote>
+  <p>AUTHOR: SungwookLE<br />
+DATE: ‘21.6/1</p>
+</blockquote>
+
+<h4 id="1">[1]</h4>
+<ul>
+  <li>채워나가야 함</li>
+  <li>
+    <p>프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고,</p>
+  </li>
+  <li>이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯,</li>
+</ul>
+
+<h4 id="2-source-code">[2] source code</h4>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// : process_image.cpp</span>
+<span class="cp">#include "ros/ros.h"
+#include "ball_chaser/DriveToTarget.h"
+#include &lt;sensor_msgs/Image.h&gt;
+#include "geometry_msgs/Twist.h"
+#include &lt;vector&gt;
+</span>
+<span class="c1">// Define a global client that can request services</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">ServiceClient</span> <span class="n">client</span><span class="p">;</span>
+
+<span class="c1">// This function calls the command_robot service to drive the robot in the specified direction</span>
+<span class="kt">void</span> <span class="nf">drive_robot</span><span class="p">(</span><span class="kt">float</span> <span class="n">lin_x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">ang_z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// TODO: Request a service and pass the velocities to it to drive the robot</span>
+    <span class="c1">//ROS_INFO("Drive! linear_x: %1.2f, angular_z: %1.2f", lin_x, ang_z);</span>
+    <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Twist</span> <span class="n">motor_command</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">lin_x</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">ang_z</span><span class="p">;</span>
+
+    <span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span> <span class="n">srv</span><span class="p">;</span>
+
+    <span class="n">srv</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">linear_x</span> <span class="o">=</span> <span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">srv</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">angular_z</span> <span class="o">=</span> <span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">srv</span><span class="p">))</span>
+        <span class="n">ROS_ERROR</span><span class="p">(</span><span class="s">"Failed to call service drive_robot"</span><span class="p">);</span>
+    
+<span class="p">}</span>
+
+<span class="c1">// This callback function continuously executes and reads the image data</span>
+<span class="kt">void</span> <span class="nf">process_image_callback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span> <span class="n">img</span><span class="p">)</span>
+<span class="p">{</span>   
+
+    <span class="kt">int</span> <span class="n">white_pixel</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+
+    <span class="c1">// TODO: Loop through each pixel in the image and check if there's a bright white one</span>
+    <span class="c1">// Then, identify if this pixel falls in the left, mid, or right side of the image</span>
+    <span class="c1">// Depending on the white ball position, call the drive_bot function and pass velocities to it</span>
+    <span class="c1">// Request a stop when there's no white ball seen by the camera</span>
+
+    <span class="kt">int</span> <span class="n">point_pixel</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">step_left_size</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">step_right_size</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+    
+    <span class="kt">bool</span> <span class="n">find_white_flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">image_pixel_row</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">image_pixel_vector</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">height</span><span class="p">,</span><span class="n">image_pixel_row</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">img</span><span class="p">.</span><span class="n">step</span> <span class="o">*</span> <span class="n">img</span><span class="p">.</span><span class="n">height</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">){</span>
+
+        <span class="c1">// int col = i / img.height;</span>
+        <span class="c1">// int row = i % img.height;</span>
+
+        <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">white_pixel</span> <span class="p">){</span>
+            <span class="n">image_pixel_vector</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">find_white_flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">int</span> <span class="n">max_col</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="kt">int</span> <span class="n">max_col_sum</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">;</span> <span class="o">++</span><span class="n">col</span><span class="p">){</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">img</span><span class="p">.</span><span class="n">height</span><span class="p">;</span> <span class="o">++</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">image_pixel_row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">+=</span> <span class="n">image_pixel_vector</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">];</span>        
+    
+        <span class="k">if</span> <span class="p">(</span><span class="n">image_pixel_row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_col_sum</span><span class="p">){</span>
+            <span class="n">max_col_sum</span> <span class="o">=</span> <span class="n">image_pixel_row</span><span class="p">[</span><span class="n">col</span><span class="p">];</span>
+            <span class="n">max_col</span> <span class="o">=</span> <span class="n">col</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">position_step</span>  <span class="o">=</span><span class="n">max_col</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">find_white_flag</span> <span class="o">==</span> <span class="nb">false</span><span class="p">){</span>
+        <span class="c1">// stop</span>
+         <span class="n">drive_robot</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+    <span class="p">}</span>
+     <span class="k">else</span><span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">position_step</span> <span class="o">&lt;</span> <span class="n">step_left_size</span><span class="p">){</span>
+        <span class="c1">// left</span>
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"BALL is %3d of %3d: LEFT"</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+        <span class="n">drive_robot</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">position_step</span> <span class="o">&gt;</span> <span class="n">step_right_size</span><span class="p">){</span>
+        <span class="c1">// right</span>
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"BALL is %3d of %3d: RIGHT"</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+        <span class="n">drive_robot</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">);</span>
+        <span class="p">}</span>
+    
+       <span class="k">else</span><span class="p">{</span>
+        <span class="c1">// straight</span>
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"BALL is %3d of %3d: FRONT"</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+         <span class="n">drive_robot</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize the process_image node and create a handle to it</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"process_image"</span><span class="p">);</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="c1">// Define a client service capable of requesting services from command_robot</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">serviceClient</span><span class="o">&lt;</span><span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"/ball_chaser/command_robot"</span><span class="p">);</span>
+
+    <span class="c1">// Subscribe to /camera/rgb/image_raw topic to read the image data inside the process_image_callback function</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub1</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">"/camera/rgb/image_raw"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">process_image_callback</span><span class="p">);</span>
+
+    <span class="c1">// Handle ROS communication events</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// : drive_bot.cpp</span>
+
+<span class="cp">#include "ros/ros.h"
+#include "geometry_msgs/Twist.h"
+</span><span class="c1">//TODO: Include the ball_chaser "DriveToTarget" header file</span>
+<span class="cp">#include "ball_chaser/DriveToTarget.h"
+</span>
+<span class="c1">// ROS::Publisher motor commands;</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">motor_command_publisher</span><span class="p">;</span>
+
+<span class="c1">// TODO: Create a handle_drive_request callback function that executes whenever a drive_bot service is requested</span>
+<span class="c1">// This function should publish the requested linear x and angular velocities to the robot wheel joints</span>
+<span class="c1">// After publishing the requested velocities, a message feedback should be returned with the requested wheel velocities</span>
+
+<span class="kt">bool</span> <span class="nf">handle_drive_request</span><span class="p">(</span><span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span><span class="o">::</span><span class="n">Request</span><span class="o">&amp;</span> <span class="n">req</span><span class="p">,</span> <span class="n">ball_chaser</span><span class="o">::</span><span class="n">DriveToTarget</span><span class="o">::</span><span class="n">Response</span><span class="o">&amp;</span> <span class="n">res</span><span class="p">){</span>
+
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"handle_drive_request service is called - linear_x: %1.2f, angular_z: %1.2f"</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">req</span><span class="p">.</span><span class="n">linear_x</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">req</span><span class="p">.</span><span class="n">angular_z</span><span class="p">);</span>
+
+    <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Twist</span> <span class="n">motor_command</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">req</span><span class="p">.</span><span class="n">linear_x</span><span class="p">;</span>
+    <span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">req</span><span class="p">.</span><span class="n">angular_z</span><span class="p">;</span>
+
+    <span class="n">motor_command_publisher</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">motor_command</span><span class="p">);</span>
+    
+    <span class="c1">// Wait 2 seconds</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">sleep</span><span class="p">();</span>
+
+    <span class="n">res</span><span class="p">.</span><span class="n">msg_feedback</span> <span class="o">=</span> <span class="s">"linear_x: "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">motor_command</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">" , angular_z: "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">motor_command</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">msg_feedback</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize a ROS node</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"drive_bot"</span><span class="p">);</span>
+
+    <span class="c1">// Create a ROS NodeHandle object</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="c1">// Inform ROS master that we will be publishing a message of type geometry_msgs::Twist on the robot actuation topic with a publishing queue size of 10</span>
+    <span class="n">motor_command_publisher</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Twist</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"/cmd_vel"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+    <span class="c1">// TODO: Define a drive /ball_chaser/command_robot service with a handle_drive_request callback function</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">ServiceServer</span> <span class="n">service</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertiseService</span><span class="p">(</span><span class="s">"/ball_chaser/command_robot"</span><span class="p">,</span> <span class="n">handle_drive_request</span><span class="p">);</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Ready to send motor velocity"</span><span class="p">);</span>
+   
+    <span class="c1">// TODO: Handle ROS communication events</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="results">RESULTS</h4>
+<p><img src="/assets/images/GoChaseIt1.gif" alt="image" /><br />
+<img src="/assets/images/GoChaseIt2.gif" alt="image" /><br />
+<img src="/assets/images/GoChaseIt3.gif" alt="image" /></p>
+:ET
