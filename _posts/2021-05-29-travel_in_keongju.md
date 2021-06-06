@@ -67,4 +67,31 @@ date: 2021-05-29
   1. 아침먹고(조식) 쉬다가, 체크아웃(11:00)  
   2. 카페에서 놀다가~  
     ![아덴](https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200717_278%2F1594991842631ryAWc_JPEG%2FGUKlrqz1bb4GWQ5WAlqoCRq6.jpg)
-  3. 집으로:     
+  3. 집으로
+
+
+#### [5] 여행 사진  
+  - 너무 즐거워서, 여운이 오래 남을 것 같다.  
+  - 황남동, 황리단길, 보문호수 산책, 2인 자전거 강추,,  
+
+  |Video|
+  |---|---|
+  |[스티커사진](/assets/images/keonju1.MP4)|
+  |[보문드라이브](/assets/images/keonju2.MP4)|
+
+  |Picture|
+  |---|---|---|
+  |![image](/assets/images/keonju1.jpeg)|
+  |![image](/assets/images/keonju2.jpeg)|
+  |![image](/assets/images/keonju3.jpeg)|
+  |![image](/assets/images/keonju4.jpeg)|
+  |![image](/assets/images/keonju5.jpeg)|
+  |![image](/assets/images/keonju6.jpeg)|
+  |![image](/assets/images/keonju7.jpeg)|
+  |![image](/assets/images/keonju8.jpeg)|
+  |![image](/assets/images/keonju9.jpeg)|
+  |![image](/assets/images/keonju10.jpeg)|
+  |![image](/assets/images/keonju11.jpeg)|
+  |![image](/assets/images/keonju12.jpeg)|
+  |![image](/assets/images/keonju13.jpeg)|
+  
