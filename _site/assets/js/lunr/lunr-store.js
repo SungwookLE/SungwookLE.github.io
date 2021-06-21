@@ -42,7 +42,7 @@ var store = [{
         "teaser": null
       },{
         "title": "경주로 떠나요~",
-        "excerpt":"경주 여행 ~&lt;3 날짜: ‘21.6/3(목), 6/4(금), 6/5(일) 숙소: 라한호텔 경주 [1] 목요일, 첫째날 천안(12:00)-&gt;경주(15:00): 천안역에서 같이 차타고 경주로~ 늦은 점심 먹고, 체크 인 호텔 근처: 보문호수(호반길) 산책하기 / 수영장 저녁 8시: 안압지 야경보러 (안압지 가는 길에 뭐 먹기) [3] 금요일, 둘째날 아침먹고(조식) 호텔에서 나서기(11:00) 버스타고, 경주 관광지로 이동: 16번 버스(25분...","categories": ["day"],
+        "excerpt":"경주 여행 ~&lt;3 날짜: ‘21.6/3(목), 6/4(금), 6/5(토) 숙소: 라한호텔 경주 [1] 목요일, 첫째날 천안(12:00)-&gt;경주(15:00): 천안역에서 같이 차타고 경주로~ 늦은 점심 먹고, 체크 인 호텔 근처: 보문호수(호반길) 산책하기 / 수영장 저녁 8시: 안압지 야경보러 (안압지 가는 길에 뭐 먹기) [3] 금요일, 둘째날 아침먹고(조식) 호텔에서 나서기(11:00) 버스타고, 경주 관광지로 이동: 16번 버스(25분...","categories": ["day"],
         "tags": ["day"],
         "url": "/day/travel_in_keongju/",
         "teaser": null
@@ -51,5 +51,17 @@ var store = [{
         "excerpt":"PROJECT: Go Chase It AUTHOR: SungwookLE DATE: ‘21.6/1 [1] 채워나가야 함 프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고, 이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯, [2] source code drive_bot.cpp, process_image.cpp // : process_image.cpp #include \"ros/ros.h\"...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/ND_GoChaseIt/",
+        "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle Titanic",
+        "excerpt":"Data Analysis: Kaggle Titanic AUTHOR: SungwookLE DATE: ‘21.6/21 아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것 KEGGLE #1 SUBJECT: TITANIC AUTHOR: SungwookLE(joker1251@naver.com) DATE: ‘21.6/21 FROM: KEGGLE REFERENCE: [1]. #1 LECTURE [2]. #2 LECTURE [3]. #3 LECTURE The Challenge The sinking of the Titanic is one of the most infamous shipwrecks...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_Titanic/",
+        "teaser": null
+      },{
+        "title": "서울 맛집을 찾아서",
+        "excerpt":"jieun 리스트업     더블트러블유니온, 신사   삼창교자, 신사   감성타코, 신사   현우동, 신사   내 리스트업     고흥순대국, 건대   사철냉면, 왕십리   구공탄, 왕십리   일락, 왕십리   황소곱창, 왕십리   비봉손칼국수, 남양  ","categories": ["day"],
+        "tags": ["day"],
+        "url": "/day/sinsa_matzip/",
         "teaser": null
       }]

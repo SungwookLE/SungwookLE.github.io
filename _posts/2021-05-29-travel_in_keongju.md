@@ -14,7 +14,7 @@ date: 2021-05-29
 ---
 
 ## 경주 여행 ~<3  
-> 날짜: '21.6/3(목), 6/4(금), 6/5(일)  
+> 날짜: '21.6/3(목), 6/4(금), 6/5(토)  
 > 숙소: [라한호텔 경주](https://www.lahanhotels.com/gyeongju/index.do)  
 
 ![cheomseong-dan](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F99AC683C5DE90B4C1A7F56)
