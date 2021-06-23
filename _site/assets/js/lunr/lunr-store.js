@@ -64,4 +64,10 @@ var store = [{
         "tags": ["day"],
         "url": "/day/matzip/",
         "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle HousePrice",
+        "excerpt":"Data Analysis: Kaggle HousePrice AUTHOR: SungwookLE DATE: ‘21.6/24 아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것 HOUSE PRICES PREDICTION DATE: ‘21.6/21 AUTHOR: SungwookLE(joker1251@naver.com) REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard Ask a home buyer to describe their dream house, and they probably won’t begin with the height of the basement ceiling or the proximity to...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_HousePrice/",
+        "teaser": null
       }]
