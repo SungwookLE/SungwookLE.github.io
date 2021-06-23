@@ -408,24 +408,23 @@ bar_chart(train, 'Parch')
 bar_chart(train, 'Embarked') 
 ```
 
-
-![svg](titanic_wook_files/titanic_wook_13_0.svg)
-
-
-
-![svg](titanic_wook_files/titanic_wook_13_1.svg)
+![svg](/assets/images/titanic_wook_13_0.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_13_2.svg)
+![svg](/assets/images/titanic_wook_13_1.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_13_3.svg)
+![svg](/assets/images/titanic_wook_13_2.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_13_4.svg)
+![svg](/assets/images/titanic_wook_13_3.svg)
+
+
+
+![svg](/assets/images/titanic_wook_13_4.svg)
 
 
 
@@ -447,7 +446,7 @@ sset.plot(kind='bar', stacked = True, figsize=(10,5))
 
 
 
-![svg](titanic_wook_files/titanic_wook_14_1.svg)
+![svg](/assets/images/titanic_wook_14_1.svg)
 
 
 ### 2단계: Feature 추출하기
@@ -534,7 +533,7 @@ test.drop('Name', axis=1, inplace=True)
 ```
 
 
-![svg](titanic_wook_files/titanic_wook_19_0.svg)
+![svg](/assets/images/titanic_wook_19_0.svg)
 
 
 
@@ -601,19 +600,19 @@ facet_plot(train,'Age', [35,80])
 ```
 
 
-![svg](titanic_wook_files/titanic_wook_24_0.svg)
+![svg](/assets/images/titanic_wook_24_0.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_24_1.svg)
+![svg](/assets/images/titanic_wook_24_1.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_24_2.svg)
+![svg](/assets/images/titanic_wook_24_2.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_24_3.svg)
+![svg](/assets/images/titanic_wook_24_3.svg)
 
 
 ### Blinning
@@ -682,15 +681,15 @@ facet_plot(train, 'Fare', [30,150]) # 이 이후부터는 많이 살았음
 ```
 
 
-![svg](titanic_wook_files/titanic_wook_29_0.svg)
+![svg](/assets/images/titanic_wook_29_0.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_29_1.svg)
+![svg](/assets/images/titanic_wook_29_1.svg)
 
 
 
-![svg](titanic_wook_files/titanic_wook_29_2.svg)
+![svg](/assets/images/titanic_wook_29_2.svg)
 
 
 
@@ -726,7 +725,7 @@ facet_plot(train,'Fare')
 ```
 
 
-![svg](titanic_wook_files/titanic_wook_32_0.svg)
+![svg](/assets/images/titanic_wook_32_0.svg)
 
 
 
@@ -824,7 +823,7 @@ facet_plot(train, "FamilySize")
 ```
 
 
-![svg](titanic_wook_files/titanic_wook_39_0.svg)
+![svg](/assets/images/titanic_wook_39_0.svg)
 
 
 
