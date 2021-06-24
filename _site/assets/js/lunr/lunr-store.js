@@ -60,13 +60,13 @@ var store = [{
         "teaser": null
       },{
         "title": "맛집을 찾아서",
-        "excerpt":"jieun 리스트업     더블트러블유니온, 신사   삼창교자, 신사   감성타코, 신사   현우동, 신사   내 리스트업     고흥순대국, 건대   사철냉면, 왕십리   구공탄, 왕십리   일락, 왕십리   황소곱창, 왕십리   비봉손칼국수, 남양   피자컴퍼니, 합정: 페퍼로니 또는, 베이컨체더   경주식당, 합정   삼청동수제비, 안국역   일미간장게장, 장한평   원주 리스트     샐러디   빵공장라뜰리에김가   허니포레스트  ","categories": ["day"],
+        "excerpt":"jieun 리스트업 더블트러블유니온, 신사 삼창교자, 신사 감성타코, 신사 현우동, 신사 내 리스트업 고흥순대국, 건대 사철냉면, 왕십리 구공탄, 왕십리 일락, 왕십리 황소곱창, 왕십리 비봉손칼국수, 남양 피자컴퍼니, 합정: 페퍼로니 또는 베이컨체더 경주식당, 합정 삼청동수제비, 안국역 일미간장게장, 장한평 로마옥, 양재 소호정, 양재 광장동가온, 광나루 우가촌설렁탕, 공덕 원주 리스트 빵공장라뜰리에김가, 원주 허니포레스트, 원주 우정집,...","categories": ["day"],
         "tags": ["day"],
         "url": "/day/matzip/",
         "teaser": null
       },{
         "title": "DataAnalysis: Kaggle HousePrice",
-        "excerpt":"Data Analysis: Kaggle HousePrice AUTHOR: SungwookLE DATE: ‘21.6/24 아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것 HOUSE PRICES PREDICTION DATE: ‘21.6/21 AUTHOR: SungwookLE(joker1251@naver.com) REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard Ask a home buyer to describe their dream house, and they probably won’t begin with the height of the basement ceiling or the proximity to...","categories": ["research"],
+        "excerpt":"HOUSE PRICES PREDICTION 문제: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview DATE: ‘21.6/21 AUTHOR: SungwookLE(joker1251@naver.com) REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard Ask a home buyer to describe their dream house, and they probably won’t begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition’s dataset proves that much more influences price...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/Kaggle_HousePrice/",
         "teaser": null

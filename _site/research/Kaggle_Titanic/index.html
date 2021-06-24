@@ -231,35 +231,84 @@ DATE: ‘21.6/21</p>
 <p>We also include gender_submission.csv, a set of predictions that assume all and only female passengers survive, as an example of what a submission file should look like.</p>
 
 <h3 id="data-dictionary">Data Dictionary</h3>
-<p>||||
-|:–|:–|:–|
-|Variable|Definition|Key|
-|survival|Survival|0 = No, 1 = Yes|
-|pclass|Ticket class|1 = 1st, 2 = 2nd, 3 = 3rd|
-|sex|Sex||
-|Age|Age in years||	
-|sibsp|# of siblings / spouses aboard the Titanic||
-|parch|# of parents / children aboard the Titanic||
-|ticket|Ticket number||
-|fare|Passenger fare||
-|cabin|Cabin number||
-|embarked|Port of Embarkation|C = Cherbourg, Q = Queenstown, S = Southampton|</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Variable</th>
+      <th style="text-align: left">Definition</th>
+      <th style="text-align: left">Key</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">survival</td>
+      <td style="text-align: left">Survival</td>
+      <td style="text-align: left">0 = No, 1 = Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pclass</td>
+      <td style="text-align: left">Ticket class</td>
+      <td style="text-align: left">1 = 1st, 2 = 2nd, 3 = 3rd</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sex</td>
+      <td style="text-align: left">Sex</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Age</td>
+      <td style="text-align: left">Age in years</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sibsp</td>
+      <td style="text-align: left"># of siblings / spouses aboard the Titanic</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parch</td>
+      <td style="text-align: left"># of parents / children aboard the Titanic</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ticket</td>
+      <td style="text-align: left">Ticket number</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fare</td>
+      <td style="text-align: left">Passenger fare</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cabin</td>
+      <td style="text-align: left">Cabin number</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">embarked</td>
+      <td style="text-align: left">Port of Embarkation</td>
+      <td style="text-align: left">C = Cherbourg, Q = Queenstown, S = Southampton</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="variable-notes">Variable Notes</h3>
-<p>pclass: A proxy for socio-economic status (SES)
-1st = Upper
-2nd = Middle
+<p>pclass: A proxy for socio-economic status (SES)<br />
+1st = Upper<br />
+2nd = Middle<br />
 3rd = Lower</p>
 
 <p>age: Age is fractional if less than 1. If the age is estimated, is it in the form of xx.5</p>
 
-<p>sibsp: The dataset defines family relations in this way…
-Sibling = brother, sister, stepbrother, stepsister
+<p>sibsp: The dataset defines family relations in this way…<br />
+Sibling = brother, sister, stepbrother, stepsister<br />
 Spouse = husband, wife (mistresses and fiancés were ignored)</p>
 
-<p>parch: The dataset defines family relations in this way…
-Parent = mother, father
-Child = daughter, son, stepdaughter, stepson
+<p>parch: The dataset defines family relations in this way…<br />
+Parent = mother, father<br />
+Child = daughter, son, stepdaughter, stepson<br />
 Some children travelled only with a nanny, therefore parch=0 for them.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'''

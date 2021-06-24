@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>DataAnalysis: Kaggle HousePrice - SungwookLE</title>
-<meta name="description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression">
+<meta name="description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression, @-@">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="sungwookle.github.io/research/Kaggle_HousePrice/">
 
 
-  <meta property="og:description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression">
+  <meta property="og:description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression, @-@">
 
 
 
@@ -161,7 +161,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="DataAnalysis: Kaggle HousePrice">
-    <meta itemprop="description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression">
+    <meta itemprop="description" content="Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression, @-@">
     <meta itemprop="datePublished" content="2021-06-24T00:00:00+09:00">
     
 
@@ -181,20 +181,13 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#data-analysis-kaggle-houseprice">Data Analysis: Kaggle HousePrice</a></li><li><a href="#7-1-데이터-정리-작업">7-1. 데이터 정리 작업</a></li><li><a href="#7-2-target-variable">7-2. Target Variable</a><ul><li><a href="#log-transformation-of-the-target-variable">Log-transformation of the target variable</a></li></ul></li><li><a href="#7-3-feature-engineering">7-3. Feature engineering</a></li><li><a href="#7-4-missing-data-채우기">7-4. Missing Data 채우기</a><ul><li><a href="#data-correlation">Data Correlation</a></li><li><a href="#imputing-missing-values">Imputing missing values</a></li></ul></li><li><a href="#7-5-more-features-engineering">7-5. More features engineering</a><ul><li><a href="#label-encoding-some-categorical-variables-that-may-contain-information-in-their-ordering-set">Label Encoding some categorical variables that may contain information in their ordering set</a></li><li><a href="#adding-one-more-important-feature">Adding one more important feature</a></li><li><a href="#skewed-features">Skewed features</a></li></ul></li><li><a href="#7-6-box-cox-transformation-of-highly-skewed-features">7-6. Box Cox Transformation of (highly) skewed features</a></li><li><a href="#7-7-getting-dummy-categorical-features">7-7. Getting dummy categorical features</a></li><li><a href="#8-1-define-a-cross-validation-strategy">8-1. Define a cross validation strategy</a></li><li><a href="#8-2-base-models">8-2. Base models</a></li><li><a href="#8-3-base-models-scores">8-3. Base Models scores</a></li><li><a href="#9-1-averaged-base-models-class">9-1. Averaged base models class</a></li></ul>
+              <ul class="toc__menu"><li><a href="#house-prices-prediction">HOUSE PRICES PREDICTION</a><ul><li><a href="#1-goal">1. Goal</a></li><li><a href="#2-metric">2. Metric</a></li><li><a href="#3-file-descriptions">3. File descriptions</a></li><li><a href="#4-data-fields">4. Data fields</a></li><li><a href="#5-데이터-살펴보기">5. 데이터 살펴보기</a></li><li><a href="#6-79번-step-overview">6. 7~9번 STEP OVERVIEW</a></li><li><a href="#7-데이터-분석-및-feature-engineering">7. 데이터 분석 및 Feature Engineering</a><ul><li><a href="#7-1-데이터-정리-작업">7-1. 데이터 정리 작업</a></li><li><a href="#7-2-target-variable">7-2. Target Variable</a><ul><li><a href="#log-transformation-of-the-target-variable">Log-transformation of the target variable</a></li></ul></li><li><a href="#7-3-feature-engineering">7-3. Feature engineering</a></li><li><a href="#7-4-missing-data-채우기">7-4. Missing Data 채우기</a><ul><li><a href="#data-correlation">Data Correlation</a></li><li><a href="#imputing-missing-values">Imputing missing values</a></li></ul></li><li><a href="#7-5-more-features-engineering">7-5. More features engineering</a><ul><li><a href="#label-encoding-some-categorical-variables-that-may-contain-information-in-their-ordering-set">Label Encoding some categorical variables that may contain information in their ordering set</a></li><li><a href="#adding-one-more-important-feature">Adding one more important feature</a></li><li><a href="#skewed-features">Skewed features</a></li></ul></li><li><a href="#7-6-box-cox-transformation-of-highly-skewed-features">7-6. Box Cox Transformation of (highly) skewed features</a></li><li><a href="#7-7-getting-dummy-categorical-features">7-7. Getting dummy categorical features</a></li></ul></li><li><a href="#8-modeling">8. Modeling</a><ul><li><a href="#8-1-define-a-cross-validation-strategy">8-1. Define a cross validation strategy</a></li><li><a href="#8-2-base-models">8-2. Base models</a></li><li><a href="#8-3-base-models-scores">8-3. Base Models scores</a></li></ul></li><li><a href="#9-stacking-models">9. Stacking models</a><ul><li><a href="#9-1-averaged-base-models-class">9-1. Averaged base models class</a></li><li><a href="#9-2-averaged-base-models-score">9-2. Averaged base models score</a></li></ul></li><li><a href="#끝">끝.</a><ul><li><a href="#추가적인-멤버함수-탐구">추가적인 멤버함수 탐구</a></li></ul></li></ul></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <h3 id="data-analysis-kaggle-houseprice">Data Analysis: Kaggle HousePrice</h3>
-<blockquote>
-  <p>AUTHOR: SungwookLE<br />
-DATE: ‘21.6/24</p>
-</blockquote>
-
-<p>아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것</p>
-
-<h1 id="house-prices-prediction">HOUSE PRICES PREDICTION</h1>
+        <h1 id="house-prices-prediction">HOUSE PRICES PREDICTION</h1>
+<p>문제: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview</p>
 <ul>
   <li>DATE: ‘21.6/21</li>
   <li>AUTHOR: SungwookLE(joker1251@naver.com)</li>
@@ -1354,8 +1347,8 @@ NoRidge     41
 Timber      38
 IDOTRR      37
 ClearCr     28
-StoneBr     25
 SWISU       25
+StoneBr     25
 Blmngtn     17
 MeadowV     17
 BrDale      16
@@ -1518,11 +1511,16 @@ GarageYrBlt    float64
 dtype: object
 </code></pre></div></div>
 
-<h2 id="7-데이터-분석-및-feature-engineering">7. 데이터 분석 및 Feature Engineering</h2>
+<h2 id="6-79번-step-overview">6. 7~9번 STEP OVERVIEW</h2>
 <p>REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard</p>
+
 <ul>
-  <li>Kaggle Leaderboard에 다양한 discussion 자료 참고하여 따라함</li>
+  <li>1) 데이터 분석, 칼럼과 예측변수의 상관관계 보기</li>
+  <li>2) Feature Engineering: null데이터 채워넣고, 추가 데이터 생성하거나, 없애고, categorical 데이터는 따로 매핑해주고</li>
+  <li>3) 학습 모델(regressor)에 집어넣어 예측하기: sklearn 라이브러리 활용</li>
 </ul>
+
+<h2 id="7-데이터-분석-및-feature-engineering">7. 데이터 분석 및 Feature Engineering</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span> <span class="o">=</span> <span class="n">train_original</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">test_original</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2037,170 +2035,9 @@ Name: SalePrice, Length: 662, dtype: int64
     <span class="n">lbl</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
     <span class="n">lbl</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">c</span><span class="p">].</span><span class="n">values</span><span class="p">))</span>
     <span class="n">all_data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">lbl</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">c</span><span class="p">].</span><span class="n">values</span><span class="p">))</span>
-<span class="n">help</span><span class="p">(</span><span class="n">LabelEncoder</span><span class="p">)</span>
+
 <span class="c1">#LabelEncoder란 문자로 되어있는 class 를 숫자로 매핑시켜주는 역할을 함
 </span></code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Help on class LabelEncoder in module sklearn.preprocessing._label:
-
-class LabelEncoder(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator)
- |  Encode target labels with value between 0 and n_classes-1.
- |  
- |  This transformer should be used to encode target values, *i.e.* `y`, and
- |  not the input `X`.
- |  
- |  Read more in the :ref:`User Guide &lt;preprocessing_targets&gt;`.
- |  
- |  .. versionadded:: 0.12
- |  
- |  Attributes
- |  ----------
- |  classes_ : array of shape (n_class,)
- |      Holds the label for each class.
- |  
- |  Examples
- |  --------
- |  `LabelEncoder` can be used to normalize labels.
- |  
- |  &gt;&gt;&gt; from sklearn import preprocessing
- |  &gt;&gt;&gt; le = preprocessing.LabelEncoder()
- |  &gt;&gt;&gt; le.fit([1, 2, 2, 6])
- |  LabelEncoder()
- |  &gt;&gt;&gt; le.classes_
- |  array([1, 2, 6])
- |  &gt;&gt;&gt; le.transform([1, 1, 2, 6])
- |  array([0, 0, 1, 2]...)
- |  &gt;&gt;&gt; le.inverse_transform([0, 0, 1, 2])
- |  array([1, 1, 2, 6])
- |  
- |  It can also be used to transform non-numerical labels (as long as they are
- |  hashable and comparable) to numerical labels.
- |  
- |  &gt;&gt;&gt; le = preprocessing.LabelEncoder()
- |  &gt;&gt;&gt; le.fit(["paris", "paris", "tokyo", "amsterdam"])
- |  LabelEncoder()
- |  &gt;&gt;&gt; list(le.classes_)
- |  ['amsterdam', 'paris', 'tokyo']
- |  &gt;&gt;&gt; le.transform(["tokyo", "tokyo", "paris"])
- |  array([2, 2, 1]...)
- |  &gt;&gt;&gt; list(le.inverse_transform([2, 2, 1]))
- |  ['tokyo', 'tokyo', 'paris']
- |  
- |  See also
- |  --------
- |  sklearn.preprocessing.OrdinalEncoder : Encode categorical features
- |      using an ordinal encoding scheme.
- |  
- |  sklearn.preprocessing.OneHotEncoder : Encode categorical features
- |      as a one-hot numeric array.
- |  
- |  Method resolution order:
- |      LabelEncoder
- |      sklearn.base.TransformerMixin
- |      sklearn.base.BaseEstimator
- |      builtins.object
- |  
- |  Methods defined here:
- |  
- |  fit(self, y)
- |      Fit label encoder
- |      
- |      Parameters
- |      ----------
- |      y : array-like of shape (n_samples,)
- |          Target values.
- |      
- |      Returns
- |      -------
- |      self : returns an instance of self.
- |  
- |  fit_transform(self, y)
- |      Fit label encoder and return encoded labels
- |      
- |      Parameters
- |      ----------
- |      y : array-like of shape [n_samples]
- |          Target values.
- |      
- |      Returns
- |      -------
- |      y : array-like of shape [n_samples]
- |  
- |  inverse_transform(self, y)
- |      Transform labels back to original encoding.
- |      
- |      Parameters
- |      ----------
- |      y : numpy array of shape [n_samples]
- |          Target values.
- |      
- |      Returns
- |      -------
- |      y : numpy array of shape [n_samples]
- |  
- |  transform(self, y)
- |      Transform labels to normalized encoding.
- |      
- |      Parameters
- |      ----------
- |      y : array-like of shape [n_samples]
- |          Target values.
- |      
- |      Returns
- |      -------
- |      y : array-like of shape [n_samples]
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from sklearn.base.TransformerMixin:
- |  
- |  __dict__
- |      dictionary for instance variables (if defined)
- |  
- |  __weakref__
- |      list of weak references to the object (if defined)
- |  
- |  ----------------------------------------------------------------------
- |  Methods inherited from sklearn.base.BaseEstimator:
- |  
- |  __getstate__(self)
- |  
- |  __repr__(self, N_CHAR_MAX=700)
- |      Return repr(self).
- |  
- |  __setstate__(self, state)
- |  
- |  get_params(self, deep=True)
- |      Get parameters for this estimator.
- |      
- |      Parameters
- |      ----------
- |      deep : bool, default=True
- |          If True, will return the parameters for this estimator and
- |          contained subobjects that are estimators.
- |      
- |      Returns
- |      -------
- |      params : mapping of string to any
- |          Parameter names mapped to their values.
- |  
- |  set_params(self, **params)
- |      Set the parameters of this estimator.
- |      
- |      The method works on simple estimators as well as on nested objects
- |      (such as pipelines). The latter have parameters of the form
- |      ``&lt;component&gt;__&lt;parameter&gt;`` so that it's possible to update each
- |      component of a nested object.
- |      
- |      Parameters
- |      ----------
- |      **params : dict
- |          Estimator parameters.
- |      
- |      Returns
- |      -------
- |      self : object
- |          Estimator instance.
-</code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#LabelEncoder 결과 샘플
 </span><span class="n">all_data</span><span class="p">[</span><span class="s">'FireplaceQu'</span><span class="p">].</span><span class="n">head</span><span class="p">()</span>
@@ -2574,14 +2411,10 @@ Index(['MSSubClass', 'LotFrontage', 'LotArea', 'Street', 'Alley', 'LotShape',
     <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'neg_mean_squared_error'</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">rmse</span>
 <span class="c1"># 참고로 logistic prediction 을 할 때에는 scoring 인자로 'accuracy'를 전달했었음: 타이타닉 문제
-</span><span class="s">'''
- k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)
- score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')
-'''</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"\n k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)\n score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')\n"
-</code></pre></div></div>
+#
+#k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)
+#score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')
+</span></code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">)</span>
 </code></pre></div></div>
@@ -2793,7 +2626,7 @@ With huber loss that makes it robust to outliers</li>
 <span class="k">print</span><span class="p">(</span><span class="s">"Xgboost score: {:.4f} ({:.4f})</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">score</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">score</span><span class="p">.</span><span class="n">std</span><span class="p">()))</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[01:04:27] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[21:48:31] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
 Parameters: { silent } might not be used.
 
   This may not be accurate due to some parameters are only used in language bindings but
@@ -2801,7 +2634,7 @@ Parameters: { silent } might not be used.
   verification. Please open an issue if you find above cases.
 
 
-[01:04:34] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+[21:48:38] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
 Parameters: { silent } might not be used.
 
   This may not be accurate due to some parameters are only used in language bindings but
@@ -2809,7 +2642,7 @@ Parameters: { silent } might not be used.
   verification. Please open an issue if you find above cases.
 
 
-[01:04:41] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+[21:48:44] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
 Parameters: { silent } might not be used.
 
   This may not be accurate due to some parameters are only used in language bindings but
@@ -2817,7 +2650,7 @@ Parameters: { silent } might not be used.
   verification. Please open an issue if you find above cases.
 
 
-[01:04:50] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+[21:48:51] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
 Parameters: { silent } might not be used.
 
   This may not be accurate due to some parameters are only used in language bindings but
@@ -2825,7 +2658,7 @@ Parameters: { silent } might not be used.
   verification. Please open an issue if you find above cases.
 
 
-[01:04:56] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+[21:49:00] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
 Parameters: { silent } might not be used.
 
   This may not be accurate due to some parameters are only used in language bindings but
@@ -2878,6 +2711,360 @@ LGBM score: 0.1199 (0.0078)
 We begin with this simple approach of averaging base models. We build a new class to extend scikit-learn with our model and also to laverage encapsulation and code reuse (inheritance)</p>
 
 <h3 id="9-1-averaged-base-models-class">9-1. Averaged base models class</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AveraginModels</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">models</span> <span class="o">=</span> <span class="n">models</span>
+
+    <span class="c1"># we define clones of the original models to fit the data in
+</span>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">models_</span> <span class="o">=</span> <span class="p">[</span><span class="n">clone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">models</span><span class="p">]</span>
+        <span class="c1">#clone(estimator, *, safe=True) Constructs a new estimator with the same parameters. Clone does a deep copy of the model in an estimator
+</span>
+        <span class="c1"># Train cloned base models
+</span>        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">models_</span><span class="p">:</span>
+            <span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="c1"># Now we do the predictions for cloned models and average them
+</span>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">column_stack</span><span class="p">([</span>
+            <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">models_</span>
+        <span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="9-2-averaged-base-models-score">9-2. Averaged base models score</h3>
+<p>We just average four models here ENet, GBoost, KRR and lasso. Of course we could easily add more models in the mix</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rmsle</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">averaged_models</span> <span class="o">=</span> <span class="n">AveraginModels</span><span class="p">(</span><span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">ENet</span><span class="p">,</span> <span class="n">GBoost</span><span class="p">,</span> <span class="n">KRR</span><span class="p">,</span> <span class="n">lasso</span><span class="p">))</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="n">rmsle_cv</span><span class="p">(</span><span class="n">averaged_models</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">" Averaged base models score: {:.4f} ({:.4f})</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">score</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">score</span><span class="p">.</span><span class="n">std</span><span class="p">()))</span>
+
+<span class="n">averaged_models</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">avg_train_pred</span> <span class="o">=</span><span class="n">averaged_models</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">avg_pred</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">averaged_models</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">))</span> <span class="c1">#np.expm1 함수는 입력 어레이의 값에 대해 exp(x)-1을 계산해줌
+</span><span class="k">print</span><span class="p">(</span><span class="s">'RMSLE score on train data:'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rmsle</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">avg_train_pred</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Averaged base models score: 0.1088 (0.0077)
+
+RMSLE score on train data:
+0.07955087782628294
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sub</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">sub</span><span class="p">[</span><span class="s">'Id'</span><span class="p">]</span><span class="o">=</span><span class="n">test_ID</span>
+<span class="n">sub</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">]</span><span class="o">=</span><span class="n">avg_pred</span>
+<span class="n">sub</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'submission.csv'</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="n">sub</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1461</td>
+      <td>119205.318586</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>161416.773339</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>186769.010293</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1464</td>
+      <td>195507.194226</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1465</td>
+      <td>193035.814333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="끝">끝.</h2>
+
+<h4 id="추가적인-멤버함수-탐구">추가적인 멤버함수 탐구</h4>
+<ul>
+  <li>pd 멤버 함수 중 <code class="language-plaintext highlighter-rouge">pd.get_dummies()</code>: one-hot encoding 처럼 class 가 object 로 구성된 칼럼을 indepent 칼럼으로 분리시켜주는 역할</li>
+  <li>sklearn.preprocessing 멤버 함수 중 <code class="language-plaintext highlighter-rouge">LabelEncoder()</code>: mapping이랑 역할 똑같음</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="s">'C'</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="s">'D'</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'one'</span><span class="p">,</span><span class="s">'two'</span><span class="p">,</span><span class="s">'three'</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">'1st'</span><span class="p">,</span><span class="s">'2nd'</span><span class="p">,</span><span class="s">'3rd'</span><span class="p">])</span>
+<span class="n">A</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>two</th>
+      <th>three</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>B</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>C</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>D</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">A</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s">'A'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'C'</span><span class="p">]</span>
+
+<span class="n">mapping_A</span> <span class="o">=</span> <span class="p">{</span><span class="s">'A'</span><span class="p">:</span><span class="mi">1</span> <span class="p">,</span> <span class="s">'B'</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s">'C'</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">].</span><span class="nb">map</span><span class="p">(</span><span class="n">mapping_A</span><span class="p">)</span>
+<span class="n">A</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+      <th>mapping</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s">'A'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'C'</span><span class="p">]</span>
+<span class="n">le</span><span class="o">=</span><span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">le</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">])</span>
+<span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">]</span><span class="o">=</span><span class="n">le</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="s">'mapping'</span><span class="p">])</span>
+<span class="n">A</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+      <th>mapping</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
         
       </section>

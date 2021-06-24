@@ -1,6 +1,6 @@
 ---
 title:  "DataAnalysis: Kaggle HousePrice"
-excerpt: "Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression"
+excerpt: "Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression, @-@"
 
 categories:
   - research
@@ -13,13 +13,8 @@ toc_sticky: true
 date: 2021-06-24
 ---
 
-### Data Analysis: Kaggle HousePrice
-> AUTHOR: SungwookLE  
-> DATE: '21.6/24
-
-아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것  
-
 # HOUSE PRICES PREDICTION
+문제: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview
 - DATE: '21.6/21  
 - AUTHOR: SungwookLE(joker1251@naver.com)  
 - REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard
@@ -994,8 +989,8 @@ train['Neighborhood'].value_counts()
     Timber      38
     IDOTRR      37
     ClearCr     28
-    StoneBr     25
     SWISU       25
+    StoneBr     25
     Blmngtn     17
     MeadowV     17
     BrDale      16
@@ -1178,10 +1173,14 @@ print(train.dtypes.loc[train.dtypes == 'float'])
     GarageYrBlt    float64
     dtype: object
 
+## 6. 7~9번 STEP OVERVIEW
+REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard
+
+- 1) 데이터 분석, 칼럼과 예측변수의 상관관계 보기
+- 2) Feature Engineering: null데이터 채워넣고, 추가 데이터 생성하거나, 없애고, categorical 데이터는 따로 매핑해주고
+- 3) 학습 모델(regressor)에 집어넣어 예측하기: sklearn 라이브러리 활용
 
 ## 7. 데이터 분석 및 Feature Engineering
-REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard
-- Kaggle Leaderboard에 다양한 discussion 자료 참고하여 따라함
 
 
 ```python
@@ -1778,171 +1777,9 @@ for c in cols:
     lbl = LabelEncoder()
     lbl.fit(list(all_data[c].values))
     all_data[c] = lbl.transform(list(all_data[c].values))
-help(LabelEncoder)
+
 #LabelEncoder란 문자로 되어있는 class 를 숫자로 매핑시켜주는 역할을 함
 ```
-
-    Help on class LabelEncoder in module sklearn.preprocessing._label:
-    
-    class LabelEncoder(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator)
-     |  Encode target labels with value between 0 and n_classes-1.
-     |  
-     |  This transformer should be used to encode target values, *i.e.* `y`, and
-     |  not the input `X`.
-     |  
-     |  Read more in the :ref:`User Guide <preprocessing_targets>`.
-     |  
-     |  .. versionadded:: 0.12
-     |  
-     |  Attributes
-     |  ----------
-     |  classes_ : array of shape (n_class,)
-     |      Holds the label for each class.
-     |  
-     |  Examples
-     |  --------
-     |  `LabelEncoder` can be used to normalize labels.
-     |  
-     |  >>> from sklearn import preprocessing
-     |  >>> le = preprocessing.LabelEncoder()
-     |  >>> le.fit([1, 2, 2, 6])
-     |  LabelEncoder()
-     |  >>> le.classes_
-     |  array([1, 2, 6])
-     |  >>> le.transform([1, 1, 2, 6])
-     |  array([0, 0, 1, 2]...)
-     |  >>> le.inverse_transform([0, 0, 1, 2])
-     |  array([1, 1, 2, 6])
-     |  
-     |  It can also be used to transform non-numerical labels (as long as they are
-     |  hashable and comparable) to numerical labels.
-     |  
-     |  >>> le = preprocessing.LabelEncoder()
-     |  >>> le.fit(["paris", "paris", "tokyo", "amsterdam"])
-     |  LabelEncoder()
-     |  >>> list(le.classes_)
-     |  ['amsterdam', 'paris', 'tokyo']
-     |  >>> le.transform(["tokyo", "tokyo", "paris"])
-     |  array([2, 2, 1]...)
-     |  >>> list(le.inverse_transform([2, 2, 1]))
-     |  ['tokyo', 'tokyo', 'paris']
-     |  
-     |  See also
-     |  --------
-     |  sklearn.preprocessing.OrdinalEncoder : Encode categorical features
-     |      using an ordinal encoding scheme.
-     |  
-     |  sklearn.preprocessing.OneHotEncoder : Encode categorical features
-     |      as a one-hot numeric array.
-     |  
-     |  Method resolution order:
-     |      LabelEncoder
-     |      sklearn.base.TransformerMixin
-     |      sklearn.base.BaseEstimator
-     |      builtins.object
-     |  
-     |  Methods defined here:
-     |  
-     |  fit(self, y)
-     |      Fit label encoder
-     |      
-     |      Parameters
-     |      ----------
-     |      y : array-like of shape (n_samples,)
-     |          Target values.
-     |      
-     |      Returns
-     |      -------
-     |      self : returns an instance of self.
-     |  
-     |  fit_transform(self, y)
-     |      Fit label encoder and return encoded labels
-     |      
-     |      Parameters
-     |      ----------
-     |      y : array-like of shape [n_samples]
-     |          Target values.
-     |      
-     |      Returns
-     |      -------
-     |      y : array-like of shape [n_samples]
-     |  
-     |  inverse_transform(self, y)
-     |      Transform labels back to original encoding.
-     |      
-     |      Parameters
-     |      ----------
-     |      y : numpy array of shape [n_samples]
-     |          Target values.
-     |      
-     |      Returns
-     |      -------
-     |      y : numpy array of shape [n_samples]
-     |  
-     |  transform(self, y)
-     |      Transform labels to normalized encoding.
-     |      
-     |      Parameters
-     |      ----------
-     |      y : array-like of shape [n_samples]
-     |          Target values.
-     |      
-     |      Returns
-     |      -------
-     |      y : array-like of shape [n_samples]
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from sklearn.base.TransformerMixin:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from sklearn.base.BaseEstimator:
-     |  
-     |  __getstate__(self)
-     |  
-     |  __repr__(self, N_CHAR_MAX=700)
-     |      Return repr(self).
-     |  
-     |  __setstate__(self, state)
-     |  
-     |  get_params(self, deep=True)
-     |      Get parameters for this estimator.
-     |      
-     |      Parameters
-     |      ----------
-     |      deep : bool, default=True
-     |          If True, will return the parameters for this estimator and
-     |          contained subobjects that are estimators.
-     |      
-     |      Returns
-     |      -------
-     |      params : mapping of string to any
-     |          Parameter names mapped to their values.
-     |  
-     |  set_params(self, **params)
-     |      Set the parameters of this estimator.
-     |      
-     |      The method works on simple estimators as well as on nested objects
-     |      (such as pipelines). The latter have parameters of the form
-     |      ``<component>__<parameter>`` so that it's possible to update each
-     |      component of a nested object.
-     |      
-     |      Parameters
-     |      ----------
-     |      **params : dict
-     |          Estimator parameters.
-     |      
-     |      Returns
-     |      -------
-     |      self : object
-     |          Estimator instance.
-    
-
 
 
 ```python
@@ -2346,18 +2183,10 @@ def rmsle_cv(model):
     rmse = np.sqrt(-cross_val_score(model, train.values, y_train, scoring='neg_mean_squared_error', cv=kf))
     return rmse
 # 참고로 logistic prediction 을 할 때에는 scoring 인자로 'accuracy'를 전달했었음: 타이타닉 문제
-'''
- k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)
- score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')
-'''
+#
+#k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)
+#score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')
 ```
-
-
-
-
-    "\n k_fold = KFold(n_splits = 10, shuffle = True, random_state = 0)\n score = cross_val_score(clf, train_data, target, cv= k_fold, n_jobs =1 , scoring='accuracy')\n"
-
-
 
 
 ```python
@@ -2585,7 +2414,7 @@ score = rmsle_cv(model_xgb)
 print("Xgboost score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
 ```
 
-    [01:04:27] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+    [21:48:31] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
     Parameters: { silent } might not be used.
     
       This may not be accurate due to some parameters are only used in language bindings but
@@ -2593,7 +2422,7 @@ print("Xgboost score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
       verification. Please open an issue if you find above cases.
     
     
-    [01:04:34] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+    [21:48:38] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
     Parameters: { silent } might not be used.
     
       This may not be accurate due to some parameters are only used in language bindings but
@@ -2601,7 +2430,7 @@ print("Xgboost score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
       verification. Please open an issue if you find above cases.
     
     
-    [01:04:41] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+    [21:48:44] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
     Parameters: { silent } might not be used.
     
       This may not be accurate due to some parameters are only used in language bindings but
@@ -2609,7 +2438,7 @@ print("Xgboost score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
       verification. Please open an issue if you find above cases.
     
     
-    [01:04:50] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+    [21:48:51] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
     Parameters: { silent } might not be used.
     
       This may not be accurate due to some parameters are only used in language bindings but
@@ -2617,7 +2446,7 @@ print("Xgboost score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
       verification. Please open an issue if you find above cases.
     
     
-    [01:04:56] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
+    [21:49:00] WARNING: /tmp/build/80754af9/xgboost-split_1619724447847/work/src/learner.cc:541: 
     Parameters: { silent } might not be used.
     
       This may not be accurate due to some parameters are only used in language bindings but
@@ -2674,3 +2503,395 @@ print("LGBM score: {:.4f} ({:.4f})\n" .format(score.mean(), score.std()))
 We begin with this simple approach of averaging base models. We build a new class to extend scikit-learn with our model and also to laverage encapsulation and code reuse (inheritance)
 
 ### 9-1. Averaged base models class
+
+
+```python
+class AveraginModels(BaseEstimator, RegressorMixin, TransformerMixin):
+    def __init__(self, models):
+        self.models = models
+
+    # we define clones of the original models to fit the data in
+    def fit(self, X, y):
+        self.models_ = [clone(x) for x in self.models]
+        #clone(estimator, *, safe=True) Constructs a new estimator with the same parameters. Clone does a deep copy of the model in an estimator
+
+        # Train cloned base models
+        for model in self.models_:
+            model.fit(X,y)
+
+        return self
+
+    # Now we do the predictions for cloned models and average them
+    def predict(self, X):
+        predictions = np.column_stack([
+            model.predict(X) for model in self.models_
+        ])
+        return np.mean(predictions, axis=1)
+```
+
+### 9-2. Averaged base models score
+We just average four models here ENet, GBoost, KRR and lasso. Of course we could easily add more models in the mix
+
+
+```python
+def rmsle(y, y_pred):
+    return np.sqrt(mean_squared_error(y, y_pred))
+```
+
+
+```python
+averaged_models = AveraginModels(models = (ENet, GBoost, KRR, lasso))
+
+score = rmsle_cv(averaged_models)
+print(" Averaged base models score: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
+
+averaged_models.fit(train, y_train)
+avg_train_pred =averaged_models.predict(train)
+avg_pred = np.expm1(averaged_models.predict(test)) #np.expm1 함수는 입력 어레이의 값에 대해 exp(x)-1을 계산해줌
+print('RMSLE score on train data:')
+print(rmsle(y_train, avg_train_pred))
+```
+
+     Averaged base models score: 0.1088 (0.0077)
+    
+    RMSLE score on train data:
+    0.07955087782628294
+
+
+
+```python
+sub=pd.DataFrame()
+sub['Id']=test_ID
+sub['SalePrice']=avg_pred
+sub.to_csv('submission.csv',index=False)
+
+sub.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1461</td>
+      <td>119205.318586</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>161416.773339</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>186769.010293</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1464</td>
+      <td>195507.194226</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1465</td>
+      <td>193035.814333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+## 끝.
+
+#### 추가적인 멤버함수 탐구
+- pd 멤버 함수 중 `pd.get_dummies()`: one-hot encoding 처럼 class 가 object 로 구성된 칼럼을 indepent 칼럼으로 분리시켜주는 역할
+- sklearn.preprocessing 멤버 함수 중 `LabelEncoder()`: mapping이랑 역할 똑같음
+
+
+
+```python
+A = pd.DataFrame(data=[[1,'B',3],[1,'C',6],[7,'D',9]],columns=['one','two','three'], index=['1st','2nd','3rd'])
+A
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>two</th>
+      <th>three</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>B</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>C</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>D</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+A=pd.get_dummies(A)
+A
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+A['mapping']=['A','B','C']
+
+mapping_A = {'A':1 , 'B':2,'C':3}
+A['mapping']=A['mapping'].map(mapping_A)
+A
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+      <th>mapping</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+A['mapping']=['A','B','C']
+le=LabelEncoder()
+le.fit(A['mapping'])
+A['mapping']=le.transform(A['mapping'])
+A
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>one</th>
+      <th>three</th>
+      <th>two_B</th>
+      <th>two_C</th>
+      <th>two_D</th>
+      <th>mapping</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1st</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2nd</th>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3rd</th>
+      <td>7</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
