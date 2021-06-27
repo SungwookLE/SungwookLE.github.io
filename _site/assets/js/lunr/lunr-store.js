@@ -66,7 +66,7 @@ var store = [{
         "teaser": null
       },{
         "title": "DataAnalysis: Kaggle HousePrice",
-        "excerpt":"HOUSE PRICES PREDICTION 문제: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview DATE: ‘21.6/21 AUTHOR: SungwookLE(joker1251@naver.com) REFERENCE: https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard Ask a home buyer to describe their dream house, and they probably won’t begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition’s dataset proves that much more influences price...","categories": ["research"],
+        "excerpt":"House SalePrice Predict AUTHOR: SungwookLE DATE: ‘21.6/27 PROBLEM: Regression Kaggle LINK REFERENCE: https://www.kaggle.com/bsivavenu/house-price-calculation-methods-for-beginners Goal It is your job to predict the sales price for each house. For each Id in the test set, you must predict the value of the SalePrice variable. OVERVIEW 1) Data Analysis 데이터 차원, 형태 파악하기...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/Kaggle_HousePrice/",
         "teaser": null
