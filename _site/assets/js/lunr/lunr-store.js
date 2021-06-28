@@ -76,4 +76,16 @@ var store = [{
         "tags": ["research"],
         "url": "/research/Kaggle_HousePrice/",
         "teaser": null
+      },{
+        "title": "DataAnalysis: sklearn problem2",
+        "excerpt":"AI 경진대회 코딩 테스트 (B형) 제출자: 이성욱(sungwook.Lee@hyundai.com) 날짜: ‘21.6/28 문제(Type B): 5차원으로 데이터의 차원 축소, 축소를 통해 정리된 인자들의 특성을 살펴라 OVEVIEW Data Load and View Feature Dimenstion Reduce Feature Character 1. Data Load and View from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/sklearn2/",
+        "teaser": null
+      },{
+        "title": "DataAnalysis: sklearn problem3",
+        "excerpt":"sklearn problem3 AUTHOR: SungwookLE DATE: ‘21.6/29 제공된 데이터를 이용하여 유사한 데이터끼리 묶는 군집화 수행 군집의 대표값을 추출하여 제출 문서에 작성 input_test.csv 파일로 만든 군집화 모델의 출력을 output_test.csv로 저장하시오 from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline #print(check_output(['ls']).decode('utf8')) input_train = pd.read_csv('input_train.csv', header=None) input_test = pd.read_csv('input_test.csv',...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/sklearn3/",
+        "teaser": null
       }]
