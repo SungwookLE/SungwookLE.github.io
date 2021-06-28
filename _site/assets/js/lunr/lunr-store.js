@@ -53,16 +53,22 @@ var store = [{
         "url": "/research/ND_GoChaseIt/",
         "teaser": null
       },{
-        "title": "DataAnalysis: Kaggle Titanic",
-        "excerpt":"Data Analysis: Kaggle Titanic AUTHOR: SungwookLE DATE: ‘21.6/21 아래는, 간단하게, 파이썬 주피터노트북 파일을 마크다운 변환한 것 KEGGLE #1 SUBJECT: TITANIC AUTHOR: SungwookLE(joker1251@naver.com) DATE: ‘21.6/21 FROM: KEGGLE REFERENCE: [1]. #1 LECTURE [2]. #2 LECTURE [3]. #3 LECTURE The Challenge The sinking of the Titanic is one of the most infamous shipwrecks...","categories": ["research"],
+        "title": "DataAnalysis: Kaggle Titanic [참고용]",
+        "excerpt":"Data Analysis: Kaggle Titanic AUTHOR: SungwookLE DATE: ‘21.6/21 numerical data 의 binning techniques categorical data 의 map method 확인할 수 있음 KEGGLE #1 SUBJECT: TITANIC AUTHOR: SungwookLE(joker1251@naver.com) DATE: ‘21.6/21 FROM: KEGGLE REFERENCE: [1]. #1 LECTURE [2]. #2 LECTURE [3]. #3 LECTURE The Challenge The sinking of the Titanic is one...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/Kaggle_Titanic/",
+        "url": "/research/Kaggle_Titanic_Follow/",
         "teaser": null
       },{
         "title": "맛집을 찾아서",
-        "excerpt":"jieun 리스트업 더블트러블유니온, 신사 삼창교자, 신사 감성타코, 신사 현우동, 신사 내 리스트업 고흥순대국, 건대 사철냉면, 왕십리 구공탄, 왕십리 일락, 왕십리 황소곱창, 왕십리 비봉손칼국수, 남양 피자컴퍼니, 합정: 페퍼로니 또는 베이컨체더 경주식당, 합정 삼청동수제비, 안국역 일미간장게장, 장한평 로마옥, 양재 소호정, 양재 광장동가온, 광나루 우가촌설렁탕, 공덕 원주 리스트 빵공장라뜰리에김가, 원주 허니포레스트, 원주 우정집,...","categories": ["day"],
+        "excerpt":"jieun 리스트업 더블트러블유니온, 신사 삼창교자, 신사 감성타코, 신사 현우동, 신사 내 리스트업 고흥순대국, 건대 사철냉면, 왕십리 구공탄, 왕십리 일락, 왕십리 황소곱창, 왕십리 비봉손칼국수, 남양 피자컴퍼니, 합정: 페퍼로니 또는 베이컨체더 경주식당, 합정 삼청동수제비, 안국역 일미간장게장, 장한평 로마옥, 양재 소호정, 양재 광장동가온, 광나루 우가촌설렁탕, 공덕 장군갈비, 중곡동 원주 리스트 빵공장라뜰리에김가, 원주 허니포레스트,...","categories": ["day"],
         "tags": ["day"],
         "url": "/day/matzip/",
+        "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle Titanic",
+        "excerpt":"Titanic Survived Predict AUTHOR: SungwookLE DATE: ‘21.6/28 PROBLEM: Classifier Kaggle LINK REFERENCE: #1 LECTURE #2 LECTURE #3 LECTURE The Challenge In this challenge, we ask you to build a predictive model that answers the question: “what sorts of people were more likely to survive?” using passenger data (ie name, age,...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_Titanic/",
         "teaser": null
       },{
         "title": "DataAnalysis: Kaggle HousePrice",

@@ -1,6 +1,6 @@
 ---
 title:  "DataAnalysis: Kaggle HousePrice"
-excerpt: "Kaggle: HousePrice 문제, Titanic은 logistic이엇다면 이번 문제는 regression, @-@"
+excerpt: "Regressor: regression을 다뤄보자, @-@"
 
 categories:
   - research
