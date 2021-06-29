@@ -781,7 +781,6 @@ output.csv
 <span class="c1"># 1) Test Classifier using RandomForestClassifier 
 </span><span class="n">clf</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 <span class="n">clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">reduced_dim</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">reduced_dim</span><span class="p">)</span>
 
 <span class="n">score</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="n">score</span><span class="p">(</span><span class="n">reduced_dim</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"RandomForestClassifier Score is {} %"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">score</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
@@ -920,7 +919,7 @@ Information Reduction Percet is 34.64996247376067%
       
   <nav class="pagination">
     
-      <a href="/research/Kaggle_HousePrice/" class="pagination--pager" title="DataAnalysis: Kaggle HousePrice
+      <a href="/research/sklearn1/" class="pagination--pager" title="DataAnalysis: sklearn problem1
 ">Previous</a>
     
     

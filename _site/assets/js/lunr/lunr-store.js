@@ -77,6 +77,12 @@ var store = [{
         "url": "/research/Kaggle_HousePrice/",
         "teaser": null
       },{
+        "title": "DataAnalysis: sklearn problem1",
+        "excerpt":"AI_Compete_TypeA AUTHOR: SungwookLE DATE: ‘21.6/29 문제: 제공 데이터 활용, 최소 3개 이상의 알고리즘을 활용해 binary classification 문제를 해결하고, input_test.csv 파일로 각각 만든 예측 모델의 출력을 output_test.csv로 저장한 뒤, 성능 결과를 토대로 데이터셋의 특성을 분석하여 제출하시오 Overview classification: KNeighborsClassifier, DecisionTreeClassifier, RandomForestClassifier output_test 출력 데이터셋의 특성 분석 from subprocess import check_output import...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/sklearn1/",
+        "teaser": null
+      },{
         "title": "DataAnalysis: sklearn problem2",
         "excerpt":"AI 경진대회 코딩 테스트 (B형) 제출자: 이성욱(sungwook.Lee@hyundai.com) 날짜: ‘21.6/28 문제(Type B): 5차원으로 데이터의 차원 축소, 축소를 통해 정리된 인자들의 특성을 살펴라 OVEVIEW Data Load and View Feature Dimenstion Reduce Feature Character 1. Data Load and View from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline...","categories": ["research"],
         "tags": ["research"],
