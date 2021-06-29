@@ -8,4 +8,4 @@ toc_ads : true
 taxonomy: algorithm
 ---
 
-Coding Algorithm <C++>
+Coding Algorithm <C++, Python>

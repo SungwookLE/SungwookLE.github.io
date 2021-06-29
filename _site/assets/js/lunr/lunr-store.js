@@ -1,26 +1,20 @@
 var store = [{
-        "title": "시작3",
-        "excerpt":"TEST  algorithm 카테고리에 넣어보자  ","categories": ["algorithm"],
+        "title": "카테고리: algorithm",
+        "excerpt":"Algorithm     START  ","categories": ["algorithm"],
         "tags": ["algorithm"],
-        "url": "/algorithm/me3/",
-        "teaser": null
-      },{
-        "title": "연습4",
-        "excerpt":"TEST  research 카테고리에 넣어보자  ","categories": ["research"],
-        "tags": ["research"],
-        "url": "/research/me4/",
+        "url": "/algorithm/algorithm_open/",
         "teaser": null
       },{
         "title": "개인 페이지 오픈",
-        "excerpt":"TEST  day 카테고리에 넣어보자  ","categories": ["day"],
+        "excerpt":"오픈     START  ","categories": ["day"],
         "tags": ["day"],
-        "url": "/day/hello/",
+        "url": "/day/day_open/",
         "teaser": null
       },{
-        "title": "지은이랑 서울 데이트",
-        "excerpt":"지은이랑 데이트~~&lt;3 날짜: ‘21.5/9 일요일 도착: 12시 30분 (남부터미널) [1] 첫번째, 맛있는 점심!! 1.5 hour 1번 식당: 프랑스요리 CUISSON82 2번 식당: 스타 쉐프 코스 마누테라스 3번 식당: 이태원 버거 다운타우너 [2] 두번째, 파이썬 배우기 1.5 hour 근처 카페에서 알려줄게 ㅋㅋ [3] 세번째, 재밌는 거 3+alpha hour 뭐를 좋아할지, 좋아하는지 아직...","categories": ["day"],
+        "title": "서울 데이트",
+        "excerpt":"데이트 날짜: ‘21.5/9 일요일 도착: 12시 30분 (남부터미널) [1] 첫번째, 맛있는 점심 1.5 hour 1번 식당: 프랑스요리 CUISSON82 2번 식당: 스타 쉐프 코스 마누테라스 3번 식당: 이태원 버거 다운타우너 [2] 두번째, 파이썬 스터디 1.5 hour [3] 세번째, 재밌는 거 3+alpha hour 1안: 카페 2안: 근처 공원(양재시민의숲? 한강공원?) 놀러가서 산책도 하고,...","categories": ["day"],
         "tags": ["day"],
-        "url": "/day/date/",
+        "url": "/day/date_in_seoul/",
         "teaser": null
       },{
         "title": "Robotics: Chapter1-1",
@@ -32,17 +26,17 @@ var store = [{
         "title": "스터디에 대하여",
         "excerpt":"계획 최근, 뭔가 루즈해졌다, 그게 나쁜건 아닌데 이런 순간이 오면 조만간 슬럼프가 찾아올 수 있기 때문에 정리가 필요한듯싶다, 어디까지를 탐구하고, 어디까지를 내 것으로 만들어야 할지, 좀 더 쉽고 간결한 미션 세팅 원래 하던 것에 있어선, 잘해야,, SIMULINK/C기반 위치추정/제어 로직, 동역학/제어이론 C++기반 위치추정(localization), 확률기반 필터 칼만 필터, 최적화기법 등 새로운 분야에...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/planplan/",
+        "url": "/research/study_plan/",
         "teaser": null
       },{
-        "title": "혁도 원주 데이트",
-        "excerpt":"원주 날짜: ‘21.5/14 금요일 번외로, 원주는 맛집 찾기가 쉬울것 같다? 보이다 싶이 네이버 지도에도 몇개가 검색되지 않기 때문에, 신기한건, 공단이 많아서인지, 여대 앞을 온것같은 분위기가 있다 , [1] 일단 휴식이 적절히 있어야 할듯, 졸리다 ㅠ 어디 시원한데 앉아서 쉬세요 [2] 저녁먹기 걸어가면서 고르는게 제일 좋을 것 같다, 막상 고르려니 어려워...","categories": ["day"],
+        "title": "원주 데이트",
+        "excerpt":"원주     날짜: ‘21.5/14 금요일    번외로,     원주는 맛집 찾기가 쉬울것 같다? 보이다 싶이 네이버 지도에도 몇개가 검색되지 않기 때문에,    [1] 일단 휴식이 적절히 있어야 할듯     어디 시원한데 앉아서 쉬세요   [2] 저녁먹기     걸어가면서 고르는게 제일 좋을 것 같다, 막상 고르려니 어려워 ㅋㅋ   [3] 산책하기     티비 시청 노노   끝  ","categories": ["day"],
         "tags": ["day"],
         "url": "/day/date_in_wonju/",
         "teaser": null
       },{
-        "title": "경주로 떠나요~",
-        "excerpt":"경주 여행 ~&lt;3 날짜: ‘21.6/3(목), 6/4(금), 6/5(토) 숙소: 라한호텔 경주 [1] 목요일, 첫째날 천안(12:00)-&gt;경주(15:00): 천안역에서 같이 차타고 경주로~ 늦은 점심 먹고, 체크 인 호텔 근처: 보문호수(호반길) 산책하기 / 수영장 저녁 8시: 안압지 야경보러 (안압지 가는 길에 뭐 먹기) [3] 금요일, 둘째날 아침먹고(조식) 호텔에서 나서기(11:00) 버스타고, 경주 관광지로 이동: 16번 버스(25분...","categories": ["day"],
+        "title": "경주 데이트",
+        "excerpt":"경주 여행 날짜: ‘21.6/3(목), 6/4(금), 6/5(토) 숙소: 라한호텔 경주 [1] 목요일, 첫째날 천안(12:00)-&gt;경주(15:00): 천안역에서 같이 차타고 경주로~ 늦은 점심 먹고, 체크 인 호텔 근처: 보문호수(호반길) 산책하기 / 수영장 저녁 8시: 안압지 야경보러 (안압지 가는 길에 뭐 먹기) [3] 금요일, 둘째날 아침먹고(조식) 호텔에서 나서기(11:00) 버스타고, 경주 관광지로 이동: 16번 버스(25분 소요)...","categories": ["day"],
         "tags": ["day"],
         "url": "/day/travel_in_keongju/",
         "teaser": null
@@ -59,10 +53,10 @@ var store = [{
         "url": "/research/Kaggle_Titanic_Follow/",
         "teaser": null
       },{
-        "title": "맛집을 찾아서",
-        "excerpt":"jieun 리스트업 더블트러블유니온, 신사 삼창교자, 신사 감성타코, 신사 현우동, 신사 내 리스트업 고흥순대국, 건대 사철냉면, 왕십리 구공탄, 왕십리 일락, 왕십리 황소곱창, 왕십리 비봉손칼국수, 남양 피자컴퍼니, 합정: 페퍼로니 또는 베이컨체더 경주식당, 합정 삼청동수제비, 안국역 일미간장게장, 장한평 로마옥, 양재 소호정, 양재 광장동가온, 광나루 우가촌설렁탕, 공덕 장군갈비, 중곡동 원주 리스트 빵공장라뜰리에김가, 원주 허니포레스트,...","categories": ["day"],
+        "title": "맛집 리스트",
+        "excerpt":"jieun 리스트업 더블트러블유니온, 신사 삼창교자, 신사 감성타코, 신사 현우동, 신사 wooks 리스트업 고흥순대국, 건대 사철냉면, 왕십리 구공탄, 왕십리 일락, 왕십리 황소곱창, 왕십리 비봉손칼국수, 남양 피자컴퍼니, 합정: 페퍼로니 또는 베이컨체더 경주식당, 합정 삼청동수제비, 안국역 일미간장게장, 장한평 로마옥, 양재 소호정, 양재 광장동가온, 광나루 우가촌설렁탕, 공덕 장군갈비, 중곡동 wonju 로컬 빵공장라뜰리에김가, 원주 허니포레스트,...","categories": ["day"],
         "tags": ["day"],
-        "url": "/day/matzip/",
+        "url": "/day/date_matzip/",
         "teaser": null
       },{
         "title": "DataAnalysis: Kaggle Titanic",

@@ -1,6 +1,6 @@
 ---
 title:  "DataAnalysis: Kaggle HousePrice"
-excerpt: "Regressor: regression을 다뤄보자, @-@"
+excerpt: "Regressor: regression with feature engineering"
 
 categories:
   - research

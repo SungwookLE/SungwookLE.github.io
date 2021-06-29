@@ -1,6 +1,6 @@
 ---
-title:  "경주로 떠나요~"
-excerpt: "'21.6/3~5 목~토 경주 여행"
+title:  "경주 데이트"
+excerpt: "'21.6/3,4,5 경주에서 여행"
 
 categories:
   - day
@@ -13,7 +13,7 @@ toc_sticky: true
 date: 2021-05-29
 ---
 
-## 경주 여행 ~<3  
+## 경주 여행  
 > 날짜: '21.6/3(목), 6/4(금), 6/5(토)  
 > 숙소: [라한호텔 경주](https://www.lahanhotels.com/gyeongju/index.do)  
 
@@ -45,7 +45,7 @@ date: 2021-05-29
       |불국사|차 타야 갈수있음|
 
   6. 저녁먹기(18:30~)  
-      - 황리단길 맛집은? (추가 중,,,)   
+      - 황리단길 맛집  
 
 
       |식당|메뉴|
@@ -65,9 +65,9 @@ date: 2021-05-29
 
 #### [4] 토요일, 셋째날
   1. 아침먹고(조식) 쉬다가, 체크아웃(11:00)  
-  2. 카페에서 놀다가~  
-    ![아덴](https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200717_278%2F1594991842631ryAWc_JPEG%2FGUKlrqz1bb4GWQ5WAlqoCRq6.jpg)
-  3. 집으로
+  2. 카페   
+    ![아덴](https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200717_278%2F1594991842631ryAWc_JPEG%2FGUKlrqz1bb4GWQ5WAlqoCRq6.jpg)  
+  3. 집으로  
 
 
 #### [5] 여행 사진  
@@ -94,4 +94,6 @@ date: 2021-05-29
   |![image](/assets/images/keonju11.jpeg)|
   |![image](/assets/images/keonju12.jpeg)|
   |![image](/assets/images/keonju13.jpeg)|
+
+#### 끝
   

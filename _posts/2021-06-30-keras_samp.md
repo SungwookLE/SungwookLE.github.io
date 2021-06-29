@@ -1,6 +1,6 @@
 ---
 title:  "DataAnalysis: Keras Feed Input, and Overfit & Underfit"
-excerpt: "머신러닝 모델에 인풋 feed는 배치 사이즈를 고려하여 n_dim=4지"
+excerpt: "머신러닝 모델에 인풋 feed data shape는 배치 사이즈를 넣어서 n_dim=4"
 
 categories:
   - research

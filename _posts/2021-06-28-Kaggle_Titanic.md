@@ -1,6 +1,6 @@
 ---
 title:  "DataAnalysis: Kaggle Titanic"
-excerpt: "Classifier: Classification을 다뤄보자, 0-0"
+excerpt: "Classifier: Classification with feature engineering"
 
 categories:
   - research
