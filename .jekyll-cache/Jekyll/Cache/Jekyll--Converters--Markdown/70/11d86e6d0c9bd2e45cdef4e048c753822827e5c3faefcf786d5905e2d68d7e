@@ -1,0 +1,128 @@
+I"C<h1 id="keras_basic">Keras_Basic</h1>
+<ul>
+  <li>AUTHOR: SungwookLE</li>
+  <li>
+    <p>DATE: ‘21.6/30</p>
+  </li>
+  <li>PROBLEM<br />
+1) 아래 코드의 문제점을 적고 해결하라 (한줄추가)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  X_train = X_train.reshape((X_train.shape[0],X_train.shape[1],X_train.shape[2],1)) #추가한 코드
+  X_test = X_test.reshape((X_test.shape[0],X_test.shape[1],X_test.shape[2],1)) #추가한 코드
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span><span class="n">Conv2D</span><span class="p">,</span><span class="n">Flatten</span><span class="p">,</span><span class="n">MaxPool2D</span>
+
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="p">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"BEFORE SHAPE IS {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#추가한 코드
+</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#추가한 코드
+</span><span class="k">print</span><span class="p">(</span><span class="s">"AFTER SHAPE IS {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+
+<span class="n">model_lenet</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span><span class="n">padding</span><span class="o">=</span><span class="s">'same'</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">))</span>
+<span class="c1"># print('Conv2D:\t{0}'.format(model_lenet.output_shape))
+</span><span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">padding</span><span class="o">=</span><span class="s">'same'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">filters</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span><span class="n">padding</span><span class="o">=</span><span class="s">'same'</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">padding</span><span class="o">=</span><span class="s">'same'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">))</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">)</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BEFORE SHAPE IS (60000, 28, 28)
+AFTER SHAPE IS (60000, 28, 28, 1)
+Conv2D:	(None, 28, 28, 32)
+Epoch 1/3
+60000/60000 [==============================] - 303s 5ms/step - loss: 14.5466
+Epoch 2/3
+60000/60000 [==============================] - 325s 5ms/step - loss: 14.5463
+Epoch 3/3
+60000/60000 [==============================] - 319s 5ms/step - loss: 14.5463
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f3614b6bcc0&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span><span class="o">=</span><span class="n">model_lenet</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">one_hot_y</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">out</span><span class="o">=</span><span class="n">one_hot_y</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">Session</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out</span><span class="o">-</span><span class="n">test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>EPOCH1: ACCURACY IS 10.09 %<br />
+EPOCH2: ACCURACY IS  9.74 %</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">values</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">j</span><span class="o">==-</span><span class="mi">1</span><span class="p">):</span> 
+            <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"ACCURACY IS {:.2f} %"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ACCURACY IS 9.74 %
+</code></pre></div></div>
+
+<h2 id="1번-서술">1번 서술</h2>
+
+<p><img src="/assets/DS_Compete/ds_compete1.png" alt="image" /></p>
+
+<ul>
+  <li>상황: training loss가 0.5이하로 떨어지지 않고 수렴</li>
+  <li>원인 예측: 학습이 언더피팅 되어 수렴하고 있고, 모델이 데이터의 특징을 학습하고 있지 못하여 발생 (Low Variance, High Bias)</li>
+  <li>해결 방안: 언더피팅을 방지하기 위한 방법 접근 (Bias 낮추기)<br />
+  1)모델의 파라미터 개수를 증가하여, 모델의 복잡도를 증가시켜 데이터가 잘 학습될 수 있도록 한다.<br />
+  2) 인풋 데이터의 Normalization을 수행하여, Feed data의  Scale을 동일한 수준에서 수행하고, 모델을 학습시킨다.<br />
+  3) 러닝레이트 스케쥴링, Epoch가 진행됨에 따라 점직적으로 러닝레이트를 감소시켜 모델을 학습시킨다.</li>
+</ul>
+
+<h2 id="2번-서술">2번 서술</h2>
+
+<p><img src="/assets/DS_Compete/ds_compete2.png" alt="image" /></p>
+
+<ul>
+  <li>문제: Training 데이터에 오버피팅 되어 (High Variance, Low Bias), Validation에서는 제대로 된 예측이 안되고 있음을 확인할 수 있다. 해당 모델을 사용할 경우, 새로운 데이터에서 제대로된 예측이 되지 않는다.</li>
+  <li>해결방법: 오버피팅 방지하기 위한 방법 접근(Variance 낮추기)<br />
+  1) Cost function을 기존 에러 제곱만을 쓰고 있다면, weighting parameter 의 값도 추가하는, Regularization을 적용한다. 이렇게 하면 Variance가 낮아져, 오버피팅을 방지할 수 있다. (L1-Regular, L2-Regular 등)<br />
+  2) Dropout 적용: 오버피팅이 되는 것을 방지하기 위해, 뉴럴 노드의 학습 과정에서 random하게 dropout 시켜, 오버피팅을 방지할 수 있다.  <br />
+  3) Neural Layer 의 파라미터 개수 줄이기: 파라미터의 개수를 줄여, 모델의 복잡성을 낮춰 Variance 를 감소시켜 오버피팅을 방지할 수 있다.</li>
+</ul>
+
+<h2 id="3번-서술">3번 서술</h2>
+
+<p><img src="/assets/DS_Compete/ds_compete3.png" alt="image" /></p>
+
+<ul>
+  <li>문제 원인: 모델 Feed 데이터의 형태가 Conv Layer의 인풋 데이터 사이즈 맞지 않기 때문에 위와 같은 에러가 발생하였다. 따라서, 이를 해결하기 위해 Feed Data의 shape을 아래와 같이 변경해준다.</li>
+  <li>추가할 코드:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>  
+  <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>  
+</code></pre></div>    </div>
+    <h2 id="끝">끝</h2>
+  </li>
+</ul>
+:ET

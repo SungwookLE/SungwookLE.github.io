@@ -1,0 +1,156 @@
+I"�-<h1 id="sklearn_typec">sklearn_TypeC</h1>
+<ul>
+  <li>AUTHOR: SungwookLE</li>
+  <li>
+    <p>DATE: ‘21.6/27</p>
+  </li>
+  <li>문제:
+    <ol>
+      <li>제공된 데이터를 이용하여 유사한 데이터끼리 묶는 군집화 수행</li>
+      <li>군집의 대표값을 추출하여 제출 문서에 작성</li>
+      <li>input_test.csv 파일로 만든 군집화 모델의 출력을 output_test.csv로 저장하시오</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="c1">#print(check_output(['ls']).decode('utf8'))
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input_train</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'input_train.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">input_test</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'input_test.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">input_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">input_test</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10000, 5)
+(2000, 5)
+</code></pre></div></div>
+
+<h2 id="1-kmeans-clustering">1. KMeans CLUSTERING</h2>
+<ul>
+  <li>n_clustering = 2</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="c1">#from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.pipeline import make_pipeline
+</span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">stscaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">stscaler</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_train</span><span class="p">)</span>
+
+<span class="n">data_train</span><span class="o">=</span> <span class="n">stscaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">input_train</span><span class="p">)</span>
+<span class="n">data_train</span><span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+
+<span class="n">data_test</span> <span class="o">=</span> <span class="n">stscaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">input_test</span><span class="p">)</span>
+<span class="n">data_test</span><span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+
+<span class="n">kM</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s">'auto'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">kM</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">kM</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<h2 id="2-cluster-representative-value">2. Cluster Representative Value</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cluster_centers_</span> <span class="o">=</span> <span class="n">kM</span><span class="p">.</span><span class="n">cluster_centers_</span>
+<span class="n">cluster_centers_</span> <span class="o">=</span> <span class="n">stscaler</span><span class="p">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">cluster_centers_</span><span class="p">)</span> <span class="c1">#stscaler 도메인으로 transform 했었으니까, 원래 데이터 도메인으로 inverse 해주어야함
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Cluster Representative Values are {} and {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cluster Representative Values are [-0.00696411 -0.78155713  1.11747138  0.00709656 -0.0305657 ] and [-0.02538592  0.59233341 -0.84742607 -0.01145731 -0.02364979]
+</code></pre></div></div>
+
+<h2 id="3-visualization-plot">3. VISUALIZATION PLOT</h2>
+<ul>
+  <li>학습된 라벨을 기준으로, 데이터가 대표성을 띄고 있는지 본 것 using <code class="language-plaintext highlighter-rouge">PCA</code></li>
+  <li>이걸로 보았을 때, 잘 분류되었다는 것은 clustering이 잘되었단 의미</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">cumsum</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="p">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'PCA features has {} information'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">cumsum</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PCA features has 0.5310049287682159 information
+</code></pre></div></div>
+
+<p><img src="/assets/AI_Compete_TypeC_files/sklearn_prob3_8_1.svg" alt="svg" /></p>
+
+<h2 id="4-test-the-model-and-save-output-file">4. Test the model and Save Output File</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pred</span> <span class="o">=</span> <span class="n">kM</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'Label'</span><span class="p">:</span><span class="n">pred</span><span class="p">})</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sub</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'output_test.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">double_check</span><span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'output_test.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+<p>f</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">double_check</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="끝">끝</h2>
+
+:ET

@@ -32,7 +32,8 @@ date: 2021-05-07
  - Rubrics(Requirements)
   HERE [LINK](https://review.udacity.com/#!/rubrics/2346/view) 
 
-#### ASW VM 머신에서 아래와 같이 진행하였음 (5/10) 
+#### ASW VM 머신에서 아래와 같이 진행하였음 
+(5/10) 
 * GAZEBO를 로컬에 설치해서 하려다가, 배보다 배꼽이 더 큰 기분이 들어,, 
   1. model 만들기   
    - gazebo 실행 -> model editor -> 내가 원하는 커스터마이즈드 로봇을 그려서 넣거나, 로봇을 넣고 저장  
@@ -150,7 +151,7 @@ The sample simulation world folder has the following directory structure:
     └──                              
 
   5. (5/12) 재제출하였음,
-  * 이런 모델링을 왜 해야하나 싶어서 대충하려고 했는데, 로봇 컨피규레이션도 할줄알아서 내가 원하는 시뮬레이션을 할 수 있는것이죠,, 
+  * 이런 모델링을 왜 해야하나 싶어서 대충하려고 했는데, 로봇 컨피규레이션도 할줄알아서 내가 원하는 시뮬레이션을 할 수 있는것이죠,,   
 
 
-  #### 끝
+#### 끝

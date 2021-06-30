@@ -1,0 +1,1136 @@
+I"5w<h1 id="house-saleprice-predict">House <code class="language-plaintext highlighter-rouge">SalePrice</code> Predict</h1>
+<p>AUTHOR: SungwookLE<br />
+DATE: ‘21.6/26<br />
+PROBLEM: Regression <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview">Kaggle LINK</a><br />
+REFERENCE: https://www.kaggle.com/bsivavenu/house-price-calculation-methods-for-beginners</p>
+
+<p><img src="https://storage.googleapis.com/kaggle-competitions/kaggle/5407/media/housesbanner.png" alt="image" /></p>
+
+<ul>
+  <li>Goal<br />
+It is your job to predict the sales price for each house. For each Id in the test set, you must predict the value of the SalePrice variable.</li>
+</ul>
+
+<p><strong>OVERVIEW</strong><br />
+1) Data Analysis</p>
+<ul>
+  <li>데이터 차원, 형태 파악하기</li>
+  <li>그래프 그려서 에측변수 <code class="language-plaintext highlighter-rouge">SalePrice</code>와 다른 변수와의 상관관계 파악하기</li>
+</ul>
+
+<p>2) Feature Engineering<br />
+2-1) categorical + numerical features 분리하기</p>
+<ul>
+  <li>using <code class="language-plaintext highlighter-rouge">select_dtypes()</code>.</li>
+  <li>numerical 데이터 중 month나 year 등의 데이터는 categorical로 분류해주기 <code class="language-plaintext highlighter-rouge">apply(str)</code></li>
+</ul>
+
+<p>2-2) 비어있는 missing 데이터 채우기</p>
+<ul>
+  <li>numerical: mean, median, mode 를 활용하여 데이터 채우기 <code class="language-plaintext highlighter-rouge">.fillna(xxx)</code>, <code class="language-plaintext highlighter-rouge">mean(), median(), mode()</code></li>
+  <li>categorical: <code class="language-plaintext highlighter-rouge">pd.get_dummies()</code> 나 <code class="language-plaintext highlighter-rouge">LabelEncoder</code>를 활용해서 missing 데이터도 없애고, one-hot encoding도 완성하기</li>
+</ul>
+
+<p>2-3) data의 skewness 줄이기</p>
+<ul>
+  <li>numerical data 의 skewness 줄이기</li>
+</ul>
+
+<p>2-4) new feature / del feature</p>
+<ul>
+  <li>필요하다면</li>
+</ul>
+
+<p>3) Modeling</p>
+<ul>
+  <li>CrossValidation using <code class="language-plaintext highlighter-rouge">cross_val_score, KFold. train_test_split</code>.</li>
+  <li>Regressor : <code class="language-plaintext highlighter-rouge">LinearRegression, RidgeCV, LassoCV, ElasticNetCV</code></li>
+  <li>Classifier  : <code class="language-plaintext highlighter-rouge">KNN, RandomForest, ...</code></li>
+  <li>Techniques: <code class="language-plaintext highlighter-rouge">StandardScaler, RobustScaler</code>.</li>
+  <li>Easy modeling: <code class="language-plaintext highlighter-rouge">make_pipeline</code></li>
+</ul>
+
+<h3 id="what-ever-the-dataset-what-you-do">What ever the dataset, What you do</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Step:</th>
+      <th style="text-align: left">To Do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1)</td>
+      <td style="text-align: left">check the dimensions(shape) of the dataset.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2)</td>
+      <td style="text-align: left">check the numerical features and categorical features with select_dtypes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3)</td>
+      <td style="text-align: left">check the skewness of numerical features and fix it with box cox transformations</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4)</td>
+      <td style="text-align: left">transform numerical features to categorical features like year and months</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">5)</td>
+      <td style="text-align: left">create new features if needed</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">6)</td>
+      <td style="text-align: left">find the missing values in both num and cat features and fill with appropriate values like <code class="language-plaintext highlighter-rouge">mean(),median(),mode()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">7)</td>
+      <td style="text-align: left">encode the cat features with onehotencoder, labelencoder</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">8)</td>
+      <td style="text-align: left">scale the features with standardscaler,robust scaler and fit it with the estimator</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">9)</td>
+      <td style="text-align: left">if needed do features_selection for the most important features</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">10)</td>
+      <td style="text-align: left">if needed regularization of features</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>hence it is completely iterative process to get the best model.</li>
+</ul>
+
+<h2 id="start">START</h2>
+
+<h2 id="1-data-analysis">1. Data Analysis</h2>
+<ul>
+  <li>데이터 차원, 형태 파악하기</li>
+  <li>그래프 그려서 에측변수 <code class="language-plaintext highlighter-rouge">SalePrice</code>와 다른 변수와의 상관관계 파악하기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+<span class="k">print</span><span class="p">(</span><span class="n">check_output</span><span class="p">([</span><span class="s">"ls"</span><span class="p">,</span> <span class="s">"input"</span><span class="p">]).</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data_description.txt
+house-prices-advanced-regression-techniques.zip
+sample_submission.csv
+test.csv
+train.csv
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'input/train.csv'</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'input/test.csv'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Initial train data shape= {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">train</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Initial test data shape= {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="n">n_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">train</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Initial train data shape= (1460, 81)
+Initial test data shape= (1459, 80)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>...</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>65.0</td>
+      <td>8450</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>208500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>80.0</td>
+      <td>9600</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>181500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>68.0</td>
+      <td>11250</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>9</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>223500</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 81 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>...</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1461</td>
+      <td>20</td>
+      <td>RH</td>
+      <td>80.0</td>
+      <td>11622</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>120</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>81.0</td>
+      <td>14267</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Gar2</td>
+      <td>12500</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>74.0</td>
+      <td>13830</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 80 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">]).</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">all_data_Id</span> <span class="o">=</span> <span class="n">all_data</span><span class="p">[</span><span class="s">'Id'</span><span class="p">]</span>
+<span class="n">all_data</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Id'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">y_label</span> <span class="o">=</span> <span class="n">all_data</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">][:</span><span class="n">n_train</span><span class="p">]</span>
+<span class="n">all_data</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'Id'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">corrmat</span><span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corrmat</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;AxesSubplot:&gt;
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_10_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">corrmat</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">top_corr_features</span> <span class="o">=</span> <span class="n">corrmat</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">corrmat</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">].</span><span class="n">index</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">top_corr_features</span><span class="p">].</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_11_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Max Correlation Value with SalePrice is {}, and That is {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>    <span class="nb">abs</span><span class="p">(</span><span class="n">corrmat</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">]).</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">corrmat</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">]).</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s">"!!!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Max Correlation Value with SalePrice is 0.7909816005838047, and That is OverallQual !!!
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s">'OverallQual'</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;AxesSubplot:xlabel='OverallQual', ylabel='SalePrice'&gt;
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_13_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">()</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="s">'OverallQual'</span><span class="p">,</span> <span class="s">'GrLivArea'</span><span class="p">,</span> <span class="s">'GarageCars'</span><span class="p">,</span> <span class="s">'TotalBsmtSF'</span><span class="p">,</span> <span class="s">'FullBath'</span><span class="p">,</span> <span class="s">'YearBuilt'</span><span class="p">]</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_14_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">.</span><span class="n">isnull</span><span class="p">().</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MSSubClass         0
+MSZoning           4
+LotFrontage      486
+LotArea            0
+Street             0
+                ... 
+MiscVal            0
+MoSold             0
+YrSold             0
+SaleType           1
+SaleCondition      0
+Length: 79, dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">.</span><span class="n">dtypes</span><span class="p">.</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object     43
+int64      25
+float64    11
+dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(2919, 79)
+</code></pre></div></div>
+
+<h2 id="2-feature-engineering">2. Feature Engineering</h2>
+
+<h3 id="2-1-categorical--numerical-features-분리하기">2-1. categorical + numerical features 분리하기</h3>
+<ul>
+  <li>using <code class="language-plaintext highlighter-rouge">select_dtypes()</code>.</li>
+  <li>numerical 데이터 중 month나 year 등의 데이터는 categorical로 분류해주기 <code class="language-plaintext highlighter-rouge">apply(str)</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="nb">object</span><span class="p">).</span><span class="n">columns</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index(['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond',
+       'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2',
+       'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'LowQualFinSF',
+       'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath',
+       'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd', 'Fireplaces',
+       'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF', 'OpenPorchSF',
+       'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal',
+       'MoSold', 'YrSold'],
+      dtype='object')
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_to_cat</span> <span class="o">=</span> <span class="p">[</span> <span class="s">'MoSold'</span><span class="p">,</span> <span class="s">'YrSold'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_to_cat</span><span class="p">:</span>
+    <span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span><span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">categorical_features</span><span class="o">=</span> <span class="n">all_data</span><span class="p">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="nb">object</span><span class="p">).</span><span class="n">columns</span>
+<span class="n">categorical_features</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index(['MSZoning', 'Street', 'Alley', 'LotShape', 'LandContour', 'Utilities',
+       'LotConfig', 'LandSlope', 'Neighborhood', 'Condition1', 'Condition2',
+       'BldgType', 'HouseStyle', 'RoofStyle', 'RoofMatl', 'Exterior1st',
+       'Exterior2nd', 'MasVnrType', 'ExterQual', 'ExterCond', 'Foundation',
+       'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
+       'Heating', 'HeatingQC', 'CentralAir', 'Electrical', 'KitchenQual',
+       'Functional', 'FireplaceQu', 'GarageType', 'GarageFinish', 'GarageQual',
+       'GarageCond', 'PavedDrive', 'PoolQC', 'Fence', 'MiscFeature', 'MoSold',
+       'YrSold', 'SaleType', 'SaleCondition'],
+      dtype='object')
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numerical_features</span><span class="o">=</span> <span class="n">all_data</span><span class="p">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="nb">object</span><span class="p">).</span><span class="n">columns</span>
+<span class="n">numerical_features</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index(['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond',
+       'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2',
+       'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'LowQualFinSF',
+       'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath',
+       'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd', 'Fireplaces',
+       'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF', 'OpenPorchSF',
+       'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal'],
+      dtype='object')
+</code></pre></div></div>
+
+<h3 id="2-2-비어있는-missing-데이터-채우기">2-2. 비어있는 missing 데이터 채우기</h3>
+<ul>
+  <li>numerical: mean, median, mode 를 활용하여 데이터 채우기 <code class="language-plaintext highlighter-rouge">.fillna(xxx)</code>, <code class="language-plaintext highlighter-rouge">mean(), median(), mode()</code></li>
+  <li>categorical: <code class="language-plaintext highlighter-rouge">pd.get_dummies()</code> 나 <code class="language-plaintext highlighter-rouge">LabelEncoder</code>를 활용해서 missing 데이터도 없애고, one-hot encoding도 완성하기</li>
+</ul>
+
+<p>아래에선 <code class="language-plaintext highlighter-rouge">LabelEncoder</code>를 통해, categorical data를 라벨링 하였다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">].</span><span class="n">fillna</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">].</span><span class="n">median</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Remain NA value in numerical features: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">].</span><span class="n">isnull</span><span class="p">().</span><span class="n">values</span><span class="p">.</span><span class="nb">sum</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Remain NA value in numerical features: 0
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Befor LabelEncoder"</span><span class="p">)</span>
+<span class="n">all_data</span><span class="p">[</span><span class="s">'PoolQC'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Befor LabelEncoder
+
+
+
+
+
+0       NaN
+1       NaN
+2       NaN
+3       NaN
+4       NaN
+       ... 
+2914    NaN
+2915    NaN
+2916    NaN
+2917    NaN
+2918    NaN
+Name: PoolQC, Length: 2919, dtype: object
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features</span><span class="p">:</span>
+    <span class="n">lbl</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">lbl</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="n">values</span><span class="p">))</span>
+    <span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">lbl</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="n">values</span><span class="p">))</span>
+
+<span class="c1">#all_data[categorical_features] = pd.get_dummies(all_data[categorical_features]) 의 방식을 통해서 one-hot encoding 해버리고, cat-&gt;num 으로 만들 수 있음
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"After LabelEncoder"</span><span class="p">)</span>
+<span class="n">all_data</span><span class="p">[</span><span class="s">'PoolQC'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>After LabelEncoder
+
+
+
+
+
+0       3
+1       3
+2       3
+3       3
+4       3
+       ..
+2914    3
+2915    3
+2916    3
+2917    3
+2918    3
+Name: PoolQC, Length: 2919, dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_data</span><span class="p">.</span><span class="n">dtypes</span><span class="p">.</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int64      68
+float64    11
+dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"ALL DATA FILL completely: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">all_data</span><span class="p">.</span><span class="n">isnull</span><span class="p">().</span><span class="n">values</span><span class="p">.</span><span class="nb">sum</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALL DATA FILL completely: 0
+</code></pre></div></div>
+
+<h3 id="2-3-data의-skewness-줄이기">2-3. data의 skewness 줄이기</h3>
+<ul>
+  <li>y_label 데이터도 skewness 가 있으면 줄인다음에 학습하는 것이 학습결과에 이득</li>
+  <li>numerical data 의 skewness 줄이기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">skew</span> <span class="c1"># for some statistics
+</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">=</span> <span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'SalePrice distribution Before Skewness Elimination'</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_33_0.svg" alt="svg" /></p>
+
+<p><img src="/assets/house_my_files/house_my_33_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">=</span> <span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'SalePrice distribution After Skewness Elimination'</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_34_0.svg" alt="svg" /></p>
+
+<p><img src="/assets/house_my_files/house_my_34_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 여기선, categorical을 LabelEncoder() 을 하여서 숫자가 되어버렸기 때문에 numerical_features만 care
+</span><span class="n">skewness</span> <span class="o">=</span> <span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">dropna</span><span class="p">()))</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">skewness</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="s">'90'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">skewness</span><span class="p">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">skewness</span><span class="p">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Before skewness elimination using log1p'</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">skewness</span><span class="p">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+<span class="n">all_data</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.110874</td>
+      <td>3</td>
+      <td>4.189655</td>
+      <td>9.042040</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>8</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.044522</td>
+      <td>3</td>
+      <td>4.394449</td>
+      <td>9.169623</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>1</td>
+      <td>8</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.110874</td>
+      <td>3</td>
+      <td>4.234107</td>
+      <td>9.328212</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>11</td>
+      <td>2</td>
+      <td>8</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 79 columns</p>
+</div>
+
+<p><img src="/assets/house_my_files/house_my_35_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">skewness</span> <span class="o">=</span> <span class="n">all_data</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">dropna</span><span class="p">()))</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">skewness</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="s">'90'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">skewness</span><span class="p">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">skewness</span><span class="p">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'After skewness elimination using log1p'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 1.0, 'After skewness elimination using log1p')
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_36_1.svg" alt="svg" /></p>
+
+<p><img src="https://www.safaribooksonline.com/library/view/clojure-for-data/9781784397180/graphics/7180OS_01_180.jpg" alt="image" /></p>
+<ul>
+  <li>for more info click <a href="https://www.google.co.in/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwi7i-jN-K7XAhWJKo8KHbIHAV4QFgguMAI&amp;url=http%3A%2F%2Fwhatis.techtarget.com%2Fdefinition%2Fskewness&amp;usg=AOvVaw1LJhHdq4KFEYIpfdXjOlF-">Here</a></li>
+</ul>
+
+<h3 id="2-4-new-feature--del-feature">2-4. new feature / del feature</h3>
+<ul>
+  <li>필요하다면 하는 것이고, 여기선 하지 않겠다.</li>
+</ul>
+
+<h2 id="3-modeling">3. Modeling</h2>
+<ul>
+  <li>CrossValidation using <code class="language-plaintext highlighter-rouge">cross_val_score, KFold. train_test_split</code>.</li>
+  <li>Regressor : <code class="language-plaintext highlighter-rouge">LinearRegression, RidgeCV, LassoCV, ElasticNetCV</code></li>
+  <li>Classifier  : <code class="language-plaintext highlighter-rouge">KNN, RandomForest, ...</code></li>
+  <li>Techniques: <code class="language-plaintext highlighter-rouge">StandardScaler, RobustScaler</code>.</li>
+  <li>Easy modeling: <code class="language-plaintext highlighter-rouge">make_pipeline</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">RobustScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">RidgeCV</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">ElasticNetCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Split the data to train the model
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">all_data</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">y_label</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>((1022, 79), (438, 79), (1022,), (438,))
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Defining cross_val_score function for both train and test sets seperately
+</span><span class="n">n_folds</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">def</span> <span class="nf">rmse_CV_train</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">).</span><span class="n">get_n_splits</span><span class="p">(</span><span class="n">all_data</span><span class="p">[:</span><span class="n">n_train</span><span class="p">].</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'neg_mean_squared_error'</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse</span>
+
+<span class="k">def</span> <span class="nf">rmse_CV_valid</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">).</span><span class="n">get_n_splits</span><span class="p">(</span><span class="n">all_data</span><span class="p">[:</span><span class="n">n_train</span><span class="p">].</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'neg_mean_squared_error'</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">LinearRegression</span><span class="p">())</span>
+<span class="n">lr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">train_predict</span> <span class="o">=</span> <span class="n">lr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">valid_predict</span> <span class="o">=</span> <span class="n">lr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"rmse on train"</span><span class="p">,</span> <span class="n">rmse_CV_train</span><span class="p">(</span><span class="n">lr</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"rmse on valid"</span><span class="p">,</span> <span class="n">rmse_CV_valid</span><span class="p">(</span><span class="n">lr</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rmse on train 25546377009.010994
+rmse on valid 21526784181.920757
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#plot between predicted values and residuals
+</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_predict</span><span class="p">,</span> <span class="n">train_predict</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">valid_predict</span><span class="p">,</span><span class="n">valid_predict</span> <span class="o">-</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Linear regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Residuals"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="mf">10.5</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mf">13.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+
+<span class="c1"># Plot predictions - Real values
+</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_predict</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">valid_predict</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Linear regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Real values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_44_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_predict_lr</span> <span class="o">=</span> <span class="n">lr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">n_train</span><span class="p">:])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">LinearRegression</span><span class="p">())</span>
+<span class="n">lr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">train_predict</span> <span class="o">=</span> <span class="n">lr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">valid_predict</span> <span class="o">=</span> <span class="n">lr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"rmse on train"</span><span class="p">,</span> <span class="n">rmse_CV_train</span><span class="p">(</span><span class="n">lr</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"rmse on valid"</span><span class="p">,</span> <span class="n">rmse_CV_valid</span><span class="p">(</span><span class="n">lr</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rmse on train 25546377009.010994
+rmse on valid 21526784181.920757
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">]))</span>
+<span class="n">ridge</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">alpha</span><span class="o">=</span> <span class="n">ridge</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">alpha_</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'best alpha: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Ridge RMSE on Traing set: '</span><span class="p">,</span> <span class="n">rmse_CV_train</span><span class="p">(</span><span class="n">ridge</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Ridge RMSE on Valid set: '</span><span class="p">,</span> <span class="n">rmse_CV_valid</span><span class="p">(</span><span class="n">ridge</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">y_train_rdg</span> <span class="o">=</span> <span class="n">ridge</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_valid_rdg</span> <span class="o">=</span> <span class="n">ridge</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>best alpha: 30.0
+Ridge RMSE on Traing set:  0.1343399004864074
+Ridge RMSE on Valid set:  0.15202961055948744
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">coef</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ridge</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Ridge picked "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">coef</span><span class="o">!=</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="s">" variables and eliminated the other "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">coef</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="s">" variables"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ridge picked 79 variables and eliminated the other 0 variables
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#plot between predicted values and residuals
+</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train_rdg</span><span class="p">,</span> <span class="n">y_train_rdg</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_valid_rdg</span><span class="p">,</span><span class="n">y_valid_rdg</span> <span class="o">-</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Ridge regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Residuals"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="mf">10.5</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mf">13.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+
+<span class="c1"># Plot predictions - Real values
+</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train_rdg</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_valid_rdg</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Ridge regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Real values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_49_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_predict_rdg</span> <span class="o">=</span> <span class="n">ridge</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">n_train</span><span class="p">:])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lasso</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]))</span>
+<span class="n">lasso</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">alpha</span><span class="o">=</span> <span class="n">lasso</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">alpha_</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'best alpha: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Ridge RMSE on Traing set: '</span><span class="p">,</span> <span class="n">rmse_CV_train</span><span class="p">(</span><span class="n">lasso</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Ridge RMSE on Valid set: '</span><span class="p">,</span> <span class="n">rmse_CV_valid</span><span class="p">(</span><span class="n">lasso</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">y_train_lss</span> <span class="o">=</span> <span class="n">lasso</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_valid_lss</span> <span class="o">=</span> <span class="n">lasso</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>best alpha: 0.003
+Ridge RMSE on Traing set:  0.1314005291677251
+Ridge RMSE on Valid set:  0.15294591540498653
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">coef</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lasso</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Lasso picked "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">coef</span><span class="o">!=</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="s">" variables and eliminated the other "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">coef</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="s">" variables"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lasso picked 42 variables and eliminated the other 37 variables
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#plot between predicted values and residuals
+</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train_lss</span><span class="p">,</span> <span class="n">y_train_lss</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_valid_lss</span><span class="p">,</span><span class="n">y_valid_lss</span> <span class="o">-</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Lasso regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Residuals"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="mf">10.5</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mf">13.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+
+<span class="c1"># Plot predictions - Real values
+</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train_lss</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Training data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_valid_lss</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s">"Validation data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Lasso regression"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Predicted values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Real values"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_53_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_predict_lss</span> <span class="o">=</span> <span class="n">lasso</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">n_train</span><span class="p">:])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ENet</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">ElasticNetCV</span><span class="p">(</span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ENet</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'ENet RMSE on Traing set: '</span><span class="p">,</span> <span class="n">rmse_CV_train</span><span class="p">(</span><span class="n">ENet</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'ENet RMSE on Valid set: '</span><span class="p">,</span> <span class="n">rmse_CV_valid</span><span class="p">(</span><span class="n">ENet</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">y_train_ENet</span> <span class="o">=</span> <span class="n">ENet</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_valid_ENet</span> <span class="o">=</span> <span class="n">ENet</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENet RMSE on Traing set:  0.13157966590299525
+ENet RMSE on Valid set:  0.1527743238224663
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_predict_ENet</span> <span class="o">=</span> <span class="n">ENet</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">n_train</span><span class="p">:])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#log(x+1)을 해서 skew를 없앤 y_label데이터를 썼으니, 환산할 때는 inverse인 exp(x)-1을 해야지, 우리가 진짜 원하는 house price가 나오지
+</span><span class="n">house_price_predict</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">test_predict_lr</span><span class="p">)</span> <span class="c1">#제출결과: 0.13823
+</span><span class="n">house_price_predict</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">test_predict_rdg</span><span class="p">)</span> <span class="c1">#제출결과: 0.13346
+</span><span class="n">house_price_predict</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">test_predict_lss</span><span class="p">)</span> <span class="c1">#제출결과: 0.13134 
+</span><span class="n">house_price_predict</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">test_predict_ENet</span><span class="p">)</span> <span class="c1">#제출결과: 0.13114 (제일 나아지긴 했네)
+</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sub</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">sub</span><span class="p">[</span><span class="s">'Id'</span><span class="p">]</span><span class="o">=</span><span class="n">all_data_Id</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+<span class="n">sub</span><span class="p">[</span><span class="s">'SalePrice'</span><span class="p">]</span><span class="o">=</span><span class="n">house_price_predict</span>
+
+<span class="n">sub</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'submission2.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sub</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1460</th>
+      <td>1461</td>
+      <td>124289.891708</td>
+    </tr>
+    <tr>
+      <th>1461</th>
+      <td>1462</td>
+      <td>158532.730330</td>
+    </tr>
+    <tr>
+      <th>1462</th>
+      <td>1463</td>
+      <td>179225.174642</td>
+    </tr>
+    <tr>
+      <th>1463</th>
+      <td>1464</td>
+      <td>199048.974365</td>
+    </tr>
+    <tr>
+      <th>1464</th>
+      <td>1465</td>
+      <td>187118.373224</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_aug</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_data</span><span class="p">[</span><span class="n">n_train</span><span class="p">:],</span> <span class="n">sub</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">train_aug</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_data</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">np</span><span class="p">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_label</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'RESULTS'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_aug</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'GrLivArea'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'*'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'train'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_aug</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'GrLivArea'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'test'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'RESULTS'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_aug</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'TotalBsmtSF'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'*'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'train'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_aug</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'TotalBsmtSF'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'SalePrice'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'test'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.legend.Legend at 0x7fee2d7b4dc0&gt;
+</code></pre></div></div>
+
+<p><img src="/assets/house_my_files/house_my_59_1.svg" alt="svg" /></p>
+
+<p>test 데이터셋을 가지고 예측한 결과를 보았을때 나오는 <code class="language-plaintext highlighter-rouge">SalePrice</code>의 회귀선이, train 데이터와 얼마나 유사한 회귀선을 가지고 있는지 그려본 것,
+train 데이터에서 학습한 회귀선이 test에 적용된 것을 볼 수 있다.</p>
+
+<h2 id="end">End</h2>
+:ET

@@ -66,26 +66,32 @@ var store = [{
         "teaser": null
       },{
         "title": "DataAnalysis: Kaggle HousePrice",
-        "excerpt":"House SalePrice Predict AUTHOR: SungwookLE DATE: ‘21.6/27 PROBLEM: Regression Kaggle LINK REFERENCE: https://www.kaggle.com/bsivavenu/house-price-calculation-methods-for-beginners Goal It is your job to predict the sales price for each house. For each Id in the test set, you must predict the value of the SalePrice variable. OVERVIEW 1) Data Analysis 데이터 차원, 형태 파악하기...","categories": ["research"],
+        "excerpt":"House SalePrice Predict AUTHOR: SungwookLE DATE: ‘21.6/26 PROBLEM: Regression Kaggle LINK REFERENCE: https://www.kaggle.com/bsivavenu/house-price-calculation-methods-for-beginners Goal It is your job to predict the sales price for each house. For each Id in the test set, you must predict the value of the SalePrice variable. OVERVIEW 1) Data Analysis 데이터 차원, 형태 파악하기...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/Kaggle_HousePrice/",
         "teaser": null
       },{
-        "title": "DataAnalysis: sklearn problem1",
-        "excerpt":"AI_Compete_TypeA AUTHOR: SungwookLE DATE: ‘21.6/29 문제: 제공 데이터 활용, 최소 3개 이상의 알고리즘을 활용해 binary classification 문제를 해결하고, input_test.csv 파일로 각각 만든 예측 모델의 출력을 output_test.csv로 저장한 뒤, 성능 결과를 토대로 데이터셋의 특성을 분석하여 제출하시오 Overview classification: KNeighborsClassifier, DecisionTreeClassifier, RandomForestClassifier output_test 출력 데이터셋의 특성 분석 from subprocess import check_output import...","categories": ["research"],
+        "title": "DataAnalysis: sklearn_TypeA",
+        "excerpt":"sklearn_TypeA AUTHOR: SungwookLE DATE: ‘21.6/27 문제: 제공 데이터 활용, 최소 3개 이상의 알고리즘을 활용해 binary classification 문제를 해결하고, input_test.csv 파일로 각각 만든 예측 모델의 출력을 output_test.csv로 저장한 뒤, 성능 결과를 토대로 데이터셋의 특성을 분석하여 제출하시오 Overview classification: KNeighborsClassifier, DecisionTreeClassifier, RandomForestClassifier output_test 출력 데이터셋의 특성 분석 from subprocess import check_output import...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/sklearn1/",
+        "url": "/research/AI_Compete_TypeA/",
         "teaser": null
       },{
-        "title": "DataAnalysis: sklearn problem2",
-        "excerpt":"AI 경진대회 코딩 테스트 (B형) 제출자: 이성욱(sungwook.Lee@hyundai.com) 날짜: ‘21.6/28 문제(Type B): 5차원으로 데이터의 차원 축소, 축소를 통해 정리된 인자들의 특성을 살펴라 OVEVIEW Data Load and View Feature Dimenstion Reduce Feature Character 1. Data Load and View from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline...","categories": ["research"],
+        "title": "DataAnalysis: sklearn_TypeB",
+        "excerpt":"sklearn_TypeB AUTHOR: SungwookLE DATE: ‘21.6/28 문제: 5차원으로 데이터의 차원 축소 축소를 통해 정리된 인자들의 특성을 살펴라 OVEVIEW Data Load and View Feature Dimenstion Reduce Feature Character 1. Data Load and View from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline import seaborn as sns sns.set()...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/sklearn2/",
+        "url": "/research/AI_Compete_TypeB/",
         "teaser": null
       },{
-        "title": "DataAnalysis: sklearn problem3",
-        "excerpt":"sklearn problem3 AUTHOR: SungwookLE DATE: ‘21.6/29 제공된 데이터를 이용하여 유사한 데이터끼리 묶는 군집화 수행 군집의 대표값을 추출하여 제출 문서에 작성 input_test.csv 파일로 만든 군집화 모델의 출력을 output_test.csv로 저장하시오 from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline #print(check_output(['ls']).decode('utf8')) input_train = pd.read_csv('input_train.csv', header=None) input_test = pd.read_csv('input_test.csv',...","categories": ["research"],
+        "title": "DataAnalysis: sklearn_TypeC",
+        "excerpt":"sklearn_TypeC AUTHOR: SungwookLE DATE: ‘21.6/29 문제: 제공된 데이터를 이용하여 유사한 데이터끼리 묶는 군집화 수행 군집의 대표값을 추출하여 제출 문서에 작성 input_test.csv 파일로 만든 군집화 모델의 출력을 output_test.csv로 저장하시오 from subprocess import check_output import pandas as pd import matplotlib.pyplot as plt %matplotlib inline #print(check_output(['ls']).decode('utf8')) input_train = pd.read_csv('input_train.csv', header=None) input_test = pd.read_csv('input_test.csv',...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/sklearn3/",
+        "url": "/research/AI_Compete_TypeC/",
+        "teaser": null
+      },{
+        "title": "DataAnalysis: Keras_Basic",
+        "excerpt":"Keras_Basic AUTHOR: SungwookLE DATE: ‘21.6/30 PROBLEM 1) 아래 코드의 문제점을 적고 해결하라 (한줄추가) X_train = X_train.reshape((X_train.shape[0],X_train.shape[1],X_train.shape[2],1)) #추가한 코드 X_test = X_test.reshape((X_test.shape[0],X_test.shape[1],X_test.shape[2],1)) #추가한 코드 import tensorflow as tf from keras.datasets import mnist from keras.models import Sequential from keras.layers import Dense,Conv2D,Flatten,MaxPool2D (X_train, y_train), (X_test,y_test) = mnist.load_data() print(\"BEFORE SHAPE IS {}\".format(X_train.shape)) X_train =...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/DS_Compete_Keras/",
         "teaser": null
       }]
