@@ -94,4 +94,10 @@ var store = [{
         "tags": ["research"],
         "url": "/research/DS_Compete_Keras/",
         "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle HeartAttack",
+        "excerpt":"KAGGLE: HEART ATTACK PREDICT AUTHOR: SungwookLE DATE: ‘21.7/4 DATASET: https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset About this dataset Age : Age of the patient Sex : Sex of the patient exang: exercise induced angina (1 = yes; 0 = no) ca: number of major vessels (0-3) cp : Chest Pain type chest pain type Value...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_HeartAttack/",
+        "teaser": null
       }]

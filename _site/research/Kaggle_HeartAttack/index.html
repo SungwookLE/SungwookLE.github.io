@@ -1,0 +1,914 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>DataAnalysis: Kaggle HeartAttack - SungwookLE</title>
+<meta name="description" content="Classifier: Heart Attack probability high or low?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SungwookLE">
+<meta property="og:title" content="DataAnalysis: Kaggle HeartAttack">
+<meta property="og:url" content="sungwookle.github.io/research/Kaggle_HeartAttack/">
+
+
+  <meta property="og:description" content="Classifier: Heart Attack probability high or low?">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-04T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="sungwookle.github.io/research/Kaggle_HeartAttack/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "SungwookLE",
+      "url": "sungwookle.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="SungwookLE Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          SungwookLE
+          <span class="site-subtitle">:::::::::::</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/algorithm/">Algorithm</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/day/">Day</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="DataAnalysis: Kaggle HeartAttack">
+    <meta itemprop="description" content="Classifier: Heart Attack probability high or low?">
+    <meta itemprop="datePublished" content="2021-07-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">DataAnalysis: Kaggle HeartAttack
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#kaggle-heart-attack-predict">KAGGLE: HEART ATTACK PREDICT</a><ul><li><a href="#about-this-dataset">About this dataset</a></li><li><a href="#overview">OVERVIEW</a></li></ul></li><li><a href="#1-data-analysis">1) Data Analysis</a></li><li><a href="#2-feature-engineering">2) Feature Engineering</a><ul><li><a href="#2-1-categorical--numerical-features-분리하기">2-1) categorical + numerical features 분리하기</a></li><li><a href="#2-2-비어있는-missing-데이터-채우기">2-2) 비어있는 missing 데이터 채우기</a></li><li><a href="#2-3-data의-skewness-줄이기">2-3) data의 skewness 줄이기</a></li></ul></li><li><a href="#3-modeling">3) Modeling</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="kaggle-heart-attack-predict">KAGGLE: HEART ATTACK PREDICT</h1>
+<p>AUTHOR: SungwookLE<br />
+DATE: ‘21.7/4<br />
+DATASET: https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset</p>
+
+<p><img src="https://storage.googleapis.com/kaggle-datasets-images/1226038/2046696/2465e7cd117a6954befa50eff39d236f/dataset-cover.jpg?t=2021-03-22-11-33-17" alt="heart" /></p>
+<h3 id="about-this-dataset">About this dataset</h3>
+<ul>
+  <li>Age : Age of the patient</li>
+  <li>Sex : Sex of the patient</li>
+  <li>exang: exercise induced angina (1 = yes; 0 = no)</li>
+  <li>ca: number of major vessels (0-3)</li>
+  <li>
+    <p>cp : Chest Pain type chest pain type<br />
+  Value 1: typical angina<br />
+  Value 2: atypical angina<br />
+  Value 3: non-anginal pain<br />
+  Value 4: asymptomatic</p>
+  </li>
+  <li>trtbps : resting blood pressure (in mm Hg)</li>
+  <li>chol : cholestoral in mg/dl fetched via BMI sensor</li>
+  <li>fbs : (fasting blood sugar &gt; 120 mg/dl) (1 = true; 0 = false)</li>
+  <li>
+    <p>rest_ecg : resting electrocardiographic results
+  Value 0: normal<br />
+  Value 1: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of &gt; 0.05 mV)<br />
+  Value 2: showing probable or definite left ventricular hypertrophy by Estes’ criteria</p>
+  </li>
+  <li>thalach : maximum heart rate achieved</li>
+  <li>target :<br />
+  0= less chance of heart attack<br />
+  1= more chance of heart attack</li>
+</ul>
+
+<h3 id="overview">OVERVIEW</h3>
+<p>1) Data Analysis</p>
+<ul>
+  <li>데이터 차원, 형태 파악하기</li>
+  <li>그래프 그려서 에측변수 ``와 다른 변수와의 상관관계 파악하기</li>
+</ul>
+
+<p>2) Feature Engineering<br />
+2-1) categorical + numerical features 분리하기</p>
+<ul>
+  <li>using <code class="language-plaintext highlighter-rouge">select_dtypes()</code>.</li>
+  <li>numerical 데이터 중 month나 year 등의 데이터는 categorical로 분류해주기 <code class="language-plaintext highlighter-rouge">apply(str)</code></li>
+</ul>
+
+<p>2-2) 비어있는 missing 데이터 채우기</p>
+<ul>
+  <li>numerical: mean, median, mode 를 활용하여 데이터 채우기 <code class="language-plaintext highlighter-rouge">.fillna(xxx)</code>, <code class="language-plaintext highlighter-rouge">mean(), median(), mode()</code></li>
+  <li>categorical: <code class="language-plaintext highlighter-rouge">pd.get_dummies()</code> 나 <code class="language-plaintext highlighter-rouge">LabelEncoder</code>를 활용해서 missing 데이터도 없애고, one-hot encoding도 완성하기</li>
+</ul>
+
+<p>2-3) data의 skewness 줄이기</p>
+<ul>
+  <li>numerical data 의 skewness 줄이기</li>
+</ul>
+
+<p>2-4) new feature / del feature</p>
+<ul>
+  <li>필요하다면</li>
+</ul>
+
+<p>3) Modeling</p>
+<ul>
+  <li>CrossValidation using <code class="language-plaintext highlighter-rouge">cross_val_score, KFold. train_test_split</code>.</li>
+  <li>Regressor : <code class="language-plaintext highlighter-rouge">LinearRegression, RidgeCV, LassoCV, ElasticNetCV</code></li>
+  <li>Classifier  : <code class="language-plaintext highlighter-rouge">KNN, RandomForest, ...</code></li>
+  <li>Techniques: <code class="language-plaintext highlighter-rouge">StandardScaler, RobustScaler</code>.</li>
+  <li>Easy modeling: <code class="language-plaintext highlighter-rouge">make_pipeline</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">check_output</span><span class="p">([</span><span class="s">"ls"</span><span class="p">,</span><span class="s">"input"</span><span class="p">]).</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heart.csv
+o2Saturation.csv
+</code></pre></div></div>
+
+<h2 id="1-data-analysis">1) Data Analysis</h2>
+<p>데이터 차원, 형태 파악하기<br />
+그래프 그려서 에측변수 output 다른 변수와의 상관관계 파악하기</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"input/heart.csv"</span><span class="p">)</span>
+<span class="n">o2Saturation</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"input/o2Saturation.csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">o2Saturation</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>((303, 14), (3585, 1))
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">corr</span> <span class="o">=</span> <span class="n">heart</span><span class="p">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nb">abs</span><span class="p">(</span><span class="n">corr</span><span class="p">[</span><span class="s">'output'</span><span class="p">]).</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>output      1.000000
+exng        0.436757
+cp          0.433798
+oldpeak     0.430696
+thalachh    0.421741
+caa         0.391724
+slp         0.345877
+thall       0.344029
+sex         0.280937
+age         0.225439
+trtbps      0.144931
+restecg     0.137230
+chol        0.085239
+fbs         0.028046
+Name: output, dtype: float64
+</code></pre></div></div>
+
+<p><img src="/assets/heartattack_files/heartattack_6_1.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ALL DATA TYPES are numerical data
+</span><span class="n">heart</span><span class="p">.</span><span class="n">dtypes</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age           int64
+sex           int64
+cp            int64
+trtbps        int64
+chol          int64
+fbs           int64
+restecg       int64
+thalachh      int64
+exng          int64
+oldpeak     float64
+slp           int64
+caa           int64
+thall         int64
+output        int64
+dtype: object
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">.</span><span class="n">isnull</span><span class="p">().</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age         0
+sex         0
+cp          0
+trtbps      0
+chol        0
+fbs         0
+restecg     0
+thalachh    0
+exng        0
+oldpeak     0
+slp         0
+caa         0
+thall       0
+output      0
+dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">facet_plot</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">range_opt</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">facet</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">heart</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">'output'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">facet</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">shade</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">range_opt</span><span class="p">:</span>
+        <span class="n">facet</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">heart</span><span class="p">[</span><span class="n">feature</span><span class="p">].</span><span class="nb">max</span><span class="p">()))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">facet</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="n">range_opt</span><span class="p">)</span>
+    <span class="n">facet</span><span class="p">.</span><span class="n">add_legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Output: "</span><span class="o">+</span><span class="n">feature</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">heart</span><span class="p">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">!=</span> <span class="s">'output'</span><span class="p">):</span>
+        <span class="n">facet_plot</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/heartattack_files/heartattack_10_0.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_1.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_2.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_3.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_4.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_5.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_6.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_7.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_8.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_9.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_10.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_11.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_10_12.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">[</span><span class="s">'cp'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0    143
+2     87
+1     50
+3     23
+Name: cp, dtype: int64
+</code></pre></div></div>
+
+<h2 id="2-feature-engineering">2) Feature Engineering</h2>
+<h3 id="2-1-categorical--numerical-features-분리하기">2-1) categorical + numerical features 분리하기</h3>
+<ul>
+  <li>using <code class="language-plaintext highlighter-rouge">select_dtypes()</code>.</li>
+  <li>numerical 데이터 중 month나 year 등의 데이터는 categorical로 분류해주기 <code class="language-plaintext highlighter-rouge">apply(str)</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">]</span><span class="o">=</span><span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="c1"># 사실 안해줘도 되는데, 그냥 해준거
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">.</span><span class="n">dtypes</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age           int64
+sex          object
+cp            int64
+trtbps        int64
+chol          int64
+fbs           int64
+restecg       int64
+thalachh      int64
+exng          int64
+oldpeak     float64
+slp           int64
+caa           int64
+thall         int64
+output        int64
+dtype: object
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">lbl</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">lbl</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">])</span>
+<span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">]</span> <span class="o">=</span>  <span class="n">lbl</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">].</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heart</span><span class="p">[</span><span class="s">'sex'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    207
+0     96
+Name: sex, dtype: int64
+</code></pre></div></div>
+
+<h3 id="2-2-비어있는-missing-데이터-채우기">2-2) 비어있는 missing 데이터 채우기</h3>
+<ul>
+  <li>numerical: mean, median, mode 를 활용하여 데이터 채우기 .fillna(xxx), mean(), median(), mode()</li>
+  <li>categorical: pd.get_dummies() 나 LabelEncoder를 활용해서 missing 데이터도 없애고, one-hot encoding도 완성하기</li>
+</ul>
+
+<p><strong>비어있는 데이터가 없네요,</strong></p>
+
+<h3 id="2-3-data의-skewness-줄이기">2-3) data의 skewness 줄이기</h3>
+<ul>
+  <li>numerical data 의 skewness 줄이기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#비어있는 데이터 없음
+</span><span class="n">heart</span><span class="p">.</span><span class="n">isnull</span><span class="p">().</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age         0
+sex         0
+cp          0
+trtbps      0
+chol        0
+fbs         0
+restecg     0
+thalachh    0
+exng        0
+oldpeak     0
+slp         0
+caa         0
+thall       0
+output      0
+dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">skew</span> <span class="c1"># for some statistics
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">skewness</span> <span class="o">=</span> <span class="n">heart</span><span class="p">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">dropna</span><span class="p">()))</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">skewness_features</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">skewness</span><span class="p">.</span><span class="n">values</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">].</span><span class="n">index</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"skewness:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">skewness_features</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>skewness:
+Index(['fbs', 'caa', 'oldpeak', 'chol'], dtype='object')
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">=</span><span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Before skewness in oldpeak, skew is {:.3f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">skewness</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">]))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">])</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">=</span><span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'After skewness in oldpeak, skew is  {:.3f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'oldpeak'</span><span class="p">])))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">=</span><span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Before skewness in chol, skew is {:.3f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">skewness</span><span class="p">[</span><span class="s">'chol'</span><span class="p">]))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">])</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">=</span><span class="n">norm</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'Normal dist. mu={:.2f}, std={:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="s">'best'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'After skewness in chol, skew is {:.3f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">])))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/heartattack_files/heartattack_21_0.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_21_1.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_21_2.svg" alt="svg" /></p>
+
+<p><img src="/assets/heartattack_files/heartattack_21_3.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#QQ plots
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">heart</span><span class="p">[</span><span class="s">'chol'</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/heartattack_files/heartattack_22_0.svg" alt="svg" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">skewness</span> <span class="o">=</span> <span class="n">heart</span><span class="p">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">dropna</span><span class="p">()))</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">skewness_features</span> <span class="o">=</span> <span class="n">skewness</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">skewness</span><span class="p">.</span><span class="n">values</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">].</span><span class="n">index</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"skewness:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">skewness_features</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>skewness:
+Index(['fbs', 'caa'], dtype='object')
+</code></pre></div></div>
+
+<h2 id="3-modeling">3) Modeling</h2>
+<ul>
+  <li>CrossValidation using <code class="language-plaintext highlighter-rouge">cross_val_score, KFold. train_test_split</code>.</li>
+  <li>Regressor : <code class="language-plaintext highlighter-rouge">LinearRegression, RidgeCV, LassoCV, ElasticNetCV</code></li>
+  <li>Classifier  : <code class="language-plaintext highlighter-rouge">KNN, RandomForest, MLPClassifier...</code></li>
+  <li>Techniques: <code class="language-plaintext highlighter-rouge">StandardScaler, RobustScaler</code>.</li>
+  <li>Easy modeling: <code class="language-plaintext highlighter-rouge">make_pipeline</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">label</span> <span class="o">=</span> <span class="n">heart</span><span class="p">[</span><span class="s">'output'</span><span class="p">]</span>
+<span class="n">heart</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'output'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">heart</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trtbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalachh</th>
+      <th>exng</th>
+      <th>oldpeak</th>
+      <th>slp</th>
+      <th>caa</th>
+      <th>thall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>63</td>
+      <td>1</td>
+      <td>3</td>
+      <td>145</td>
+      <td>5.455321</td>
+      <td>1</td>
+      <td>0</td>
+      <td>150</td>
+      <td>0</td>
+      <td>1.193922</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>37</td>
+      <td>1</td>
+      <td>2</td>
+      <td>130</td>
+      <td>5.525453</td>
+      <td>0</td>
+      <td>1</td>
+      <td>187</td>
+      <td>0</td>
+      <td>1.504077</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>41</td>
+      <td>0</td>
+      <td>1</td>
+      <td>130</td>
+      <td>5.323010</td>
+      <td>0</td>
+      <td>0</td>
+      <td>172</td>
+      <td>0</td>
+      <td>0.875469</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>56</td>
+      <td>1</td>
+      <td>1</td>
+      <td>120</td>
+      <td>5.468060</td>
+      <td>0</td>
+      <td>1</td>
+      <td>178</td>
+      <td>0</td>
+      <td>0.587787</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>57</td>
+      <td>0</td>
+      <td>0</td>
+      <td>120</td>
+      <td>5.872118</td>
+      <td>0</td>
+      <td>1</td>
+      <td>163</td>
+      <td>1</td>
+      <td>0.470004</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">k_fold</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">RandomForest</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">RandomForest</span><span class="p">,</span> <span class="n">heart</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span> <span class="n">k_fold</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'accuracy'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'RandomForest CrossValidation Score is {:.5f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RandomForest CrossValidation Score is 0.82215
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MLP</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="s">'adaptive'</span><span class="p">))</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">heart</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span> <span class="n">k_fold</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'accuracy'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'MLP CrossValidation Score is {:.5f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MLP CrossValidation Score is 0.84172
+</code></pre></div></div>
+
+<ul>
+  <li>Best Model is SVM as 83.495%</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SVM</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">SVM</span><span class="p">,</span> <span class="n">heart</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span> <span class="n">k_fold</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'accuracy'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'SVM CrossValidation Score is {:.5f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SVM CrossValidation Score is 0.83495
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">KNN</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">KNN</span><span class="p">,</span> <span class="n">heart</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span> <span class="n">k_fold</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">'accuracy'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'KNN CrossValidation Score is {:.5f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KNN CrossValidation Score is 0.83194
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sts</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">sts</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heart</span><span class="p">)</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">sts</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heart</span><span class="p">)</span>
+<span class="n">feed</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">feed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="n">heart</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1">#skewness= feed.apply(lambda x: skew(x.dropna()))
+#print(skewness)
+#from sklearn.cluster import KMeans
+#KMM = KMeans(n_clusters=2)
+#KMM.fit(feed)
+</span>
+<span class="n">SVM</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feed</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">SVM</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'output'</span><span class="p">])</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+<span class="n">X</span><span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s">'one'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s">'two'</span><span class="p">})</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">pred</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'red'</span><span class="p">,</span><span class="s">'blue'</span><span class="p">]</span>
+<span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">legends</span> <span class="o">=</span> <span class="p">[</span><span class="s">'less chance of heart atk.'</span><span class="p">,</span> <span class="s">'more chance of heart atk.'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">la</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">leg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">legends</span><span class="p">)</span><span class="n">W</span><span class="p">:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s">'output'</span><span class="p">]</span><span class="o">==</span><span class="n">la</span><span class="p">][</span><span class="s">'one'</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s">'output'</span><span class="p">]</span><span class="o">==</span><span class="n">la</span><span class="p">][</span><span class="s">'two'</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">leg</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.legend.Legend at 0x7f5afa0d7b38&gt;
+</code></pre></div></div>
+
+<p><img src="/assets/heartattack_files/heartattack_33_1.svg" alt="svg" /></p>
+
+<h2 id="끝">끝</h2>
+<ul>
+  <li>데이터 프로세스 &amp; 기계학습 순서를 따라가면, 어느정도의 predict 성능은 나오는데, 83% 정도에서 더 끌어올리기 위해선, <strong>feature engineering</strong>을 신경써서 해주어야 한다.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-04T00:00:00+09:00">July 4, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/research/DS_Compete_Keras/" class="pagination--pager" title="DataAnalysis: Keras_Basic
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:joker1251@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/SungwookLE" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/sungwookle/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 SungwookLE. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
