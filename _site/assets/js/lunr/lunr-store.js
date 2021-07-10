@@ -100,4 +100,10 @@ var store = [{
         "tags": ["research"],
         "url": "/research/Kaggle_HeartAttack/",
         "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle Disaster Tweets",
+        "excerpt":"KAGGLE: Natural Language Processing with Diaster Tweets AUTHOR: SungwookLE DATE: ‘21.7/9 DATA: https://www.kaggle.com/c/nlp-getting-started/overview REFERENCE: https://www.kaggle.com/mariapushkareva/nlp-disaster-tweets-with-glove-and-lstm Competition Description It’s not always clear whether a person’s words are actually announcing a disaster. This tweet explicitly uses the word “ABLAZE” but means it metaphorically. This is clear to a human right away, especially...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_DisasterTweet/",
+        "teaser": null
       }]
