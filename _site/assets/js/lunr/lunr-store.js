@@ -106,4 +106,10 @@ var store = [{
         "tags": ["research"],
         "url": "/research/Kaggle_DisasterTweet/",
         "teaser": null
+      },{
+        "title": "CODING TEST: QUADTREE #2630",
+        "excerpt":"DataStructure: QUADTREE #2630 AUTHOR: SungwookLE DATE: ‘21.7/11 PROBLEM: 백준#2530 REFERENCE: https://chessire.tistory.com/entry/%EC%BF%BC%EB%93%9C%ED%8A%B8%EB%A6%ACQuad-tree 1. QUADTREE란 쿼드트리란? 트리 자료구조중 하나로 부모 노드 아래에 자식 노드를 4개(Quad)씩 가지고 있는 트리. 이미지 용량, 충돌, 컬링 등 다양한 곳에서 최적화 기법으로 사용되고 있음 위와 같은 데이터(흑백이미지라고 해보자)를 압축시킬 때, 사용할 수 있는 방법으로, 다음과 같이 데이터를...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_2630/",
+        "teaser": null
       }]
