@@ -112,4 +112,10 @@ var store = [{
         "tags": ["algorithm"],
         "url": "/algorithm/Baekjoon_2630/",
         "teaser": null
+      },{
+        "title": "DataAnalysis: Kaggle Distracted Driver",
+        "excerpt":"DISTRACTED_DRIVER_CLASSIFIER AUTHOR: SungwookLE DATE: ‘21.7/13 PROBLEM: KAGGLE REFERENCE: Convolutional Neural Network, REF Your goal is to predict the likelihood of what the driver is doing in each picture. Class Name: c0: safe driving c1: texting - right c2: talking on the phone - right c3: texting - left c4: talking...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Kaggle_DistractedDriver/",
+        "teaser": null
       }]
