@@ -1,0 +1,142 @@
+I"Y<h1 id="datastructure-2d-the-minist-distance-value-2261">DataStructure: 2D the minist distance value #2261</h1>
+<p>AUTHOR: SungwookLE <br />
+DATE: ‘21.7/27<br />
+PROBLEM: <a href="https://www.acmicpc.net/problem/2261">백준#2261</a><br />
+REFERENCE: <a href="https://dhpark-blog.tistory.com/entry/BOJ-2261-%EA%B0%80%EC%9E%A5-%EA%B0%80%EA%B9%8C%EC%9A%B4-%EB%91%90-%EC%A0%90">REF</a>&amp;
+<a href="https://bingorithm.tistory.com/8">반례모음</a></p>
+
+<h2 id="1-2d-좌표의-최소값-구하기">1. 2D 좌표의 최소값 구하기</h2>
+<p>이 문제에서 많이 해맷던게,, 계속 시간초과가 나오고 그래서였다.
+아 런타임에러도 많았는데, 그건 sort 할때
+`std::sort(v.begin(), v.end(), <a href="auto a, auto b"></a>{
+    if( a.first &gt; b.first)
+        return ture;
+    else
+        return false;
+})</p>
+
+<p>처음에는 분할 방식으로 아래와 같이 접근했었다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// mat은 std::vector&lt;std::pair&lt;int,int&gt;&gt; mat 로 선언되었다.</span>
+<span class="kt">void</span> <span class="nf">solver</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">mat</span><span class="p">[</span><span class="n">end</span><span class="p">]);</span> 
+            <span class="n">ans</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+
+            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+            <span class="n">near_comp</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+            <span class="c1">//std::cout &lt;&lt; mid &lt;&lt; std::endl;</span>
+            <span class="n">solver</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+            <span class="n">solver</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div></div>
+<p>문제는 왼쪽과 오른쪽 집단이 서로 최소값 비교가 불가해서 답이 제대로 나오지 않는다는 것이었다.<br />
+즉, 중간 mid 인덱스 부분의 군집데이터에 절대최소값이 존재하게 될 경우 해를 찾지 못하는 문제가 있다. (반례 참고)<br />
+<img src="https://casterian.net/wp-content/uploads/2018/04/%EA%B0%80%EC%9E%A5-%EA%B0%80%EA%B9%8C%EC%9A%B4-%EB%91%90-%EC%A0%90-3-252x300.png" alt="image" /></p>
+
+<p>따라서, 아래 2번 코드 처럼 중간에 겹치는 영역을 스페셜하게 처리해주고, 데이터 개수가 3tick 이하일때는 brute-force 방식으로 뻉뺑이 돌려서 찾는 방법으로 하여,
+전체 수행횟수를 줄인다…</p>
+
+<h2 id="2-코드">2. 코드</h2>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">solver_2261</span><span class="p">{</span>
+    <span class="nl">public:</span>
+        <span class="n">solver_2261</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">_mat</span><span class="p">){</span>
+            <span class="n">mat</span> <span class="o">=</span> <span class="n">_mat</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">mat</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">mat</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="n">b</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">else</span>
+                    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="p">});</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">solver</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">){</span>
+
+            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;=</span><span class="mi">3</span><span class="p">){</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span><span class="n">end</span> <span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+                        <span class="n">ans</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">distance</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mat</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">solver</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">solver</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+
+                <span class="n">ans</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+
+                <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">temp_mat</span><span class="p">;</span>
+                <span class="n">temp_mat</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">mid</span><span class="p">]);</span>
+
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">start</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">){</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">({</span><span class="n">mat</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">first</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="mi">0</span><span class="p">})</span> <span class="o">&gt;=</span> <span class="n">ans</span> <span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+                    <span class="n">temp_mat</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+                <span class="p">}</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">({</span><span class="n">mat</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">first</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="mi">0</span><span class="p">})</span> <span class="o">&gt;=</span> <span class="n">ans</span> <span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+                    <span class="n">temp_mat</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+                <span class="p">}</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">temp_mat</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">temp_mat</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="n">b</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">else</span>
+                    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="p">});</span>
+
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">temp_mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">temp_mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">({</span><span class="n">temp_mat</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="n">temp_mat</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">second</span><span class="p">,</span><span class="mi">0</span><span class="p">})</span> <span class="o">&gt;=</span> <span class="n">ans</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+                        <span class="n">ans</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">distance</span><span class="p">(</span><span class="n">temp_mat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">temp_mat</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">distance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">){</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">);</span> 
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">show_ans</span><span class="p">(){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">show_mat</span><span class="p">(){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MAT: </span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">a</span> <span class="o">:</span> <span class="n">mat</span><span class="p">){</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">mat</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">ans</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">mat</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">mat</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="n">solver_2261</span> <span class="n">solver</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
+    <span class="n">solver</span><span class="p">.</span><span class="n">solver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">solver</span><span class="p">.</span><span class="n">show_ans</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+:ET

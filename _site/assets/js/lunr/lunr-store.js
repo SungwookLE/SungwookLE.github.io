@@ -118,4 +118,22 @@ var store = [{
         "tags": ["research"],
         "url": "/research/Kaggle_DistractedDriver/",
         "teaser": null
+      },{
+        "title": "CODING TEST: Matrix Power Calculation #10830",
+        "excerpt":"DataStructure: Matrix Power Calculation #10830 AUTHOR: SungwookLE DATE: ‘21.7/15 PROBLEM: 백준#10830 REFERENCE: https://ssungkang.tistory.com/entry/C-BAEKJOON-10830-%ED%96%89%EB%A0%AC-%EC%A0%9C%EA%B3%B1 1. 분할정복 아래 코드 matrixPow를 읽어보자 2. CODE std::vector&lt;std::vector&lt;long long int&gt;&gt; matrixMul(std::vector&lt;std::vector&lt;long long int&gt;&gt; A, std::vector&lt;std::vector&lt;long long int&gt;&gt; B){ int n =A.size(); std::vector&lt;std::vector&lt;long long int&gt;&gt; C(n, std::vector&lt;long long int&gt;(n)); for(int row =0 ; row &lt; n ;...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_10830/",
+        "teaser": null
+      },{
+        "title": "CODING TEST: Segment Tree #6549",
+        "excerpt":"DataStructure: Segment Tree Get highest histogram size #6549 AUTHOR: SungwookLE DATE: ‘21.7/25 PROBLEM: 백준#10830 REFERENCE: https://cocoon1787.tistory.com/314 1. 세그먼트 트리 먼저, 구간합을 구하는 일반적인 트리 코드를 살펴보자 2. 구간합 구하는 트리 REF: https://blog.naver.com/ndb796/221282210534 구간합트리 class segment_tree{ public: // 트리 클래스 segment_tree(std::vector&lt;int&gt; _arr){ given_arr = _arr; tree.resize(4*given_arr.size()); } int init(int start, int...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_6549/",
+        "teaser": null
+      },{
+        "title": "CODING TEST: 2D the minist distance value #2261",
+        "excerpt":"DataStructure: 2D the minist distance value #2261 AUTHOR: SungwookLE DATE: ‘21.7/27 PROBLEM: 백준#2261 REFERENCE: REF&amp; 반례모음 1. 2D 좌표의 최소값 구하기 이 문제에서 많이 해맷던게,, 계속 시간초과가 나오고 그래서였다. 아 런타임에러도 많았는데, 그건 sort 할때 std::sort(v.begin(), v.end(), [](auto a, auto b){ if( a.first &gt; b.first) return ture; else return false;...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_2261/",
+        "teaser": null
       }]
