@@ -1,0 +1,525 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HumanPose: CMU Panoptic Dataset - SungwookLE</title>
+<meta name="description" content="Preprocessing and Exploratory Data Analysis">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SungwookLE">
+<meta property="og:title" content="HumanPose: CMU Panoptic Dataset">
+<meta property="og:url" content="sungwookle.github.io/research/CMU_panoptic/">
+
+
+  <meta property="og:description" content="Preprocessing and Exploratory Data Analysis">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-28T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="sungwookle.github.io/research/CMU_panoptic/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "SungwookLE",
+      "url": "sungwookle.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="SungwookLE Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          SungwookLE
+          <span class="site-subtitle">:::::::::::</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/algorithm/">Algorithm</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/day/">Day</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HumanPose: CMU Panoptic Dataset">
+    <meta itemprop="description" content="Preprocessing and Exploratory Data Analysis">
+    <meta itemprop="datePublished" content="2021-07-28T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HumanPose: CMU Panoptic Dataset
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#humanpose-panoptic-data">HumanPose: Panoptic Data</a><ul><li><a href="#humanpose-분야-관련-용어">HumanPose 분야 관련 용어</a></li><li><a href="#humanpose-관련-논문">HumanPose 관련 논문</a></li></ul></li><li><a href="#1-system-description">1. System Description</a></li><li><a href="#2-video-image-keypoint-data-preparation">2. Video, Image, Keypoint Data Preparation</a><ul><li><a href="#2-1-데이터-다운로드">2-1. 데이터 다운로드</a></li><li><a href="#2-2-데이터셋-구성">2-2. 데이터셋 구성</a></li><li><a href="#2-3-이미지와-3d-keypoint-data-추출">2-3. 이미지와 3D keypoint data 추출</a></li><li><a href="#2-4-3d-keypoint-라벨링-데이터-format">2-4. 3D keypoint 라벨링 데이터 Format</a></li><li><a href="#2-5-데이터-다운로드">2-5. 데이터 다운로드</a></li></ul></li><li><a href="#3-panoptic-툴-예제-사용">3. panoptic 툴 예제 사용</a><ul><li><a href="#3-1-3dkeypoint_reprojection_hdipynb">3-1. 3Dkeypoint_reprojection_hd.ipynb</a></li><li><a href="#3-2-3dkeypoint_3dviewipynb">3-2. 3Dkeypoint_3dview.ipynb</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="humanpose-panoptic-data">HumanPose: Panoptic Data</h1>
+<p>AUTHOR: SungwookLE<br />
+DATE: ‘21.7/28<br />
+GIT REPO: <a href="https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox">CMU-Perceptual-Computing-Lab</a><br />
+DOCU: <a href="https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox/blob/master/README.md">docu</a><br />
+DATASET: <a href="http://domedb.perception.cs.cmu.edu/">Panoptic</a></p>
+
+<h3 id="humanpose-분야-관련-용어">HumanPose 분야 관련 용어</h3>
+
+<ul>
+  <li>
+    <dl>
+      <dt>Top-down approach</dt>
+      <dd>Human Detector 알고리즘을 이용해서 사람을 먼저찾고, 찾은 사람을 대상으로 keypoint 학습하는 구조, 연산 속도가 오래 걸리고, Human Detector의 성능에 의해 전체 알고리즘의 성능이 결정됨</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt>Bottom-up approach</dt>
+      <dd>OpenPose 논문에서 사용하는 방법으로 Greedy 하게 사람들의 존재까지도 찾게끔 학습시키는 구조, Multi Person에서 속도가 빠르고, 정확도도 높다.</dd>
+    </dl>
+  </li>
+  <li>Detection 알고리즘 성능 평가 방법: <a href="https://bskyvision.com/465">REF</a></li>
+  <li>Precision, Recall, Accuracy, F1 Score
+<img src="https://www.researchgate.net/publication/336402347/figure/fig3/AS:812472659349505@1570719985505/Calculation-of-Precision-Recall-and-Accuracy-in-the-confusion-matrix.ppm" alt="image" /></li>
+  <li>Precision은 참으로 예측한 것 중 정답의 비율 = How man selected item’s are relevant</li>
+  <li>Recall은 참인 데이터 중 정답의 비율 = How many relevant item’s are selected</li>
+  <li>F1 Score는: Precision과 recall의 조화평균  <br />
+\(F1 Score= 2*(Precision * Recall)/ (Precision + Recall)\)</li>
+  <li>PR커브는 confidence 레벨에 대한 threshold 값의 변화에 의한 성능을 평가하는 방법이다. (recall값에 따른 precision 값의 변화)</li>
+  <li>AP(Average Precision)으로 PR커브의 아래 면적을 의미한다.</li>
+  <li>mAP(mean Average Precision): class가 여러개인 경우 클래스당 AP를 구하여 평균값을 사용할 수 있다.</li>
+  <li>IoU(Intersection over union) 중첩되는 박스의 비율
+<img src="/assets/HumanPose/Iou.png" alt="image" /></li>
+  <li>PCK: Detected-joint is considered correct if the distance between the predicted and the true joint is within a certain threshold. PCK@0.2 는 threshold 가 0.2 * torso diameter 로써, 여기서 torso 는 사람의 몸통이다.</li>
+  <li>PCKh@0.5: threshold = 50% of the head segment length(head bone link)
+threshold 로써 몸통이 아닌 머리 부분의 길이를 사용한 변형 평가 지표이다.
+보통 PCKh @ 0.5 를 많이 사용하는 추세</li>
+  <li>AP@0.5 : IoU 의 threshold 가 0.5 일 때</li>
+</ul>
+
+<h3 id="humanpose-관련-논문">HumanPose 관련 논문</h3>
+<p>[1] 오픈포즈(Keypoint) 논문 (CMU): https://arxiv.org/pdf/1812.08008.pdf<br />
+<img src="/assets/HumanPose/OpenPose_NET.png" alt="image" /> <br />
+[2] 오픈포즈 네트워크 설계 (CMU): https://arxiv.org/pdf/1602.00134.pdf<br />
+[3] 3D Pose 추출 (Single-Shot Multi-Person 3D Pose): https://arxiv.org/pdf/1712.03453.pdf<br />
+<img src="/assets/HumanPose/3Dpose_NET.png" alt="image" /></p>
+
+<h2 id="1-system-description">1. System Description</h2>
+<p><img src="http://domedb.perception.cs.cmu.edu/img/ExampleResults.jpg" alt="image" /></p>
+<ul>
+  <li>480 VGA cameras, 640 x 480 resolution, 25 fps, synchronized among themselves using a hardware clock</li>
+  <li>31 HD cameras, 1920 x 1080 resolution, 30 fps, synchronized among themselves using a hardware clock, timing aligned with VGA cameras</li>
+  <li>10 Kinect Ⅱ Sensors. 1920 x 1080 (RGB), 512 x 424 (depth), 30 fps, timing aligned among themselves and other sensors</li>
+  <li>5 DLP Projectors. synchronized with HD cameras</li>
+  <li><strong>Dataset Size</strong>: 65 sequences (5.5 hours) and 1.5 millions of 3D skeletons are available.</li>
+</ul>
+
+<h2 id="2-video-image-keypoint-data-preparation">2. Video, Image, Keypoint Data Preparation</h2>
+
+<h3 id="2-1-데이터-다운로드">2-1. 데이터 다운로드</h3>
+
+<p><a href="https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox">CMU-Perceptual-Computing-Lab</a>를 clone하면 <a href="http://domedb.perception.cs.cmu.edu/">Panoptic</a> 데이터셋을 다룰 수 있는 여러가지 bash파일(./scripts)이 들어있다. bash를 활용하여 (예시)<code class="language-plaintext highlighter-rouge">./scripts/getData.sh 171204_pose1_sample</code> 실행하여 데이터 다운로드 가능하다.</p>
+
+<h3 id="2-2-데이터셋-구성">2-2. 데이터셋 구성</h3>
+
+<p><code class="language-plaintext highlighter-rouge">getData.sh</code>는 HD/VGA Video, Calibration 정보를 다운로드 하는 것이고,<br />
+  비디오에서 이미지와 3D keypoint는 <code class="language-plaintext highlighter-rouge">extractAll.sh</code>를 통해서 생성(압축해제)된다.<br />
+  (예시)<code class="language-plaintext highlighter-rouge">./scripts/extractAll.sh 171204_pose1_sample</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th style="text-align: right">Folder Route</th>
+      <th style="text-align: right">설명</th>
+      <th style="text-align: right">생성 순서</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td style="text-align: right">/hdVideos/hd_00_XX.mp4</td>
+      <td style="text-align: right">#Synchronized HD video files (31 views)</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">getData.sh</code> 이후</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td style="text-align: right">/vgaVideos/</td>
+      <td style="text-align: right">#Synchrponized VGA video files</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">getData.sh</code> 이후</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td style="text-align: right">/calibration_171204_pose1_sample.json</td>
+      <td style="text-align: right">#Camera calibration files</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">getData.sh</code> 이후</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td style="text-align: right">/hdPose3d_stage1_coco19.tar</td>
+      <td style="text-align: right">#3D Body Keypoint Data (coco19 keypoint definition)</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">extractAll.sh</code> 실행하면 압축이 해제됨</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td style="text-align: right">/hdFace3d.tar</td>
+      <td style="text-align: right">#3D Face Keypoint Data</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">extractAll.sh</code> 실행하면 압축이 해제됨</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td style="text-align: right">/hdHand3d.tar</td>
+      <td style="text-align: right">#3D Hand Keypoint Data</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">extractAll.sh</code> 실행하면 압축이 해제됨</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td style="text-align: right">/hdImgs</td>
+      <td style="text-align: right">#extracted image from hdVideos</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">extractAll.sh</code> 실행하면 비디오에서 (25fps)로 추출됨</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td style="text-align: right">/vgaImgs</td>
+      <td style="text-align: right">#extracted image from vgaVideos</td>
+      <td style="text-align: right"><code class="language-plaintext highlighter-rouge">extractAll.sh</code> 실행하면 비디오에서 (29.97fps)로 추출됨</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2-3-이미지와-3d-keypoint-data-추출">2-3. 이미지와 3D keypoint data 추출</h3>
+
+<p>(예시)<code class="language-plaintext highlighter-rouge">./scripts/extractAll.sh 171204_pose1_sample</code> 실행하여 비디오 파일의 이미지를 추출하고 3D keypoint의 (tar파일) 압축을 해제한다.<br />
+  예를 들어, <code class="language-plaintext highlighter-rouge">171204_pose1_sample/hdImgs/00_00/00_00_00000000.jpg</code> 와 대응되는 keypoint <code class="language-plaintext highlighter-rouge">json</code>은 <code class="language-plaintext highlighter-rouge">171204_pose1_sample/hdPose3d_stage1_coco19/body3DScene_00000000.json</code> 이다.</p>
+
+<h3 id="2-4-3d-keypoint-라벨링-데이터-format">2-4. 3D keypoint 라벨링 데이터 Format</h3>
+
+<p>Skeleton Output Format  <br />
+  Skeleton(3D keypoint) 라벨링 데이터는 아래 예시와 같이 구성되어 있다.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"univTime"</span><span class="w"> </span><span class="p">:</span><span class="mf">53541.542</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fpsType"</span><span class="w"> </span><span class="p">:</span><span class="s2">"hd_29_97"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bodies"</span><span class="w"> </span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"joints19"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">-19.4528</span><span class="p">,</span><span class="w"> </span><span class="mf">-146.612</span><span class="p">,</span><span class="w"> </span><span class="mf">1.46159</span><span class="p">,</span><span class="w"> </span><span class="mf">0.724274</span><span class="p">,</span><span class="w"> </span><span class="mf">-40.4564</span><span class="p">,</span><span class="w"> </span><span class="mf">-163.091</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.521563</span><span class="p">,</span><span class="w"> </span><span class="mf">0.575897</span><span class="p">,</span><span class="w"> </span><span class="mf">-14.9749</span><span class="p">,</span><span class="w"> </span><span class="mf">-91.0176</span><span class="p">,</span><span class="w"> </span><span class="mf">4.24329</span><span class="p">,</span><span class="w"> </span><span class="mf">0.361725</span><span class="p">,</span><span class="w"> </span><span class="mf">-19.2473</span><span class="p">,</span><span class="w"> </span><span class="mf">-146.679</span><span class="p">,</span><span class="w"> </span><span class="mf">-16.1136</span><span class="p">,</span><span class="w"> </span><span class="mf">0.643555</span><span class="p">,</span><span class="w"> </span><span class="mf">-14.7958</span><span class="p">,</span><span class="w"> </span><span class="mf">-118.804</span><span class="p">,</span><span class="w"> </span><span class="mf">-20.6738</span><span class="p">,</span><span class="w"> </span><span class="mf">0.619599</span><span class="p">,</span><span class="w"> </span><span class="mf">-22.611</span><span class="p">,</span><span class="w"> </span><span class="mf">-93.8793</span><span class="p">,</span><span class="w"> </span><span class="mf">-17.7834</span><span class="p">,</span><span class="w"> </span><span class="mf">0.557953</span><span class="p">,</span><span class="w"> </span><span class="mf">-12.3267</span><span class="p">,</span><span class="w"> </span><span class="mf">-91.5465</span><span class="p">,</span><span class="w"> </span><span class="mf">-6.55368</span><span class="p">,</span><span class="w"> </span><span class="mf">0.353241</span><span class="p">,</span><span class="w"> </span><span class="mf">-12.6556</span><span class="p">,</span><span class="w"> </span><span class="mf">-47.0963</span><span class="p">,</span><span class="w"> </span><span class="mf">-4.83599</span><span class="p">,</span><span class="w"> </span><span class="mf">0.455566</span><span class="p">,</span><span class="w"> </span><span class="mf">-10.8069</span><span class="p">,</span><span class="w"> </span><span class="mf">-8.31645</span><span class="p">,</span><span class="w"> </span><span class="mf">-4.20936</span><span class="p">,</span><span class="w"> </span><span class="mf">0.501312</span><span class="p">,</span><span class="w"> </span><span class="mf">-20.2358</span><span class="p">,</span><span class="w"> </span><span class="mf">-147.348</span><span class="p">,</span><span class="w"> </span><span class="mf">19.1843</span><span class="p">,</span><span class="w"> </span><span class="mf">0.628022</span><span class="p">,</span><span class="w"> </span><span class="mf">-13.1145</span><span class="p">,</span><span class="w"> </span><span class="mf">-120.269</span><span class="p">,</span><span class="w"> </span><span class="mf">28.0371</span><span class="p">,</span><span class="w"> </span><span class="mf">0.63559</span><span class="p">,</span><span class="w"> </span><span class="mf">-20.1037</span><span class="p">,</span><span class="w"> </span><span class="mf">-94.3607</span><span class="p">,</span><span class="w"> </span><span class="mf">30.0809</span><span class="p">,</span><span class="w"> </span><span class="mf">0.625916</span><span class="p">,</span><span class="w"> </span><span class="mf">-17.623</span><span class="p">,</span><span class="w"> </span><span class="mf">-90.4888</span><span class="p">,</span><span class="w"> </span><span class="mf">15.0403</span><span class="p">,</span><span class="w"> </span><span class="mf">0.327759</span><span class="p">,</span><span class="w"> </span><span class="mf">-17.3973</span><span class="p">,</span><span class="w"> </span><span class="mf">-46.9311</span><span class="p">,</span><span class="w"> </span><span class="mf">15.9659</span><span class="p">,</span><span class="w"> </span><span class="mf">0.419586</span><span class="p">,</span><span class="w"> </span><span class="mf">-13.1719</span><span class="p">,</span><span class="w"> </span><span class="mf">-7.60601</span><span class="p">,</span><span class="w"> </span><span class="mf">13.4749</span><span class="p">,</span><span class="w"> </span><span class="mf">0.519653</span><span class="p">,</span><span class="w"> </span><span class="mf">-38.7164</span><span class="p">,</span><span class="w"> </span><span class="mf">-166.851</span><span class="p">,</span><span class="w"> </span><span class="mf">-3.25917</span><span class="p">,</span><span class="w"> </span><span class="mf">0.46228</span><span class="p">,</span><span class="w"> </span><span class="mf">-28.7043</span><span class="p">,</span><span class="w"> </span><span class="mf">-167.333</span><span class="p">,</span><span class="w"> </span><span class="mf">-7.15903</span><span class="p">,</span><span class="w"> </span><span class="mf">0.523224</span><span class="p">,</span><span class="w"> </span><span class="mf">-39.0433</span><span class="p">,</span><span class="w"> </span><span class="mf">-166.677</span><span class="p">,</span><span class="w"> </span><span class="mf">2.55916</span><span class="p">,</span><span class="w"> </span><span class="mf">0.395965</span><span class="p">,</span><span class="w"> </span><span class="mf">-30.0718</span><span class="p">,</span><span class="w"> </span><span class="mf">-167.264</span><span class="p">,</span><span class="w"> </span><span class="mf">8.18371</span><span class="p">,</span><span class="w"> </span><span class="mf">0.510041</span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<ul>
+  <li><strong>id</strong>: A unique subject index within a sequence: Skeletons with the same id across time represent temporally associated moving skeletons (an individual). However, the same person may have multiple ids</li>
+  <li><strong>joint19</strong>: 19 3D joint locations, formatted as [x1,y1,z1,c1,x2,y2,z2,c2,…] where each c ispanopticHDjoint confidence score. (c는 confidence score!)</li>
+</ul>
+
+<p>19개의 joint(keypoint)는 아래의 순서로 기록되어 있다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">Neck</span><span class="w">
+</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">Nose</span><span class="w">
+</span><span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="err">BodyCenter</span><span class="w"> </span><span class="err">(center</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">hips)</span><span class="w">
+</span><span class="mi">3</span><span class="err">:</span><span class="w"> </span><span class="err">lShoulder</span><span class="w">
+</span><span class="mi">4</span><span class="err">:</span><span class="w"> </span><span class="err">lElbow</span><span class="w">
+</span><span class="mi">5</span><span class="err">:</span><span class="w"> </span><span class="err">lWrist,</span><span class="w">
+</span><span class="mi">6</span><span class="err">:</span><span class="w"> </span><span class="err">lHip</span><span class="w">
+</span><span class="mi">7</span><span class="err">:</span><span class="w"> </span><span class="err">lKnee</span><span class="w">
+</span><span class="mi">8</span><span class="err">:</span><span class="w"> </span><span class="err">lAnkle</span><span class="w">
+</span><span class="mi">9</span><span class="err">:</span><span class="w"> </span><span class="err">rShoulder</span><span class="w">
+</span><span class="mi">10</span><span class="err">:</span><span class="w"> </span><span class="err">rElbow</span><span class="w">
+</span><span class="mi">11</span><span class="err">:</span><span class="w"> </span><span class="err">rWrist</span><span class="w">
+</span><span class="mi">12</span><span class="err">:</span><span class="w"> </span><span class="err">rHip</span><span class="w">
+</span><span class="mi">13</span><span class="err">:</span><span class="w"> </span><span class="err">rKnee</span><span class="w">
+</span><span class="mi">14</span><span class="err">:</span><span class="w"> </span><span class="err">rAnkle</span><span class="w">
+</span><span class="mi">15</span><span class="err">:</span><span class="w"> </span><span class="err">lEye</span><span class="w">
+</span><span class="mi">16</span><span class="err">:</span><span class="w"> </span><span class="err">lEar</span><span class="w">
+</span><span class="mi">17</span><span class="err">:</span><span class="w"> </span><span class="err">rEye</span><span class="w">
+</span><span class="mi">18</span><span class="err">:</span><span class="w"> </span><span class="err">rEar</span><span class="w">
+</span></code></pre></div></div>
+<p>Note that this is different from OpenPose output order, although our method is based on it.</p>
+
+<h3 id="2-5-데이터-다운로드">2-5. 데이터 다운로드</h3>
+<ul>
+  <li>CMU Panoptic Dataset <a href="http://domedb.perception.cs.cmu.edu/dataset.html">Browse</a> 미리 데이터를 살펴본 후 <a href="https://docs.google.com/spreadsheets/d/1eoe74dHRtoMVVFLKCTJkAtF8zqxAnoo2Nt15CYYvHEE/edit#gid=1333444170">Panoptic Studion DB: Released Sequences</a> 에 있는 리스트면 다운로드 가능하니 선택하여 다운로드 받거나, 전체 데이터를 다운 받을 수 있다.</li>
+</ul>
+
+<p>방법1: <code class="language-plaintext highlighter-rouge">./scripts/getDB_panopticHD_ver1_2.sh</code> 를 실행하는 방법으로 전체 다운로드가 가능한데 해당 bash 파일을 그대로 실행할 경우 비디오 데이터 다운로드가 안되어 이미지 데이터를 얻을 수가 없으므로 VGA($vgaVideoNum), HD 비디오($hdVideoNum) 파일의 개수를 0이 아닌 숫자로 설정한다.
+방법2: Browse에서 적절한 데이터를 선택한 후 (예시)<code class="language-plaintext highlighter-rouge">./scripts/getData.sh 171026_cello1 $vgaVideoNum $hdVideoNum</code> 를 입력하여 선택 다운로드 한다.</p>
+
+<p>다운로드 후에는 <code class="language-plaintext highlighter-rouge">2-3</code>의 과정을 통해 이미지 데이터와 키포인트 데이터를 추출한다.</p>
+
+<h2 id="3-panoptic-툴-예제-사용">3. panoptic 툴 예제 사용</h2>
+<h3 id="3-1-3dkeypoint_reprojection_hdipynb">3-1. 3Dkeypoint_reprojection_hd.ipynb</h3>
+<p>몇가지 마이너한 코드 수정을 하면 바로 실행가능<br />
+달려있는 여러 카메라 이미지에 맞게끔 keypoint 데이터를 warp transform 해서 이미지에 reprojection하는 라이브러리<br />
+실행결과: <img src="/assets/HumanPose/panoptic_tool_reprojection.png" alt="image" /></p>
+
+<h3 id="3-2-3dkeypoint_3dviewipynb">3-2. 3Dkeypoint_3dview.ipynb</h3>
+<p>몇가지 마이너한 코드 수정을 하면 바로 실행가능<br />
+keypoint 데이터(x,y,z)를 3차원으로 플롯팅해주는 라이브러리 <br />
+실행결과: <img src="/assets/HumanPose/panoptic_tool_3dview.png" alt="image" /></p>
+
+<p><img src="/assets/HumanPose/panoptic_tool_3dview_example.png" alt="image" /></p>
+
+<hr />
+<hr />
+
+<p><strong>(7/28) 질문</strong>: 데이터 전처리를 하라는 것이, panoptic 데이터셋의 이미 이미지 데이터와 스켈레톤 라벨 데이터가 다운로드 가능한데, 무엇을 준비하라는 의미인가??<br />
+1) 이미지에 backbone을 reprojection 한 이미지 데이터가 필요한 것인가?<br />
+2) 아니면, 데이터를 이런식으로 다운로드 하면되고(즉시 사용가능) 살펴보니 사용에 문제 없습니다.면 되는것인가?</p>
+<ul>
+  <li>꽤 용량이 큰데, 이걸 AI서버에 어떻게 올려야 하지?</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-28T00:00:00+09:00">July 28, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/Baekjoon_2261/" class="pagination--pager" title="CODING TEST: 2D the minist distance value #2261
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:joker1251@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/SungwookLE" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/sungwookle/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 SungwookLE. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

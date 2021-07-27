@@ -136,4 +136,10 @@ var store = [{
         "tags": ["algorithm"],
         "url": "/algorithm/Baekjoon_2261/",
         "teaser": null
+      },{
+        "title": "HumanPose: CMU Panoptic Dataset",
+        "excerpt":"HumanPose: Panoptic Data AUTHOR: SungwookLE DATE: ‘21.7/28 GIT REPO: CMU-Perceptual-Computing-Lab DOCU: docu DATASET: Panoptic HumanPose 분야 관련 용어 Top-down approach Human Detector 알고리즘을 이용해서 사람을 먼저찾고, 찾은 사람을 대상으로 keypoint 학습하는 구조, 연산 속도가 오래 걸리고, Human Detector의 성능에 의해 전체 알고리즘의 성능이 결정됨 Bottom-up approach OpenPose 논문에서 사용하는 방법으로...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/CMU_panoptic/",
+        "teaser": null
       }]
