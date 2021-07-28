@@ -43,7 +43,7 @@ Percentage of Correct Keypoints
 threshold 로써 몸통이 아닌 머리 부분의 길이를 사용한 변형 평가 지표이다.
 보통 PCKh @ 0.5 를 많이 사용하는 추세
 - AP@0.5 : IoU 의 threshold 가 0.5 일 때
-- MPJPE: MPJPE는 모든 관절의 추정 좌표와 정답 좌표의 거리(단위 : mm)를 평균하여 산출되는 지표이다. 이것이 작을 수록 정확도가 좋다고 말할 수 있다.  Estimated and groundtruth 3D Pose의 root 관절(일반적으로 골반)을 정렬 한 후 계산한다. 관절은 또한 root 관절로 정규화된다.  
+- MPJPE: MPJPE는 모든 관절의 추정 좌표와 정답 좌표의 거리(단위 : mm)를 평균하여 산출되는 지표이다. 이것이 작을 수록 정확도가 좋다고 말할 수 있다.  Estimated and groundtruth 3D Pose의 root 관절(일반적으로 골반)을 정렬 한 후 계산한다. 관절은 또한 root 관절로 정규화된다. Mean Per Joint Position Error  
 
 ### HumanPose 관련 논문
 [1] 오픈포즈(Keypoint) 논문 (CMU): https://arxiv.org/pdf/1812.08008.pdf  
@@ -157,29 +157,47 @@ keypoint 데이터(x,y,z)를 3차원으로 플롯팅해주는 라이브러리
 
 ![image](/assets/HumanPose/panoptic_tool_3dview_example.png)
 
+
+## 4. 2D NET 
+### 4-1. RealTime 2D Openpose
+- [Real-time 2D Multi-Person Pose Estimation on CPU: Lightweight OpenPose](https://github.com/Daniil-Osokin/lightweight-human-pose-estimation.pytorch)
+해당 레포에 설명이 잘되어 있고, 논문[3]에 대한 repo도 링크로 제공하고 있음  
+
+- OPENVINO로 c++ demo를 해보려고 했는데, 실패함,, openvino 종속성 문제 (7/27)  
+- `python demo.py --checkpoint-path <path_to>/checkpoint_iter_370000.pth --video 0` 를 실행하여 한번 돌려보았는데 속도는 매우 빠르고 시각적인 데모를 제공하네  
+![image](/assets/HumanPose/Real-time_2D_demo1.gif)
+![image](/assets/HumanPose/Real-time_2D_demo2.gif)
+
+## 5. 3D NET
+### 5-1. RealTime 3D Openpose
+- [Real-time 3D Multi-person Pose Estimation](https://github.com/Daniil-Osokin/lightweight-human-pose-estimation-3d-demo.pytorch)
 ----
 ----
 
-**(7/28) 질문**: 데이터 전처리를 하라는 것이, panoptic 데이터셋의 이미 이미지 데이터와 스켈레톤 라벨 데이터가 다운로드 가능한데, 무엇을 준비하라는 의미인가??  
+**질문**: 
+1. 데이터 전처리
+  : 첫번째, 데이터 다운로드 하는 `bash` 정리   
+    두번째, keypoint 라벨링(annotation) 데이터 네트워크에 맞게끔 준비 
+    세번째, panoptic data에서 hd camera 등을 몇개 입력할 것인지 정해야 함  
+    자동차도메인을 생각하면 카메라는 1개인데, 카메라의 개수가 많아질수록 성능은 좋아질 것임  
+    [Vision-transformer](https://youtu.be/QkwNdgXcfkg)
+
 ```
-1) 데이터셋 정리 (Human3.6 or CMU panoptic)
+* 데이터셋 정리 (Human3.6 or CMU panoptic)
   - Human3.6이 Single Person dataset이긴 한데, CMU panoptic이 문서가 더 잘 되어 있고
   향후, 학습 차원에서도 multi-person dataset인 CMU 걸 쓰는 게 어떨까 싶네요.
   - Train / Valid / Test Split
   - 데이터 전처리 코드 작성, 툴 활용 (https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox) (Matlab or Python)
   Input – RGB image, Output – 각 키포인트 18개  x, y, z 좌표로 이루어진 열 벡터 (18*3 = 54차원)
 ```
-```
-CMU panoptic을 사용하는 것을 목표로 진행해보았고
-Train / Valid / Test Split은 keras나 sklearn 내의 라이브러리 사용해서 나누면 되고,
-데이터 전처리 코드 무얼 작성해야 하나,,,가 질문임
-```
-1) 이미지에 backbone을 reprojection 한 이미지 데이터가 필요한 것인가? 
--> 아닌듯  
-2) 아니면, 데이터를 이런식으로 다운로드 하면되고(즉시 사용가능) 살펴보니 사용에 문제 없습니다.면 되는것인가?  
--> 이미 데이터의 형태가 RGB이미지와 keypoint 19*4(x,y,z,confidence) 매트릭스로 이루어져 있음   
-3) 아 우리가 사용할 네트워크에 피드되는 데이터 형태로 keypoint 벡터의 구조를 바꿔달라는 것이겠구나?  
--> 근데 CMU Perceptron Openpose의 네트워크를 가져와서 쓴다고 하면 feed 데이터는 panoptic 데이터셋이랑 동일 구조 아닌가?  
 
-++ 꽤 용량이 큰데, 이걸 AI서버에 어떻게 올려야 하지?  
-++ panoptic은 제한된 데이터 밖에 없는데(3D keypoint 잇는 데이터이긴 함), COCO dataset [format](https://eehoeskrap.tistory.com/367)은 2D key만 있음, 2D Pose Estimation 네트워크 학습에만 쓰는거고(프리트레인드 네트워크를 그대로 들고온다고 하면 2D데이터 학습은 필요하지 않음) 추가적인 3D 키포인트 학습 때 CMU_panoptic 데이터를 쓰면 되겠네    
+1-1) 이미지에 backbone을 reprojection 한 이미지 데이터가 필요한 것인가? [X]  
+1-2) 아니면, 데이터를 panoptic `bash` 이용하여 다운로드 하면되고, 아래의 전처리를 진행해 주어야 함  
+  -> panoptic 데이터는 여러 각도에서의 RGB이미지와 keypoint 19*4(x,y,z,confidence) 매트릭스로 이루어져 있음   
+  -> 이 라벨 데이터를 그대로 쓸거면 라벨링 포맷도 바꿀 필요는 없겠지만, 바꾼다면 `prepare_annotation` 커스텀 라이브러리가 필요  
+  -> train/vaild/test 나눌 `make_val_subset` 커스텀 라이브러리 필요하고,   
+  -> 2D NET 과 3D NET 의 피드데이터구조는 똑같아야 하는가?: 똑같이 RGB 이미지  
+  -> 3D NET만 추가학습하는 것이니까, 라벨을 CMU_panoptic에서 가져오면 됨  
+
+1-3) 꽤 용량이 큰데, 어떻게 AI서버에 업로드 하지?  
+1-4) panoptic은 제한된 데이터 밖에 없는데(3D keypoint 잇는 데이터이긴 함), COCO dataset [format](https://eehoeskrap.tistory.com/367)은 2D key만 있음, 2D Pose Estimation 네트워크  학습에만 쓰는거고(프리트레인드 네트워크를 그대로 들고온다고 하면 2D데이터 학습은 필요하지 않음)  추가적인 3D 키포인트 학습 때 CMU_panoptic 데이터를 쓰면 되겠네    
