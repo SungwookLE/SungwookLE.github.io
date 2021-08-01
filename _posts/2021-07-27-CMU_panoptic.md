@@ -166,7 +166,7 @@ keypoint 데이터(x,y,z)를 3차원으로 플롯팅해주는 라이브러리
 - OPENVINO로 c++ demo를 해보려고 했는데, 실패함,, openvino 종속성 문제 (7/27)  
 - `python demo.py --checkpoint-path <path_to>/checkpoint_iter_370000.pth --video 0` 를 실행하여 한번 돌려보았는데 속도는 매우 빠르고 시각적인 데모를 제공하네  
 ![image](/assets/HumanPose/Real-time_2D_demo1.gif)
-![image](/assets/HumanPose/Real-time_2D_demo2.gif)
+![image](/assets/HumanPose/Real-time_with_jieun.gif)
 
 ## 5. 3D NET
 ### 5-1. RealTime 3D Openpose
