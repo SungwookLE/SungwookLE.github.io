@@ -142,4 +142,22 @@ var store = [{
         "tags": ["research"],
         "url": "/research/CMU_panoptic/",
         "teaser": null
+      },{
+        "title": "CODING TEST: Binary Search Problem",
+        "excerpt":"DataStructure: Binary Search AUTHOR: SungwookLE DATE: ‘21.8/2 PROBLEM: 백준#1920, 백준#10816, 백준#1645, 백준#2805, 백준#2110 1. Binary Search 계속 탐색 대상의 데이터를 반으로 줄여나가므로 이분탐색의 시간 복잡도는 O(logN)가 된다. 주어진 배열에서 특정값이 존재하는지 찾는 방법으로, 먼저 배열을 오름차순(내림차순도 무방)으로 정렬하고, 반을 쪼개어 왼쪽/오른쪽 비교해나가며 루프를 돌면서 원하는 요소가 배열 내에 있는지 찾는...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_BinarySearch/",
+        "teaser": null
+      },{
+        "title": "AI: Pytorch Studying",
+        "excerpt":"Pytorch: Quick Start AUTHOR: SungwookLE DATE: ‘21.8/6 TUTORIAL: Tutorial Pytorch Korea 빠른 시작(QuickStart) link 이번 장에서는 기계 학습의 일반적인 작업들을 위한 API를 통해 실행됩니다. 더 자세히 알아보려면 각 장(section)의 링크를 참고하세요. import torch from torch import nn from torch.utils.data import DataLoader from torchvision import datasets from torchvision.transforms import ToTensor, Lambda,...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/pytorch_study1/",
+        "teaser": null
+      },{
+        "title": "CODING TEST: Priority Queue#11279",
+        "excerpt":"우선순위 큐 (Priority Queue) Author: SungwookLE DATE: ‘21.8/10 BAEKJOON: #11279 REFERENCE: REF 1. 우선순위 큐 First In, First Out의 일반적인 자료 컨테이너에서, 사용자가 우선순위에 따라 입력받은 데이터를 Queue에 저장하고 push, pop, top 등의 멤버함수를 통해 데이터를 핸들링할 수 있는 컨테이너를 우선순위 큐라고 한다. 이진트리로 구성하는 것이 FM 방식(손으로 구현할 때...","categories": ["algorithm"],
+        "tags": ["algorithm"],
+        "url": "/algorithm/Baekjoon_11279/",
+        "teaser": null
       }]

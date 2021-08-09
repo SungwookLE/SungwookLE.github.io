@@ -1,0 +1,304 @@
+I"݄<h1 id="우선순위-큐-priority-queue">우선순위 큐 (Priority Queue)</h1>
+<ul>
+  <li>Author: SungwookLE</li>
+  <li>DATE: ‘21.8/10</li>
+  <li>BAEKJOON: <a href="https://www.acmicpc.net/problem/11279">#11279</a></li>
+  <li>REFERENCE: <a href="https://junstar92.tistory.com/63">REF</a></li>
+</ul>
+
+<h2 id="1-우선순위-큐">1. 우선순위 큐</h2>
+<ul>
+  <li>
+    <p>First In, First Out의 일반적인 자료 컨테이너에서, 사용자가 우선순위에 따라 입력받은 데이터를 Queue에 저장하고 push, pop, top 등의 멤버함수를 통해 데이터를 핸들링할 수 있는 컨테이너를 우선순위 큐라고 한다. 이진트리로 구성하는 것이 FM 방식(손으로 구현할 때 제일 빠른)이 된다.<br />
+[Figure1. 이진트리 예시(큰 숫자가 우선순위가 높은 우선순위 큐)]<br />
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmL721%2FbtqH3BDU9cP%2F3scCDM3pn76QKo92Q4Wrb1%2Fimg.png" alt="Figure1" /></p>
+  </li>
+  <li>그림에서와 같이 새로운 데이터가 입력되었을 때, 예시의 자료구조는 숫자가 클수록 우선순위가 높으므로 <code class="language-plaintext highlighter-rouge">25</code>라는 숫자는 child-&gt;parent로 올라가게 된다.</li>
+  <li>우선순위 큐를 꼭 이진 트리(Tree) 방식으로 구현해야하는 것은 아니나, 시간복잡도 측면에서 유리하기 때문에 STL은 트리 방식을 따른다. 이 외에도 LIST(어레이)를 이용하여 우선순위에 따라 데이터를 저장하고 출력할 수 있으나 시간 복잡도에서 불리하긴 하다.</li>
+  <li>직접 트리 방식으로 구현하여도 백준 제출결과 시간초과가 나왔는데, 이는 메모리를 다루는 과정에서 비효율이 있었다고 예상된다. 역시 STL,, ㅠㅠ OTL,,,</li>
+</ul>
+
+<h2 id="1-1-stl--를-이용한-구현">1-1. STL <QUEUE> 를 이용한 구현</QUEUE></h2>
+<ul>
+  <li>딱히, 코멘트가 필요없는 것이 제공하는 <code class="language-plaintext highlighter-rouge">std::priority_queue</code>를 사용하였다.</li>
+  <li>이런, STL 포맷의 데이터 컨테이너는 장점이 보통 <code class="language-plaintext highlighter-rouge">push, top, pop, empty</code>등의 기본 멤버함수를 가지고 있기 때문에 사용상에 불편함이 없다.
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 우선순위 큐</span>
+<span class="cp">#include &lt;queue&gt;
+</span><span class="k">class</span> <span class="nc">solver_11279</span><span class="p">{</span>
+  <span class="nl">public:</span> 
+  <span class="kt">void</span> <span class="n">solver</span><span class="p">(){</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+          <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"0</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> 
+              <span class="k">else</span><span class="p">{</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                  <span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+          <span class="k">else</span>
+              <span class="n">arr</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+
+  <span class="nl">private:</span>
+      <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="1-2-list를-이용한-구현">1-2. LIST를 이용한 구현</h2>
+<ul>
+  <li>동적 배열 할당을 통해 배열에 데이터를 넣고, <code class="language-plaintext highlighter-rouge">std::sort</code>를 이용하여 데이터를 우선순위에 따라 정렬한 후, 출력하는 방식이다.</li>
+  <li>출력된 결과물만 놓고 본다면야 결과는 같겠지만, 조금의 비효율이 존재하는 것이 데이터 전체를 sort 해야하는 과정에서(반복적으로) 시간 복잡도가 증가한다. <code class="language-plaintext highlighter-rouge">std::sort</code>는 quick_sort 등의 빠른 알고리즘을 사용하겠지만 몇번의 계산 회수는 더 필요할 것으로 예상이 된다.</li>
+  <li>기본적인 queue를 손으로 구현하는 방식에서 <code class="language-plaintext highlighter-rouge">top</code> 할 때, <code class="language-plaintext highlighter-rouge">sort</code>를 수행함으로써 우선순위가 제일 높은 것이 위에 오게끔 처리하였다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">prior_queue</span><span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">prior_queue</span><span class="p">(){</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">queue_arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">1</span><span class="p">]{</span><span class="mi">0</span><span class="p">,};</span>
+    <span class="p">}</span>
+
+    <span class="n">prior_queue</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span><span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
+        <span class="n">queue_arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">size</span><span class="p">]{</span><span class="mi">0</span><span class="p">,};</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="n">empty</span><span class="p">(){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+        <span class="n">size</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">resize</span><span class="p">(</span><span class="n">queue_arr</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+        <span class="n">queue_arr</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">pop</span><span class="p">(){</span>
+        <span class="n">size</span> <span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">resize</span><span class="p">(</span><span class="n">queue_arr</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">top</span><span class="p">(){</span>
+        <span class="n">sort_queue</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">queue_arr</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">queue_arr</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_N</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="o">*</span><span class="n">new_arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">new_N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">new_N</span><span class="p">)</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">arr</span><span class="p">;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">new_arr</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">sort_queue</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">queue_arr</span><span class="p">,</span> <span class="n">queue_arr</span><span class="o">+</span><span class="n">size</span><span class="p">,</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="n">a</span><span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">solver_11279</span><span class="p">{</span>
+    <span class="nl">public:</span> 
+    <span class="n">solver_11279</span><span class="p">(){</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">prior_queue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">solver</span><span class="p">(){</span>
+        <span class="kt">int</span> <span class="n">N</span> <span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">queue</span><span class="o">-&gt;</span><span class="n">empty</span><span class="p">())</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"0</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="k">else</span><span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">queue</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                    <span class="n">queue</span><span class="o">-&gt;</span><span class="n">pop</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+                <span class="n">queue</span><span class="o">-&gt;</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+        <span class="n">prior_queue</span><span class="o">*</span> <span class="n">queue</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="1-3-tree를-이용한-구현-중요">1-3. TREE를 이용한 구현 (***중요)</h2>
+<ul>
+  <li>이번 포스팅을 작성하는 이유이다.</li>
+  <li>트리에 잘 정리를 하면 뽑아 쓸때는 상당히 빠르다.</li>
+  <li>백엔드에서 데이터를 효율적으로 저장하고 관리하면, 프론트엔드에서는 데이터를 아주 빠르게 뽑아올 수 있다.</li>
+  <li>전체적인 시간복잡도도 LIST를 이용한 방식보다 우세하다.</li>
+  <li>레퍼런스로 <a href="https://junstar92.tistory.com/63">해당 블로그</a>를 참고하였으니, 같이 보면 좋을 듯 하다.<br />
+1) 데이터를 push 할 때,<br />
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmL721%2FbtqH3BDU9cP%2F3scCDM3pn76QKo92Q4Wrb1%2Fimg.png" alt="fig2" /><br />
+25 라는 데이터가 입력되었고 child에서 parent로 더 큰수가 없을 때 까지 올라간다.</li>
+</ul>
+
+<p>2) 데이터를 pop 할 때,<br />
+해당 과정이 push보다는 조금더 복잡하다.<br />
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbduNFL%2FbtqHR7dvKVK%2FCPjMJKrE3DKG66mxtdM6IK%2Fimg.png" alt="fig3" /><br />
+78이 pop되고 나면 (b)와 같이 트리가 정리되어야 하는데, 이를 위해서 제일 <code class="language-plaintext highlighter-rouge">parent heapData[0]</code>에 제일 child <code class="language-plaintext highlighter-rouge">heapData[--n]</code>을 넣고 제 자리를 찾아갈 때 까지 반복문을 수행한다.</p>
+
+<ul>
+  <li>코드를 살펴보면 감을 잡을 수 있다. 익히는 것은 반복적으로 봐주어야할 듯 싶다.</li>
+  <li>이진 트리에서 왼쪽부터 데이터를 채워나간다.<br />
+<img src="https://blog.kakaocdn.net/dn/cm41o7/btqyr6HY8bh/kFiWfuw1ShtTYiiEuGK1LK/img.png" alt="fig4" />
+해당 그림은 tree 에 데이터를 원하는 형태로 만들어두고 query로 출력하는 방식의 예제에서 따온 그림이다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">Heap</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">Heap</span><span class="p">(</span><span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span><span class="o">:</span> <span class="n">n</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">maxSize</span><span class="p">(</span><span class="n">maxSize</span><span class="p">),</span> <span class="n">heapData</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{}</span>
+    <span class="o">~</span><span class="n">Heap</span><span class="p">(){</span> <span class="k">delete</span><span class="p">[]</span> <span class="n">heapData</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="n">data</span><span class="p">){</span>
+        <span class="n">resize</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">heapData</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">parent</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">child</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">parent</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">]){</span>
+
+            <span class="n">T</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">];</span>
+            <span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">];</span>
+            <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+
+            <span class="n">child</span> <span class="o">=</span> <span class="n">parent</span><span class="p">;</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="p">(</span><span class="n">child</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">++</span><span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">pop</span><span class="p">(){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="n">heapData</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="o">--</span><span class="n">n</span><span class="p">];</span>
+            <span class="n">resize</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+
+            <span class="kt">int</span> <span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">child</span> <span class="o">=</span> <span class="n">parent</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">placed</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">placed</span> <span class="o">&amp;&amp;</span> <span class="n">child</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+                    <span class="n">child</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                    <span class="n">placed</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">else</span><span class="p">{</span>
+                    <span class="n">T</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">];</span>
+                    <span class="n">heapData</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">];</span>
+                    <span class="n">heapData</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="n">parent</span> <span class="o">=</span> <span class="n">child</span><span class="p">;</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">parent</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"EMPTY!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="n">T</span> <span class="n">top</span><span class="p">(){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">())</span>   
+            <span class="k">return</span> <span class="n">heapData</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">size</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="n">empty</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">print</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">"]"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">maxSize</span><span class="p">;</span>
+    <span class="n">T</span><span class="o">*</span> <span class="n">heapData</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_N</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="o">*</span><span class="n">new_arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">new_N</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">new_N</span><span class="p">)</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">arr</span><span class="p">;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">new_arr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">solver_11279</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">solver_11279</span><span class="p">(){</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Heap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">solver_11279</span><span class="p">(){</span>
+        <span class="k">delete</span> <span class="n">heap</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">solver</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">heap</span><span class="o">-&gt;</span><span class="n">empty</span><span class="p">()){</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">heap</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+                    <span class="n">heap</span><span class="o">-&gt;</span><span class="n">pop</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">heap</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+                <span class="n">heap</span><span class="o">-&gt;</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="nl">private:</span>
+    <span class="n">Heap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">heap</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<h2 id="1-4-마무리">1-4. 마무리</h2>
+<ul>
+  <li>트리 자료구조는 효율적이다!</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+:ET
