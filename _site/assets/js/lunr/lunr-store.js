@@ -174,7 +174,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Kalman Filter: Essential",
-        "excerpt":"Kalman Filter: Essential AUTHOR: SungwookLE DATE: ‘21.9/12 LECTURE: Udacity Lecture PAPER: discrete 상태 추정, DEKF 1. Introduction 칼만필터는 잘 알려진 추정기(Estimator)이자, 확률 필터(Filter)이다. 본 글을 통해 선형 칼만필터를 정리해보자. 칼만 필터는, 아래와 같이 2가지 단계로 이루어져 있다. 첫번째는 모델을 이용하여 값을 예측하는 State Prediction단계와 두번째는 측정값을 이용하여 값을 보정하는(업데이트) Measurement...","categories": ["research"],
+        "excerpt":"Kalman Filter: Essential AUTHOR: SungwookLE DATE: ‘21.9/12 LECTURE: Udacity Lecture PAPER: Discrete system 차량 상태 추정 1. Introduction 시작하기 전에, 짧게 추정기(Estimator)와 필터(Filter)에 대해 간략하게 이야기 해보고자 한다. Estimator는 Observer(관측기)와 Estimator(추정기)로 나뉠 수 있는데, Observer의 경우 hidden state에 대한 observability가 있는 케이스를 말한다. 즉, 초기값과 관계없이 내가 추정하고자하는 state를 추정할...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/kalman_essential/",
         "teaser": null
