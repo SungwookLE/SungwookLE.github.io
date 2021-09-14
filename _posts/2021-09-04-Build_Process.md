@@ -27,7 +27,7 @@ CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment [Youtu
 
 ![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd3s6bS%2FbtqNRJdufUI%2FfUfigVgPdDFR8rIAVMdQu1%2Fimg.png)
 
-정리하면, 우리가 만든 소스코드를 `빌드`라는 과정을 통해 실행 파일을 얻게 되는 것. 그 실행파일은 `exe, exec` 등 여러 종류가 있다. 이러한 실행 파일은 **기계어(Machine Code)**라고 컴퓨터가 읽을 수 있는 이진코드로 이루어져 있다.
+정리하면, 우리가 만든 소스코드를 `빌드`라는 과정을 통해 실행 파일을 얻게 되는 것. 그 실행파일은 `exe, exec` 등 여러 종류가 있다. 이러한 실행 파일은 **기계어(Machine Code)** 라고 컴퓨터가 읽을 수 있는 이진코드로 이루어져 있다.
 
 빌드는 번역과정(고급언어->기계어) + 엮어서 실행 파일로 만드는 과정이다.  
 진짜 러프하게 `컴파일+링킹`과정이 빌드인 것이다.

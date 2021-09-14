@@ -160,4 +160,22 @@ var store = [{
         "tags": ["algorithm"],
         "url": "/algorithm/Baekjoon_11279/",
         "teaser": null
+      },{
+        "title": "Build Process Review and CI, CD",
+        "excerpt":"빌드 프로세스 Review 및 CI, CD AUTHOR: SungwookLE DATE: ‘21.9/4 REFERENCE: REF CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment Youtube 한번 정리하는 과정을 통해, 모호한 것을 명확하게 짚고 넘어가보자. 1. Build란? 컴퓨터는 0과 1밖에 모른다(기계어). 우리가 작성하는 코드는 고급언어(사람들의 언어)를 사용하기 때문에 컴퓨터에게 실행시키기 위해선, 번역의 과정이 필요하다. (C, C++,...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Build_Process/",
+        "teaser": null
+      },{
+        "title": "속초 데이트",
+        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 것 막기 + 속초 여행   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카 -  사람 많으니 아침에 이동   2. Schedule     plan by jieun     끝  ","categories": ["day"],
+        "tags": ["day"],
+        "url": "/day/travel_in_sokcho/",
+        "teaser": null
+      },{
+        "title": "Kalman Filter: Essential",
+        "excerpt":"Kalman Filter: Essential AUTHOR: SungwookLE DATE: ‘21.9/12 LECTURE: Udacity Lecture PAPER: discrete 상태 추정, DEKF 1. Introduction 칼만필터는 잘 알려진 추정기(Estimator)이자, 확률 필터(Filter)이다. 본 글을 통해 선형 칼만필터를 정리해보자. 칼만 필터는, 아래와 같이 2가지 단계로 이루어져 있다. 첫번째는 모델을 이용하여 값을 예측하는 State Prediction단계와 두번째는 측정값을 이용하여 값을 보정하는(업데이트) Measurement...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/kalman_essential/",
+        "teaser": null
       }]
