@@ -24,7 +24,6 @@ VACATION: '21.9/9~9/11
 3. 토요일: [설악산, 케이블카](https://blog.naver.com/lantern/222325058022)
 
 ## 2. Schedule
-- plan by jieun
 ![plan_by_jieun](/assets/sokcho_plan1.png)
 ![plan_by_jieun](/assets/sokcho_plan2.png)
 
