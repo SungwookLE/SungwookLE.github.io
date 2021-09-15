@@ -168,7 +168,7 @@ var store = [{
         "teaser": null
       },{
         "title": "속초 데이트",
-        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 것 막기 + 속초 여행   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카 -  사람 많으니 아침에 이동   2. Schedule     plan by jieun     끝  ","categories": ["day"],
+        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 음식 먹기 + 관광   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카   2. Schedule      3. Surf     My Surf Video   끝  ","categories": ["day"],
         "tags": ["day"],
         "url": "/day/travel_in_sokcho/",
         "teaser": null
@@ -177,5 +177,11 @@ var store = [{
         "excerpt":"Kalman Filter: Essential AUTHOR: SungwookLE DATE: ‘21.9/12 LECTURE: Udacity Lecture PAPER: Discrete system 차량 상태 추정 1. Introduction 시작하기 전에, 짧게 추정기(Estimator)와 필터(Filter)에 대해 간략하게 이야기 해보고자 한다. Estimator는 Observer(관측기)와 Estimator(추정기)로 나뉠 수 있는데, Observer의 경우 hidden state에 대한 observability가 있는 케이스를 말한다. 즉, 초기값과 관계없이 내가 추정하고자하는 state를 추정할...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/kalman_essential/",
+        "teaser": null
+      },{
+        "title": "Kalman Filter: Lidar+Radar Sensorfusion with EKF",
+        "excerpt":"Lidar+Radar Sensorfusion with Extended Kalman Filter Author: SungwookLE DATE: ‘21.9/14 Comment: Radar+Lidar Sensor Fusion Project on Udacity(Self-Driving Car Engineer Nanodegree Program) GIT REPO: My implementation In this project you will utilize a kalman filter to estimate the state of a moving object(pedestrian) of interest with noisy lidar and radar measurements....","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/kalman_sensorfusion_EKF/",
         "teaser": null
       }]

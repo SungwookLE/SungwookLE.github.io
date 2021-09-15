@@ -1,4 +1,254 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-09-14T16:49:52+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">Kalman Filter: Essential</title><link href="sungwookle.github.io/research/kalman_essential/" rel="alternate" type="text/html" title="Kalman Filter: Essential" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>sungwookle.github.io/research/kalman_essential</id><content type="html" xml:base="sungwookle.github.io/research/kalman_essential/">&lt;h1 id=&quot;kalman-filter-essential&quot;&gt;Kalman Filter: Essential&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="sungwookle.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sungwookle.github.io/" rel="alternate" type="text/html" /><updated>2021-09-15T19:21:25+09:00</updated><id>sungwookle.github.io/feed.xml</id><title type="html">SungwookLE</title><subtitle></subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><entry><title type="html">Kalman Filter: Lidar+Radar Sensorfusion with EKF</title><link href="sungwookle.github.io/research/kalman_sensorfusion_EKF/" rel="alternate" type="text/html" title="Kalman Filter: Lidar+Radar Sensorfusion with EKF" /><published>2021-09-15T00:00:00+09:00</published><updated>2021-09-15T00:00:00+09:00</updated><id>sungwookle.github.io/research/kalman_sensorfusion_EKF</id><content type="html" xml:base="sungwookle.github.io/research/kalman_sensorfusion_EKF/">&lt;h1 id=&quot;lidarradar-sensorfusion-with-extended-kalman-filter&quot;&gt;Lidar+Radar Sensorfusion with Extended Kalman Filter&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Author: SungwookLE&lt;br /&gt;
+ DATE: ‘21.9/14&lt;br /&gt;
+ Comment: Radar+Lidar Sensor Fusion Project on Udacity(Self-Driving Car Engineer Nanodegree Program)&lt;br /&gt;
+ GIT REPO: &lt;a href=&quot;https://github.com/SungwookLE/udacity_extended_kf/tree/ReND&quot;&gt;My implementation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In this project you will utilize a kalman filter to estimate the state of a moving object(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pedestrian&lt;/code&gt;) of interest with noisy &lt;strong&gt;lidar and radar&lt;/strong&gt; measurements. Passing the project requires obtaining RMSE values that are lower than the tolerance outlined in the project rubric.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Assumption&lt;/strong&gt;: Single and Same Target Information would be continuously received&lt;/p&gt;
+
+&lt;h2 id=&quot;1-pre-requires&quot;&gt;1. Pre-requires&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Simulator: Term 2 Simulator which can be downloaded &lt;a href=&quot;https://github.com/udacity/self-driving-car-sim/releases&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Communication Protocol Between Simulator and Your program: This repository includes two files that can be used to set up and install &lt;a href=&quot;https://github.com/uWebSockets/uWebSockets&quot;&gt;uWebSocketIO&lt;/a&gt; for either Linux or Mac systems. Please see the uWebSocketIO Starter Guide page in the classroom within the EKF Project lesson for the required version and installation scripts.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;2-introduction&quot;&gt;2. Introduction&lt;/h2&gt;
+&lt;p&gt;프로젝트의 In/Out에 대해 설명하고 Sensor Fusion 로직 flow를 설명한다.&lt;/p&gt;
+&lt;h3 id=&quot;2-1-inout-description&quot;&gt;2-1. In/Out Description&lt;/h3&gt;
+&lt;p&gt;1) &lt;strong&gt;INPUT&lt;/strong&gt;: values provided by the simulator to the c++ program&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;[“sensor_measurement”] =&amp;gt; the measurement that the simulator observed (either lidar or radar)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;1-1)&lt;/strong&gt; Lidar Data
+&lt;img src=&quot;/assets/sensor_fusion/Lidar_data_acquisition.png&quot; alt=&quot;image&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;1-2)&lt;/strong&gt; Radar Data
+&lt;img src=&quot;/assets/sensor_fusion/Radar_data_acquisition.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+레이더 데이터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;radial velocity, radial distance, radial degree&lt;/code&gt;를 제공하므로 극좌표계를 수직좌표계로 변환하는 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;non-linearity&lt;/code&gt;가 발생한다. 이 수식을 선형화해서 풀어야하고, 이런 방식으로 접근하는 것을 &lt;strong&gt;Extended Kalman Filter&lt;/strong&gt;라고 한다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;1-2-1)&lt;/strong&gt; Linearlization
+&lt;img src=&quot;/assets/sensor_fusion/linearlization_radar.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+보이다시피, 현재 시점의 $\mu$값을 기준으로 선형화를 해야한다. : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perturbation&lt;/code&gt;.&lt;br /&gt;
+현재 시점이 0이라고 했을 때 h(x) = arctan(x) 의 테일러 1차 전개를 이용한 선형화 &lt;a href=&quot;assets/sensor_fusion/linearization_example.png&quot;&gt;예시&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) &lt;strong&gt;OUTPUT&lt;/strong&gt;: values provided by the c++ program to the &lt;strong&gt;simulator&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;[“estimate_x”] &amp;lt;= kalman filter estimated position x&lt;/li&gt;
+  &lt;li&gt;[“estimate_y”] &amp;lt;= kalman filter estimated position y&lt;/li&gt;
+  &lt;li&gt;[“rmse_x”]&lt;/li&gt;
+  &lt;li&gt;[“rmse_y”]&lt;/li&gt;
+  &lt;li&gt;[“rmse_vx”]&lt;/li&gt;
+  &lt;li&gt;[“rmse_vy”]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-2-sensor-fusion-flow&quot;&gt;2-2. Sensor Fusion Flow&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The car will receive another sensor measurement after a time period Δt. The algorithm then does another &lt;strong&gt;predict and update&lt;/strong&gt; step.
+&lt;img src=&quot;/assets/sensor_fusion/kalman_filter_flow.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lidar and Radar Sensor Fusion Flow in Kalman Filter
+서로 다른 좌표계를 갖는 센서 데이터: Lidar(L)와 Radar(R) 를 받음에 따라 그에 맞는 칼만 업데이트(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update correctness&lt;/code&gt;)를 해주면 되고, 업데이트 된 값을 기준으로 매스탭마다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prediction&lt;/code&gt;을 수행한다.
+&lt;img src=&quot;/assets/sensor_fusion/sensor_fusion_sequence_flow1.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/sensor_fusion/sensor_fusion_sequence_flow2.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+위 그림과 달리 Lidar와 Radar가 동시에 수신된다면, Update를 2번 해주면 된다. 무얼 먼저 update 과정을 거칠 것인지는 상관 없음.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Radar 데이터의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;radial velocity, radial distance, radial degree&lt;/code&gt;가 출력되므로 이를 직교 좌표계로 바꾸는 과정에서 비선형 수식이 등장한다. 이를 해결하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Extended Kalman Filter&lt;/code&gt;를 이용해야 하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EKF&lt;/code&gt;의 수식은 Linear Kalman Filter와 정확히 똑같지만, F와 H를 자코비안(테일러 1차) 선형화된 매트릭스로 대체하여 사용하는 것에 차이가 있다.&lt;br /&gt;
+&lt;img src=&quot;/assets/sensor_fusion/extended_kalman_fiter.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Extended Kalman Filter Equations
+ Although the mathematical proof is somewhat complex, it turns out that the Kalman filter equations and extended Kalman filter equations are very similar. The main differences are:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;the F matrix will be replaced by $F_j$ when calculating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P'&lt;/code&gt;.&lt;/li&gt;
+      &lt;li&gt;the H matrix in the Kalman filter will be replaced by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jacobian&lt;/code&gt; matrix $H_j$ when calculating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;S, K, and P&lt;/code&gt;.&lt;/li&gt;
+      &lt;li&gt;to calculate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x'&lt;/code&gt;, the prediction update function, $f$, is used instead of the F matrix.&lt;/li&gt;
+      &lt;li&gt;to calculate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt;, the $h$ function is used instead of the H matrix.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;One important point to reiterate is that the equation $y = z - Hx’$ for the Kalman filter does not become $y = z - H_jx$ for the extended Kalman filter. Instead, for extended Kalman filters, we’ll use the $h$ function directly to map predicted locations $x’$ from Cartesian to polar coordinates.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-implementation&quot;&gt;3. Implementation&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;단일/동일 Target(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pedestrian&lt;/code&gt;)에 대한 트래킹 정보를 지속적으로 수신&lt;/em&gt;한다는 가정하에 센서 퓨전 프로젝트 구성&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.cpp&lt;/code&gt;에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uWebSocket&lt;/code&gt; 객체를 이용하여 Simulator와 통신하고 결과(RMSE)를 Simulator에 띄워준다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.cpp&lt;/code&gt; 안에서 fusionEKF 에 대한 객체를 생성하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predict, update&lt;/code&gt; member 함수를 포함한 센서퓨전 기능을 구현한다.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/sensor_fusion/kalman_filter_flow.png&quot;&gt;Flow_diagram&lt;/a&gt;의 구조와 동일하게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fusionEKF.ProcessMeasurement(meas_package);&lt;/code&gt;를 실행함으로써 predict와 update가 돌아가게 된다.&lt;/li&gt;
+  &lt;li&gt;이 때, Radar는 {radial distance, degree, radial velocity}가 출력되므로, state인 {position x, position y, velocity x, velocity y}를 가지고 동일한 output value를 만들어 주어야 하고 이 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;H mtx&lt;/code&gt;가 선형이 아닌 비선형 함수로 구성되게 된다.&lt;/li&gt;
+  &lt;li&gt;이를 매 순간, Jacobian 1차 선형화를 해줌으로써 Radar 모델에 대한 선형화를 해주었다.&lt;br /&gt;
+&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;It is called Extended KF&lt;/code&gt;&lt;/strong&gt;.
+    &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;measurement_pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sensor_type_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MeasurementPackage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RADAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Radar updates&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Hj_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CalculateJacobian&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Linearization&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Hj_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_radar_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateEKF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;measurement_pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;raw_measurements_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-1-main-구조&quot;&gt;3-1. main 구조&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/sensor_fusion/main.cpp&quot;&gt;main.cpp&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Simulator로 부터 데이터를 전달 받아 Parsing한 이후, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fusionEKF.ProcessMeasurement(meas_package)&lt;/code&gt;를 수행한다.&lt;/li&gt;
+      &lt;li&gt;fusionEKF의 결과로 출력된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;estimate&lt;/code&gt; vector를 가지고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ground_truth&lt;/code&gt; value와 비교하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RMSE&lt;/code&gt; value를 출력하게 된다. RMSE value는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tools.CalculateRMSE(estimations, ground_truth)&lt;/code&gt;를 통해 계산한다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tools&lt;/code&gt; 객체는 RMSE 값과 Jacobian 선형화 Matrix 계산하는 member함수를 가지고 있다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fusionEKF.ProcessMeasurement(meas_package)&lt;/code&gt;를 통해 센서 퓨전 알고리즘이 작동한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-2-fusionekf-fusionekf-구조&quot;&gt;3-2. FusionEKF &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fusionEKF&lt;/code&gt; 구조&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/sensor_fusion/FusionEKF.cpp&quot;&gt;FusionEKF.cpp&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Construct: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Eigen Library&lt;/code&gt;를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R_laser, R_radar, H_laser, Hj_&lt;/code&gt;를 선언해 주었다.
+        &lt;ul&gt;
+          &lt;li&gt;이 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hj_&lt;/code&gt;는 radar 출력값에 대한 output function으로 비선형 함수인데, 선형화를 통해 선형화된 linear matrix이다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hj_&lt;/code&gt;는 그 시점의 예측된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;state&lt;/code&gt;를 기준(원점, $mu_t$)으로 jacobian 1st order 선형화를 수행한 결과이다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;F_&lt;/code&gt; 매트릭스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X = F*X+B*u&lt;/code&gt;에서의 F, 시스템 매트릭스를 의미한다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P_&lt;/code&gt; 매트릭스는 칼만 필터의 공분산 매트릭스이다.&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Q_&lt;/code&gt; 매트릭스는 칼만 필터의 prediction 단계에서의 process uncertainty를 의미한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProcessMeasurement(const MeasurementPackage &amp;amp;measurement_pack)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;intialized&lt;/strong&gt; 단계: 이 단계에서는 수신되는 데이터를 칼만 필터의 초기값으로 매핑하는 단계를 수행한다.
+            &lt;ul&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RADAR&lt;/code&gt;데이터가 수신되면 state &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{px, py, vx, vy}&lt;/code&gt;로 변환하여 매핑 (삼각함수)&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LIDAR&lt;/code&gt;데이터가 수신되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{px, py}&lt;/code&gt;만 수신되므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{vx, vy}&lt;/code&gt;는 0으로 하여 매핑&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;prediction&lt;/strong&gt; 단계: process uncertainty &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Q&lt;/code&gt;와 시스템 매트릭스 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;F_&lt;/code&gt;를 계산/대입하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predict&lt;/code&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;F_&lt;/code&gt; 매트릭스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[1,0,dt,0; 0,1,0,dt; 0,0,1,0; 0,0,0,1]&lt;/code&gt;로 계산 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;discrete = I+F*dt&lt;/code&gt;.&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ekf_.Predict();&lt;/code&gt;에서 ekf_ 객체는 KalmanFilter Class에 대한 객체로서, &lt;a href=&quot;/assets/sensor_fusion/kalman_filter.cpp&quot;&gt;kalman_filter.cpp&lt;/a&gt;를 설명한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5-3&lt;/code&gt; 에서 설명&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;update&lt;/strong&gt; 단계: Radar가 들어올 땐 선형화를 수행한 Hj_를 가지고 업데이트하고, Lidar가 들어올 땐 이미 선형 mtx이기 때문에 별도 선형화 없이 프로세스 진행
+            &lt;ul&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bayes rule&lt;/code&gt;에 따라 보정 계산이 수행되는 단계
+                &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;measurement_pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sensor_type_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MeasurementPackage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RADAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Radar updates&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Hj_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CalculateJacobian&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Linearization&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Hj_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_radar_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateEKF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;measurement_pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;raw_measurements_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Laser updates&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;H_laser_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_laser_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ekf_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;measurement_pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;raw_measurements_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;                &lt;/div&gt;
+              &lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ekf_.UpdateEKF(), ekf_.Update()&lt;/code&gt; 또한 KalmanFilter Class에 대한 객체로서, &lt;a href=&quot;/assets/sensor_fusion/kalman_filter.cpp&quot;&gt;kalman_filter.cpp&lt;/a&gt;를 설명한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5-3&lt;/code&gt; 에서 설명&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-3-kalmanfilter-ekf_-구조&quot;&gt;3-3. KalmanFilter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ekf_&lt;/code&gt; 구조&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/assets/sensor_fusion/kalman_filter.cpp&quot;&gt;kalman_filter.cpp&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;개요:
+        &lt;ul&gt;
+          &lt;li&gt;해당 Class는 칼만필터의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predict&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 기능을 담고 있는 객체이다.&lt;/li&gt;
+          &lt;li&gt;본 프로젝트에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fusionEKF&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;H, R&lt;/code&gt; mtx 등을 수신되는 데이터에 따라 바꿔주고 &lt;strong&gt;하나의&lt;/strong&gt; 칼만시스템에 업데이트 해줌으로써, 칼만 공분산 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P&lt;/code&gt;를 공유한다. 이 과정을 통해 연속적인 추정을 수행한다.&lt;/li&gt;
+          &lt;li&gt;본 프로젝트에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lidar&lt;/code&gt;데이터와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Radar&lt;/code&gt;데이터가 번갈아 가면서 들어오는데 만약 동시에 들어온다고 하면, 아래 그림과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt;를 2번 수행해서 더 정확하게 보정을 수행해 주면 된다. 꼭 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predict&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt;가 pair일 필요는 없다는 것이다. 
+&lt;img src=&quot;/assets/sensor_fusion/simultaneous_update.png&quot; alt=&quot;image&quot; /&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Init(VectorXd &amp;amp;x_in, MatrixXd &amp;amp;P_in, MatrixXd &amp;amp;F_in,
+                    MatrixXd &amp;amp;H_in, MatrixXd &amp;amp;R_in, MatrixXd &amp;amp;Q_in)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;해당 함수에서 Lidar냐 Radar냐에 따라 H, R 매트릭스를 교체해 주는 역할을 수행한다.&lt;/li&gt;
+          &lt;li&gt;물론, 초기화 단계에서 칼만시스템의 매트릭스를 초기화해주는 역할도 수행한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Predict()&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;아래 코드와 같이 total probability 이론에 따라 불확실성이 더해짐과 동시에 예측값을 출력한다.
+            &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Q_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Update(const VectorXd &amp;amp;z)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Lidar 데이터가 들어오는 경우, 수신되는 데이터가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;state&lt;/code&gt;와 동일하게 cartesian coordinates를 따르는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{px, py}&lt;/code&gt;가 수신되므로 Extended 접근을 할 필요가 없다.&lt;/li&gt;
+          &lt;li&gt;따라서, 아래의 칼만 시스템의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 수식에 맞게끔 보정을 수행한다.
+            &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Lidar Update: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;VectorXd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;H_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;MatrixXd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;H_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;H_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;MatrixXd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;H_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;H_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;P_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UpdateEKF(const VectorXd &amp;amp;z)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Radar 데이터가 들어오는 경우, 수신되는 데이터가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;state&lt;/code&gt;의 cartesian coordinates랑 다른 polar coordinates의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{rho, theta, dot_rho}&lt;/code&gt;가 들어오므로 이에 따른 비선형성이 발생한다.&lt;/li&gt;
+          &lt;li&gt;비선형성을 해소하기 위해 현재 state를 기준으로 1차 jacobian 선형화를 수행하여 칼만 시스템을 적용한 것이 &lt;strong&gt;Extended Kalman Filter&lt;/strong&gt;이다.&lt;/li&gt;
+          &lt;li&gt;따라서, H 매트릭스는 jacobian 선형화를 수행한 값을 대입해주었다.&lt;/li&gt;
+          &lt;li&gt;선형화된 H 매트릭스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4-2&lt;/code&gt;에서도 언급한 바와 같이 칼만 공분산과 게인을 구할때만 사용하고 나머지에는 비선형 함수 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h(x)&lt;/code&gt;를 그대로 사용하는 것을 유념하길 바란다.
+            &lt;ul&gt;
+              &lt;li&gt;Extended Kalman Filter Equations
+Although the mathematical proof is somewhat complex, it turns out that the Kalman filter equations and extended Kalman filter equations are very similar. The main differences are:
+                &lt;ul&gt;
+                  &lt;li&gt;the F matrix will be replaced by $F_j$ when calculating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;P'&lt;/code&gt;.&lt;/li&gt;
+                  &lt;li&gt;the H matrix in the Kalman filter will be replaced by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jacobian&lt;/code&gt; matrix $H_j$ when calculating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;S, K, and P&lt;/code&gt;.&lt;/li&gt;
+                  &lt;li&gt;to calculate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x'&lt;/code&gt;, the prediction update function, $f$, is used instead of the F matrix.&lt;/li&gt;
+                  &lt;li&gt;to calculate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt;, the $h$ function is used instead of the H matrix.&lt;/li&gt;
+                  &lt;li&gt;&lt;strong&gt;One important point to reiterate is that the equation $y = z - Hx’$ for the Kalman filter does not become $y = z - H_jx$ for the extended Kalman filter. Instead, for extended Kalman filters, we’ll use the $h$ function directly to map predicted locations $x’$ from Cartesian to polar coordinates.&lt;/strong&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;따라서, 에러 term인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VectorXd y = z - H*x&lt;/code&gt;가 아닌 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VectorXd y = z - z_pred&lt;/code&gt;를 사용하였고, z_pred 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h(x)&lt;/code&gt;이다.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;추가적으로 에러 term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt;는 -PI~PI안에 위치 시키기 위해 아래와 같이 처리해주었다.
+            &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M_PI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M_PI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M_PI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M_PI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+          &lt;li&gt;칼만게인을 구하고 보정하고, 공분산을 업데이트하는것은 선형 칼만필터와 동일하다.&lt;/li&gt;
+          &lt;li&gt;본 프로젝트에서는 H매트릭스를 선형화해서 사용하였다. (It is called &lt;strong&gt;EKF&lt;/strong&gt;)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-conclusion&quot;&gt;4. Conclusion&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;데이터(Simulator)에서 dt(Sampling Time)를 찾아 헤맨 부분이 있었다. 설명이 나와 있지 않아 다른 코드를 참고해보니, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(time_stamp - previouse_time_stamp)/1000000.0&lt;/code&gt; 해주었길래 같게 하니 잘 작동하였다.&lt;/li&gt;
+  &lt;li&gt;Process Covariance &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Q&lt;/code&gt;는 Hyper Parameter라고만 생각했는데, 경우에 따라 센서 NOISE SPEC만 정확히 주어진다면 Q자체도 수식으로 계산될 수 있음을 알게되었다. &lt;a href=&quot;https://classroom.udacity.com/nanodegrees/nd013/parts/168c60f1-cc92-450a-a91b-e427c326e6a7/modules/95d62426-4da9-49a6-9195-603e0f81d3f1/lessons/ec3054b9-9ffc-45c4-8523-485e2f7022da/concepts/1ac6e0ac-1809-4864-b58f-870d6bda9b25&quot;&gt;Lecture 10 of Lesson 24&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;본 프로젝트에서는 동일 object에 대한 tracking은 없이, 동일/싱글 타겟이 지속적으로 수신되는 것을 가정하고 진행하였으나, 실제 센서는 여러 object에 대한 데이터를 출력하므로 Tracking 알고리즘이 필요하다. (`Nearest Neighborhood, Simularity Score, PDA 등’)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;끝&quot;&gt;끝&lt;/h2&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="research" /><category term="research" /><summary type="html">동일/싱글 pedestrian에 대한 Lidar+Radar 센서퓨전</summary></entry><entry><title type="html">Kalman Filter: Essential</title><link href="sungwookle.github.io/research/kalman_essential/" rel="alternate" type="text/html" title="Kalman Filter: Essential" /><published>2021-09-12T00:00:00+09:00</published><updated>2021-09-12T00:00:00+09:00</updated><id>sungwookle.github.io/research/kalman_essential</id><content type="html" xml:base="sungwookle.github.io/research/kalman_essential/">&lt;h1 id=&quot;kalman-filter-essential&quot;&gt;Kalman Filter: Essential&lt;/h1&gt;
 &lt;p&gt;AUTHOR: SungwookLE&lt;br /&gt;
 DATE: ‘21.9/12&lt;br /&gt;
 LECTURE: &lt;a href=&quot;https://classroom.udacity.com/nanodegrees/nd013/parts/168c60f1-cc92-450a-a91b-e427c326e6a7/modules/95d62426-4da9-49a6-9195-603e0f81d3f1/lessons/4a76ef9b-27d7-4aa4-8f3c-fd2b1e8757a4/concepts/487410280923&quot;&gt;Udacity Lecture&lt;/a&gt;&lt;br /&gt;
@@ -499,16 +749,18 @@ VACATION: ‘21.9/9~9/11&lt;/p&gt;
 
 &lt;h2 id=&quot;1-intro&quot;&gt;1. Intro&lt;/h2&gt;
 &lt;ol&gt;
-  &lt;li&gt;목요일: 맛난 것 막기 + 속초 여행&lt;/li&gt;
+  &lt;li&gt;목요일: 맛난 음식 먹기 + 관광&lt;/li&gt;
   &lt;li&gt;금요일: &lt;a href=&quot;http://xn--oy2b19ko0o5nb3wd.com/&quot;&gt;서핑, 양양 서프팩토리&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;토요일: &lt;a href=&quot;https://blog.naver.com/lantern/222325058022&quot;&gt;설악산, 케이블카&lt;/a&gt; -  사람 많으니 아침에 이동&lt;/li&gt;
+  &lt;li&gt;토요일: &lt;a href=&quot;https://blog.naver.com/lantern/222325058022&quot;&gt;설악산, 케이블카&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;2-schedule&quot;&gt;2. Schedule&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/sokcho_plan1.png&quot; alt=&quot;plan_by_jieun&quot; /&gt;
+&lt;img src=&quot;/assets/sokcho_plan2.png&quot; alt=&quot;plan_by_jieun&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-surf&quot;&gt;3. Surf&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;plan by jieun
-&lt;img src=&quot;/assets/sokcho_plan1.png&quot; alt=&quot;plan_by_jieun&quot; /&gt;
-&lt;img src=&quot;/assets/sokcho_plan2.png&quot; alt=&quot;plan_by_jieun&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=XAHn093Ii9Q&quot;&gt;My Surf Video&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;끝&quot;&gt;끝&lt;/h2&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="day" /><category term="day" /><summary type="html">'21.9/9,10,11 속초 여행</summary></entry><entry><title type="html">CODING TEST: Priority Queue#11279</title><link href="sungwookle.github.io/algorithm/Baekjoon_11279/" rel="alternate" type="text/html" title="CODING TEST: Priority Queue#11279" /><published>2021-08-10T00:00:00+09:00</published><updated>2021-08-10T00:00:00+09:00</updated><id>sungwookle.github.io/algorithm/Baekjoon_11279</id><content type="html" xml:base="sungwookle.github.io/algorithm/Baekjoon_11279/">&lt;h1 id=&quot;우선순위-큐-priority-queue&quot;&gt;우선순위 큐 (Priority Queue)&lt;/h1&gt;
@@ -1934,46 +2186,4 @@ REFERENCE: https://cocoon1787.tistory.com/314&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;끝&quot;&gt;끝&lt;/h2&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="algorithm" /><category term="algorithm" /><summary type="html">Tree structure &amp; Divide and Conquer to reduce O(logN)</summary></entry><entry><title type="html">CODING TEST: Matrix Power Calculation #10830</title><link href="sungwookle.github.io/algorithm/Baekjoon_10830/" rel="alternate" type="text/html" title="CODING TEST: Matrix Power Calculation #10830" /><published>2021-07-15T00:00:00+09:00</published><updated>2021-07-15T00:00:00+09:00</updated><id>sungwookle.github.io/algorithm/Baekjoon_10830</id><content type="html" xml:base="sungwookle.github.io/algorithm/Baekjoon_10830/">&lt;h1 id=&quot;datastructure-matrix-power-calculation-10830&quot;&gt;DataStructure: Matrix Power Calculation #10830&lt;/h1&gt;
-&lt;p&gt;AUTHOR: SungwookLE&lt;br /&gt;
-DATE: ‘21.7/15&lt;br /&gt;
-PROBLEM: &lt;a href=&quot;https://www.acmicpc.net/problem/10830&quot;&gt;백준#10830&lt;/a&gt;&lt;br /&gt;
-REFERENCE: https://ssungkang.tistory.com/entry/C-BAEKJOON-10830-%ED%96%89%EB%A0%AC-%EC%A0%9C%EA%B3%B1&lt;/p&gt;
-
-&lt;h2 id=&quot;1-분할정복&quot;&gt;1. 분할정복&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;아래 코드 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;matrixPow&lt;/code&gt;를 읽어보자&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-code&quot;&gt;2. CODE&lt;/h2&gt;
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixMul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-
-                    &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 아래 매트릭스를 보면 재귀호출을 해서, 지수보다 더 적게 연산을 수행하게 됨 =&amp;gt; 효율적&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixPow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixPow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixMul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixPow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrixMul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;끝&quot;&gt;끝&lt;/h2&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="algorithm" /><category term="algorithm" /><summary type="html">Divide and Conquer to reduce O(n)</summary></entry></feed>
+&lt;h2 id=&quot;끝&quot;&gt;끝&lt;/h2&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;avatar&quot;=&gt;nil, &quot;bio&quot;=&gt;nil, &quot;location&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin-in&quot;}, {&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;}]}</name></author><category term="algorithm" /><category term="algorithm" /><summary type="html">Tree structure &amp; Divide and Conquer to reduce O(logN)</summary></entry></feed>
