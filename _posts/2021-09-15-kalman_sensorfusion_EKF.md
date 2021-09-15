@@ -42,7 +42,7 @@ In this project you will utilize a kalman filter to estimate the state of a movi
     - **1-2-1)** Linearlization
 ![image](/assets/sensor_fusion/linearlization_radar.png)  
 보이다시피, 현재 시점의 $\mu$값을 기준으로 선형화를 해야한다. : `perturbation`.  
-현재 시점이 0이라고 했을 때 h(x) = arctan(x) 의 테일러 1차 전개를 이용한 선형화 [예시](assets/sensor_fusion/linearization_example.png).
+현재 시점이 0이라고 했을 때 h(x) = arctan(x) 의 테일러 1차 전개를 이용한 선형화 [예시](/assets/sensor_fusion/linearization_example.png).
 
  2) **OUTPUT**: values provided by the c++ program to the **simulator** 
 - ["estimate_x"] <= kalman filter estimated position x
