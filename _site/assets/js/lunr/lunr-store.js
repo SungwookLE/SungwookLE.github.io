@@ -168,7 +168,7 @@ var store = [{
         "teaser": null
       },{
         "title": "속초 데이트",
-        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 음식 먹기 + 관광   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카   2. Schedule      3. Surf     My Surf Video   끝  ","categories": ["day"],
+        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 음식 먹기 + 관광   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카   2. Plan      3. Memory     Video   끝  ","categories": ["day"],
         "tags": ["day"],
         "url": "/day/travel_in_sokcho/",
         "teaser": null
@@ -183,5 +183,11 @@ var store = [{
         "excerpt":"Lidar+Radar Sensorfusion with Extended Kalman Filter Author: SungwookLE DATE: ‘21.9/14 Comment: Radar+Lidar Sensor Fusion Project on Udacity(Self-Driving Car Engineer Nanodegree Program) GIT REPO: My implementation In this project you will utilize a kalman filter to estimate the state of a moving object(pedestrian) of interest with noisy lidar and radar measurements....","categories": ["research"],
         "tags": ["research"],
         "url": "/research/kalman_sensorfusion_EKF/",
+        "teaser": null
+      },{
+        "title": "Kalman Filter: Unscented",
+        "excerpt":"Unsented 칼만 필터 AUTHOR: Sungwook LE DATE: ‘21.9/18 Book: 칼만필터의 이해, 김성필 Implementation Code: My Code Refernece: 블로그 참고 This Extended 칼만 필터가 선형 알고리즘을 자연스럽게 확장해 Nonlinear 문제를 해결했다면, Unscented Kalman Filter는 발상의 전환을 통해 아예 선형화 과정을 생략하는 접근법 따라서, Unscented 칼만 필터는 Jacobian 으로 구한 선형 모델...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/kalman_Unscented_KF/",
         "teaser": null
       }]

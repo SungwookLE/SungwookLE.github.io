@@ -1,6 +1,6 @@
 ---
 title:  "Kalman Filter: Unscented"
-excerpt: "비선형을 선형화하지 않고 접근: Jacobian 불안정성으로부터 해방"
+excerpt: "Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터"
 
 categories:
   - research
@@ -15,15 +15,17 @@ date: 2021-09-18
 ---
 
 # Unsented 칼만 필터
-> AUTHOR: Sungwook LE
-> DATE: '21.9/18
-> TEXT: 칼만필터의 이해, 김성필
-> Refernece: GitIo 참고 [This](http://jinyongjeong.github.io/2017/02/17/lec06_UKF/)
+> AUTHOR: Sungwook LE  
+> DATE: '21.9/18  
+> Book: 칼만필터의 이해, 김성필  
+> Implementation Code: [My Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
+> Refernece: 블로그 참고 [This](http://jinyongjeong.github.io/2017/02/17/lec06_UKF/)  
 
 - Extended 칼만 필터가 선형 알고리즘을 자연스럽게 확장해 `Nonlinear` 문제를 해결했다면, Unscented Kalman Filter는 발상의 전환을 통해 아예 선형화 과정을 생략하는 접근법
 - 따라서, Unscented 칼만 필터는 Jacobian 으로 구한 선형 모델 때문에 불안정해지는 문제에서 자유롭다.
 
-**<center> "비선형함수를 선형화시켜 매순간 계산하는 EKF와 달리, 비선형함수f(x) 그 자체를 알아내는것이 UKF"</center>**
+**<center> "Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터이다."</center>**
+**<center> "다시 말해, 비선형 함수를 근사화한 선형 함수를 찾는 대신 비선형 함수의 평균과 공분산을 근사적으로 직접 구하는 전략을 사용한다."</center>**
 
 ## 1. Introduction
 
@@ -59,7 +61,6 @@ UKF 또한 다른 칼만 시리즈와 마찬가지로 `예측 -> 칼만 게인 -
 2. *UKF:* 칼만 게인 구하는 데 있어, **`SigmaPoints(샘플)`** 의 **`UT(Unscented Trnasformation)`** 을 이용하여 **$f(\chi)$** 와, **$h(\chi)$** 를 구하고, `분산`을 업데이트한다. 이 값을 이용하여 `Kalman Gain`을 구한다.   
 3. *UKF:* 마지막 추정 단계는 다른 칼만 필터와 동일하다.
 ![equation](/assets/ukf_equation.png)
-e
 ### 2-2. `Unscented Transform`
 UKF가 비선형성을 표현하는 방식은 `Unscented Transform`을 이용한다. `UT`는 세가지로 구성되는데, 첫번째는 `SigmaPoints` 선택이요, 두번째는 샘플들e의 가중치 선택, 세번째는 새로운 가우시안 분포 계산(평균, 분산)이다.
 - 칼만 분산을 근거로 샘플를 선택하는 방법: (`SigemaPoints`)
@@ -67,19 +68,19 @@ UKF가 비선형성을 표현하는 방식은 `Unscented Transform`을 이용한
 - `SigmaPoints, Weight`를 이용한 평균값과 분산을 eEquation계산하는 방법 
 
 #### 2-2-1. Sigma point selection
-Unscented transform을 하기 위해서는 가장 먼저 sigma point를 선정해야 한다. 시그마 포인트는 $\chi$로 표기하며 다음과 같이 선택한다.
-$$
-χ[0]=μ$$
+Unscented transform을 하기 위해서는 가장 먼저 sigma point를 선정해야 한다. 시그마 포인트는 $\chi$로 표기하며 다음과 같이 선택한다.  
 
-$$
+$χ[0]=μ $
+
+$
 χ[i]
-=μ$$
+=μ$
 
-$$
-χ[i]=μ+(\sqrt{(n+λ)Σ})^i \space for \space i=1,⋯,n$$
+$
+χ[i]=μ+(\sqrt{(n+λ)Σ})^i \space for \space i=1,⋯,n$
 
-$$
-χ[i]=μ−(\sqrt{(n+λ)Σ})^{i−n} \space for \space i=n+1,⋯,2n$$
+$
+χ[i]=μ−(\sqrt{(n+λ)Σ})^{i−n} \space for \space i=n+1,⋯,2n$
 
 
 - 위 식에서 n은 dimension의 크기며, $\lambda$는 scaling parameter이다. $()^{i}$는 covariance matrix의 i번째 열 vector를 의미한다.  
@@ -93,103 +94,99 @@ Sigma point가 mean값과 매우 가까운 경우는 Taylor expansion을 통한 
 #### 2-2-2. Weight Selection
 선택된 Sigma point들은 각각 weight를 갖고 있으며, Gaussian 분포를 다시 계산할 때 사용된다. Weight의 합은 1이 되며$(\Sigma \omega^{[i]} =1)$ 다음과 같이 정의한다.
 
-$$
-ω_m^{[0]}​=\frac{λ}{n+λ}$$
-$$
-​ω_m^{[i]}=ω_c^{[i]}=\frac{1}{2(n+λ)} \space for \space i=1,⋯,2n$$
+$
+ω_m^{[0]}​=\frac{λ}{n+λ}$  
+
+$​ω_m^{[i]}=ω_c^{[i]}=\frac{1}{2(n+λ)} \space for \space i=1,⋯,2n$  
 
 
 #### 2-2-3. Gaussian Distribution Calculation
 위의 과정을 통해 dimension에 맞는 sigma points 들과 weight가 계산되었다. 이제 계산된 sigma point들을 비선형 함수(g(x))의 입력으로 사용하고, 비선형 함수의 출력을 이용하여 Gaussian 분포를 추정한다. 출력 Gaussian 분포의 mean과 covariance는 다음과 같이 계산된다.
 
-$$
-μ^′= ∑_{i=0}^{2n} ω_m^{[i]}​g(χ[i])
-$$ 
-$$
-Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ 
-[i]
- )−μ 
-′
- )(g(χ 
-[i]
- )−μ 
-′
- )^T
-​$$
+$μ^′= ∑_{i=0}^{2n} ω_m^{[i]}​g(χ[i])$    
+
+$Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ′)(g(χ[i])−μ′)^T​$  
 
 ## 3. 구현
 
 > 구현 문제: 롤레이트, 피치레이트, 요레이트 센서를 이용한 드론의 자세 추정/예측
 > 추정 필요 State: 롤, 피치 앵글
 
-1. State 
-$$x=\left
-      [\begin{array}{lcr}
-        \phi
-        \\
-        \theta
-        \\
-        \varphi
-      \end{array}
-    \right] <\phi=roll, \theta=pitch, \varphi=yaw>$$
+1) State   
+  $x=\left
+        [\begin{array}{lcr}
+          \phi 
+          \\\\\
+          \theta 
+          \\\\\
+          \varphi 
+        \end{array}
+      \right] <\phi=roll, \theta=pitch, \varphi=yaw>$
 
-2. System Model(Non-linear)
+2) System Model(Non-linear)  
 
-$$\left
-  [\begin{array}{}
-    \dot\phi 
-    \\
-    \dot\theta
-    \\
-    \dot\varphi
-   \end{array}
-  \right]=
-  \left
-  [\begin{array}{}
-    1 & sin\phi tan\theta & cos\phi tan\theta
-    \\
-    0 & cos\phi & -sin\phi 
-    \\
-    0 & sin\phi sec\theta & cos\phi sec\theta 
-  \end{array}
-  \right]
-  \left
-  [\begin{array}{}
-    p
-    \\
-    q
-    \\
-    r
-  \end{array}
-  \right] + w
-  =f(x)+w
-  $$
-  $$
-  <sensor \space measured: p=roll rate, q=pitch rate, r=yaw rate>
-  $$  
+  $\left
+    [\begin{array}{}
+      \dot\phi 
+      \\\\\
+      \dot\theta
+      \\\\\
+      \dot\varphi
+    \end{array}
+    \right]=
+    \left
+    [\begin{array}{}
+      1 & sin\phi tan\theta & cos\phi tan\theta
+      \\\\\
+      0 & cos\phi & -sin\phi 
+      \\\\\
+      0 & sin\phi sec\theta & cos\phi sec\theta 
+    \end{array}
+    \right]
+    \left
+    [\begin{array}{}
+      p
+      \\\\\
+      q
+      \\\\\
+      r
+    \end{array}
+    \right] + w
+    =f(x)+w
+    $
+    $
+    <sensor \space measured: p=roll rate, q=pitch rate, r=yaw rate>$  
 
-3. Output equation
-$$z=\left
-  [\begin{array}{}
-   1 & 0 & 0
-   \\
-   0 & 1 & 0
-   \end{array}
-  \right]\left
-  [\begin{array}{}
-    \phi
-    \\
-    \theta
-    \\
-    \varphi
-  \end{array}
-  \right] +v
-  = h(x)+v
-$$
+3) Output equation  
 
+  $z=\left
+    [\begin{array}{}
+    1 & 0 & 0
+    \\\\\
+    0 & 1 & 0
+    \end{array}
+    \right]\left
+    [\begin{array}{}
+      \phi
+      \\\\\
+      \theta
+      \\\\\
+      \varphi
+    \end{array}
+    \right] +v
+    = h(x)+v
+  $
 
-
-
+### 3-1. [Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
+- `Eigen` Library를 이용하여 구현
+- 코드 구현: Click This -> [My Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
+- 마지막 4개 `method`가 UKF의 iterative process이다.
+```c++
+UKF.SigmaPoints_WeightSelect();
+UKF.Predict(measured);
+UKF.KalmanGainCalculation();
+UKF.Update(measured);
+```
 
 ## 4. Conclusion
 1. UKF Vs. EKF
@@ -203,3 +200,6 @@ $$
 
 3. $\kappa$ 의 선택에 따라 $\kappa$가 작다면 EKF와 동일할 것이고 $\kappa$가 크다면 비선형성을 제대로 표현하는데 한계가 발생하므로, 적절한 $\kappa$ 선택이 필요하다.
 
+4. Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터이다. 다시 말해 비선형 함수를 근사화한 선형 함수를 찾는 대신 비선형 함수의 평균과 공분산을 근사적으로 직접 구하는 전략을 사용한다.
+
+5. Unscented 칼만 필터는 자코비안을 이용한 선형 모델이 불안정하거나 구하기 어려운 경우에 확장 칼만 필터의 좋은 대안이 된다. 
