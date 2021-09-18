@@ -41,17 +41,17 @@ date: 2021-09-18
     $P_k = AP_{k-1}A^T + Q $
   여기서 `A`는 `Jacobian` 선형화를 한 값으로, 선형화 이후엔 Linear 칼만필터와 동일하게 진행
 
-  - `f(x)`의 Jacobian없이 오차 공분산을 예측하는 방법의 해결책이 **Unscented 변환**이다.
-  - `Jacobian` 연산으로 분산을 예측하지 않고, x의 평균과 공분산에 맞춰 시그마포인트(샘플)를 선정하고, 이 시그마 포인트를 `f(x)`로 변환
+    - `f(x)`의 Jacobian없이 오차 공분산을 예측하는 방법의 해결책이 **Unscented 변환**이다.
+    - `Jacobian` 연산으로 분산을 예측하지 않고, x의 평균과 공분산에 맞춰 시그마포인트(샘플)를 선정하고, 이 시그마 포인트를 `f(x)`로 변환
 
-  - 새로운 시그마 포인트 $f(\chi)$ 에 대해 가중 평균과 가중 공분산을 계산한다. 이 값이 바로 $f(x)$의 평균과 공분산이 된다.
-    ![image](/assets/ukf.png)
+    - 새로운 시그마 포인트 $f(\chi)$ 에 대해 가중 평균과 가중 공분산을 계산한다. 이 값이 바로 $f(x)$의 평균과 공분산이 된다.  
+      ![image](/assets/ukf.png)
 
-  - 아래 그림을 통해 **EKF VS UKF**의 차이점을 살펴보면, `EKF`는 비선형을 선형화 하여 *보라색(분산)* 으로 예측하였지만 `UKF`의 *초록색(분산)* 은 Unscented Transformation (샘플을 통한 계산)을 통해 선정되었다. 즉, 빨간색 샘플들의 비선형 이동을 보고 그 값들의 분산을 새로운 분산으로 예측하였다는 것에 차이점이 있다.
-  ![EKF VS UKF](http://jinyongjeong.github.io/images/post/SLAM/lec06_UKF/UKF_final.png)
+    - 아래 그림을 통해 **EKF VS UKF**의 차이점을 살펴보면, `EKF`는 비선형을 선형화 하여 *보라색(분산)* 으로 예측하였지만 `UKF`의 *초록색(분산)* 은 Unscented Transformation (샘플을 통한 계산)을 통해 선정되었다. 즉, 빨간색 샘플들의 비선형 이동을 보고 그 값들의 분산을 새로운 분산으로 예측하였다는 것에 차이점이 있다.
+    ![EKF VS UKF](http://jinyongjeong.github.io/images/post/SLAM/lec06_UKF/UKF_final.png)
 
-  - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.
-  ![particle vs UKF](https://ars.els-cdn.com/content/image/1-s2.0-S0951832013002895-gr1.jpg)
+    - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.
+    ![particle vs UKF](https://ars.els-cdn.com/content/image/1-s2.0-S0951832013002895-gr1.jpg)
 
 ## 2. 내용
 UKF 또한 다른 칼만 시리즈와 마찬가지로 `예측 -> 칼만 게인 -> 추정`의 단계는 동일하다.
@@ -62,7 +62,7 @@ UKF 또한 다른 칼만 시리즈와 마찬가지로 `예측 -> 칼만 게인 -
 3. *UKF:* 마지막 추정 단계는 다른 칼만 필터와 동일하다.
 ![equation](/assets/ukf_equation.png)
 ### 2-2. `Unscented Transform`
-UKF가 비선형성을 표현하는 방식은 `Unscented Transform`을 이용한다. `UT`는 세가지로 구성되는데, 첫번째는 `SigmaPoints` 선택이요, 두번째는 샘플들e의 가중치 선택, 세번째는 새로운 가우시안 분포 계산(평균, 분산)이다.
+UKF가 비선형성을 표현하는 방식은 `Unscented Transform`을 이용한다. `UT`는 세가지로 구성되는데, 첫번째는 `SigmaPoints` 선택이요, 두번째는 샘플들의 가중치 선택, 세번째는 새로운 가우시안 분포 계산(평균, 분산)이다.
 - 칼만 분산을 근거로 샘플를 선택하는 방법: (`SigemaPoints`)
 - 칼만 분산을 근거로 선택된 샘플들의 가중치 선택 (`Weight Selection`)
 - `SigmaPoints, Weight`를 이용한 평균값과 분산을 eEquation계산하는 방법 
@@ -109,8 +109,9 @@ $Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ′)(g(χ[i])−μ′)^T​$
 
 ## 3. 구현
 
-> 구현 문제: 롤레이트, 피치레이트, 요레이트 센서를 이용한 드론의 자세 추정/예측
-> 추정 필요 State: 롤, 피치 앵글
+> 구현 문제: 롤레이트, 피치레이트, 요레이트 센서를 이용한 드론의 자세 추정/예측  
+> 추정 필요 State: 롤, 피치 앵글  
+> 센서 measure: 롤, 피치 앵글 계측됨
 
 1) State   
   $x=\left
