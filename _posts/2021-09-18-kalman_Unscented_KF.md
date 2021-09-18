@@ -44,13 +44,13 @@ date: 2021-09-18
     - `f(x)`의 Jacobian없이 오차 공분산을 예측하는 방법의 해결책이 **Unscented 변환**이다.
     - `Jacobian` 연산으로 분산을 예측하지 않고, x의 평균과 공분산에 맞춰 시그마포인트(샘플)를 선정하고, 이 시그마 포인트를 `f(x)`로 변환
 
-    - 새로운 시그마 포인트 $f(\chi)$ 에 대해 가중 평균과 가중 공분산을 계산한다. 이 값이 바로 $f(x)$의 평균과 공분산이 된다.  
+    - 새로운 시그마 포인트 $f(\chi)$ 에 대해 가중 평균과 가중 공분산을 계산한다. 이 값이 바로 $f(x)$의 평균과 공분산이 된다.   
       ![image](/assets/ukf.png)
 
-    - 아래 그림을 통해 **EKF VS UKF**의 차이점을 살펴보면, `EKF`는 비선형을 선형화 하여 *보라색(분산)* 으로 예측하였지만 `UKF`의 *초록색(분산)* 은 Unscented Transformation (샘플을 통한 계산)을 통해 선정되었다. 즉, 빨간색 샘플들의 비선형 이동을 보고 그 값들의 분산을 새로운 분산으로 예측하였다는 것에 차이점이 있다.
+    - 아래 그림을 통해 **EKF VS UKF**의 차이점을 살펴보면, `EKF`는 비선형을 선형화 하여 *보라색(분산)* 으로 예측하였지만 `UKF`의 *초록색(분산)* 은 Unscented Transformation (샘플을 통한 계산)을 통해 선정되었다. 즉, 빨간색 샘플들의 비선형 이동을 보고 그 값들의 분산을 새로운 분산으로 예측하였다는 것에 차이점이 있다.   
     ![EKF VS UKF](http://jinyongjeong.github.io/images/post/SLAM/lec06_UKF/UKF_final.png)
 
-    - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.
+    - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.   
     ![particle vs UKF](https://ars.els-cdn.com/content/image/1-s2.0-S0951832013002895-gr1.jpg)
 
 ## 2. 내용
@@ -181,7 +181,7 @@ $Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ′)(g(χ[i])−μ′)^T​$
 ### 3-1. [Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
 - `Eigen` Library를 이용하여 구현
 - 코드 구현: Click This -> [My Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
-- 마지막 4개 `method`가 UKF의 iterative process이다.
+- 코드에선 아래 4개 `method`를 UKF의 iterative process로 하여 구현하였다.
 ```c++
 UKF.SigmaPoints_WeightSelect();
 UKF.Predict(measured);
