@@ -184,4 +184,10 @@ var store = [{
         "tags": ["research"],
         "url": "/research/kalman_Unscented_KF/",
         "teaser": null
+      },{
+        "title": "Find Route: A Star Essential",
+        "excerpt":"A star algorithm Review AUTHOR: Sungwook LE DATE: ‘21.9/19 Reference: My Implementation Code: My Code 1. Introduction A star algorithm은 효율적인 최단거리 길찾기 알고리즘으로, autonomous parking system에서 쓰인다. 위의 구조에서 CellSort(), ExpandNeighbors(), CheckValidCell(), Heuristic(), AddToOpen() method가 A Star 알고리즘의 전부이다. CellSort() 이름을 통해 전체 알고리즘의 대략적으로 설명해보자. Cell은 현재 지도의...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/FindRoute_Astar_essential/",
+        "teaser": null
       }]
