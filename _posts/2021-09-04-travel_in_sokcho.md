@@ -28,6 +28,6 @@ VACATION: '21.9/9~9/11
 ![plan_by_jieun](/assets/sokcho_plan2.png)
 
 ## 3. Memory
-- [Video]((https://m.youtube.com/watch?v=0jxjGgumAJw&feature=youtu.be))
+- Memory is [Here](https://m.youtube.com/watch?v=0jxjGgumAJw&feature=youtu.be)
 
 ## 끝
