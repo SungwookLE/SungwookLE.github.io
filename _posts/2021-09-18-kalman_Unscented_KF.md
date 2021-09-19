@@ -30,28 +30,31 @@ date: 2021-09-18
 ## 1. Introduction
 
 1. `x -> x'` 으로 $f(x)$ 비선형 transformation을 한다. 이 때, 새로운 $x'$의 위치와 분산은 어떻게 예측할 수 있을까?
-  - 이름에서도 적혀있듯, Unsecented 칼만 필터의 핵심 기반은 `Unscented 변환: Unscented Transformation`이다.
-  - Unscented 변환은 `몬테카를로 시뮬레이션`과 비슷한 개념
-  - 다만, `Monte Carlo` 방식이 무작위 샘플을 추출하는 것이라면, `Unscented 변환`은 샘플과 각 샘플의 가중치를 정교하교 선정
-  - 따라서, `몬테카를로` 방식보다 훨씬 적은 수의 샘플로 유효한 표준과 공분산 예측 시뮬레이션 가능하다는 장점이 있는 것이 `Unscented` 이다.  
+    - 이름에서도 적혀있듯, Unsecented 칼만 필터의 핵심 기반은 `Unscented 변환: Unscented Transformation`이다.
+    - Unscented 변환은 `몬테카를로 시뮬레이션`과 비슷한 개념
+    - 다만, `Monte Carlo` 방식이 무작위 샘플을 추출하는 것이라면, `Unscented 변환`은 샘플과 각 샘플의 가중치를 정교하교 선정
+    - 따라서, `몬테카를로` 방식보다 훨씬 적은 수의 샘플로 유효한 표준과 공분산 예측 시뮬레이션 가능하다는 장점이 있는 것이 `Unscented` 이다.  
 
 2. 칼만 문제로 돌아와서 생각해보자
-  - Extended 칼만 필터는 아래와 같은 접근법이다.
+    - Extended 칼만 필터는 아래와 같은 접근법이다.
     $x_k = f(x_{k-1})$
     $P_k = AP_{k-1}A^T + Q $
-  여기서 `A`는 `Jacobian` 선형화를 한 값으로, 선형화 이후엔 Linear 칼만필터와 동일하게 진행
+    여기서 `A`는 `Jacobian` 선형화를 한 값으로, 선형화 이후엔 Linear 칼만필터와 동일하게 진행
 
     - `f(x)`의 Jacobian없이 오차 공분산을 예측하는 방법의 해결책이 **Unscented 변환**이다.
     - `Jacobian` 연산으로 분산을 예측하지 않고, x의 평균과 공분산에 맞춰 시그마포인트(샘플)를 선정하고, 이 시그마 포인트를 `f(x)`로 변환
 
     - 새로운 시그마 포인트 $f(\chi)$ 에 대해 가중 평균과 가중 공분산을 계산한다. 이 값이 바로 $f(x)$의 평균과 공분산이 된다.   
-      ![image](/assets/ukf.png)
+
+      <center> <image src = "/assets/ukf.png">  </image> </center>
 
     - 아래 그림을 통해 **EKF VS UKF**의 차이점을 살펴보면, `EKF`는 비선형을 선형화 하여 *보라색(분산)* 으로 예측하였지만 `UKF`의 *초록색(분산)* 은 Unscented Transformation (샘플을 통한 계산)을 통해 선정되었다. 즉, 빨간색 샘플들의 비선형 이동을 보고 그 값들의 분산을 새로운 분산으로 예측하였다는 것에 차이점이 있다.   
-    ![EKF VS UKF](http://jinyongjeong.github.io/images/post/SLAM/lec06_UKF/UKF_final.png)
 
-    - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.   
-    ![particle vs UKF](https://ars.els-cdn.com/content/image/1-s2.0-S0951832013002895-gr1.jpg)
+    <center> <image src ="http://jinyongjeong.github.io/images/post/SLAM/lec06_UKF/UKF_final.png"> </image> </center>
+
+    - 아래 그림은 `EKF Vs, Particle Filter Vs. UKF`의 차이점을 보여준다.  
+
+    <center> <image src = "https://ars.els-cdn.com/content/image/1-s2.0-S0951832013002895-gr1.jpg" > </image> </center>
 
 ## 2. 내용
 UKF 또한 다른 칼만 시리즈와 마찬가지로 `예측 -> 칼만 게인 -> 추정`의 단계는 동일하다.
@@ -70,17 +73,17 @@ UKF가 비선형성을 표현하는 방식은 `Unscented Transform`을 이용한
 #### 2-2-1. Sigma point selection
 Unscented transform을 하기 위해서는 가장 먼저 sigma point를 선정해야 한다. 시그마 포인트는 $\chi$로 표기하며 다음과 같이 선택한다.  
 
-$χ[0]=μ $
+  $χ[0]=μ $
 
-$
-χ[i]
-=μ$
+  $
+  χ[i]
+  =μ$
 
-$
-χ[i]=μ+(\sqrt{(n+λ)Σ})^i \space for \space i=1,⋯,n$
+  $
+  χ[i]=μ+(\sqrt{(n+\kappa)Σ})^i \space for \space i=1,⋯,n$
 
-$
-χ[i]=μ−(\sqrt{(n+λ)Σ})^{i−n} \space for \space i=n+1,⋯,2n$
+  $
+  χ[i]=μ−(\sqrt{(n+\kappa)Σ})^{i−n} \space for \space i=n+1,⋯,2n$
 
 
 - 위 식에서 n은 dimension의 크기며, $\lambda$는 scaling parameter이다. $()^{i}$는 covariance matrix의 i번째 열 vector를 의미한다.  
@@ -95,9 +98,9 @@ Sigma point가 mean값과 매우 가까운 경우는 Taylor expansion을 통한 
 선택된 Sigma point들은 각각 weight를 갖고 있으며, Gaussian 분포를 다시 계산할 때 사용된다. Weight의 합은 1이 되며$(\Sigma \omega^{[i]} =1)$ 다음과 같이 정의한다.
 
 $
-ω_m^{[0]}​=\frac{λ}{n+λ}$  
+ω_m^{[0]}​=\frac{\kappa}{n+\kappa}$  
 
-$​ω_m^{[i]}=ω_c^{[i]}=\frac{1}{2(n+λ)} \space for \space i=1,⋯,2n$  
+$​ω_m^{[i]}=ω_c^{[i]}=\frac{1}{2(n+\kappa)} \space for \space i=1,⋯,2n$  
 
 
 #### 2-2-3. Gaussian Distribution Calculation
@@ -105,7 +108,7 @@ $​ω_m^{[i]}=ω_c^{[i]}=\frac{1}{2(n+λ)} \space for \space i=1,⋯,2n$
 
 $μ^′= ∑_{i=0}^{2n} ω_m^{[i]}​g(χ[i])$    
 
-$Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ′)(g(χ[i])−μ′)^T​$  
+$Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ^′)(g(χ[i])−μ^′)^T​$  
 
 ## 3. 구현
 
@@ -180,8 +183,9 @@ $Σ^′=  ∑_{i=0}^{2n}  ω_c^{[i]}(g(χ[i])−μ′)(g(χ[i])−μ′)^T​$
 
 ### 3-1. [Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
 - `Eigen` Library를 이용하여 구현
-- 코드 구현: Click This -> [My Code](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
+- 코드 구현: My Code is [Here](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp)  
 - 코드에선 아래 4개 `method`를 UKF의 iterative process로 하여 구현하였다.
+
 ```c++
 UKF.SigmaPoints_WeightSelect();
 UKF.Predict(measured);

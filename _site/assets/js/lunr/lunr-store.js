@@ -5,12 +5,6 @@ var store = [{
         "url": "/algorithm/algorithm_open/",
         "teaser": null
       },{
-        "title": "개인 페이지 오픈",
-        "excerpt":"오픈     START  ","categories": ["day"],
-        "tags": ["day"],
-        "url": "/day/day_open/",
-        "teaser": null
-      },{
         "title": "서울 데이트",
         "excerpt":"데이트 날짜: ‘21.5/9 일요일 도착: 12시 30분 (남부터미널) [1] 첫번째, 맛있는 점심 1.5 hour 1번 식당: 프랑스요리 CUISSON82 2번 식당: 스타 쉐프 코스 마누테라스 3번 식당: 이태원 버거 다운타우너 [2] 두번째, 파이썬 스터디 1.5 hour [3] 세번째, 재밌는 거 3+alpha hour 1안: 카페 2안: 근처 공원(양재시민의숲? 한강공원?) 놀러가서 산책도 하고,...","categories": ["day"],
         "tags": ["day"],
@@ -168,7 +162,7 @@ var store = [{
         "teaser": null
       },{
         "title": "속초 데이트",
-        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 음식 먹기 + 관광   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카   2. Plan      3. Memory     Video   끝  ","categories": ["day"],
+        "excerpt":"속초 여행  AUTHOR: Jieun An  DATE: ‘21.9/4   VACATION: ‘21.9/9~9/11   1. Intro     목요일: 맛난 음식 먹기 + 관광   금요일: 서핑, 양양 서프팩토리   토요일: 설악산, 케이블카   2. Plan      3. Memory     Memory is Here   끝  ","categories": ["day"],
         "tags": ["day"],
         "url": "/day/travel_in_sokcho/",
         "teaser": null
