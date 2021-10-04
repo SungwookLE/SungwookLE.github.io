@@ -100,6 +100,17 @@ date: 2021-10-04
 
 - [Implementation docu](https://github.com/SungwookLE/udacity_CarND_capstone/blob/master/writeup.md)
 
+- `docker`를 이용하여 진행하였기 때문에, 실행을 위하여 아래의 명령어를 사용하여 `docker`해야한다.  
+```bash
+docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
+```  
+- `docker`가 돌아가면,  
+```bash
+docker ps // 돌아가고 있는 도커 리스트 체크 
+docker stop [id] // 도커 실행 해제
+docker exec -it [134adb2ba12 혹은 my-container] /bin/bash
+```  
+
 - 구현 코드는 `repository`를 참고하길 바라고, 빠른 리마인드를 목적으로 `DBW_Node` 코드를 살펴보자
 
 ```python
