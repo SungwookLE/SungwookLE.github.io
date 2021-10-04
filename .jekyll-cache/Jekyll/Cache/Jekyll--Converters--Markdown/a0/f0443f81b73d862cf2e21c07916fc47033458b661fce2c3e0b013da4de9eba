@@ -1,0 +1,219 @@
+I"To<h1 id="autonomous-integration-project-step1">Autonomous Integration Project: Step1</h1>
+<blockquote>
+  <p>AUTHOR: Sungwook LE<br />
+DATE: ‘21.10/4
+Lecture: <a href="https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/01cf7801-7665-4dc5-a800-2a9cca06b38b/concepts/f48e03e9-3b2b-4395-9ead-595f4fbc7b79">System Integration, Udacity</a>  <br />
+My Repo: <a href="https://github.com/SungwookLE/udacity_CarND_capstone">Here</a> <br />
+ROS WIKI: <a href="https://www.ros.org/">Here</a>
+ROS 용어: <a href="https://e3jake.tistory.com/16">Here</a>
+국문 메뉴얼: <a href="https://maelab.snu.ac.kr/sites/maelab.snu.ac.kr/files/board/bbs/%EB%A1%9C%EB%B4%87_%EA%B5%AD%EB%AC%B8_%EB%A7%A4%EB%89%B4%EC%96%BC_4.pdf">Here</a></p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<ul>
+  <li>Autonomous <strong>Full-Stack</strong> 이란?
+    <ul>
+      <li>자율주행 SW에서 <code class="language-plaintext highlighter-rouge">인지(Perception), 판단(Decision), 측위(Localization), 지도(Mapping), 계획(Planning), 제어(Control) 등</code> <em>Fully Autonomous Vehicle</em> 구현을 위해 필요한 기술(기능) 전체를 말하는 것
+  <img src="/assets/full_stack1.png" alt="fullstack1" /><br />
+  <img src="/assets/full_stack2.png" alt="fullstack2" /></li>
+      <li><strong>ROS</strong>와 같은 <code class="language-plaintext highlighter-rouge">Operating System</code> 위에서 <code class="language-plaintext highlighter-rouge">Framework</code>의 형태로 모듈/독립성을 가진 여러 기능SW의 <code class="language-plaintext highlighter-rouge">Stack</code>으로 자율주행이 구성된다는 의미(목표)에서 사용되는 단어</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ROS</code>를 이용하여 기능 Stack을 <code class="language-plaintext highlighter-rouge">Node/Pkg</code>단위로 쌓아보는 것이 이번 포스팅의 목표이다.</li>
+</ul>
+
+<h2 id="2-ros-basic">2. ROS Basic</h2>
+<p><img src="/assets/rosmaster_node.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ROS</code> 명령어 <a href="https://e3jake.tistory.com/16">(용어 설명)</a><br />
+      1. <code class="language-plaintext highlighter-rouge">roscore</code>: <code class="language-plaintext highlighter-rouge">rosmaster</code>를 시작하는 명령어로 roscore가 <code class="language-plaintext highlighter-rouge">ros master</code>가 된다. rosmaster가 <code class="language-plaintext highlighter-rouge">node</code>를 하나로 묶어주는 역할을 한다.
+      <code class="language-plaintext highlighter-rouge">
+      roscore
+     </code><br />
+      2. <code class="language-plaintext highlighter-rouge">rosrun</code>: <code class="language-plaintext highlighter-rouge">node</code>를 생성시키는 명령어로, pkg가 roscore에 위치하게 된다. 다시 말해, <code class="language-plaintext highlighter-rouge">roscore</code>가 실행된 이후에 그 아래에 <code class="language-plaintext highlighter-rouge">node</code>를 실행시키는 명령어 이다.
+      <code class="language-plaintext highlighter-rouge">
+      rosrun pkg이름 code
+     </code><br />
+      3. <code class="language-plaintext highlighter-rouge">rospack</code>: 패키지란 로스를 구성하는 기본 단위로써 실행 가능한 노드를 포함하고 있다. <strong>로스는 패키지를 단위로 각각의 응용 프로그램들이 개발된다.</strong> 패키지는 최소한 하나 이상의 노드를 포함하고 있다.  <br />
+      4. <code class="language-plaintext highlighter-rouge">roslaunch</code>: 여러개의 <code class="language-plaintext highlighter-rouge">node</code>를 하나하나 <code class="language-plaintext highlighter-rouge">rosrun</code>할 필요 없이 <code class="language-plaintext highlighter-rouge">launch</code>파일을 작성하여 <code class="language-plaintext highlighter-rouge">roslaunch</code> 로 동시에 실행 가능함<br />
+ <img src="https://media.vlpt.us/images/legendre13/post/5076fd12-7951-40af-8905-6c8d783c4d0b/io.png" alt="image" />
+      5. <code class="language-plaintext highlighter-rouge">rosnode</code>: 독립적으로 topic을 주고 받는 기능 모듈이 <code class="language-plaintext highlighter-rouge">node</code>이다. 기능 stack을 하나의 <code class="language-plaintext highlighter-rouge">node</code>에 구현할 수 있고, 이러한 <code class="language-plaintext highlighter-rouge">node</code>를 여러개 쌓음으로써, 전체 시스템을 구성하자는 것이 ROS의 목표이다.<br />
+      6. <code class="language-plaintext highlighter-rouge">rostopic</code>: <code class="language-plaintext highlighter-rouge">node</code>끼리 <code class="language-plaintext highlighter-rouge">sub, pub</code>하는 <code class="language-plaintext highlighter-rouge">topic</code>을 의미한다. 예를 들어, 하나의 node는 여러개의 node로 부터 여러개의 topic을 <code class="language-plaintext highlighter-rouge">sub</code> 하고 알고리즘을 수행하여 <code class="language-plaintext highlighter-rouge">pub</code>하는 형태로 여러 <code class="language-plaintext highlighter-rouge">node</code>와 인터페이싱하게 된다. 이 때, <code class="language-plaintext highlighter-rouge">rostopic echo 토픽</code>을 통해 ros 안에서 <code class="language-plaintext highlighter-rouge">node</code>간 <code class="language-plaintext highlighter-rouge">pub, sub</code>하는 topic을 터미널 창에서 볼 수 있다.<br />
+      7. <code class="language-plaintext highlighter-rouge">rosmsg</code>: <code class="language-plaintext highlighter-rouge">topic</code>을 타고 흐르는 <code class="language-plaintext highlighter-rouge">node</code>간의 소통 매개체</p>
+
+    <ul>
+      <li>etc. <code class="language-plaintext highlighter-rouge">rostopic list</code>: pub,sub 되고 있는 <code class="language-plaintext highlighter-rouge">topic</code>들의 list를 보여줌</li>
+      <li>etc. <code class="language-plaintext highlighter-rouge">rosnode list</code>: node info 알려줌</li>
+      <li>etc. <code class="language-plaintext highlighter-rouge">rostopic info xxxx</code>: <code class="language-plaintext highlighter-rouge">xxxx</code>topic의 information을 알려줌. 예를 들면 <code class="language-plaintext highlighter-rouge">Type: styx_msgs/Lane</code></li>
+      <li>etc. <code class="language-plaintext highlighter-rouge">rosmsg info styx_msgs/Lane</code>: <code class="language-plaintext highlighter-rouge">styx_msgs/Lane</code>의 msg 구조를 알려줌</li>
+      <li>etc. <code class="language-plaintext highlighter-rouge">rospy.loginfo</code> 등 로그 메시지 <a href="http://wiki.ros.org/rospy_tutorials/Tutorials/Logging">ROS.org</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">node</code>를 구동시키는 방식
+      1. rate(x) 주기 작동
+          - <code class="language-plaintext highlighter-rouge">rospy.rate(x)</code>를 사용하여 node가 sampling rate를 가지고 반복 작동하게 하는 방식으로, <code class="language-plaintext highlighter-rouge">rate.sleep()</code>과 같이 쓴다. 
+      2. spin() call back 작동
+          - <code class="language-plaintext highlighter-rouge">rospy.spin()</code>은 topic이 <code class="language-plaintext highlighter-rouge">subs</code>되면 <code class="language-plaintext highlighter-rouge">callback</code>함수를 이용하여 node가 작동되게 하는 방식이다.
+      - 두개의 방식은 하나의 <code class="language-plaintext highlighter-rouge">node</code>에서 같이 써도 된다.
+      3. 사용 예시</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      ```python
+      class ROS_NODE(object):
+          def __init__(self):
+              self.pub = rospy.Publisher('/mode', topic_msg, queue_size=1)
+
+              # call_back 함수, subs가 들어와야 작동
+              rospy.Subscriber('/node', topic_msg, self.call_back)
+              rospy.spin()
+
+              # 또는 주기 함수
+              self.loop()
+            
+          def loop(self):
+              rate = rospy.Rate(50)
+              while not rospy.is_shutdown():
+                  # 알고리즘, 주기적으로 작동
+                  publish()
+
+                  rate.sleep()
+            
+          def publish(self):
+              msg = topic_msg()
+              self.pub.publish(msg)
+      ```
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="3-project-brief">3. Project Brief</h2>
+<ul>
+  <li>Udacity의 ROS를 이용한 System Integration 프로젝트 리뷰</li>
+  <li>Including Stack: <code class="language-plaintext highlighter-rouge">traffic light detection</code>, <code class="language-plaintext highlighter-rouge">control</code>, and <code class="language-plaintext highlighter-rouge">waypoint following</code>
+    <ul>
+      <li><strong>Code Structure</strong>
+  <img src="https://video.udacity-data.com/topher/2017/September/59b6d115_final-project-ros-graph-v2/final-project-ros-graph-v2.png" alt="structure" /></li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://github.com/SungwookLE/udacity_CarND_capstone/blob/master/writeup.md">Implementation docu</a></p>
+  </li>
+  <li>구현 코드는 <code class="language-plaintext highlighter-rouge">repository</code>를 참고하길 바라고, 빠른 리마인드를 목적으로 <code class="language-plaintext highlighter-rouge">DBW_Node</code> 코드를 살펴보자</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Bool</span>
+<span class="kn">from</span> <span class="nn">dbw_mkz_msgs.msg</span> <span class="kn">import</span> <span class="n">ThrottleCmd</span><span class="p">,</span> <span class="n">SteeringCmd</span><span class="p">,</span> <span class="n">BrakeCmd</span><span class="p">,</span> <span class="n">SteeringReport</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TwistStamped</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">twist_controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+
+<span class="k">class</span> <span class="nc">DBWNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'dbw_node'</span><span class="p">)</span>
+
+        <span class="c1"># get parameter from server, the number (2nd argu) is default value
+</span>        <span class="n">vehicle_mass</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~vehicle_mass'</span><span class="p">,</span> <span class="mf">1736.35</span><span class="p">)</span>
+        <span class="n">fuel_capacity</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~fuel_capacity'</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">)</span>
+        <span class="n">brake_deadband</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~brake_deadband'</span><span class="p">,</span> <span class="p">.</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">decel_limit</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~decel_limit'</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">accel_limit</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~accel_limit'</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="n">wheel_radius</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~wheel_radius'</span><span class="p">,</span> <span class="mf">0.2413</span><span class="p">)</span>
+        <span class="n">wheel_base</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~wheel_base'</span><span class="p">,</span> <span class="mf">2.8498</span><span class="p">)</span>
+        <span class="n">steer_ratio</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~steer_ratio'</span><span class="p">,</span> <span class="mf">14.8</span><span class="p">)</span>
+        <span class="n">max_lat_accel</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~max_lat_accel'</span><span class="p">,</span> <span class="mf">3.</span><span class="p">)</span>
+        <span class="n">max_steer_angle</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~max_steer_angle'</span><span class="p">,</span> <span class="mf">8.</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">steer_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'/vehicle/steering_cmd'</span><span class="p">,</span>
+                                         <span class="n">SteeringCmd</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">throttle_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'/vehicle/throttle_cmd'</span><span class="p">,</span>
+                                            <span class="n">ThrottleCmd</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">brake_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'/vehicle/brake_cmd'</span><span class="p">,</span>
+                                         <span class="n">BrakeCmd</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="n">vehicle_mass</span><span class="p">,</span> <span class="n">fuel_capacity</span><span class="p">,</span> <span class="n">brake_deadband</span><span class="p">,</span> <span class="n">decel_limit</span><span class="p">,</span>
+                                     <span class="n">accel_limit</span><span class="p">,</span> <span class="n">wheel_radius</span><span class="p">,</span> <span class="n">wheel_base</span><span class="p">,</span> <span class="n">steer_ratio</span><span class="p">,</span> <span class="n">max_lat_accel</span><span class="p">,</span> <span class="n">max_steer_angle</span><span class="p">)</span>
+
+        <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/vehicle/dbw_enabled'</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">dbw_enabled_cb</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/twist_cmd'</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">twist_cb</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/current_velocity'</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">velocity_cb</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">current_vel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">curr_ang_vel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dbw_enabled</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear_vel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">angular_vel</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">steering</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">brake</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">loop</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1"># 50Hz
+</span>        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">current_vel</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">linear_vel</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">angular_vel</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">throttle</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">brake</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">steering</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">controller</span><span class="p">.</span><span class="n">control</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">current_vel</span><span class="p">,</span>
+                                                                                <span class="bp">self</span><span class="p">.</span><span class="n">dbw_enabled</span><span class="p">,</span>
+                                                                                <span class="bp">self</span><span class="p">.</span><span class="n">linear_vel</span><span class="p">,</span>
+                                                                                <span class="bp">self</span><span class="p">.</span><span class="n">angular_vel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">dbw_enabled</span><span class="p">:</span>
+                <span class="c1">#rospy.logwarn("angular_vel: {:10f}".format(self.angular_vel))
+</span>                <span class="bp">self</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">throttle</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">brake</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">steering</span><span class="p">)</span>
+
+            <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">dbw_enabled_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dbw_enabled</span> <span class="o">=</span> <span class="n">msg</span>
+    
+    <span class="k">def</span> <span class="nf">twist_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear_vel</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">angular_vel</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span>
+    
+    <span class="k">def</span> <span class="nf">velocity_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">current_vel</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span>
+                
+    <span class="k">def</span> <span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">brake</span><span class="p">,</span> <span class="n">steer</span><span class="p">):</span>
+        <span class="n">tcmd</span> <span class="o">=</span> <span class="n">ThrottleCmd</span><span class="p">()</span>
+        <span class="n">tcmd</span><span class="p">.</span><span class="n">enable</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">tcmd</span><span class="p">.</span><span class="n">pedal_cmd_type</span> <span class="o">=</span> <span class="n">ThrottleCmd</span><span class="p">.</span><span class="n">CMD_PERCENT</span>
+        <span class="n">tcmd</span><span class="p">.</span><span class="n">pedal_cmd</span> <span class="o">=</span> <span class="n">throttle</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">throttle_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">tcmd</span><span class="p">)</span>
+
+        <span class="n">scmd</span> <span class="o">=</span> <span class="n">SteeringCmd</span><span class="p">()</span>
+        <span class="n">scmd</span><span class="p">.</span><span class="n">enable</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">scmd</span><span class="p">.</span><span class="n">steering_wheel_angle_cmd</span> <span class="o">=</span> <span class="n">steer</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">steer_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">scmd</span><span class="p">)</span>
+
+        <span class="n">bcmd</span> <span class="o">=</span> <span class="n">BrakeCmd</span><span class="p">()</span>
+        <span class="n">bcmd</span><span class="p">.</span><span class="n">enable</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">bcmd</span><span class="p">.</span><span class="n">pedal_cmd_type</span> <span class="o">=</span> <span class="n">BrakeCmd</span><span class="p">.</span><span class="n">CMD_TORQUE</span>
+        <span class="n">bcmd</span><span class="p">.</span><span class="n">pedal_cmd</span> <span class="o">=</span> <span class="n">brake</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">brake_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">bcmd</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">DBWNode</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rosrun/launch</code>되면 <code class="language-plaintext highlighter-rouge">dbw_node</code>가 생성 된다. <code class="language-plaintext highlighter-rouge">rosmaster</code> 아래에서 독립적으로 <code class="language-plaintext highlighter-rouge">node</code>는 계속적으로 작동하게 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">def __init__(self)</code>에서 모든 작동 flow를 확인할 수 있다. <code class="language-plaintext highlighter-rouge">class</code>의 <code class="language-plaintext highlighter-rouge">method</code>들은 <code class="language-plaintext highlighter-rouge">__init__</code>에서 쓰여진 바와 같이 사용된다.</li>
+</ul>
+
+<h2 id="4-결론">4. 결론</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ROS</code>는 <code class="language-plaintext highlighter-rouge">Node</code>간 메세지 교환 방식으로 프로그램을 잘게 나누어 공동으로 개발 가능하다는 것이 큰 장점이다.</li>
+  <li>자율주행 stack을 직접 나누어 구현하기 편하고, <code class="language-plaintext highlighter-rouge">library, package</code>를 제공해줌으로서, sensor 등의 <code class="language-plaintext highlighter-rouge">hw</code>를 쉽게 이식해 올 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">ros</code>에서 제공하는 개발지원 <code class="language-plaintext highlighter-rouge">tool</code>도 빼 놓을 수 없는 장점이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">ros1</code>에서는 roscore에 묶여서 하나의 네트워크 채널로 실행되면서 실시간성 보장이 어려운 문제가 있었으나, <code class="language-plaintext highlighter-rouge">ros2</code>에서는 많이 개선된 듯 하다.</li>
+  <li>단점을 하나 보태자면, 단일 로봇을 위한 os로서 군집 로봇에는 한계가 있는 듯 하다.</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+:ET

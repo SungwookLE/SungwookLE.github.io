@@ -190,4 +190,10 @@ var store = [{
         "tags": ["research"],
         "url": "/research/FindRoute_Astar_essential/",
         "teaser": null
+      },{
+        "title": "Autonomous Stack Integration with ROS",
+        "excerpt":"Autonomous Integration Project: Step1 AUTHOR: Sungwook LE DATE: ‘21.10/4 Lecture: System Integration, Udacity My Repo: Here ROS WIKI: Here ROS 용어: Here 국문 메뉴얼: Here 1. Introduction Autonomous Full-Stack 이란? 자율주행 SW에서 인지(Perception), 판단(Decision), 측위(Localization), 지도(Mapping), 계획(Planning), 제어(Control) 등 Fully Autonomous Vehicle 구현을 위해 필요한 기술(기능) 전체를 말하는 것 ROS와...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/ROS_Integration1/",
+        "teaser": null
       }]
