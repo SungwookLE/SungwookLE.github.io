@@ -191,9 +191,21 @@ var store = [{
         "url": "/research/FindRoute_Astar_essential/",
         "teaser": null
       },{
+        "title": "가평 데이트",
+        "excerpt":"가평 여행     VACATION: ‘21.9/23~9/25   추석 연휴에 함께한 마이다스리조트    1. Intro     휴양소에 서로 당첨되는 덕에 9월에는 즐거운 여행을 2번 다녀왔다.            목요일: 이케아 + 가평       금요일: 쁘띠프랑스 + 청평       토요일: 가평           2. Youtu     Memory is Here   끝  ","categories": ["day"],
+        "tags": ["day"],
+        "url": "/day/travel_in_gapyeong/",
+        "teaser": null
+      },{
         "title": "Autonomous Stack Integration with ROS",
         "excerpt":"Autonomous Integration Project: Step1 AUTHOR: Sungwook LE DATE: ‘21.10/4 Lecture: System Integration, Udacity My Repo: Here ROS WIKI: Here ROS 용어: Here 국문 메뉴얼: Here 1. Introduction Autonomous Full-Stack 이란? 자율주행 SW에서 인지(Perception), 판단(Decision), 측위(Localization), 지도(Mapping), 계획(Planning), 제어(Control) 등 Fully Autonomous Vehicle 구현을 위해 필요한 기술(기능) 전체를 말하는 것 ROS와...","categories": ["research"],
         "tags": ["research"],
         "url": "/research/ROS_Integration1/",
+        "teaser": null
+      },{
+        "title": "Localization basic",
+        "excerpt":"Localization basic AUTHOR: Sungwook LE DATE: ‘21.10/5 1. Introduction Localization Insight: check below image.. Localization needs informations such as MAP, Onboard Sensor, GPS... Filters that could be used are Histogram Filters, Kalman Filters, Particle Filters... Localization: 1. “Where is our car in a given map with an accuracy of 10cm...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/ParticleFilter/",
         "teaser": null
       }]

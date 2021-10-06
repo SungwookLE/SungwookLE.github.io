@@ -1,0 +1,430 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Localization basic - SungwookLE</title>
+<meta name="description" content="Localization 문제 탐구">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SungwookLE">
+<meta property="og:title" content="Localization basic">
+<meta property="og:url" content="sungwookle.github.io/research/ParticleFilter/">
+
+
+  <meta property="og:description" content="Localization 문제 탐구">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-05T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="sungwookle.github.io/research/ParticleFilter/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "SungwookLE",
+      "url": "sungwookle.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="SungwookLE Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          SungwookLE
+          <span class="site-subtitle">:::::::::::</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/algorithm/">Algorithm</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/day/">Day</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Localization basic">
+    <meta itemprop="description" content="Localization 문제 탐구">
+    <meta itemprop="datePublished" content="2021-10-05T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Localization basic
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#localization-basic">Localization basic</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-로봇-1차원-좌표-localization">2. 로봇 1차원 좌표 localization</a></li><li><a href="#3-summary-localization">3. Summary Localization</a></li><li><a href="#4-1d-localization-uisng-bayesian-rule-practice">4. 1D Localization uisng Bayesian Rule Practice</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="localization-basic">Localization basic</h1>
+<blockquote>
+  <p>AUTHOR: Sungwook LE  <br />
+DATE: ‘21.10/5</p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+<ul>
+  <li>Localization Insight: check below image..<a href="https://youtu.be/U-uDtVgezcE"><img src="/assets/localization_intuition.png" alt="Intuition" /></a></li>
+  <li>Localization needs informations such as <code class="language-plaintext highlighter-rouge">MAP, Onboard Sensor, GPS...</code></li>
+  <li>Filters that could be used are <code class="language-plaintext highlighter-rouge">Histogram Filters, Kalman Filters, Particle Filters...</code></li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>Localization:<br />
+      1. “Where is our car in a given map with an accuracy of 10cm or less?”<br />
+      2. “Onboard Sensors are used to estimate transformation between <strong>measurements</strong> and a <strong>given map</strong>.”</li>
+  </ul>
+</blockquote>
+
+<h2 id="2-로봇-1차원-좌표-localization">2. 로봇 1차원 좌표 localization</h2>
+<ul>
+  <li>
+    <p>Bayes Rule에 기반한 로봇의 1차원 Localization 문제에서의 Update단계는 아래 그림과 같다.<br />
+<img src="/assets/Localization_1D.png" alt="1D" /></p>
+  </li>
+  <li>
+    <p>Bayes Rule 수식으로 위의 상황을 설명해보자 <br />
+<a href="https://youtu.be/sA5wv56qYc0"><img src="/assets/bayes_rule.png" alt="image" /></a>
+      - Posterior는 $P(X_i|Z)$이고, Prior는 $P(X_i)$ = 0.2이다. 
+      - Measurement가 빨간색이었다고 하면, 빨간색 cell에는 0.6을 곱하고 그렇지 않은 cell에는 0.2를 곱한다고 하자. 이게 $P(Z|X_i)$ 즉, 관측됬을 때 실제 그 위치에 있을 확률이 된다.
+      - Prior $P(X_i)$와 $P(Z|X_i)$를 곱하고 전체 확률 (P(Z))로 Normalization을 해준 값이 Bayes Rule 업데이트가 된다.</p>
+  </li>
+  <li>
+    <p>좀 더 확장해서 표현 (추론 이론에 접목)<br />
+<img src="/assets/bayes_inference.png" alt="image" />
+P(X) 부분이 모델이라고 표현된 부분이 잇는데 이 부분은 추론이 <code class="language-plaintext highlighter-rouge">predict와 update</code>로 구성되니까 P(X)는 <code class="language-plaintext highlighter-rouge">predict</code>단계에서 넘어온 것이고 <code class="language-plaintext highlighter-rouge">predict</code>는 모델에 관한 함수여서 그런 것이다.</p>
+  </li>
+  <li>
+    <p>책에서 쉽게 표현된 그림으로 설명하면 데이터가 관측값이 되고 이 값이 사전 믿음에 곱해지면 업데이트가 되는 지극히 상식적이고 쉬운 과정을 확률로서 표현한 것 뿐이다.
+<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA1MDNfMzgg/MDAxNTg4NTEwNjAxNDUz.ml8si80x40eByFDGNQpQDPd1laT4z3U2Mwzmvxr8MTEg.URdec5gyQaB5IqJL0FY-vwbUENJSvSgW6Tzari9AMMEg.PNG.souhaits9/image.png?type=w800" alt="image" /></p>
+  </li>
+  <li>
+    <p>Model Process에서는 불확실성이 더해지는 형태가 되고, forward 연산이 수행된다.
+<img src="/assets/predict_update_step.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>In general, entropy represents the amount of uncertainty in a system.</p>
+  </li>
+  <li>
+    <p>용어:</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">BELIEF</code> = Probability</li>
+      <li><code class="language-plaintext highlighter-rouge">Sense(update)</code> = Measurement (Product, followed by Normalization)</li>
+      <li><code class="language-plaintext highlighter-rouge">Move(predict)</code> =  Convolution(=Adding)
+      - 왜 convolution이라 표현했냐면, 여러 파티클에 대해 각각 move가 적용되어 predict 되어야 하기 때문이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-summary-localization">3. Summary Localization</h2>
+<p><a href="https://youtu.be/WCva9DtGgGA"><img src="/assets/localization_summary.png" alt="image" /></a>
+    1. 주어진 맵에서 내 위치를 찾는 것 (<code class="language-plaintext highlighter-rouge">Local Localization</code>)<br />
+    2. 주어진 맵과 <code class="language-plaintext highlighter-rouge">Global Map</code>간의 transformation 관계를 안다면, <code class="language-plaintext highlighter-rouge">Global Localization</code> 까지 가능<br />
+    3. 위 그림에서 $bel(X_t) = P(X_t|z_{1:t}, u_{1:t}, m)$ 된다.
+    - 번외로, SLAM(Simultaneously Localization And Mapping)에서는 Map까지 작성을 해야하니,
+    $P(x_t, m|z_{1:t}, u_{1:t})$가 된다.</p>
+
+<ul>
+  <li>전체 프로세스 (<code class="language-plaintext highlighter-rouge">Bayes Filter</code>)
+<a href="https://youtu.be/teVw2J-_6ZE"><img src="/assets/bayes_process.png" alt="image" /></a></li>
+  <li>상태 추정 문제에서는 관심을 갖고 있는 State에 대한 값을 계속 업데이트 해 간 것이고</li>
+  <li>측위 문제는 모든 관측값에 대한 보정된 확률을 다 가져와서(곱해서), 여러 파티클 중 가장 <strong>매칭</strong> 확률이 높은 파티클을 현재 위치로 측위하게 되는 것이다.</li>
+  <li>
+    <p>강의 자료 <a href="https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/2ac1492e-9320-4e42-91a5-0845e4f77b0c/concepts/3967f970-584e-4fcd-9708-677f9b5f43f9">참고</a></p>
+  </li>
+  <li>
+    <p><strong>Bayes Filter for Localization(Markov Localization)</strong><br />
+$bel(x_t) = p(x_t|z_t,z_{1:t-1}, u_{1:t}, m)=\eta * p(z_t|x_t,m)\hat{bel}(x_t)$</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Markov Localization</code>, <code class="language-plaintext highlighter-rouge">Kalman Filters</code> 그리고 <code class="language-plaintext highlighter-rouge">Particle Filters</code>는 <code class="language-plaintext highlighter-rouge">Bayes Filter</code>의 <code class="language-plaintext highlighter-rouge">Realization</code> <strong>표현형</strong>이다.</li>
+</ul>
+
+<h2 id="4-1d-localization-uisng-bayesian-rule-practice">4. 1D Localization uisng Bayesian Rule Practice</h2>
+<ul>
+  <li>bayes 이론을 그대로 접목하여 로컬라이제이션 필터를 만들었다.</li>
+  <li>1D given map에서 푸는 문제였기 때문에 주어진 모든 경우의 수에 대하여 navie하게 <strong>전부</strong>를 계산하여 접근하였기 때문에 <code class="language-plaintext highlighter-rouge">bayes</code> 그 자체를 사용할 수 있었다.</li>
+  <li>Code: <a href="https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/localization_1d.cpp">Here</a></li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-05T00:00:00+09:00">October 5, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/research/ROS_Integration1/" class="pagination--pager" title="Autonomous Stack Integration with ROS
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:joker1251@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/SungwookLE" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/sungwookle/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 SungwookLE. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
