@@ -1,6 +1,6 @@
 ---
-title:  "Localization basic"
-excerpt: "Localization 문제 탐구"
+title:  "Localization: Essential with Bayes Filter"
+excerpt: "1D Localization Problem with bayes"
 
 categories:
   - research
@@ -14,7 +14,7 @@ use_math: true
 date: 2021-10-05
 ---
 
-# Localization basic
+# Localization Essential 
 > AUTHOR: Sungwook LE    
 > DATE: '21.10/5  
 
@@ -79,8 +79,7 @@ $bel(x_t) = p(x_t|z_t,z_{1:t-1}, u_{1:t}, m)=\eta * p(z_t|x_t,m)\hat{bel}(x_t)$
 ## 4. 1D Localization uisng Bayesian Rule Practice
 - bayes 이론을 그대로 접목하여 로컬라이제이션 필터를 만들었다. 
 - 1D given map에서 푸는 문제였기 때문에 주어진 모든 경우의 수에 대하여 navie하게 **전부**를 계산하여 접근하였기 때문에 `bayes` 그 자체를 사용할 수 있었다.
-- Code: [Here](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/localization_1d.cpp)  
-
+- Code is Here: [MyRepo](https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/localization_1d.cpp)  
 
 
 ## 끝
