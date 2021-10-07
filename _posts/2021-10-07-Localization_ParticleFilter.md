@@ -40,15 +40,23 @@ date: 2021-10-07
     하는 형태이다.
 
 - 파티클 필터는 particle들을 랜덤하게 여러군데 뿌린다음에 각각의 방향으로 move(`predict`)하고, `observation`과 `landmark`의 matching 정보를 확률로 계산하고 이 것을 weight의 가중치로 하여 resample 하는 과정으로 `bayesian filter`의 realization의 한 형태이다.
-     1. `Measurement Update Step`:  
+     1. `Measurement Update Step`: 
+
      - $P(X|Z) \propto P(Z|X)P(X)$
+
        - P(Z|X): Important Weight로 파티클의 `observation`과 `landmark` 사이의 매칭 확률이다. 
+
        - P(X): Particle로서 각각의 모든 파티클에 대해 Important Weight를 곱하고 큰 값을 기준으로 Resampling 하고 있으니 보정이 되고 있는 것이다.
+
        - P(X|Z): Posterior
      2. `Motion Predict Step`:
+
      - $P(X') = \Sigma P(X'|X)P(X)$
+
        - P(X): Particle 
+
        - P(X'|X)는 각각의 입자에 대한 이동 모델이고
+
        - 이것을 다 나타낸 것이 새로운 Particle 인 것이다.
 
      3. 정리하면, Particle Filter도 Bayisan Filter의 표현형 중 하나인 것이다. 
@@ -70,5 +78,6 @@ date: 2021-10-07
 - 실제로 파티클 필터를 구현하려고 하면, 센서 데이터를 파티클 필터 기준으로 `TRANSFORM`해야할 것이고, 그 다음 여러 개의 센서를 쓴다면 `ASSOCIATE`해주고 `LANDMARK`와 결합를 지어주어야 할 것이다. 그 다음에서야 matching 확률을 계산해줄 수 있다.
 ![transformation](/assets/plane_transformation.png)
 
+- 2D 공간에서 파티클 필터를 이용한 localization 함수 구성 flow는 해당 강의를 참고하자: [링크](https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/e3981fd5-8266-43be-a497-a862af9187d4/concepts/8c4483e7-ab82-49e3-b640-593f7d5e8cd4)
 
 ## 끝
