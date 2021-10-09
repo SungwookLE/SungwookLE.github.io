@@ -1,0 +1,471 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Localization: Particle Filter - SungwookLE</title>
+<meta name="description" content="Particle Filter Study in Localization">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SungwookLE">
+<meta property="og:title" content="Localization: Particle Filter">
+<meta property="og:url" content="sungwookle.github.io/research/Localization_ParticleFilter/">
+
+
+  <meta property="og:description" content="Particle Filter Study in Localization">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-07T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="sungwookle.github.io/research/Localization_ParticleFilter/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "SungwookLE",
+      "url": "sungwookle.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="SungwookLE Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          SungwookLE
+          <span class="site-subtitle">:::::::::::</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/algorithm/">Algorithm</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/day/">Day</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Localization: Particle Filter">
+    <meta itemprop="description" content="Particle Filter Study in Localization">
+    <meta itemprop="datePublished" content="2021-10-07T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Localization: Particle Filter
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#localization-particle-filter">Localization: Particle Filter</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-particle-filter-basic">2. Particle Filter Basic</a></li><li><a href="#3-implementation-of-particle-filter">3. Implementation of Particle Filter</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="localization-particle-filter">Localization: Particle Filter</h1>
+<blockquote>
+  <p>AUTHOR: Sungwook LE  <br />
+DATE: ‘21.10/7</p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<ul>
+  <li>파티클 필터를 이용하여 localization을 문제를 풀 수 있다.</li>
+  <li>localization 문제에서 <code class="language-plaintext highlighter-rouge">Kalman Filter</code>는 효율적이나, <code class="language-plaintext highlighter-rouge">uni-modal</code>의 <strong>belif</strong>를 가지고 있다는 것이 큰 단점이 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Particle Filter</code>는 particle의 개수에 따라 효율이 결정되지만, <code class="language-plaintext highlighter-rouge">multi-modal</code>을 풀 수 있다는 장점이 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">multi-modal</code>을 풀 수 있다는 것은 <em>highly non-linear</em> (예를 들면, irregular 공간 점프) 등의 상황에서도 localization을 풀 수 있는 장점이 있다.</li>
+</ul>
+
+<h2 id="2-particle-filter-basic">2. Particle Filter Basic</h2>
+<ul>
+  <li>
+    <p>구현은 쉬운 편인데, 파티클 여러개를 MAP위에 생성하고, <code class="language-plaintext highlighter-rouge">LandMark</code>와 <code class="language-plaintext highlighter-rouge">measurement</code>의 <em>Gausian Matching</em> 확률 정보를 Weight로 하여 값을 기준으로 <code class="language-plaintext highlighter-rouge">Resampling</code>하는 과정을 통해 매칭 확률이 높은 Particle이 생존하게 되는 방식이다.</p>
+  </li>
+  <li>리샘플링은 <code class="language-plaintext highlighter-rouge">weight</code>가 클수록 더 높은 확률롤 뽑히게끔 만들어주면 됨: <code class="language-plaintext highlighter-rouge">resampling wheel</code>이라는 것을 이용할 수도 있다
+    <ul>
+      <li>wheel의 둘레를 $\beta = random * Weight_{max}$ 로 선언하고 $index_{init} = random$으로 하여,
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Particle</span> <span class="n">개수</span><span class="p">:)</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">beta</span> <span class="o">&lt;</span> <span class="n">Weight</span><span class="p">[</span><span class="n">index</span><span class="p">]):</span>
+          <span class="n">beta</span> <span class="o">-=</span> <span class="n">Weight</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+          <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">N</span>
+  <span class="n">Pick</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Particle</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</code></pre></div>        </div>
+        <p>하는 형태이다.</p>
+      </li>
+    </ul>
+  </li>
+  <li>파티클 필터는 particle들을 랜덤하게 여러군데 뿌린다음에 각각의 방향으로 move(<code class="language-plaintext highlighter-rouge">predict</code>)하고, <code class="language-plaintext highlighter-rouge">observation</code>과 <code class="language-plaintext highlighter-rouge">landmark</code>의 matching 정보를 확률로 계산하고 이 것을 weight의 가중치로 하여 resample 하는 과정으로 <code class="language-plaintext highlighter-rouge">bayesian filter</code>의 realization의 한 형태이다.
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">Measurement Update Step</code>:</li>
+    </ol>
+
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$P(X</td>
+              <td>Z) \propto P(Z</td>
+              <td>X)P(X)$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>P(Z</td>
+                  <td>X): Important Weight로 파티클의 <code class="language-plaintext highlighter-rouge">observation</code>과 <code class="language-plaintext highlighter-rouge">landmark</code> 사이의 매칭 확률이다.</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            <p>P(X): Particle로서 각각의 모든 파티클에 대해 Important Weight를 곱하고 큰 값을 기준으로 Resampling 하고 있으니 보정이 되고 있는 것이다.</p>
+          </li>
+          <li>P(X|Z): Posterior
+          2. <code class="language-plaintext highlighter-rouge">Motion Predict Step</code>:</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$P(X’) = \Sigma P(X’</td>
+              <td>X)P(X)$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul>
+          <li>
+            <p>P(X): Particle</p>
+          </li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>P(X’</td>
+                  <td>X)는 각각의 입자에 대한 이동 모델이고</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>이것을 다 나타낸 것이 새로운 Particle 인 것이다.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ol>
+      <li>
+        <p>정리하면, Particle Filter도 Bayisan Filter의 표현형 중 하나인 것이다.</p>
+      </li>
+      <li>
+        <p>Original Bayisan Form   <img src="https://sungwookle.github.io/assets/bayes_process.png" alt="image" /></p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="3-implementation-of-particle-filter">3. Implementation of Particle Filter</h2>
+
+<ul>
+  <li>아래의 초록색 박스가 파티클 필터의 <code class="language-plaintext highlighter-rouge">process</code>
+<img src="https://video.udacity-data.com/topher/2017/August/5989f54e_02-l-pseudocode.00-00-47-13.still006/02-l-pseudocode.00-00-47-13.still006.png" alt="process_PF" /></li>
+  <li>pseudo code로는 아래와 같다.
+<img src="https://video.udacity-data.com/topher/2017/August/5989f70c_02-l-pseudocode.00-00-16-01.still002/02-l-pseudocode.00-00-16-01.still002.png" alt="pseudo" />
+    <ol>
+      <li>샘플을 initialize 한다.</li>
+      <li>샘플들을 주어진 input에 따라 움직이게 한다.</li>
+      <li>샘플들의 <code class="language-plaintext highlighter-rouge">observation</code>정보와 <code class="language-plaintext highlighter-rouge">landmark</code>까지의 거리 matching 확률을 계산한다.</li>
+      <li>~weight 값을 기준으로 resampling 한다.</li>
+    </ol>
+  </li>
+  <li>
+    <p>실제로 파티클 필터를 구현하려고 하면, 센서 데이터를 파티클 필터 기준으로 <code class="language-plaintext highlighter-rouge">TRANSFORM</code>해야할 것이고, 그 다음 여러 개의 센서를 쓴다면 <code class="language-plaintext highlighter-rouge">ASSOCIATE</code>해주고 <code class="language-plaintext highlighter-rouge">LANDMARK</code>와 결합를 지어주어야 할 것이다. 그 다음에서야 matching 확률을 계산해줄 수 있다.
+<img src="/assets/plane_transformation.png" alt="transformation" /></p>
+  </li>
+  <li>
+    <p>2D 공간에서 파티클 필터를 이용한 localization 함수 구성 flow는 해당 강의를 참고하자: <a href="https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/e3981fd5-8266-43be-a497-a862af9187d4/concepts/8c4483e7-ab82-49e3-b640-593f7d5e8cd4">링크</a></p>
+  </li>
+  <li><a href="https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/e3981fd5-8266-43be-a497-a862af9187d4/concepts/f32443f3-0a61-41a6-987d-0481427ec29f">SLAM and Mapping Paper</a></li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#research" class="page__taxonomy-item" rel="tag">research</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-07T00:00:00+09:00">October 7, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/research/Localization_Bayes/" class="pagination--pager" title="Localization: Essential with Bayes Filter
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:joker1251@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/SungwookLE" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/sungwookle/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 SungwookLE. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

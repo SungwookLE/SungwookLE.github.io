@@ -203,9 +203,15 @@ var store = [{
         "url": "/research/ROS_Integration1/",
         "teaser": null
       },{
-        "title": "Localization basic",
-        "excerpt":"Localization basic AUTHOR: Sungwook LE DATE: ‘21.10/5 1. Introduction Localization Insight: check below image.. Localization needs informations such as MAP, Onboard Sensor, GPS... Filters that could be used are Histogram Filters, Kalman Filters, Particle Filters... Localization: 1. “Where is our car in a given map with an accuracy of 10cm...","categories": ["research"],
+        "title": "Localization: Essential with Bayes Filter",
+        "excerpt":"Localization Essential AUTHOR: Sungwook LE DATE: ‘21.10/5 1. Introduction Localization Insight: check below image.. Localization needs informations such as MAP, Onboard Sensor, GPS... Filters that could be used are Histogram Filters, Kalman Filters, Particle Filters... Localization: 1. “Where is our car in a given map with an accuracy of 10cm...","categories": ["research"],
         "tags": ["research"],
-        "url": "/research/ParticleFilter/",
+        "url": "/research/Localization_Bayes/",
+        "teaser": null
+      },{
+        "title": "Localization: Particle Filter",
+        "excerpt":"Localization: Particle Filter AUTHOR: Sungwook LE DATE: ‘21.10/7 1. Introduction 파티클 필터를 이용하여 localization을 문제를 풀 수 있다. localization 문제에서 Kalman Filter는 효율적이나, uni-modal의 belif를 가지고 있다는 것이 큰 단점이 된다. Particle Filter는 particle의 개수에 따라 효율이 결정되지만, multi-modal을 풀 수 있다는 장점이 있다. multi-modal을 풀 수 있다는 것은 highly...","categories": ["research"],
+        "tags": ["research"],
+        "url": "/research/Localization_ParticleFilter/",
         "teaser": null
       }]
