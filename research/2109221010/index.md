@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-10-04 10:10
-category: Path
+category: ROS
 title: Autonomous Stack Integration with ROS
 subtitle: ROS를 이용하여 Autonomous Stack을 Integration 해보자
 writer: 100

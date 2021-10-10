@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-10-05 10:10
-category: Path
+category: Localization
 title: Localization- Essential with Bayes Filter
 subtitle: 1D Localization Problem with bayes
 writer: 100
