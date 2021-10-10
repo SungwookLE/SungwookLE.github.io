@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>CODING TEST QUADTREE 2630</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="CODING TEST QUADTREE 2630">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Study
+            </div>
+        </div>
+        <h1 class="post-title">
+            CODING TEST QUADTREE 2630
+        </h1>
+        <h2 class="post-subtitle">
+            DataStructure QUADTREE
+        </h2>
+        <h2 class="post-date">
+            2021-07-11 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <h1 id="datastructure-quadtree-2630">DataStructure: QUADTREE #2630</h1>
+<p>AUTHOR: SungwookLE<br />
+DATE: ‘21.7/11<br />
+PROBLEM: <a href="https://www.acmicpc.net/problem/2630">백준#2530</a><br />
+REFERENCE: https://chessire.tistory.com/entry/%EC%BF%BC%EB%93%9C%ED%8A%B8%EB%A6%ACQuad-tree</p>
+
+<h2 id="1-quadtree란">1. QUADTREE란</h2>
+<ul>
+  <li>쿼드트리란?
+  트리 자료구조중 하나로 부모 노드 아래에 자식 노드를 4개(Quad)씩 가지고 있는 트리.<br />
+  이미지 용량, 충돌, 컬링 등 다양한 곳에서 최적화 기법으로 사용되고 있음<br />
+<img src="https://www.acmicpc.net/upload/images/VHJpKWQDv.png" alt="image" /><br />
+위와 같은 데이터(흑백이미지라고 해보자)를 압축시킬 때, 사용할 수 있는 방법으로, 다음과 같이 데이터를 압축시킬 수 있는 것:  ((1000)(0110)((1001)001)1)</li>
+</ul>
+
+<h2 id="2-code">2. CODE</h2>
+<ul>
+  <li>입력으로 주어진 종이의 한 변의 길이 N과 각 정사각형칸의 색(하얀색 또는 파란색)이 주어질 때, 잘라진 하얀색 색종이와 파란색 색종이의 개수를 구하는 프로그램을 작성하시오.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span>
+<span class="k">class</span> <span class="nc">solver_2630</span><span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">insert</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">one_rect</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">one_rect</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="n">rect</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">one_rect</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">monitor_rect</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"RECTANGULAR: </span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">one</span> <span class="o">:</span> <span class="n">rect</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">ele</span> <span class="o">:</span> <span class="n">one</span><span class="p">)</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ele</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">quadTree</span><span class="p">(</span><span class="kt">int</span> <span class="n">beginX</span><span class="p">,</span> <span class="kt">int</span> <span class="n">beginY</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">beginData</span> <span class="o">=</span> <span class="n">rect</span><span class="p">[</span><span class="n">beginY</span><span class="p">][</span><span class="n">beginX</span><span class="p">];</span>
+        <span class="kt">bool</span> <span class="n">isCombinable</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">beginY</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">beginY</span><span class="o">+</span><span class="n">size</span> <span class="p">;</span> <span class="o">++</span><span class="n">y</span><span class="p">){</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">beginX</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">beginX</span> <span class="o">+</span><span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">x</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">beginData</span> <span class="o">!=</span> <span class="n">rect</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]){</span>
+                    <span class="n">isCombinable</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">isCombinable</span><span class="o">==</span><span class="nb">false</span><span class="p">)</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">isCombinable</span><span class="p">){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">beginData</span> <span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">beginData</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">white</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">beginData</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">blue</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+            
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="kt">int</span> <span class="n">halfSize</span> <span class="o">=</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"("</span><span class="p">;</span>
+            <span class="n">quadTree</span><span class="p">(</span><span class="n">beginX</span><span class="p">,</span> <span class="n">beginY</span><span class="p">,</span> <span class="n">halfSize</span><span class="p">);</span>
+            <span class="n">quadTree</span><span class="p">(</span><span class="n">beginX</span> <span class="o">+</span> <span class="n">halfSize</span> <span class="p">,</span> <span class="n">beginY</span><span class="p">,</span> <span class="n">halfSize</span><span class="p">);</span>
+            <span class="n">quadTree</span><span class="p">(</span><span class="n">beginX</span><span class="p">,</span> <span class="n">beginY</span><span class="o">+</span><span class="n">halfSize</span><span class="p">,</span> <span class="n">halfSize</span><span class="p">);</span>
+            <span class="n">quadTree</span><span class="p">(</span><span class="n">beginX</span><span class="o">+</span><span class="n">halfSize</span><span class="p">,</span> <span class="n">beginY</span><span class="o">+</span><span class="n">halfSize</span><span class="p">,</span> <span class="n">halfSize</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">")"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">print_answer</span><span class="p">(){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">white</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">blue</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+    <span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">rect</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">white</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">blue</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">solver_2630</span> <span class="n">solver</span><span class="p">;</span>
+    <span class="n">solver</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+    <span class="n">solver</span><span class="p">.</span><span class="n">quadTree</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">solver</span><span class="p">.</span><span class="n">N</span><span class="p">);</span>
+    <span class="n">solver</span><span class="p">.</span><span class="n">print_answer</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=quadtree"><span class="tag" data-tag="quadtree">quadtree</span></a>
+        
+        <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

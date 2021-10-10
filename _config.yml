@@ -22,9 +22,9 @@ title: SungwookLE
 author: SungwookLE
 email: joker1251@naver.com
 description: >- # this means to ignore newlines until "baseurl:"
-  SungwookLE Homepage
+  HOMEPAGE:: SungwookLE
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://sungwookle.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://sungwookLE.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: minima

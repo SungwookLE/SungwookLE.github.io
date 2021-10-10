@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Research | SungwookLE</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Research | SungwookLE">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="loading-animation">
+
+<script>
+    function filterByTagName(tagName) {
+        $('.hidden').removeClass('hidden');
+        $('.catalogue-item').each(function(index, elem) {
+            if (!elem.hasAttribute("data-" + tagName)) {
+                $(elem).addClass('hidden');
+            }
+        });
+        $(".tag").removeClass('selected');
+        $(".tag[data-tag=" + tagName + "]").addClass('selected');
+    }
+
+    function updateQueryString(tagName) {
+        const path = location.protocol + "//" + location.host + location.pathname + "?tag=" + tagName;
+        window.history.replaceState({ path: path }, '', path);
+    }
+
+    function sortTag(a,b){
+        a = $(a).attr("data-tag");
+        b = $(b).attr("data-tag");
+        if(a > b) {
+            return 1;
+        } else if(a < b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    function makeTagList(){
+        let $tags = $(".tag");
+        const tags = [];
+        for(let i = 0; i < $tags.length; i++){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            if(tags.indexOf(repTagText) < 0) {
+                tags.push(repTagText);
+                $("#tag-list")[0].innerHTML += '<span class="tag" data-tag="' + repTagText +'">' + repTagText + '</span>';
+            }
+        }
+        $('#tag-list span').sort(sortTag).appendTo('#tag-list');
+    }
+
+    function getAllTagList() {
+        const $tags = Array.prototype.slice.call($('#tag-list span'))
+        const result = [];
+        for(let i in $tags){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            result.push(repTagText)
+        }
+        return result;
+    }
+
+    function linkTag(){
+        const queryTag = window.location.search.substring(5);
+        const tags = getAllTagList();
+        var flag = false;
+
+        for(let i = 0; i < tags.length; i++){
+            if(queryTag === tags[i]){
+                flag = true;
+            }
+        }
+        if (queryTag && flag) {
+            filterByTagName(queryTag);
+        }
+    }
+
+    function tagFilter(){
+        makeTagList();
+        linkTag();
+        $("[data-tag]").click(function(e) {
+            const currentTag = e.target.dataset.tag;
+            filterByTagName(currentTag);
+            updateQueryString(currentTag);
+        })
+    }
+
+    $(document).ready(function() {
+        tagFilter();
+    });
+</script>
+
+<div class="tag-container">
+  <div id="tag-list" class="tag-list"></div>
+</div>
+
+
+<ul class="catalogue">
+
+
+<li class="catalogue-item list" data-partich="" data-filter="" data-localization="">
+    <a href="/research/2110071010/">
+        
+        
+        <p class="catalogue-category">
+            Path
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Localization- Particle Filter
+            </h1>
+            <p class="catalogue-sub">
+                Particle Filter Study in Localization
+            </p>
+            <p class="catalogue-date">
+                2021-10-07 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Localization: Particle Filter
+
+  AUTHOR: Sungwook LE  
+DATE: ‘21.10/7
+
+
+1. Introduction
+
+
+  파티클 필터를 이용하여 localization을 문제를 풀 수 있다.
+  localization 문제에서 Kalman Filter는 효...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Partich"><span class="tag" data-tag="Partich">Partich</span></a>
+        
+            <a href="/research/?tag=Filter"><span class="tag" data-tag="Filter">Filter</span></a>
+        
+            <a href="/research/?tag=Localization"><span class="tag" data-tag="Localization">Localization</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-localization="" data-baysian="" data-filter="">
+    <a href="/research/2110051010/">
+        
+        
+        <p class="catalogue-category">
+            Path
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Localization- Essential with Bayes Filter
+            </h1>
+            <p class="catalogue-sub">
+                1D Localization Problem with bayes
+            </p>
+            <p class="catalogue-date">
+                2021-10-05 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Localization Essential
+
+  AUTHOR: Sungwook LE  
+DATE: ‘21.10/5
+
+
+1. Introduction
+
+  Localization Insight: check below image..
+  Localization needs informations such as...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Localization"><span class="tag" data-tag="Localization">Localization</span></a>
+        
+            <a href="/research/?tag=Baysian"><span class="tag" data-tag="Baysian">Baysian</span></a>
+        
+            <a href="/research/?tag=Filter"><span class="tag" data-tag="Filter">Filter</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-ros="" data-stack="">
+    <a href="/research/2109221010/">
+        
+        
+        <p class="catalogue-category">
+            Path
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Autonomous Stack Integration with ROS
+            </h1>
+            <p class="catalogue-sub">
+                ROS를 이용하여 Autonomous Stack을 Integration 해보자
+            </p>
+            <p class="catalogue-date">
+                2021-10-04 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Autonomous Integration Project: Step1
+
+  AUTHOR: Sungwook LE
+DATE: ‘21.10/4
+Lecture: System Integration, Udacity  
+My Repo: Here 
+ROS WIKI: Here
+ROS 용어: Here
+국문 메뉴얼: H...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=ROS"><span class="tag" data-tag="ROS">ROS</span></a>
+        
+            <a href="/research/?tag=Stack"><span class="tag" data-tag="Stack">Stack</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-path="" data-astar="">
+    <a href="/research/2109191010/">
+        
+        
+        <p class="catalogue-category">
+            Path
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Find Route- A Star Essential
+            </h1>
+            <p class="catalogue-sub">
+                주차 시스템에서 많이 쓰이는 경로계획법 A-star를 리뷰하자
+            </p>
+            <p class="catalogue-date">
+                2021-09-19 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                A star algorithm Review
+
+  AUTHOR: Sungwook LE
+DATE: ‘21.9/19
+Reference: My Implementation
+Code: My Code
+
+
+1. Introduction
+
+  
+    A star algorithm은 효율적인 최단거리 길찾기 알고리즘...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=PATH"><span class="tag" data-tag="PATH">PATH</span></a>
+        
+            <a href="/research/?tag=AStar"><span class="tag" data-tag="AStar">AStar</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-ukf="" data-kalman="">
+    <a href="/research/2109181010/">
+        
+        
+        <p class="catalogue-category">
+            Kalman
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Kalman Filter- Unscented
+            </h1>
+            <p class="catalogue-sub">
+                Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터
+            </p>
+            <p class="catalogue-date">
+                2021-09-18 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Unsented 칼만 필터
+
+  AUTHOR: Sungwook LE
+DATE: ‘21.9/18
+Book: 칼만필터의 이해, 김성필
+Implementation Code: My Code
+Refernece: 블로그 참고 This
+
+
+
+  Extended 칼만 필터가 선형 알고리즘을 자연스럽게 확장해 No...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=UKF"><span class="tag" data-tag="UKF">UKF</span></a>
+        
+            <a href="/research/?tag=Kalman"><span class="tag" data-tag="Kalman">Kalman</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-ekf="" data-kalman="" data-sensorfusion="">
+    <a href="/research/2109151010/">
+        
+        
+        <p class="catalogue-category">
+            Kalman
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Kalman Filter- Lidar+Radar Sensorfusion with EKF
+            </h1>
+            <p class="catalogue-sub">
+                동일/싱글 pedestrian에 대한 Lidar+Radar 센서퓨전
+            </p>
+            <p class="catalogue-date">
+                2021-09-15 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Lidar+Radar Sensorfusion with Extended Kalman Filter
+
+
+  Author: SungwookLE
+ DATE: ‘21.9/14
+ Comment: Radar+Lidar Sensor Fusion Project on Udacity(Self-Driving Car Eng...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=EKF"><span class="tag" data-tag="EKF">EKF</span></a>
+        
+            <a href="/research/?tag=Kalman"><span class="tag" data-tag="Kalman">Kalman</span></a>
+        
+            <a href="/research/?tag=SensorFusion"><span class="tag" data-tag="SensorFusion">SensorFusion</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-lkf="" data-kalman="">
+    <a href="/research/2109121010/">
+        
+        
+        <p class="catalogue-category">
+            Kalman
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Kalman Filter- Essential
+            </h1>
+            <p class="catalogue-sub">
+                칼만필터에 대한 학습, equation 유도, c++ 구현
+            </p>
+            <p class="catalogue-date">
+                2021-09-12 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Kalman Filter: Essential
+AUTHOR: SungwookLE
+DATE: ‘21.9/12
+LECTURE: Udacity Lecture
+PAPER: Discrete system 차량 상태 추정
+
+1. Introduction
+
+  
+    시작하기 전에, 짧게 추정기(Estimator)...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=LKF"><span class="tag" data-tag="LKF">LKF</span></a>
+        
+            <a href="/research/?tag=Kalman"><span class="tag" data-tag="Kalman">Kalman</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-computerscience="" data-build="" data-ci="" data-cd="">
+    <a href="/research/2109041010/">
+        
+        
+        <p class="catalogue-category">
+            ComputerScience
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Build Process Review and CI, CD
+            </h1>
+            <p class="catalogue-sub">
+                Build preprocessing-comilation-assemble-linking, Continuous Integration, Continuous Delivery, Continuous Deployment
+            </p>
+            <p class="catalogue-date">
+                2021-09-04 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                빌드 프로세스 Review 및 CI, CD
+AUTHOR: SungwookLE
+DATE: ‘21.9/4
+REFERENCE: REF
+CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment Youtube
+
+한번 정리하는 과정을 ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=ComputerScience"><span class="tag" data-tag="ComputerScience">ComputerScience</span></a>
+        
+            <a href="/research/?tag=Build"><span class="tag" data-tag="Build">Build</span></a>
+        
+            <a href="/research/?tag=CI"><span class="tag" data-tag="CI">CI</span></a>
+        
+            <a href="/research/?tag=CD"><span class="tag" data-tag="CD">CD</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-pytorch="">
+    <a href="/research/2108061010/">
+        
+        
+        <p class="catalogue-category">
+            Pytorch
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                AI- Pytorch Studying
+            </h1>
+            <p class="catalogue-sub">
+                Tutorial- Pytorch quick start
+            </p>
+            <p class="catalogue-date">
+                2021-08-06 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Pytorch: Quick Start
+AUTHOR: SungwookLE
+DATE: ‘21.8/6
+TUTORIAL: Tutorial Pytorch Korea
+
+빠른 시작(QuickStart)
+
+
+  link
+이번 장에서는 기계 학습의 일반적인 작업들을 위한 API를 통해 실행됩니다. 더 자세히 알아보...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Pytorch"><span class="tag" data-tag="Pytorch">Pytorch</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-humanpose="" data-cmu="">
+    <a href="/research/2107271010/">
+        
+        
+        <p class="catalogue-category">
+            Humanpose
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                HumanPose- CMU Panoptic Dataset
+            </h1>
+            <p class="catalogue-sub">
+                Preprocessing and Exploratory Data Analysis
+            </p>
+            <p class="catalogue-date">
+                2021-07-27 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                HumanPose: Panoptic Data
+AUTHOR: SungwookLE
+DATE: ‘21.7/28
+GIT REPO: CMU-Perceptual-Computing-Lab
+DOCU: docu
+DATASET: Panoptic
+
+HumanPose 분야 관련 용어
+
+
+  
+    
+      Top-...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Humanpose"><span class="tag" data-tag="Humanpose">Humanpose</span></a>
+        
+            <a href="/research/?tag=CMU"><span class="tag" data-tag="CMU">CMU</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-nlp="">
+    <a href="/research/2107141010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle Distracted Driver
+            </h1>
+            <p class="catalogue-sub">
+                Vision Classifier- CNN, Distracted driver or Not?
+            </p>
+            <p class="catalogue-date">
+                2021-07-14 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DISTRACTED_DRIVER_CLASSIFIER
+AUTHOR: SungwookLE
+DATE: ‘21.7/13
+PROBLEM: KAGGLE
+REFERENCE: Convolutional Neural Network, REF
+
+
+Your goal is to predict the likelihood of...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=NLP"><span class="tag" data-tag="NLP">NLP</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-nlp="">
+    <a href="/research/2107101010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle Disaster Tweets"
+            </h1>
+            <p class="catalogue-sub">
+                NLP Classifier- Natural Language Processing, Disaster or Not?
+            </p>
+            <p class="catalogue-date">
+                2021-07-10 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                KAGGLE: Natural Language Processing with Diaster Tweets
+AUTHOR: SungwookLE
+DATE: ‘21.7/9
+DATA: https://www.kaggle.com/c/nlp-getting-started/overview
+REFERENCE: https:/...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=NLP"><span class="tag" data-tag="NLP">NLP</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-classifier="">
+    <a href="/research/2107041010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle HeartAttack"
+            </h1>
+            <p class="catalogue-sub">
+                Classifier- Heart Attack probability high or low?
+            </p>
+            <p class="catalogue-date">
+                2021-07-04 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                KAGGLE: HEART ATTACK PREDICT
+AUTHOR: SungwookLE
+DATE: ‘21.7/4
+DATASET: https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset
+
+
+About this ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Classifier"><span class="tag" data-tag="Classifier">Classifier</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-keras_feed="">
+    <a href="/research/2106301010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Keras_Basic
+            </h1>
+            <p class="catalogue-sub">
+                Keras Feed Input(n_dim=4), Overfit &amp; Underfit
+            </p>
+            <p class="catalogue-date">
+                2021-06-30 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Keras_Basic
+
+  AUTHOR: SungwookLE
+  
+    DATE: ‘21.6/30
+  
+  PROBLEM
+1) 아래 코드의 문제점을 적고 해결하라 (한줄추가)
+      X_train = X_train.reshape((X_train.shape[0],X_train.shape[1],X...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=keras_feed"><span class="tag" data-tag="keras_feed">keras_feed</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-classifier="">
+    <a href="/research/2106291010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis sklearn_TypeC
+            </h1>
+            <p class="catalogue-sub">
+                Clustering- KMeans 다뤄보자
+            </p>
+            <p class="catalogue-date">
+                2021-06-29 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                sklearn_TypeC
+
+  AUTHOR: SungwookLE
+  
+    DATE: ‘21.6/29
+  
+  문제:
+    
+      제공된 데이터를 이용하여 유사한 데이터끼리 묶는 군집화 수행
+      군집의 대표값을 추출하여 제출 문서에 작성
+      input_test.csv 파일로 ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Classifier"><span class="tag" data-tag="Classifier">Classifier</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-classifier="">
+    <a href="/research/2106281100/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle Titanic_by_myself
+            </h1>
+            <p class="catalogue-sub">
+                Classifier- Classification with feature engineering
+            </p>
+            <p class="catalogue-date">
+                2021-06-28 11:00
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Titanic Survived Predict
+AUTHOR: SungwookLE
+DATE: ‘21.6/28
+PROBLEM: Classifier Kaggle LINK
+REFERENCE:
+
+  #1 LECTURE
+  #2 LECTURE
+  
+    #3 LECTURE
+  
+  
+    The Challe...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Classifier"><span class="tag" data-tag="Classifier">Classifier</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-pca="">
+    <a href="/research/2106281010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis sklearn_TypeB
+            </h1>
+            <p class="catalogue-sub">
+                PCA- Feature Dimenssion Reduction 다뤄보자
+            </p>
+            <p class="catalogue-date">
+                2021-06-28 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                sklearn_TypeB
+
+  AUTHOR: SungwookLE
+  DATE: ‘21.6/28
+
+
+문제:
+
+  5차원으로 데이터의 차원 축소
+  축소를 통해 정리된 인자들의 특성을 살펴라
+
+
+OVEVIEW
+
+  Data Load and View
+  Feature Dimenstion Reduce
+  ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=PCA"><span class="tag" data-tag="PCA">PCA</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-classifier="">
+    <a href="/research/2106271010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis sklearn_TypeA
+            </h1>
+            <p class="catalogue-sub">
+                Binary 라벨로 분류학습
+            </p>
+            <p class="catalogue-date">
+                2021-06-27 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                sklearn_TypeA
+
+  AUTHOR: SungwookLE
+  
+    DATE: ‘21.6/27
+  
+  문제:
+    
+      제공 데이터 활용, 최소 3개 이상의 알고리즘을 활용해 binary classification 문제를 해결하고,
+      input_test.csv 파일로 각...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Classifier"><span class="tag" data-tag="Classifier">Classifier</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-regressor="">
+    <a href="/research/2106261010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle HousePrice
+            </h1>
+            <p class="catalogue-sub">
+                Regressor- regression with feature engineering
+            </p>
+            <p class="catalogue-date">
+                2021-06-26 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                House SalePrice Predict
+AUTHOR: SungwookLE
+DATE: ‘21.6/26
+PROBLEM: Regression Kaggle LINK
+REFERENCE: https://www.kaggle.com/bsivavenu/house-price-calculation-methods-f...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Regressor"><span class="tag" data-tag="Regressor">Regressor</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-kaggle="" data-classifier="">
+    <a href="/research/2106211010/">
+        
+        
+        <p class="catalogue-category">
+            Kaggle
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                DataAnalysis Kaggle Titanic
+            </h1>
+            <p class="catalogue-sub">
+                Classifier- pandas, numpy, sklearn 기본 머신러닝 모델 살펴볼 목적으로 해본 Kaggle- 레퍼런스 자료를 참고하면서 따라해봄
+            </p>
+            <p class="catalogue-date">
+                2021-06-21 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                Data Analysis: Kaggle Titanic
+
+  AUTHOR: SungwookLE
+DATE: ‘21.6/21
+
+
+
+  numerical data 의 binning techniques
+  categorical data 의 map method 확인할 수 있음
+
+
+KEGGLE #1
+
+  SUB...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=Kaggle"><span class="tag" data-tag="Kaggle">Kaggle</span></a>
+        
+            <a href="/research/?tag=Classifier"><span class="tag" data-tag="Classifier">Classifier</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-ros="" data-robot="">
+    <a href="/research/2106011010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Robotics Go Chase It"
+            </h1>
+            <p class="catalogue-sub">
+                흰 공을 따라다니는 모바일 로봇(카메라 픽셀만 찾아서)
+            </p>
+            <p class="catalogue-date">
+                2021-06-01 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                PROJECT: Go Chase It
+
+  AUTHOR: SungwookLE
+DATE: ‘21.6/1
+
+
+[1]
+
+  채워나가야 함
+  
+    프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고,
+  
+  이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=ROS"><span class="tag" data-tag="ROS">ROS</span></a>
+        
+            <a href="/research/?tag=robot"><span class="tag" data-tag="robot">robot</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-plan="">
+    <a href="/research/2105121010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                스터디에 대하여
+            </h1>
+            <p class="catalogue-sub">
+                어떻게 하는게 좋을까
+            </p>
+            <p class="catalogue-date">
+                2021-05-12 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                계획
+최근, 뭔가 루즈해졌다, 그게 나쁜건 아닌데 이런 순간이 오면 조만간 슬럼프가 찾아올 수 있기 때문에 정리가 필요한듯싶다,
+  어디까지를 탐구하고, 어디까지를 내 것으로 만들어야 할지, 좀 더 쉽고 간결한 미션
+
+세팅
+
+  원래 하던 것에 있어선, 잘해야,,
+    
+      SIMULINK...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=plan"><span class="tag" data-tag="plan">plan</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+<li class="catalogue-item list" data-ros="" data-robot="">
+    <a href="/research/2105071010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                Robotics Chapter1-1
+            </h1>
+            <p class="catalogue-sub">
+                Robotics Nanodegree Introduction to Robotics
+            </p>
+            <p class="catalogue-date">
+                2021-05-07 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                PROJECT1
+
+  AUTHOR: SungwookLE
+DATE: ‘21.5/7
+
+
+프로젝트 치트시트라는데 참고
+Download: pdf 
+ 
+
+이번 프로젝트에서 시키는 건,
+
+  Summary of Tasks
+  Let’s summarize what you should do in this proj...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/research/?tag=ROS"><span class="tag" data-tag="ROS">ROS</span></a>
+        
+            <a href="/research/?tag=robot"><span class="tag" data-tag="robot">robot</span></a>
+        
+    
+</div>
+        </div>
+</li>
+
+</ul>
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>스터디에 대하여</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="스터디에 대하여">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2105121010/http://4.bp.blogspot.com/-f3dhtcqzWK8/VMD9amA2QZI/AAAAAAAABM8/-251oumu-oc/s1600/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_5.jpg">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('http://4.bp.blogspot.com/-f3dhtcqzWK8/VMD9amA2QZI/AAAAAAAABM8/-251oumu-oc/s1600/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_5.jpg')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Study
+            </div>
+        </div>
+        <h1 class="post-title">
+            스터디에 대하여
+        </h1>
+        <h2 class="post-subtitle">
+            어떻게 하는게 좋을까
+        </h2>
+        <h2 class="post-date">
+            2021-05-12 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <h4 id="계획">계획</h4>
+<p>최근, 뭔가 루즈해졌다, 그게 나쁜건 아닌데 이런 순간이 오면 조만간 슬럼프가 찾아올 수 있기 때문에 정리가 필요한듯싶다,
+  어디까지를 탐구하고, 어디까지를 내 것으로 만들어야 할지, 좀 더 쉽고 간결한 미션</p>
+
+<h4 id="세팅">세팅</h4>
+<ol>
+  <li>원래 하던 것에 있어선, 잘해야,,
+    <ul>
+      <li>SIMULINK/C기반 위치추정/제어 로직, 동역학/제어이론</li>
+      <li>C++기반 위치추정(localization), 확률기반 필터</li>
+      <li>칼만 필터, 최적화기법 등</li>
+    </ul>
+  </li>
+  <li>새로운 분야에 있어선, 인사이트 ex: 프로젝트 참가 등
+    <ul>
+      <li>카메라 기반 opencv 알고리즘</li>
+      <li>python기반 딥러닝 tensorflow</li>
+      <li>ROS &lt;- 로직개발에 좀 더 편리한 나에게 유용</li>
+    </ul>
+  </li>
+  <li>SW 이슈/관리 능력
+    <ul>
+      <li>git, SVN, conda, docker</li>
+      <li>vcdm, jira,, testing/realese</li>
+      <li>아키텍트 연습/고민, (품질있는 SW가 경쟁력)</li>
+    </ul>
+  </li>
+  <li>출입권: 코딩 테스트(알고리즘)
+    <ul>
+      <li>이건 문제 꾸준히 많이 푸는게,</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="go-further">Go Further</h4>
+<p>it ain’t about how hard you hit, it is about how hard you can get hit and keep moving forward, how much can you take and keep moving forward<br />
+  <img src="http://4.bp.blogspot.com/-f3dhtcqzWK8/VMD9amA2QZI/AAAAAAAABM8/-251oumu-oc/s1600/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_5.jpg" alt="image" /></p>
+
+<h4 id="끝">끝</h4>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=plan"><span class="tag" data-tag="plan">plan</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>algorithm | SungwookLE</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="algorithm | SungwookLE">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="loading-animation">
+
+<script>
+    function filterByTagName(tagName) {
+        $('.hidden').removeClass('hidden');
+        $('.catalogue-item').each(function(index, elem) {
+            if (!elem.hasAttribute("data-" + tagName)) {
+                $(elem).addClass('hidden');
+            }
+        });
+        $(".tag").removeClass('selected');
+        $(".tag[data-tag=" + tagName + "]").addClass('selected');
+    }
+
+    function updateQueryString(tagName) {
+        const path = location.protocol + "//" + location.host + location.pathname + "?tag=" + tagName;
+        window.history.replaceState({ path: path }, '', path);
+    }
+
+    function sortTag(a,b){
+        a = $(a).attr("data-tag");
+        b = $(b).attr("data-tag");
+        if(a > b) {
+            return 1;
+        } else if(a < b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    function makeTagList(){
+        let $tags = $(".tag");
+        const tags = [];
+        for(let i = 0; i < $tags.length; i++){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            if(tags.indexOf(repTagText) < 0) {
+                tags.push(repTagText);
+                $("#tag-list")[0].innerHTML += '<span class="tag" data-tag="' + repTagText +'">' + repTagText + '</span>';
+            }
+        }
+        $('#tag-list span').sort(sortTag).appendTo('#tag-list');
+    }
+
+    function getAllTagList() {
+        const $tags = Array.prototype.slice.call($('#tag-list span'))
+        const result = [];
+        for(let i in $tags){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            result.push(repTagText)
+        }
+        return result;
+    }
+
+    function linkTag(){
+        const queryTag = window.location.search.substring(5);
+        const tags = getAllTagList();
+        var flag = false;
+
+        for(let i = 0; i < tags.length; i++){
+            if(queryTag === tags[i]){
+                flag = true;
+            }
+        }
+        if (queryTag && flag) {
+            filterByTagName(queryTag);
+        }
+    }
+
+    function tagFilter(){
+        makeTagList();
+        linkTag();
+        $("[data-tag]").click(function(e) {
+            const currentTag = e.target.dataset.tag;
+            filterByTagName(currentTag);
+            updateQueryString(currentTag);
+        })
+    }
+
+    $(document).ready(function() {
+        tagFilter();
+    });
+</script>
+
+<div class="tag-container">
+  <div id="tag-list" class="tag-list"></div>
+</div>
+
+<ul class="catalogue">
+    
+    
+    <li class="catalogue-item list" data-binary_search="" data-baekjoon="">
+    <a href="/algorithm/2108021010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST Binary Search Problem
+            </h1>
+            <p class="catalogue-sub">
+                Binary Search for finding the biggest answer
+            </p>
+            <p class="catalogue-date">
+                2021-08-02 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DataStructure: Binary Search
+AUTHOR: SungwookLE 
+DATE: ‘21.8/2
+PROBLEM: 백준#1920, 백준#10816, 백준#1645, 백준#2805, 백준#2110
+
+1. Binary Search
+
+  계속 탐색 대상의 데이터를 반으로 줄여나가므로 이분탐...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=binary_search"><span class="tag" data-tag="binary_search">binary_search</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+</li>
+    
+    <li class="catalogue-item list" data-priority_queue="" data-baekjoon="">
+    <a href="/algorithm/2107271100/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST  Priority Queue 11279
+            </h1>
+            <p class="catalogue-sub">
+                Priority Queue ...
+            </p>
+            <p class="catalogue-date">
+                2021-07-27 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                우선순위 큐 (Priority Queue)
+
+  Author: SungwookLE
+  DATE: ‘21.8/10
+  BAEKJOON: #11279
+  REFERENCE: REF
+
+
+1. 우선순위 큐
+
+  
+    First In, First Out의 일반적인 자료 컨테이너에서, 사용자가 우선순위에 ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=priority_queue"><span class="tag" data-tag="priority_queue">priority_queue</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+</li>
+    
+    &lt;li class="catalogue-item list"
+    
+        
+            data-Divide&amp;Conquer
+        
+            data-baekjoon
+        
+    &gt;
+    <a href="/algorithm/2107271010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST 2D the minist distance value 2261
+            </h1>
+            <p class="catalogue-sub">
+                Tree structure &amp; Divide and Conquer to reduce O(logN)
+            </p>
+            <p class="catalogue-date">
+                2021-07-27 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DataStructure: 2D the minist distance value #2261
+AUTHOR: SungwookLE 
+DATE: ‘21.7/27
+PROBLEM: 백준#2261
+REFERENCE: REF&amp;
+반례모음
+
+1. 2D 좌표의 최소값 구하기
+이 문제에서 많이 해맷던게,, 계속 시...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=Divide&amp;Conquer"><span class="tag" data-tag="Divide&amp;Conquer">Divide&amp;Conquer</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+&lt;/li&gt;
+    
+    &lt;li class="catalogue-item list"
+    
+        
+            data-Divide&amp;Conquer
+        
+            data-baekjoon
+        
+    &gt;
+    <a href="/algorithm/2107251010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST Segment Tree 6549
+            </h1>
+            <p class="catalogue-sub">
+                Tree structure &amp; Divide and Conquer to reduce O(logN)
+            </p>
+            <p class="catalogue-date">
+                2021-07-25 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DataStructure: Segment Tree Get highest histogram size #6549
+AUTHOR: SungwookLE
+DATE: ‘21.7/25
+PROBLEM: 백준#10830
+REFERENCE: https://cocoon1787.tistory.com/314
+
+1. 세그먼트...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=Divide&amp;Conquer"><span class="tag" data-tag="Divide&amp;Conquer">Divide&amp;Conquer</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+&lt;/li&gt;
+    
+    &lt;li class="catalogue-item list"
+    
+        
+            data-Divide&amp;Conquer
+        
+            data-baekjoon
+        
+    &gt;
+    <a href="/algorithm/2107151010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST Matrix Power Calculation 10830
+            </h1>
+            <p class="catalogue-sub">
+                Divide and Conquer to reduce O(n)
+            </p>
+            <p class="catalogue-date">
+                2021-07-15 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DataStructure: Matrix Power Calculation #10830
+AUTHOR: SungwookLE
+DATE: ‘21.7/15
+PROBLEM: 백준#10830
+REFERENCE: https://ssungkang.tistory.com/entry/C-BAEKJOON-10830-%ED%...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=Divide&amp;Conquer"><span class="tag" data-tag="Divide&amp;Conquer">Divide&amp;Conquer</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+&lt;/li&gt;
+    
+    <li class="catalogue-item list" data-quadtree="" data-baekjoon="">
+    <a href="/algorithm/2107111010/">
+        
+        
+        <p class="catalogue-category">
+            Study
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                CODING TEST QUADTREE 2630
+            </h1>
+            <p class="catalogue-sub">
+                DataStructure QUADTREE
+            </p>
+            <p class="catalogue-date">
+                2021-07-11 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                DataStructure: QUADTREE #2630
+AUTHOR: SungwookLE
+DATE: ‘21.7/11
+PROBLEM: 백준#2530
+REFERENCE: https://chessire.tistory.com/entry/%EC%BF%BC%EB%93%9C%ED%8A%B8%EB%A6%ACQuad...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/algorithm/?tag=quadtree"><span class="tag" data-tag="quadtree">quadtree</span></a>
+        
+            <a href="/algorithm/?tag=baekjoon"><span class="tag" data-tag="baekjoon">baekjoon</span></a>
+        
+    
+</div>
+        </div>
+</li>
+    
+</ul>
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

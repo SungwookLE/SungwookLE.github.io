@@ -1,0 +1,21 @@
+{% assign writer = site.data.members | where: 'id', mention.writer | first %}
+<div class="branch_line"></div>
+<div class="branch_point"></div>
+<div class="thumbnail">
+  {% assign thumbnail = site.static_files | where: 'basename', writer.id | first %}
+  <img class="profile" src="{{ thumbnail.path }}"/>
+  <div class="emoji"><span>{{ writer.emoji }}</span></div>
+</div>
+<div class="content_wrap">
+  <div class="line"></div>
+  <div class="mention" upload="{{mention.date}}">
+    <div class="message">
+      {{ mention.message }}
+    </div>
+    <div class="info">
+      <span class="writer">by {{ writer.name }}</span>
+      <span class="split">·</span>
+      <span class="date">{{ mention.date }}</span>
+    </div>
+  </div>
+</div>

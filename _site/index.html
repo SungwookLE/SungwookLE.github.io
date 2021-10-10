@@ -1,401 +1,273 @@
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
-  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- begin _includes/seo.html --><title>SungwookLE</title>
-<meta name="description" content="">
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- HTML Meta Tags -->
+  <title>SungwookLE</title>
+  <meta name="description" content="HOMEPAGE:: SungwookLE">
 
+  
 
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="SungwookLE">
-<meta property="og:title" content="SungwookLE">
-<meta property="og:url" content="sungwookle.github.io/">
-
-
-  <meta property="og:description" content="">
-
-
-
-
-
-
-
-
-
-
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="SungwookLE">
+  <meta itemprop="description" content="HOMEPAGE:: SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
 
   
 
   
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 
-<link rel="canonical" href="sungwookle.github.io/">
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+</head>
 
 
 
-  <link rel="next" href="sungwookle.github.io/page2/">
+
+<body>
 
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    
-      "@type": "Person",
-      "name": "SungwookLE",
-      "url": "sungwookle.github.io/"
-    
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
   }
 </script>
 
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="main">
+    <div class="main-banner">
+        <div class="content">
+            <div class="overlay" style="background: url('/meta/page_bg_01.png')"></div>
+            <div class="text-wrapper">
+                <div class="sub-title">
+                    <span class="no-wrap">
+                        SungwookLE
+                    </span>
+                </div>
+                <br/>
+                <div class="description">
+                    <span class="no-wrap">
+                        to infinity...
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
 
 
-<!-- end _includes/seo.html -->
 
 
-
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="SungwookLE Feed">
-
-
-<!-- https://t.co/dKP3o1e -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+<main>
+  <div class="loading-animation">
+  <section class="home">
+    <div class="section">
+      <span class="title"><span class="label-emoji">✍️</span>&nbsp;최근 게시물</span>
+      <div class="content">
+        <table class="catalogue">
+          <tr>
+            
+            
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-
-
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--home">
-    <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
-  <ul>
-    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
-    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
-    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
-  </ul>
-</nav>
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    
-
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        
-        <a class="site-title" href="/">
-          SungwookLE
-          <span class="site-subtitle">:::::::::::</span>
-        </a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/research/">Research</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories/algorithm/">Algorithm</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories/day/">Day</a>
-            </li></ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
+            <td class="catalogue-item card">
+  <a href="/research/2110071010/">
+    <div class="img-wrap">
+      <img src="research/2110071010/img/pf.png" class="catalogue-img" />
     </div>
-  </div>
-</div>
-
-
-    <div class="initial-content">
+    <div class="catalogue-info transition">
+      <h1 class="catalogue-title">
+        Localization- Particle Filter
+      </h1>
+      <p class="catalogue-sub">
+        Particle Filter Study in Localization
+      </p>
+      <p class="catalogue-date">
+        2021-10-07 10:10
+      </p>
+      <p class="catalogue-body">
       
+        Localization: Particle Filter
+
+  AUTHOR: Sungwook LE  
+DATE: ‘21.10/7
 
 
-
-<div id="main" role="main">
-  
+1. Introduction
 
 
-  <div class="archive">
-    
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
-
-<h3 class="archive__subtitle">Recent posts</h3>
-
-
-
-
-<div class="entries-list">
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/research/Localization_ParticleFilter/" rel="permalink">Localization: Particle Filter
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">Particle Filter Study in Localization
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/research/Localization_Bayes/" rel="permalink">Localization: Essential with Bayes Filter
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">1D Localization Problem with bayes
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/research/ROS_Integration1/" rel="permalink">Autonomous Stack Integration with ROS
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">ROS를 이용하여 Autonomous Stack을 Integration 해보자
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/day/travel_in_gapyeong/" rel="permalink">가평 데이트
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">‘21.9/23,24,25 가평 여행
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/research/FindRoute_Astar_essential/" rel="permalink">Find Route: A Star Essential
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">주차 시스템에서 많이 쓰이는 경로계획법 A-star를 리뷰하자
-</p>
-  </article>
-</div>
-
-  
-</div>
-
-
-<nav class="pagination">
-  
-  <ul>
-    
-    
-    <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
-    
-
-    
-    
-      <li><a href="#" class="disabled current">1</a></li>
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
+  파티클 필터를 이용하여 localization을 문제를 풀 수 있다.
+  localization 문...
         
-        
-        
-        <li><a href="/page2/">2</a></li>
-      
-    
-      
-        
-        
-        
-        <li><a href="/page3/">3</a></li>
-      
-    
-
-    
-    
-      <li><a href="#" class="disabled">&hellip;</a></li>
-    
-
-    
-      <li><a href="/page8/">8</a></li>
-    
-
-    
-    
-      <li><a href="/page2/">Next</a></li>
-    
-  </ul>
-</nav>
-
-
-
-  </div>
-</div>
+      </p>
     </div>
+  </a>
+</td>
+            
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
-    
-
-    <div id="footer" class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow:</strong></li>
-    
-
-    
+            <td class="catalogue-item card">
+  <a href="/research/2110051010/">
+    <div class="img-wrap">
+      <img src="research/2110051010/img/localization_intuition.png" class="catalogue-img" />
+    </div>
+    <div class="catalogue-info transition">
+      <h1 class="catalogue-title">
+        Localization- Essential with Bayes Filter
+      </h1>
+      <p class="catalogue-sub">
+        1D Localization Problem with bayes
+      </p>
+      <p class="catalogue-date">
+        2021-10-05 10:10
+      </p>
+      <p class="catalogue-body">
       
-        
-          <li><a href="mailto:joker1251@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
-        
-      
-        
-          <li><a href="https://github.com/SungwookLE" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-        
-      
-        
-          <li><a href="https://www.linkedin.com/in/sungwookle/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
-        
-      
-    
+        Localization Essential
 
+  AUTHOR: Sungwook LE  
+DATE: ‘21.10/5
+
+
+1. Introduction
+
+  Localization Insight: check below image..
+  Localization needs ...
+        
+      </p>
+    </div>
+  </a>
+</td>
+            
+            
+          </tr>
+        </table>
+        
+      </div>
+    </div>
     
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-    
-  </ul>
+  </section>
+
+
+
 </div>
 
-<div class="page__footer-copyright">&copy; 2021 SungwookLE. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
-      </footer>
-    </div>
+</main>
 
-    
-  <script src="/assets/js/main.min.js"></script>
-
-
-
-
-
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
 
 
-
-
-
-  </body>
+</body>
 </html>

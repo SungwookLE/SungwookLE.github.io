@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>dayily | SungwookLE</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="dayily | SungwookLE">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day"  class="active" >
+          Daily
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="loading-animation">
+    <script>
+    function filterByTagName(tagName) {
+        $('.hidden').removeClass('hidden');
+        $('.catalogue-item').each(function(index, elem) {
+            if (!elem.hasAttribute("data-" + tagName)) {
+                $(elem).addClass('hidden');
+            }
+        });
+        $(".tag").removeClass('selected');
+        $(".tag[data-tag=" + tagName + "]").addClass('selected');
+    }
+
+    function updateQueryString(tagName) {
+        const path = location.protocol + "//" + location.host + location.pathname + "?tag=" + tagName;
+        window.history.replaceState({ path: path }, '', path);
+    }
+
+    function sortTag(a,b){
+        a = $(a).attr("data-tag");
+        b = $(b).attr("data-tag");
+        if(a > b) {
+            return 1;
+        } else if(a < b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    function makeTagList(){
+        let $tags = $(".tag");
+        const tags = [];
+        for(let i = 0; i < $tags.length; i++){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            if(tags.indexOf(repTagText) < 0) {
+                tags.push(repTagText);
+                $("#tag-list")[0].innerHTML += '<span class="tag" data-tag="' + repTagText +'">' + repTagText + '</span>';
+            }
+        }
+        $('#tag-list span').sort(sortTag).appendTo('#tag-list');
+    }
+
+    function getAllTagList() {
+        const $tags = Array.prototype.slice.call($('#tag-list span'))
+        const result = [];
+        for(let i in $tags){
+            var v = $tags[i];
+            const repTagText = $(v).text().replace(/\s/gi, "");
+            result.push(repTagText)
+        }
+        return result;
+    }
+
+    function linkTag(){
+        const queryTag = window.location.search.substring(5);
+        const tags = getAllTagList();
+        var flag = false;
+
+        for(let i = 0; i < tags.length; i++){
+            if(queryTag === tags[i]){
+                flag = true;
+            }
+        }
+        if (queryTag && flag) {
+            filterByTagName(queryTag);
+        }
+    }
+
+    function tagFilter(){
+        makeTagList();
+        linkTag();
+        $("[data-tag]").click(function(e) {
+            const currentTag = e.target.dataset.tag;
+            filterByTagName(currentTag);
+            updateQueryString(currentTag);
+        })
+    }
+
+    $(document).ready(function() {
+        tagFilter();
+    });
+</script>
+
+<div class="tag-container">
+  <div id="tag-list" class="tag-list"></div>
+</div>
+
+    <ul class="catalogue">
+        
+        
+        <li class="catalogue-item list" data-가평="">
+    <a href="/day/2109251010/">
+        
+        
+        <p class="catalogue-category">
+            Date
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                가평 데이트
+            </h1>
+            <p class="catalogue-sub">
+                21.9/23,24,25 가평 여행
+            </p>
+            <p class="catalogue-date">
+                2021-09-25 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                가평 여행
+
+  VACATION: ‘21.9/23~9/25 
+추석 연휴에 함께한 마이다스리조트
+
+
+1. Intro
+
+  휴양소에 서로 당첨되는 덕에 9월에는 즐거운 여행을 2번 다녀왔다.
+    
+      목요일: 이케아 + 가평
+      금요일: 쁘띠프랑스 + 청평
+      토요일: 가평
+ ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=가평"><span class="tag" data-tag="가평">가평</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+        <li class="catalogue-item list" data-속초="">
+    <a href="/day/2109041010/">
+        
+        
+        <p class="catalogue-category">
+            Date
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                속초 데이트
+            </h1>
+            <p class="catalogue-sub">
+                21.9/9,10,11 속초 여행
+            </p>
+            <p class="catalogue-date">
+                2021-09-04 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                속초 여행
+AUTHOR: Jieun An
+DATE: ‘21.9/4 
+VACATION: ‘21.9/9~9/11
+
+1. Intro
+
+  목요일: 맛난 음식 먹기 + 관광
+  금요일: 서핑, 양양 서프팩토리
+  토요일: 설악산, 케이블카
+
+
+2. Plan
+
+
+
+3. Memory
+
+  Memory is H...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=속초"><span class="tag" data-tag="속초">속초</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+        <li class="catalogue-item list" data-맛집="">
+    <a href="/day/2106211010/">
+        
+        
+        <p class="catalogue-category">
+            Dish
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                맛집 리스트
+            </h1>
+            <p class="catalogue-sub">
+                맛집 업데이트 @21.6/21
+            </p>
+            <p class="catalogue-date">
+                2021-06-21 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                jieun 리스트업
+
+  더블트러블유니온, 신사
+  삼창교자, 신사
+  감성타코, 신사
+  현우동, 신사
+
+
+wooks 리스트업
+
+  고흥순대국, 건대
+  사철냉면, 왕십리
+  구공탄, 왕십리
+  일락, 왕십리
+  황소곱창, 왕십리
+  비봉손칼국수, 남양
+  피자컴퍼니, 합정: 페퍼로니 또는 베이컨...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=맛집"><span class="tag" data-tag="맛집">맛집</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+        <li class="catalogue-item list" data-경주="">
+    <a href="/day/2105291010/">
+        
+        
+        <p class="catalogue-category">
+            Date
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                경주 데이트
+            </h1>
+            <p class="catalogue-sub">
+                21.6/3,4,5 경주에서 여행
+            </p>
+            <p class="catalogue-date">
+                2021-05-29 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                경주 여행
+
+  날짜: ‘21.6/3(목), 6/4(금), 6/5(토)
+숙소: 라한호텔 경주
+
+
+
+
+[1] 목요일, 첫째날
+
+  천안(12:00)-&gt;경주(15:00): 천안역에서 같이 차타고 경주로~
+  
+  늦은 점심 먹고, 체크 인
+  호텔 근처: 보문호수(호반길) 산책하기 / 수영장
+  ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=경주"><span class="tag" data-tag="경주">경주</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+        <li class="catalogue-item list" data-원주="">
+    <a href="/day/2105141010/">
+        
+        
+        <p class="catalogue-category">
+            Date
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                원주 데이트
+            </h1>
+            <p class="catalogue-sub">
+                21.5/14 혁도에서 만나는 날
+            </p>
+            <p class="catalogue-date">
+                2021-05-14 10:10
+            </p>
+            <p class="catalogue-body">
+            
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+                원주
+
+  날짜: ‘21.5/14 금요일
+
+
+번외로,
+
+  원주는 맛집 찾기가 쉬울것 같다? 보이다 싶이 네이버 지도에도 몇개가 검색되지 않기 때문에,
+
+
+
+[1] 일단 휴식이 적절히 있어야 할듯
+
+  어디 시원한데 앉아서 쉬세요
+
+
+[2] 저녁먹기
+
+  걸어가면서 고르는게 제일 좋을 것 같다, 막...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=원주"><span class="tag" data-tag="원주">원주</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+        <li class="catalogue-item list" data-seoul="" data-date="">
+    <a href="/day/2105061010/">
+        
+        
+        <p class="catalogue-category">
+            Date
+        </p>
+
+        <div class="catalogue-info transition">
+            <h1 class="catalogue-title">
+                서울 데이트
+            </h1>
+            <p class="catalogue-sub">
+                21.5/9 서울에서 만나는 날
+            </p>
+            <p class="catalogue-date">
+                2021-05-06 10:10
+            </p>
+            <p class="catalogue-body">
+            
+                데이트
+
+  날짜: ‘21.5/9 일요일
+도착: 12시 30분 (남부터미널)
+
+
+[1] 첫번째, 맛있는 점심
+1.5 hour
+
+  1번 식당: 프랑스요리 CUISSON82
+
+  2번 식당: 스타 쉐프 코스 마누테라스
+  3번 식당: 이태원 버거 다운타우너
+
+
+
+[2] 두번째, 파이썬 스터디
+1.5 ...
+            </p>
+        </div>
+    </a>
+        <div>
+            <div class="post-list-tags">
+    
+        
+            <a href="/day/?tag=Seoul"><span class="tag" data-tag="Seoul">Seoul</span></a>
+        
+            <a href="/day/?tag=Date"><span class="tag" data-tag="Date">Date</span></a>
+        
+    
+</div>
+        </div>
+</li>
+        
+    </ul>
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
