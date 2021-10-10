@@ -24,7 +24,7 @@ email: joker1251@naver.com
 description: >- # this means to ignore newlines until "baseurl:"
   HOMEPAGE:: SungwookLE
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://sungwookLE.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://sungwookLE.co.kr" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: minima
