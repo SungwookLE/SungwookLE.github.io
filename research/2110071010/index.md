@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-10-07 10:10
-category: Path
+category: Localization
 title: Localization- Particle Filter
 subtitle: Particle Filter Study in Localization
 writer: 100
@@ -12,6 +12,8 @@ hash-tag: [Partich, Filter, Localization]
 use_math: true
 ---
 
+- toc
+{:toc}
 
 # Localization: Particle Filter 
 > AUTHOR: Sungwook LE    

@@ -34,3 +34,5 @@ gem 'jekyll-admin', group: :jekyll_plugins
 gem 'jemoji'
 # Sitemap for search engine
 gem 'jekyll-sitemap'
+
+gem 'jekyll-toc'

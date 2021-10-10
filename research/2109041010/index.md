@@ -12,6 +12,9 @@ hash-tag: [ComputerScience, Build, CI, CD]
 use_math: true
 ---
 
+- toc
+{:toc}
+
 
 # 빌드 프로세스 Review 및 CI, CD
 AUTHOR: SungwookLE  

@@ -148,7 +148,27 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     
 
-    <h1 id="빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</h1>
+    <ul id="markdown-toc">
+  <li><a href="#빌드-프로세스-review-및-ci-cd" id="markdown-toc-빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</a>    <ul>
+      <li><a href="#1-build란" id="markdown-toc-1-build란">1. Build란?</a></li>
+      <li><a href="#2-build-process-종류" id="markdown-toc-2-build-process-종류">2. Build Process 종류</a></li>
+      <li><a href="#2-1--compile-type" id="markdown-toc-2-1--compile-type">2-1.  Compile Type</a>        <ul>
+          <li><a href="#compile-type-1-preprocessing-전처리" id="markdown-toc-compile-type-1-preprocessing-전처리">Compile Type: (1) Preprocessing 전처리</a></li>
+          <li><a href="#compile-type-2-compilation-컴파일" id="markdown-toc-compile-type-2-compilation-컴파일">Compile Type: (2) Compilation 컴파일</a></li>
+          <li><a href="#compile-type-3-assemble-어셈블" id="markdown-toc-compile-type-3-assemble-어셈블">Compile Type: (3) assemble 어셈블</a></li>
+          <li><a href="#compile-type-4-linking-링크링킹" id="markdown-toc-compile-type-4-linking-링크링킹">Compile Type: (4) linking 링크/링킹</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-2--interpreted-type" id="markdown-toc-2-2--interpreted-type">2-2.  Interpreted Type</a></li>
+      <li><a href="#2-3-hybrid-type" id="markdown-toc-2-3-hybrid-type">2-3. Hybrid Type</a></li>
+      <li><a href="#3-정리" id="markdown-toc-3-정리">3. 정리</a></li>
+      <li><a href="#4-ci-cd란" id="markdown-toc-4-ci-cd란">4. CI, CD란?</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝.</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</h1>
 <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.9/4<br />
 REFERENCE: <a href="https://st-lab.tistory.com/176">REF</a><br />

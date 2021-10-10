@@ -12,6 +12,9 @@ hash-tag: [PATH, AStar]
 use_math: true
 ---
 
+- toc
+{:toc}
+
 # A star algorithm Review
 > AUTHOR: Sungwook LE  
 > DATE: '21.9/19  
