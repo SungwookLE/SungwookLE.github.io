@@ -8,7 +8,7 @@ subtitle: Particle Filter Study in Localization
 writer: 100
 post-header: true
 header-img: img/pf.png
-hash-tag: [Partich, Filter, Localization]
+hash-tag: [Particle, Filter, Localization]
 use_math: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: main
 main: true
-title: About me
+title: About
 ---
 <div class="loading-animation">
     <div class="about">
@@ -10,28 +10,27 @@ title: About me
             <div class="content">
                 <h1 class="subtitle">Career</h1>
                 <ul class="education">
-                    <li>- Hyundai Motor Company ('19.1~)</li>
-                    <li>- Safety Domain Control & Estimation SW</li>
+                    <li> Safety Control & Estimation Software Engineer</li>
+                    <li>@ Hyundai Motor Company ('19.1~)</li>
                 </ul>
             </div>
         </div>
         <div class="section">
             <div class="title index">02</div>
             <div class="content">
-                <h1 class="subtitle">Education</h1>
-                <ul class="education">
-                    <li>- 한양대학교 자동차전자제어공학 석사 졸업 ('19)</li>
-                    <li>- 국민대학교 기계시스템공학 학사 졸업 ('17)</li>
+                <h1 class="subtitle">Cover</h1>
+                <ul class="Cover">
+                    <li>- <U> <A href = "https://www.linkedin.com/in/sungwookle/" style="color:blue;">  Linkedin </A> </U></li>
+                    <li>- <U> <A href = "https://github.com/SungwookLE" style="color:blue;"> Github </A> </U> </li>
                 </ul>
             </div>
         </div>
         <div class="section">
             <div class="title index">03</div>
             <div class="content">
-                <h1 class="subtitle">Repository</h1>
-                <ul class="project">
-                    <li>- [Github](https://github.com/SungwookLE)</li>
-                    <li>- [Linkedin](https://www.linkedin.com/in/sungwookle/)</li>
+                <h1 class="subtitle">Contact</h1>
+                <ul class="Contact">
+                    <li> joker1251@naver.com</li>
                 </ul>
             </div>
         </div>
