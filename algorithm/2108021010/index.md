@@ -10,6 +10,9 @@ hash-tag: [binary_search, baekjoon]
 use_math: true
 ---
 
+- toc
+{:toc}
+
 # DataStructure: Binary Search
 AUTHOR: SungwookLE   
 DATE: '21.8/2  

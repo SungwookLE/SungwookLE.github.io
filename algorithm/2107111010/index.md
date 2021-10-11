@@ -10,6 +10,10 @@ hash-tag: [quadtree, baekjoon]
 use_math: true
 ---
 
+- toc
+{:toc}
+
+
 # DataStructure: QUADTREE #2630
 AUTHOR: SungwookLE  
 DATE: '21.7/11  

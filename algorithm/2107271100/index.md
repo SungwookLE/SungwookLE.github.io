@@ -10,6 +10,10 @@ hash-tag: [priority_queue, baekjoon]
 use_math: true
 ---
 
+- toc
+{:toc}
+
+
 # 우선순위 큐 (Priority Queue)
 - Author: SungwookLE
 - DATE: '21.8/10

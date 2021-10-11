@@ -6,8 +6,8 @@ category: Date
 title: 속초 데이트
 subtitle: 21.9/9,10,11 속초 여행
 writer: 200
-post-header: true
-header-img: 
+post-header: false
+header-img: false
 hash-tag: [속초]
 use_math: true
 ---

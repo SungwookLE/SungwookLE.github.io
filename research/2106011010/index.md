@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-06-01 10:10
-category: Study
+category: ROS
 title: Robotics Go Chase It"
 subtitle: 흰 공을 따라다니는 모바일 로봇(카메라 픽셀만 찾아서)
 writer: 100
@@ -11,6 +11,11 @@ header-img: /assets/images/GoChaseIt1.gif
 hash-tag: [ROS, robot]
 use_math: true
 ---
+
+
+- toc
+{:toc}
+
 
 ### PROJECT: Go Chase It
 > AUTHOR: SungwookLE  

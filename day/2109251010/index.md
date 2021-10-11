@@ -6,8 +6,8 @@ category: Date
 title: 가평 데이트
 subtitle: 21.9/23,24,25 가평 여행
 writer: 200
-post-header: true
-header-img: 
+post-header: false
+header-img: false
 hash-tag: [가평]
 use_math: true
 ---

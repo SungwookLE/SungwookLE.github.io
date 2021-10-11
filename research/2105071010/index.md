@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-05-07 10:10
-category: Study
+category: ROS
 title: Robotics Chapter1-1
 subtitle: Robotics Nanodegree Introduction to Robotics
 writer: 100
@@ -11,6 +11,9 @@ header-img: img/project1_description.png
 hash-tag: [ROS, robot]
 use_math: true
 ---
+
+- toc
+{:toc}
 
 ### PROJECT1
 > AUTHOR: SungwookLE  

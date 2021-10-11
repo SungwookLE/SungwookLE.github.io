@@ -12,6 +12,8 @@ hash-tag: [Kaggle, keras_feed]
 use_math: true
 ---
 
+- toc
+{:toc}
 
 # Keras_Basic
 - AUTHOR: SungwookLE

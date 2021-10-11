@@ -2,7 +2,7 @@
 layout: post
 type: research
 date: 2021-05-12 10:10
-category: Study
+category: PLAN
 title: 스터디에 대하여
 subtitle: 어떻게 하는게 좋을까
 writer: 100
@@ -11,6 +11,10 @@ header-img: http://4.bp.blogspot.com/-f3dhtcqzWK8/VMD9amA2QZI/AAAAAAAABM8/-251ou
 hash-tag: [plan]
 use_math: true
 ---
+
+
+- toc
+{:toc}
 
 #### 계획
   최근, 뭔가 루즈해졌다, 그게 나쁜건 아닌데 이런 순간이 오면 조만간 슬럼프가 찾아올 수 있기 때문에 정리가 필요한듯싶다,

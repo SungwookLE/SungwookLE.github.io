@@ -6,9 +6,13 @@ category: Study
 title: CODING TEST Segment Tree 6549
 subtitle: Tree structure & Divide and Conquer to reduce O(logN)
 writer: 100
-hash-tag: [Divide&Conquer, baekjoon]
+hash-tag: [Divide_Conquer, baekjoon]
 use_math: true
 ---
+
+- toc
+{:toc}
+
 
 # DataStructure: Segment Tree Get highest histogram size #6549  
 AUTHOR: SungwookLE  

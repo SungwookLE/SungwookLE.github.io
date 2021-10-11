@@ -12,6 +12,8 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
+- toc
+{:toc}
 
 # sklearn_TypeC
 - AUTHOR: SungwookLE  

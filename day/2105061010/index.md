@@ -8,7 +8,7 @@ subtitle: 21.5/9 서울에서 만나는 날
 writer: 100
 post-header: true
 header-img: https://t1.daumcdn.net/liveboard/chutcha/13507242de664daf8ba9087c6b7964cc.jpg
-hash-tag: [Seoul, Date]
+hash-tag: [서울]
 ---
 
 ## 데이트

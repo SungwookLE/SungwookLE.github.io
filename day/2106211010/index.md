@@ -6,7 +6,7 @@ category: Dish
 title: 맛집 리스트
 subtitle: 맛집 업데이트 @21.6/21 
 writer: 100
-post-header: true
+post-header: false
 hash-tag: [맛집]
 use_math: true
 ---

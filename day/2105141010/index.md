@@ -7,7 +7,7 @@ title: 원주 데이트
 subtitle: 21.5/14 혁도에서 만나는 날
 writer: 100
 post-header: true
-header-img: 
+header-img: assets/images/wonju_matjip.png 
 hash-tag: [원주]
 use_math: true
 ---

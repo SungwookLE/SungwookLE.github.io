@@ -6,9 +6,13 @@ category: Study
 title: CODING TEST Matrix Power Calculation 10830
 subtitle: Divide and Conquer to reduce O(n)
 writer: 100
-hash-tag: [Divide&Conquer, baekjoon]
+hash-tag: [Divide_Conquer, baekjoon]
 use_math: true
 ---
+
+- toc
+{:toc}
+
 
 # DataStructure: Matrix Power Calculation #10830
 AUTHOR: SungwookLE  
