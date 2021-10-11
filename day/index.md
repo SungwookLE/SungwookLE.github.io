@@ -1,10 +1,12 @@
 ---
 layout: main
 main: true
-title: dayily
+title: Day
 ---
 
+
 <div class="loading-animation">
+<CENTER> <iframe width="560" height="315" src="https://www.youtube.com/embed/9YAB9jMzy7k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </CENTER>
     {% include hashtag.html %}
     <ul class="catalogue">
         {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'day' %}
@@ -12,4 +14,6 @@ title: dayily
         {% include post-list.html %}
         {% endfor %}
     </ul>
+
+
 </div>

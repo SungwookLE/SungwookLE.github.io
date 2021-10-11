@@ -1,7 +1,7 @@
 ---
 layout: main
 main: true
-title: algorithm
+title: Algorithm
 ---
 
 <div class="loading-animation">
