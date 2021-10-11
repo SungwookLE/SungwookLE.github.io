@@ -4,10 +4,10 @@ code {
 }
 
 code {
-  background-color: $grey-3;
+  background-color: $light-gray;
   border-radius: 3px;
   color: $primary;
-  font-size: 90%;
+  font-size: 85%;
   padding: .2em .4em;
 }
 
@@ -21,16 +21,17 @@ pre code {
   font-size: 100%;
   padding: 0;
   font-size: 13px;
+  border-color: $red
 }
 
 .syntax {
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .highlight {
   background-color: $grey-3;
   border: 1px solid $grey-2-70;
-  border-radius: 3px;
+  border-radius: 7px;
   margin: 0 0 1rem;
   padding: 1em;
 

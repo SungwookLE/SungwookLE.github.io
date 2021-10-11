@@ -14,7 +14,6 @@ use_math: true
 - toc
 {:toc}
 
-
 # Pytorch: Quick Start
 AUTHOR: SungwookLE  
 DATE: '21.8/6  

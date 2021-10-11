@@ -185,15 +185,15 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 
 pre, code { font-family: Menlo, Monaco, monospace; }
 
-code { background-color: #f6f9fc; border-radius: 3px; color: #2154b4; font-size: 90%; padding: .2em .4em; }
+code { background-color: #b3b3b3; border-radius: 3px; color: #2154b4; font-size: 85%; padding: .2em .4em; }
 
 pre { margin: 0 0 1rem; }
 
-pre code { background-color: transparent; color: inherit; font-size: 100%; padding: 0; font-size: 13px; }
+pre code { background-color: transparent; color: inherit; font-size: 100%; padding: 0; font-size: 13px; border-color: #ca2e2e; }
 
-.syntax { line-height: 1.2; }
+.syntax { line-height: 1.4; }
 
-.highlight { background-color: #f6f9fc; border: 1px solid rgba(216, 224, 231, 0.7); border-radius: 3px; margin: 0 0 1rem; padding: 1em; }
+.highlight { background-color: #f6f9fc; border: 1px solid rgba(216, 224, 231, 0.7); border-radius: 7px; margin: 0 0 1rem; padding: 1em; }
 .highlight pre { margin-bottom: 0; overflow-x: auto; }
 .highlight .lineno { color: #8898aa; display: inline-block; padding: 0 .75rem 0 .25rem; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
 
