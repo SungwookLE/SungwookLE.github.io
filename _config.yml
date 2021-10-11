@@ -44,6 +44,7 @@ kramdown:
   input: GFM
   syntax_highlighter_opts:
     css_class   : 'syntax'
+  math_engine: mathjax
 
 # Exclude from processing.
 # The following items will not be processed, by default.
