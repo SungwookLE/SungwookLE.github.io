@@ -150,6 +150,7 @@ Data/ (not commited)
 - gradient descenter: adam as learning rate 0.01 ~ 0.001
 - call backs: learning rate 조정, early stopping, model checkpoint 등을 사용하였음
 - batch size의 경우 gpu 로드 고려하여 16~32로 두고 수행
+
 ```python
 adam = Adam(learning_rate=0.001)
 rl_callback = ReduceLROnPlateau(monitor='val_acc', factor=0.1, patience=7, min_delta=0.001)
