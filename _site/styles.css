@@ -18,8 +18,8 @@ a { color: #333e4c; text-decoration: none; }
 
 hr { border-color: #ebeff2; border-style: solid; margin: 20px 0; }
 
-blockquote { border-left: 0.25rem solid #D8E0E7; color: #ca2e2e; margin: .8rem 0 1rem 0; padding: .5rem 1rem; }
-blockquote p:last-child { margin-bottom: 0; }
+blockquote { border-left: 0.25rem solid #2431ee; color: #F2827F; margin: .8rem 0 1rem 0; padding: .5rem 1rem; background-color: #fafafa; }
+blockquote p:last-child { margin-bottom: 0; font-weight: bold; }
 @media (min-width: 600px) { blockquote { padding: 0 0 0 1.25rem; } }
 
 img { display: block; margin: 1rem 0 0.5rem; max-width: 100%; }
@@ -183,17 +183,17 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 @media (max-width: 670px) { .about-banner .content .overlay { background: rgba(255, 255, 255, 0.5); } }
 .about-banner .content .text-wrapper { position: absolute; text-align: center; transform: translate(-50%, -50%); left: 50%; top: 50%; width: fit-content; padding: 0 20px; }
 
-pre, code { font-family: Menlo, Monaco, monospace; }
+pre, code { font-family: "Nanum Myeongjo", sans-serif; }
 
-code { background-color: #F2827F; border-radius: 5px; color: #2154b4; font-size: 95%; padding: .2em .4em; }
+code { background-color: #ebeff2; border-radius: 5px; color: rgba(51, 62, 76, 0.8); font-size: 85%; padding: .1em .1em; }
 
 pre { margin: 0 0 1rem; }
 
-pre code { background-color: transparent; color: inherit; font-size: 100%; padding: 0; font-size: 13px; border-color: #ca2e2e; }
+pre code { background-color: transparent; color: inherit; font-size: 95%; padding: 0; font-size: 13px; border-color: #ca2e2e; }
 
-.syntax { line-height: 1.4; }
+.syntax { line-height: 1.8; }
 
-.highlight { background-color: #f6f9fc; border: 1px solid rgba(216, 224, 231, 0.7); border-radius: 7px; margin: 0 0 1rem; padding: 1em; }
+.highlight { background-color: #f6f9fc; border: 1px solid rgba(216, 224, 231, 0.7); border-radius: 10px; margin: 0 0 1rem; padding: 1em; }
 .highlight pre { margin-bottom: 0; overflow-x: auto; }
 .highlight .lineno { color: #8898aa; display: inline-block; padding: 0 .75rem 0 .25rem; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
 

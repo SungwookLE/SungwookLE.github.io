@@ -43,13 +43,15 @@ hr {
 }
 
 blockquote {
-  border-left: .25rem solid $grey-2;
-  color: $red;
+  border-left: .25rem solid $primary-dark;
+  color: $coral-orange;
   margin: .8rem 0 1rem 0;
   padding: .5rem 1rem;
+  background-color: $grey-9;
 
   p:last-child {
     margin-bottom: 0;
+    font-weight: bold;
   }
 
   @media (min-width: 600px) {

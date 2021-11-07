@@ -43,4 +43,11 @@ use_math: true
   it ain't about how hard you hit, it is about how hard you can get hit and keep moving forward, how much can you take and keep moving forward  
   ![image](http://4.bp.blogspot.com/-f3dhtcqzWK8/VMD9amA2QZI/AAAAAAAABM8/-251oumu-oc/s1600/%ED%81%AC%EA%B8%B0%EB%B3%80%ED%99%98_5.jpg)
 
+  ```c++
+  int main(){
+    std::cout << "To infinity" << std::endl;
+    return 0;
+  }
+  ```
+
 #### 끝
