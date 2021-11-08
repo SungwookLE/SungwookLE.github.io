@@ -7,7 +7,7 @@ title: Passenger Classifier
 subtitle: Belt/OOP(close/far/behind/phone/center)/Weak(man,woman,child,old)/Mask
 writer: 100
 post-header: true
-header-img: img/samples_gif/realtime_demo_sungwook.gif
+header-img: img/samples_gif/real_time_demo_driving_sungwook.gif
 hash-tag: [Vision, Passenger, Classifier, AutoEncoder, Semi-Supervised-Learning]
 use_math: true
 ---
@@ -105,7 +105,7 @@ Data/ (not commited)
         - xAI(Explainable AI) 분석 방법 적용함
 
 - 최종적으로 구현한 Classifier 모델 Realtime 데모  
-[![Classifier_demo](./img/samples_gif/realtime_demo_sungwook.gif)](./img/samples_gif/realtime_demo_juwon.mp4)  
+[![Classifier_demo](./img/samples_gif/real_time_demo_driving_sungwook.gif)](./img/samples_gif/real_time_demo_driving_sungwook.mp4)  
 - 실행 명령어: `python run_realtime.py --model_multi 'model_encoder_multihead' --model_belt 'model_belt_cnn' --video 0`
 - 최종적으로 학습 완료된 모델
     1. EncoderConv_MultiOut_oop_weak_mask: `./ckpt/model_encoder_multihead`
