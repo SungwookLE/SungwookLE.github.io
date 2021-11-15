@@ -14,7 +14,7 @@
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Passenger Classifier">
   <meta itemprop="description" content="SungwookLE">
-  <meta itemprop="image" content="http://localhost:4000/research/2111051010/img/samples_gif/realtime_demo_sungwook.gif">
+  <meta itemprop="image" content="http://localhost:4000/research/2111051010/img/samples_gif/real_time_demo_driving_sungwook.gif">
 
   
 
@@ -57,30 +57,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-
-  <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
-  }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 <body>
 
@@ -143,7 +119,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-<div class="post-header loading-animation" style="background-image: url('img/samples_gif/realtime_demo_sungwook.gif')">
+<div class="post-header loading-animation" style="background-image: url('img/samples_gif/real_time_demo_driving_sungwook.gif')">
 </div>
 
 
@@ -313,7 +289,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
     </ol>
   </li>
   <li>최종적으로 구현한 Classifier 모델 Realtime 데모<br />
-<a href="./img/samples_gif/realtime_demo_juwon.mp4"><img src="/research/2111051010/img/samples_gif/realtime_demo_sungwook.gif" alt="Classifier_demo" /></a></li>
+<a href="./img/samples_gif/real_time_demo_driving_sungwook.mp4"><img src="/research/2111051010/img/samples_gif/real_time_demo_driving_sungwook.gif" alt="Classifier_demo" /></a></li>
   <li>실행 명령어: <code class="language-plaintext highlighter-rouge">python run_realtime.py --model_multi 'model_encoder_multihead' --model_belt 'model_belt_cnn' --video 0</code></li>
   <li>최종적으로 학습 완료된 모델
     <ol>
