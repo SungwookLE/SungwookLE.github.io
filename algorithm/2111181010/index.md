@@ -20,6 +20,7 @@ use_math: true
 
 ## 1. 풀이
 - 사실상 `vector`라는 컨테이너를 잘 활용하는지 체크하는 문제이다.
+
 ```c++
 #include <string>
 #include <vector>
