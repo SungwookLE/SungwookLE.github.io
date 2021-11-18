@@ -3,7 +3,7 @@ layout: post
 type: algorithm
 date: 2021-11-17 10:10
 category: 코딩테스트 연습
-title: 완주하지 못한 선수
+title: 완주하지 못한 선수 Lv1
 subtitle: 프로그래머스 HASH
 writer: 100
 hash-tag: [HASH, Programmers]
@@ -17,8 +17,10 @@ use_math: true
 > AUTHOR: SungwookLE    
 > DATE: '21.11/17  
 >> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42576)
+>> LEVEL: Lv1
 
 ## 1. 효율적이지 못한 접근 법
+- 은근히, LEVEL1임에도 불구하고 효율적이게 코드 짜는 아이디어가 잘 떠오르지 않는다. 
 - 문제를 이렇게 풀어도 정답은 나온다. 그러나 효율성에서 좋지 않다.
 - 그도 그럴 것이, 2개의 벡터 컨테이너 전부를 순회해야하만 하니 O(N2)의 시간복잡도를 갖게 된다.
 

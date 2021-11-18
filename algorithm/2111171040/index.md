@@ -3,7 +3,7 @@ layout: post
 type: algorithm
 date: 2021-11-17 10:40
 category: 코딩테스트 연습
-title: 베스트앨범
+title: 베스트앨범 Lv3
 subtitle: 프로그래머스 HASH
 writer: 100
 hash-tag: [HASH, Programmers]
@@ -16,7 +16,8 @@ use_math: true
 # 프로그래머스 > 해쉬 > 베스트앨범
 > AUTHOR: SungwookLE    
 > DATE: '21.11/17  
->> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42579)
+>> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42579)  
+>> LEVEL: Lv3  
 
 ## 1. 풀이
 - `unordered_map` 같은 컨테이너를 활용하면 `dict` 데이터 정리에 유용한데, 이번 문제에는 중복 key 카운팅할 때 매우 편리하였다. 
