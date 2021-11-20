@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>더 맵게 Lv2</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="더 맵게 Lv2">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            더 맵게 Lv2
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 힙
+        </h2>
+        <h2 class="post-date">
+            2021-11-20 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--힙--더-맵게" id="markdown-toc-프로그래머스--힙--더-맵게">프로그래머스 &gt; 힙 &gt; 더 맵게</a>    <ul>
+      <li><a href="#1-시간초과났었음" id="markdown-toc-1-시간초과났었음">1. 시간초과났었음</a></li>
+      <li><a href="#2-priority_queue로-풀기" id="markdown-toc-2-priority_queue로-풀기">2. Priority_queue로 풀기</a></li>
+      <li><a href="#3-priority_queue-정렬을-내-맘대로-하려면" id="markdown-toc-3-priority_queue-정렬을-내-맘대로-하려면">3. priority_queue 정렬을 내 맘대로 하려면,</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--힙--더-맵게">프로그래머스 &gt; 힙 &gt; 더 맵게</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.11/20</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42626">문제링크</a><br />
+LEVEL: Lv2</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-시간초과났었음">1. 시간초과났었음</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vector</code> 컨테이너를 이용해서 풀려고 하다 보니, 중간 중간에 오름차순으로 정렬하는 <code class="language-plaintext highlighter-rouge">sort</code>가 수행됬어야 했는데, 이것 때문에 시간 초과가 났었음</li>
+  <li><code class="language-plaintext highlighter-rouge">vector</code> 컨테이너가 아니고, <code class="language-plaintext highlighter-rouge">priority_queue</code>로 풀면 이를 해결할 수 있음</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">scoville</span><span class="p">,</span> <span class="kt">int</span> <span class="n">K</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">sort</span><span class="p">(</span><span class="n">scoville</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">scoville</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    
+    <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">new_scoville</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">){</span>
+        <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">scoville</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        
+        <span class="n">new_scoville</span> <span class="o">=</span> <span class="n">scoville</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">scoville</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">scoville</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">scoville</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">scoville</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
+        <span class="n">scoville</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">new_scoville</span><span class="p">);</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">scoville</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">scoville</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">scoville</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span><span class="n">K</span><span class="p">)</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-priority_queue로-풀기">2. Priority_queue로 풀기</h2>
+<ul>
+  <li>시간초과를 해결할 수 있었다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">scoville</span><span class="p">,</span> <span class="kt">int</span> <span class="n">K</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">p_queue</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">scoville</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">p_queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">scoville</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+ 
+    <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">new_scoville</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">fir</span><span class="p">,</span><span class="n">sec</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">){</span>
+        <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">p_queue</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">fir</span> <span class="o">=</span> <span class="n">p_queue</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">p_queue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">sec</span> <span class="o">=</span> <span class="n">p_queue</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">p_queue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">new_scoville</span> <span class="o">=</span><span class="n">fir</span> <span class="o">+</span> <span class="n">sec</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">p_queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">new_scoville</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">p_queue</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&gt;=</span><span class="n">K</span><span class="p">)</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="3-priority_queue-정렬을-내-맘대로-하려면">3. priority_queue 정렬을 내 맘대로 하려면,</h2>
+<ul>
+  <li>STL 중 <code class="language-plaintext highlighter-rouge">priority_queue</code>가 유용할 때가 있을 듯하여 사용법 몇개를 정리해 본다.</li>
+  <li><a href="https://kbj96.tistory.com/15">참고 블로그</a>를 살펴보자
+    <ul>
+      <li>priority_queue의 정렬 방식을 커스터마이징하기
+        <ul>
+          <li>일단은 <code class="language-plaintext highlighter-rouge">struct</code>를 만들어 주어야함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code>        <span class="k">struct</span> <span class="nc">Student</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">math</span><span class="p">,</span> <span class="n">eng</span><span class="p">;</span>
+            <span class="n">Student</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">e</span><span class="p">)</span> <span class="o">:</span> <span class="n">id</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">math</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">eng</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{}</span>    <span class="c1">// 생성자 정의</span>
+        <span class="p">};</span>
+ 
+        <span class="c1">// 학번을 기준으로 학번(id) 값이 큰 것이 Top 을 유지 하도록 한다.</span>
+        <span class="k">struct</span> <span class="nc">cmp</span> <span class="p">{</span>
+            <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Student</span> <span class="n">a</span><span class="p">,</span> <span class="n">Student</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+ 
+        <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// 위에서 만든 cmp 구조체를 넣어 준다.</span>
+            <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">Student</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">cmp</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>  
+ 
+            <span class="c1">// 이렇게 하면 priority_queue에 커스터마이징된 정렬이 되어 queue에 들어가게 된다.</span>
+
+            <span class="c1">//...</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=HEAP"><span class="tag" data-tag="HEAP">HEAP</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
