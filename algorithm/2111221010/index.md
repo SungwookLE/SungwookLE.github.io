@@ -19,7 +19,7 @@ use_math: true
 >> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42746)  
 >> LEVEL: Lv2    
 
-## 1. 잘못된 접근 법1
+## 1. 잘못된 풀이1
 - 아,, 이 문제에 거의 한시간 이상을 고민했는데 못 풀었다... 간단한 해결책이 있음을 알고 조금 허무했다.
 - 시도해본것은 처음에는 backtracking으로 `full search` 를 해보았고 시간초과가 났다.
 
@@ -77,12 +77,13 @@ sort(nums.begin(), nums.end(), [](string a, string b){
         else
             return false;
     }
+    //...
 });
 ```
 - 이런 식으로 풀려고 했다. 정밀채점에 부분 테스트케이스가 틀려, 부분점수가 나왔고 이것 때문에 길게 고민했으나 답을 못 찾앗다 ㅠㅠ
 
 ## 3. 명쾌한 해답 (다른 사람의 풀이 참고)
-- `sort` 함수 안에 cmp 함수를 보아라... `if (a+b) > (b+a) return true`.
+- `sort` 함수 안에 compare 람다 함수를 보아라... `if (a+b) > (b+a) return true;`
 - 간단하면서 명확하다..... 그래서 정답이다.
 - 아이디어도 중요하다..
 
