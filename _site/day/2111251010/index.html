@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>예술의 전당 데이트</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="예술의 전당 데이트">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day"  class="active" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Date
+            </div>
+        </div>
+        <h1 class="post-title">
+            예술의 전당 데이트
+        </h1>
+        <h2 class="post-subtitle">
+            11월 19일 오케스트라
+        </h2>
+        <h2 class="post-date">
+            2021-11-25 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <h1 id="예술의-전당-데이트">예술의 전당 데이트</h1>
+<ul>
+  <li>Check Here: <a href="https://www.youtube.com/watch?v=9NZ3il9MyAc">Youtu</a></li>
+</ul>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/day/?tag=양재"><span class="tag" data-tag="양재">양재</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/200.jpg'/>
+      </div>
+      <div class='name'>JieunAn</div>
+    </div>
+    <div class='description'>안초딩</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

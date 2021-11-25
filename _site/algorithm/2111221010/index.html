@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>가장 큰 수 Lv2</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="가장 큰 수 Lv2">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            가장 큰 수 Lv2
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 정렬
+        </h2>
+        <h2 class="post-date">
+            2021-11-22 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--정렬--가장-큰-수" id="markdown-toc-프로그래머스--정렬--가장-큰-수">프로그래머스 &gt; 정렬 &gt; 가장 큰 수</a>    <ul>
+      <li><a href="#1-잘못된-풀이1" id="markdown-toc-1-잘못된-풀이1">1. 잘못된 풀이1</a></li>
+      <li><a href="#2-잘못된-풀이2" id="markdown-toc-2-잘못된-풀이2">2. 잘못된 풀이2</a></li>
+      <li><a href="#3-명쾌한-해답-다른-사람의-풀이-참고" id="markdown-toc-3-명쾌한-해답-다른-사람의-풀이-참고">3. 명쾌한 해답 (다른 사람의 풀이 참고)</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--정렬--가장-큰-수">프로그래머스 &gt; 정렬 &gt; 가장 큰 수</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.11/22</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42746">문제링크</a><br />
+LEVEL: Lv2</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-잘못된-풀이1">1. 잘못된 풀이1</h2>
+<ul>
+  <li>아,, 이 문제에 거의 한시간 이상을 고민했는데 못 풀었다… 간단한 해결책이 있음을 알고 조금 허무했다.</li>
+  <li>시도해본것은 처음에는 backtracking으로 <code class="language-plaintext highlighter-rouge">full search</code> 를 해보았고 시간초과가 났다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1">// 1. back_tracking으로 full search 해서 풀었는데, 시간초과 났음</span>
+
+<span class="kt">void</span> <span class="nf">back_tracking</span><span class="p">(</span><span class="kt">int</span> <span class="n">iter</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">check</span><span class="p">,</span> <span class="n">string</span> <span class="n">ret</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">rets</span><span class="p">){</span>
+    
+    <span class="k">if</span> <span class="p">(</span> <span class="n">n</span> <span class="o">==</span> <span class="n">iter</span><span class="p">){</span>
+        <span class="n">rets</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">ret</span><span class="o">+=</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">back_tracking</span><span class="p">(</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">rets</span><span class="p">);</span>
+                <span class="n">ret</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">length</span><span class="p">(),</span> <span class="n">ret</span><span class="p">.</span><span class="n">length</span><span class="p">());</span>
+                <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="n">string</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="n">string</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">rets</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">check</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+    
+    <span class="n">back_tracking</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">rets</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">rets</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">rets</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">rets</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-잘못된-풀이2">2. 잘못된 풀이2</h2>
+<ul>
+  <li>number를 string으로 바꾸어 저장한다음 <code class="language-plaintext highlighter-rouge">sort</code>를 이용해서 문제를 풀려고 했다.
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">){</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">());</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+          <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="k">else</span>
+          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//...</span>
+<span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+  <li>이런 식으로 풀려고 했다. 정밀채점에 부분 테스트케이스가 틀려, 부분점수가 나왔고 이것 때문에 길게 고민했으나 답을 못 찾앗다 ㅠㅠ</li>
+</ul>
+
+<h2 id="3-명쾌한-해답-다른-사람의-풀이-참고">3. 명쾌한 해답 (다른 사람의 풀이 참고)</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sort</code> 함수 안에 compare 람다 함수를 보아라… <code class="language-plaintext highlighter-rouge">if (a+b) &gt; (b+a) return true;</code></li>
+  <li>간단하면서 명확하다….. 그래서 정답이다.</li>
+  <li>아이디어도 중요하다..</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">string</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+    
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">num</span><span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">num</span><span class="p">));</span>
+    
+    
+    <span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="n">b</span><span class="p">){</span>
+       
+        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+     
+    <span class="p">});</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+       <span class="n">answer</span> <span class="o">+=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">answer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'0'</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="s">"0"</span><span class="p">;</span>
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=SORT"><span class="tag" data-tag="SORT">SORT</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
