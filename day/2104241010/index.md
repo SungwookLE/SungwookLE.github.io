@@ -1,10 +1,10 @@
 ---
 layout: post
 type: day
-date: 2021-06-21 10:10
+date: 9999-00-00 00:00
 category: Dish
 title: 맛집 리스트
-subtitle: 맛집 업데이트 @21.11/25 
+subtitle: 상단 고정 게시글, 업데이트@21.11/25 
 writer: 100
 post-header: false
 hash-tag: [맛집]
