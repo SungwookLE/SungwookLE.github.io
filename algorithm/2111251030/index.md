@@ -41,7 +41,9 @@ use_math: true
        reserve.erase(reserve.begin()+check[idx].second);
     }
 ```
-- 내가 제출한 코드..
+
+- 내가 제출한 코드..  
+
 ```c++
 #include <string>
 #include <vector>
