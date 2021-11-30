@@ -16,7 +16,7 @@ use_math: true
 # 프로그래머스 > 그리디 > 조이스틱
 > AUTHOR: SungwookLE    
 > DATE: '21.11/28  
->> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/parts/12244)  
+>> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42860)  
 >> LEVEL: Lv2    
 
 ## 1. 나의 풀이
