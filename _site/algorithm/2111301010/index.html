@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>큰 수 만들기 Lv2</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="큰 수 만들기 Lv2">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            큰 수 만들기 Lv2
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 그리디
+        </h2>
+        <h2 class="post-date">
+            2021-11-30 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--그리디--큰-수-만들기" id="markdown-toc-프로그래머스--그리디--큰-수-만들기">프로그래머스 &gt; 그리디 &gt; 큰 수 만들기</a>    <ul>
+      <li><a href="#1-문제-풀이" id="markdown-toc-1-문제-풀이">1. 문제 풀이</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--그리디--큰-수-만들기">프로그래머스 &gt; 그리디 &gt; 큰 수 만들기</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.11/30</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42883">문제링크</a><br />
+LEVEL: Lv2</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-문제-풀이">1. 문제 풀이</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">그리디</code> 문제는 순회 문제에서, full-search를 하지 않아도 중간 중간 <code class="language-plaintext highlighter-rouge">sub-optimal</code> Law를 통해 답을 찾는 방식을 말한다.</li>
+  <li>아이디어가 잘 떠올라야하는 문제 유형이고, 잘 떠오르지 않았던 문제이다.</li>
+  <li><strong>IDEA:</strong> number를 돌면서 i번째 값이 i+1번째 값보다 작으면 지워주고 break하는 것을 k번 반복한다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">string</span> <span class="nf">solution</span><span class="p">(</span><span class="n">string</span> <span class="n">number</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="kt">bool</span> <span class="n">checker</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]){</span>
+                <span class="n">number</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="n">checker</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">checker</span><span class="o">==</span><span class="nb">false</span><span class="p">)</span>
+            <span class="n">number</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">number</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">k</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=GREEDY"><span class="tag" data-tag="GREEDY">GREEDY</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

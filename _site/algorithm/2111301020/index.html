@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>구명보트 Lv2</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="구명보트 Lv2">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            구명보트 Lv2
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 그리디
+        </h2>
+        <h2 class="post-date">
+            2021-11-30 10:20
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--그리디--구명보트" id="markdown-toc-프로그래머스--그리디--구명보트">프로그래머스 &gt; 그리디 &gt; 구명보트</a>    <ul>
+      <li><a href="#1-시간-초과" id="markdown-toc-1-시간-초과">1. 시간 초과</a></li>
+      <li><a href="#2-다른-사람의-풀이-참고" id="markdown-toc-2-다른-사람의-풀이-참고">2. 다른 사람의 풀이 참고</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--그리디--구명보트">프로그래머스 &gt; 그리디 &gt; 구명보트</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.11/30</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42885">문제링크</a><br />
+LEVEL: Lv2</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-시간-초과">1. 시간 초과</h2>
+
+<ul>
+  <li>아래처럼 풀었더니, 자꾸 시간초과가 나서 헤맸다..</li>
+  <li>직관적으로 조건에 만족하면 지우고, 만족하지 않으면 살려두고 하는 방식으로 O(N^2) 순회를 돌게 되니까.. 시간초과가 난 것이다.</li>
+  <li>혹시나, <code class="language-plaintext highlighter-rouge">erase</code> 같은 것 때문에 overhead time이 잡혀서 그런가 해서, for문을 써서 해봤지만 시간초과,,, 결국엔 알고리즘의 시간 초과를 해결해야만 했다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">people</span><span class="p">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">sort</span><span class="p">(</span><span class="n">people</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">people</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">){</span>
+        
+        <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">){</span>
+                <span class="c1">//cout &lt;&lt; *people.begin() &lt;&lt; " "&lt;&lt; people[i] &lt;&lt; endl;</span>
+                <span class="n">people</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">people</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+                <span class="n">people</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">people</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+                <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">){</span>
+            <span class="n">answer</span><span class="o">+=</span><span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">answer</span><span class="o">+</span><span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-다른-사람의-풀이-참고">2. 다른 사람의 풀이 참고</h2>
+<ul>
+  <li>일종의, Binary Search 방식처럼 보이기도 하였다.</li>
+  <li><code class="language-plaintext highlighter-rouge">binary search</code> 방식은 아니고, 위의 시간초과난 알고리즘과 logic은 같은데, for문을 쓰지 않고, <code class="language-plaintext highlighter-rouge">sum&lt;=limit</code>를 만족하지 않는 경우는 <code class="language-plaintext highlighter-rouge">right</code>를 왼쪽으로 당기고 <code class="language-plaintext highlighter-rouge">answer</code>를 하나 더해줌으로써 문제를 효율적으로 풀었다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">people</span><span class="p">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">sort</span><span class="p">(</span><span class="n">people</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">people</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span> <span class="p">){</span>
+        <span class="kt">int</span> <span class="n">sum</span>  <span class="o">=</span>  <span class="n">people</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="o">+</span><span class="n">people</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">!=</span> <span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span><span class="o">&lt;=</span><span class="n">limit</span><span class="p">)</span>
+            <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+        
+        <span class="n">right</span> <span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+   
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이런 아이디어를 떠올리기란 참 쉽지 않은 일이다 ㅠㅠ..</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=GREEDY"><span class="tag" data-tag="GREEDY">GREEDY</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

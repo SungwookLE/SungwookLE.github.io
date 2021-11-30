@@ -1,9 +1,9 @@
 ---
 layout: post
 type: algorithm
-date: 2021-11-30 10:10
+date: 2021-11-30 10:20
 category: 코딩테스트 연습
-title: 큰 수 만들기 Lv2
+title: 구명보트 Lv2
 subtitle: 프로그래머스 그리디
 writer: 100
 hash-tag: [GREEDY, Programmers]
@@ -13,10 +13,10 @@ use_math: true
 - toc
 {:toc}
 
-# 프로그래머스 > 그리디 > 큰 수 만들기
+# 프로그래머스 > 그리디 > 구명보트
 > AUTHOR: SungwookLE    
 > DATE: '21.11/30  
->> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42883)  
+>> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/42885)  
 >> LEVEL: Lv2    
 
 ## 1. 시간 초과
