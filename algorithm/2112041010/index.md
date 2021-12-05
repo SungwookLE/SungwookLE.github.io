@@ -6,9 +6,10 @@ category: 코딩테스트 연습
 title: 문자열 계산기
 subtitle: 문자열을 입력받아 계산하는 프로그램
 writer: 100
-hash-tag: [String_Calculator]
+hash-tag: [StringCalculator]
 use_math: true
 ---
+
 
 - toc
 {:toc}
@@ -19,12 +20,14 @@ use_math: true
 >> REFERENCE: [참고](https://penglog.tistory.com/99)  
 
 ## 1. 문자열 계산기
-- 4칙 연산에 +,-,*,/,(,) 에는 우선순위가 존재한다.
+- 4칙 연산에 `+,-,*,/,(,)` 에는 우선순위가 존재한다.
 - 우리는 중위계산법에 입각해서, 식 중간의 연산자 우선순위에 따라 계산을 해나가는데, 컴퓨터로 연산을 하게 하려면 다른 계산법을 가져오는 것이 좋다.
 - 우선순위에 따라 `numbers`, `operations` 벡터에 숫자와 연산자를 차곡차곡 저장했다가 입력된 연산자에 따라 계산을 하면서 컨테이너에서 하나씩 숫자를 꺼내서 연산을 해나가면 된다. (후위계산법이라고 부른다.)
 
-- Reference를 참고하여 코드를 만들었으며, `./a.out '(5+1.12 * 3)/1.1` 식으로 실행하면 된다.
+- Reference를 참고하여 코드 작성하였다.
 - ![images](./img/1.png)
+
+## 2. 코드
 
 ```c++
 #include <iostream>
@@ -40,50 +43,82 @@ using namespace std;
  */
 class string_calculator{
     public:
-    double string_calc(string inputs){
+        double string_calc(string inputs){
+            string process_input = tokenizer(inputs);
+            stringstream ss(process_input);
+            string token;
 
-        string process_input = tokenizer(inputs);
-        stringstream ss(process_input);
-        string token;
-
-        while(ss >> token){
-            if (token == "(")
-                operations.push_back({0, "("});
-            else if (token == ")"){
-
-                while (operations.back().oper != "("){
-                    calc();
+            while(ss >> token){
+                if (token == "(")
+                    operations.push_back({0, "("});
+                else if (token == ")"){
+                    while (operations.back().oper != "("){
+                        calc();
+                    }
+                    operations.pop_back();
                 }
-                operations.pop_back();
+                else if(token == "*" || token == "/" || token == "+" || token == "-"){
+                    int prior;
+                    if (token == "*")
+                        prior = 2;
+                    else if (token == "/")
+                        prior = 2;
+                    else if (token == "+")
+                        prior = 1;
+                    else if (token == "-")
+                        prior = 1;
+                    
+                    while (!operations.empty() && prior <= operations.back().prior)
+                        calc();
+                    operations.push_back({prior, token});
+                }
+                else
+                    numbers.push_back(stod(token));
             }
-            else if(token == "*" || token == "/" || token == "+" || token == "-"){
-                int prior;
-                if (token == "*")
-                    prior = 2;
-                else if (token == "/")
-                    prior = 2;
-                else if (token == "+")
-                    prior = 1;
-                else if (token == "-")
-                    prior = 1;
-                
-                while (!operations.empty() && prior <= operations.back().prior)
-                    calc();
-                
-                operations.push_back({prior, token});
-            }
-            else
-                numbers.push_back(stod(token));
+            while(!operations.empty())
+                calc();
+            return numbers.back();
         }
 
-        while(!operations.empty())
-            calc();
-        
-        return numbers.back();
-    }
-
     private:
+        void calc(){
+            double a, b, result;
+            b = numbers.back();
+            numbers.pop_back();
+            a = numbers.back();
+            numbers.pop_back();
+            string o;
+            o = operations.back().oper;
+            operations.pop_back();
 
+            if (o == "*")
+                result = (double)a*b;
+            else if ( o =="/")
+                result = (double)a/b;
+            else if ( o =="+")
+                result = (double)a+b;
+            else if ( o == "-")
+                result = (double)a-b;
+            
+            iter+=1;
+
+            numbers.push_back(result);
+            cout << iter << "th intermediate: ";
+            for (auto a : numbers)
+                cout << a << " ";
+            cout << endl;
+        }
+        struct op{
+            int prior;
+            string oper;
+        };
+        vector<double> numbers;
+        vector<op> operations;
+
+    /**
+    * @brief 아래코드는 string handle을 위해 필요한 함수
+    */
+    int iter = 0;
     string tokenizer(string _input){
         string process_string;
         bool flag = false;
@@ -107,56 +142,12 @@ class string_calculator{
         cout << process_string << endl;
         return process_string;
     }
-
-    void calc(){
-        double a, b, result;
-        b = numbers.back();
-        numbers.pop_back();
-        a = numbers.back();
-        numbers.pop_back();
-        string o;
-        o = operations.back().oper;
-        operations.pop_back();
-
-        if (o == "*")
-            result = (double)a*b;
-        else if ( o =="/")
-            result = (double)a/b;
-        else if ( o =="+")
-            result = (double)a+b;
-        else if ( o == "-")
-            result = (double)a-b;
-        
-        iter+=1;
-
-        numbers.push_back(result);
-        cout << iter << "th intermediate: ";
-        for (auto a : numbers)
-            cout << a << " ";
-        cout << endl;
-    }
-    struct op{
-        int prior;
-        string oper;
-    };
-    vector<double> numbers;
-    vector<op> operations;
-    int iter = 0;
-
-    /**
-     * @brief Not Use, just for showing operator priority
-     */
-    vector<op> operate_prior_example=  {{0,"("}, {0,")"}, {1,"+"}, {1,"-"}, {2,"*"}, {2,"/"}};
-    
 };
 
 int main(int argc, char* argv[]){
-
     string_calculator calc;
     cout << calc.string_calc(argv[1]) <<endl;
-
 }
 ```
-
 
 ## 끝
