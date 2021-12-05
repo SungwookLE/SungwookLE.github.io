@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>N으로 표현 Lv3</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="N으로 표현 Lv3">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            N으로 표현 Lv3
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 동적계획법
+        </h2>
+        <h2 class="post-date">
+            2021-12-05 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--동적계획법--n으로-표현" id="markdown-toc-프로그래머스--동적계획법--n으로-표현">프로그래머스 &gt; 동적계획법 &gt; N으로 표현</a>    <ul>
+      <li><a href="#1-혼자선-못-품" id="markdown-toc-1-혼자선-못-품">1. 혼자선 못 품</a></li>
+      <li><a href="#2-다른-사람-풀이-참고" id="markdown-toc-2-다른-사람-풀이-참고">2. 다른 사람 풀이 참고</a></li>
+      <li><a href="#3-unordered_set의-간단한-사용법" id="markdown-toc-3-unordered_set의-간단한-사용법">3. unordered_set의 간단한 사용법</a></li>
+      <li><a href="#3-코드" id="markdown-toc-3-코드">3. 코드</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--동적계획법--n으로-표현">프로그래머스 &gt; 동적계획법 &gt; N으로 표현</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.12/05</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42895">문제링크</a><br />
+REFERENCE: <a href="https://velog.io/@euneun/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-N%EC%9C%BC%EB%A1%9C-%ED%91%9C%ED%98%84-DP-%EB%8F%99%EC%A0%81%EA%B3%84%ED%9A%8D%EB%B2%95-C">참고</a><br />
+LEVEL: Lv3</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-혼자선-못-품">1. 혼자선 못 품</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DP</code>로 풀라고해서, 처음에는 <code class="language-plaintext highlighter-rouge">string</code>으로 모든 식을 표현한 다음에 <code class="language-plaintext highlighter-rouge">string calculator</code>를 만들어서 계산을 하고, 계산한 값이 <code class="language-plaintext highlighter-rouge">number</code>와 맞는지 비교해서 문제를 풀려고 했다.</li>
+  <li>
+    <p>당연히 비효율적이고, <code class="language-plaintext highlighter-rouge">string calculator</code>를 만드는 것도 어려워서 후위계산법 등을 찾아봐야만 했다.</p>
+  </li>
+  <li>
+    <p>본 문제는 <strong>Memoization</strong>을 활용해서 풀어야하는 문제로 메모이제이션은 컴퓨터 프로그램이 동일한 계산을 반복해야 할 때, 이전에 계산한 값을 메모리에 저장함으로써 동일한 계산의 반복 수행을 제거하여 프로그램 실행 속도를 빠르게 하는 기술이다. 동적 계획법의 핵심이 되는 기술이다. 메모아이제이션이라고도 한다.</p>
+  </li>
+  <li>동적 계획법을 이용한 문제풀이는 다음의 <em>룰(Rule)</em> 을 기억하면 좋다고 한다.</li>
+  <li>
+    <p><img src="/algorithm/2112051010/img/1.png" alt="image" /></p>
+  </li>
+  <li>그리디 문제도 어렵고, DP문제도 넘나 어려운 것.. ㅠㅠ</li>
+</ul>
+
+<h2 id="2-다른-사람-풀이-참고">2. 다른 사람 풀이 참고</h2>
+<blockquote>
+  <p>5가 두번 이용된 5/5의 경우 5가 한번 이용된 경우를 사칙연산으로 결합한 결과임을 알 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li>여기서 N을 i번 이용했을때 만들 수 있는 수들을 DP[i]에 저장하면 될것이라는 생각을 할 수 있다.</li>
+  <li>
+    <p>즉 DP[i] : i개의 N으로 만들 수 있는 숫자들 이다</p>
+  </li>
+  <li>
+    <p>실제로 dp배열에 저장해보자. 유의할 것은 DP 배열의 인덱스값은 0부터 시작하므로 실제 이용되는 값보다 1만큼 작다는것! 그리고 아래에서 ㅁ은 사칙연산을 의미한다!</p>
+
+    <ul>
+      <li>DP[0] : 1개의 N으로 만들 수 있는 수들의 집합은 N한개 밖에 없다.
+        <ul>
+          <li>{N} : N1이라고 하자</li>
+        </ul>
+      </li>
+      <li>DP[1] : 2개의 N으로 만들 수 있는 수들의 집합은 NN과 N1(N 한개로 만들수있는수)두개끼리 사칙연산한 결과로 이루어져있을것이다.
+        <ul>
+          <li>{NN, N1ㅁN1} : N2라고 하자.</li>
+        </ul>
+      </li>
+      <li>DP[2] : 3개의 N으로 만들 수 있는 수들의 집합은 NNN과 N1(N 한개로 만들수있는수)와 N2(N 두개로 만들수있는수)를 사칙연산한 결과로 이루어져있을 것이다.
+        <ul>
+          <li>{NNN, N1ㅁN2, N2ㅁN1} : N3라고 하자.</li>
+        </ul>
+      </li>
+      <li>DP[3] : 4개의 N으로 만들 수 있는 수들의 집합
+        <ul>
+          <li>{NNNN, N1ㅁN3, N2ㅁN2, N3ㅁN1} : N4</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-unordered_set의-간단한-사용법">3. unordered_set의 간단한 사용법</h2>
+<ul>
+  <li>간단한 사용법
+    <ul>
+      <li>set에 삽입할때는 insert라는 함수를 사용하고 find라는 함수를 사용하여 해당원소가 set에 있는지 확인 가능하다.</li>
+      <li>이때 해당원소가 없으면 set.end()를 반환한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-코드">3. 코드</h2>
+<ul>
+  <li>코드를 써보면서 반복적으로 보면 좋을 것 같다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">get_Ns</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">){</span>
+    <span class="c1">// NN(idx ==1), NNN(idx==2), NNN(idx==3)... 과 같은 형태 만드는 함수</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">N</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">N</span><span class="o">==</span><span class="n">number</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//N과 number가 같다면, N을 한번 사용해서 number를 만들 수 있음</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">DP</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+    <span class="c1">// DP에 저장할 것 -&gt; DP[i] : 1개의 N으로 만들 수 있는 숫자들</span>
+
+    <span class="n">DP</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="c1">//한개의 N으로 만들 수 있는 수는 N뿐임</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">){</span>
+
+        <span class="c1">// DP[k]에 NNN ... (k+1만큼 반복)과 같은 형태 삽입</span>
+        <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">get_Ns</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">k</span><span class="p">));</span>
+
+        <span class="c1">// DP[k]에 사칙 연산의 결과또한 삽입</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">k</span> <span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span> <span class="o">!=</span> <span class="n">k</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+                
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">:</span> <span class="n">DP</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">b</span> <span class="o">:</span> <span class="n">DP</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+                        <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">);</span>
+                        <span class="c1">// 검사가 필요한 연산들</span>
+
+                        <span class="c1">// (1) 음수 존재하면 안됨</span>
+                        <span class="k">if</span> <span class="p">(</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                            <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+                        
+                        <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+
+                        <span class="c1">// (2) 0 존재하면 안됨</span>
+                        <span class="k">if</span> <span class="p">(</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">);</span>
+
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">find</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">!=</span> <span class="n">DP</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">end</span><span class="p">())</span> <span class="c1">//DP set에 number에 해당하는 값이 있으면 k+1을 반환</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=Dynamic_Programming"><span class="tag" data-tag="Dynamic_Programming">Dynamic_Programming</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
