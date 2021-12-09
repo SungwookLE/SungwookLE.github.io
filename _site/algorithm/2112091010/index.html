@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>도둑질 Lv4</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="도둑질 Lv4">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            도둑질 Lv4
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 동적계획법
+        </h2>
+        <h2 class="post-date">
+            2021-12-09 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--동적계획법--도둑질" id="markdown-toc-프로그래머스--동적계획법--도둑질">프로그래머스 &gt; 동적계획법 &gt; 도둑질</a>    <ul>
+      <li><a href="#1-혼자-풀지-못함" id="markdown-toc-1-혼자-풀지-못함">1. 혼자 풀지 못함..</a></li>
+      <li><a href="#2-다른-사람-풀이-참고함" id="markdown-toc-2-다른-사람-풀이-참고함">2. 다른 사람 풀이 참고함</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--동적계획법--도둑질">프로그래머스 &gt; 동적계획법 &gt; 도둑질</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.12/09</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42897">문제링크</a><br />
+REFERENCE: <a href="https://yabmoons.tistory.com/477">참고</a><br />
+LEVEL: Lv4</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-혼자-풀지-못함">1. 혼자 풀지 못함..</h2>
+
+<ul>
+  <li>생각해본 아이디어..
+    <ul>
+      <li>첫집부터 -&gt; 마지막집 까지 돈을 더해나가고, 이 때 특별한 조건인, 인접한 두 집을 터면 안된다는 것을 만족하게..</li>
+      <li>
+        <p>그렇게 구한 값의 최대값을 리턴, (중간 중간 값 비교를 해서 DP에 담아야 겠네..)</p>
+      </li>
+      <li>점화식을 세우기가 어려워서,, 감이 안잡혔다.</li>
+      <li>다른 사람의 코드를 참고해보니,</li>
+      <li>DP <code class="language-plaintext highlighter-rouge">vector</code>를 2개 만들고 첫번째 집을 턴 경우와 털지 않은 경우를 각각 <code class="language-plaintext highlighter-rouge">starting point</code>로 하여 DP 문제를 풀었네.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-다른-사람-풀이-참고함">2. 다른 사람 풀이 참고함</h2>
+
+<ul>
+  <li>x번 집을 털겠다 라는 것은, x - 1번 집과, x + 1번 집은 털지 못한다는 것을 의미한다.
+    <ul>
+      <li>즉 ! x - 2 번을 털었을 때의 최대액수 + x번 집을 털었을 때 훔칠 수 있는 액수가 “x번 집을 터는 경우의 구할 수 있는 최대액수”가 된다. 위에서 소개한 변수로 표현해본다면 DP[x] = DP[x - 2] + money[x] 가 된다.</li>
+    </ul>
+  </li>
+  <li>반대로 털지 않는다면 어떻게 될까 ??
+    <ul>
+      <li>x번 집을 털지 않는다는 것은 x - 1번 집을 털 수 있다 라는 이야기이고, x번 집을 털지 않을 때 훔칠 수 있는 최대 액수는, “x - 1번집 까지 털었을 때의 최대액수”가 된다.</li>
+      <li>위에서 소개한 변수로 표현해 본다면 DP[x] = DP[x - 1]이 된다는 것이다.</li>
+    </ul>
+  </li>
+  <li>우리는 위에서 말한 2가지 경우(터는 경우, 털지 않는 경우) 를 비교해가면서 최대값을 구해보면 된다.</li>
+  <li>수식으로 나타내보면 DP[x] = max(DP[x - 2] + money[x] , DP[x - 1]) 이 되는 것이다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;string&gt;
+#include &lt;vector&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">money</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// 참고: https://yabmoons.tistory.com/477</span>
+ 
+    <span class="c1">// 점화식: DP[x] = max(DP[x - 2] + money[x] , DP[x - 1]) </span>
+    <span class="c1">// DP1은 첫번째 집을 턴다는 가정, DP2는 첫번째 집을 털지 않는다는 가정</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">DP1</span><span class="p">(</span><span class="mi">1000001</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DP2</span><span class="p">(</span><span class="mi">1000001</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    
+    <span class="n">DP1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">money</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">DP1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">DP1</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    
+    <span class="n">DP2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">DP2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">money</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">money</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">DP1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">DP1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">money</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">,</span> <span class="n">DP1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">money</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">DP2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">DP2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">money</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">,</span> <span class="n">DP2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+    
+    <span class="k">return</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">DP1</span><span class="p">[</span><span class="n">money</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">DP2</span><span class="p">[</span><span class="n">money</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=Dynamic_Programming"><span class="tag" data-tag="Dynamic_Programming">Dynamic_Programming</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
