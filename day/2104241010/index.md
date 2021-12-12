@@ -4,7 +4,7 @@ type: day
 date: 9999-00-00 00:00
 category: Dish
 title: 맛집 리스트
-subtitle: 상단 고정 게시글, 업데이트@21.11/25 
+subtitle: 상단 고정 게시글, 업데이트@21.12/12 
 writer: 100
 post-header: false
 hash-tag: [맛집]
@@ -14,22 +14,28 @@ use_math: true
 - toc
 {:toc}
 
+<br/>
+*번호는 순위와 무관함을 알려드립니다*
+
 ## 1. wonju 로컬
 
 ### 1-1. wonju 카페
-1. [빵공장라뜰리에김가, 원주카페](https://map.naver.com/v5/entry/place/265752418?c=14243932.8442925,4488779.5855065,12,0,0,0,dh)
+1. [빵공장라뜰리에김가, 원주 빵카페](https://map.naver.com/v5/entry/place/265752418?c=14243932.8442925,4488779.5855065,12,0,0,0,dh)
 2. [허니포레스트, 원주카페](https://map.naver.com/v5/entry/place/1888562565?c=14240869.4098295,4481024.8969248,13,0,0,0,dh)  
-3. [터득골, 원주카페](https://map.naver.com/v5/search/%EC%9B%90%EC%A3%BC%20%ED%84%B0%EB%93%9D%EA%B3%A8/place/54176556?c=14234193.8916612,4476533.8052284,15,0,0,0,dh&placePath=%3Fentry%253Dbmp)
-4. [단계빵집, 원주빵집](https://map.naver.com/v5/entry/place/1011988073?c=14240725.7965544,4487406.1174598,15,0,0,0,dh)
+3. [터득골, 원주 북카페](https://map.naver.com/v5/search/%EC%9B%90%EC%A3%BC%20%ED%84%B0%EB%93%9D%EA%B3%A8/place/54176556?c=14234193.8916612,4476533.8052284,15,0,0,0,dh&placePath=%3Fentry%253Dbmp)
+4. [단계빵집, 원주 크림빵집](https://map.naver.com/v5/entry/place/1011988073?c=14240725.7965544,4487406.1174598,15,0,0,0,dh)
 5. [닥터 허, 원주카페](https://map.naver.com/v5/entry/place/37910938?c=14246214.0144298,4484834.2321608,15,0,0,0,dh)
+6. [포레스트 커피, 원주카페](https://map.naver.com/v5/entry/place/1385651080?c=14243288.3712325,4485699.8669247,15,0,0,0,dh)
 
 ### 1-2. wonju 맛집
 1. [더함집, 원주낙곱새](https://map.naver.com/v5/entry/place/1096422671?c=14244392.9834077,4483723.9014340,15,0,0,0,dh)
 2. [신촌막국수, 원주옹심이](https://map.naver.com/v5/entry/place/15250928?c=14245447.8469024,4482719.6260691,13,0,0,0,dh)  
-3. [초밥집, 원주](https://map.naver.com/v5/entry/place/1341377099?c=14246295.5893526,4484280.0600380,15,0,0,0,dh)  
-4. [옛날짬뽕, 원주](https://map.naver.com/v5/search/%EC%9B%90%EC%A3%BC%20%EC%98%9B%EB%82%A0%EC%A7%AC%EB%BD%95/place/20133380?c=14240658.5929778,4486233.3502517,15,0,0,0,dh)
-5. [스위트오크, 원주 BBQ](https://map.naver.com/v5/search/%EC%8A%A4%EC%9C%84%ED%8A%B8%EC%98%A4%ED%81%AC/place/37379515?c=14240539.7482894,4485383.0155033,15,0,0,0,dh)
-6. [예테보리, 원주 스웨덴식](https://map.naver.com/v5/entry/place/1589642695?c=14240932.9398629,4485438.3434129,12,0,0,0,dh)
+3. [옛날짬뽕, 원주](https://map.naver.com/v5/search/%EC%9B%90%EC%A3%BC%20%EC%98%9B%EB%82%A0%EC%A7%AC%EB%BD%95/place/20133380?c=14240658.5929778,4486233.3502517,15,0,0,0,dh)
+4. [스위트오크, 원주 BBQ](https://map.naver.com/v5/search/%EC%8A%A4%EC%9C%84%ED%8A%B8%EC%98%A4%ED%81%AC/place/37379515?c=14240539.7482894,4485383.0155033,15,0,0,0,dh)
+5. [원주장진우 식당, 원주 프랑스식](https://map.naver.com/v5/entry/place/1766007638?c=14243003.8163501,4487667.3538438,15,0,0,0,dh)
+6. [초밥집, 원주](https://map.naver.com/v5/entry/place/1341377099?c=14246295.5893526,4484280.0600380,15,0,0,0,dh)  
+7. [꽃비, 원주 참치](https://map.naver.com/v5/entry/place/1764064212?c=14240427.6606942,4486212.6146840,15,0,0,0,dh)
+8. [예테보리, 원주 스웨덴식](https://map.naver.com/v5/entry/place/1589642695?c=14239040.4528596,4485484.5155602,13,0,0,0,dh)
 
 ## 2. jieun 리스트업
 1. [감성타코, 신사](https://map.naver.com/v5/search/%EA%B0%90%EC%84%B1%ED%83%80%EC%BD%94%EC%8B%A0%EC%82%AC%EC%A0%90/place/21867596?c=14138972.4571469,4511930.3683518,15,0,0,0,dh&placePath=%3Fentry%253Dbmp)
@@ -60,4 +66,4 @@ use_math: true
 22. [갓덴스시 강남점, 강남](https://map.naver.com/v5/entry/place/19896618?c=14140343.4457316,4508854.2887946,15,0,0,0,dh)
 
 ## 끝
-- 필요한 경우, 댓글로도 추가해주세요~!
+- 필요한 경우, 댓글로 추가해주세요~!

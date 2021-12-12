@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>타겟 넘버 Lv2</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="타겟 넘버 Lv2">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm"  class="active" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                코딩테스트 연습
+            </div>
+        </div>
+        <h1 class="post-title">
+            타겟 넘버 Lv2
+        </h1>
+        <h2 class="post-subtitle">
+            프로그래머스 깊이/너비 우선 탐색(DFS/BFS)
+        </h2>
+        <h2 class="post-date">
+            2021-12-12 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#프로그래머스--깊이너비-우선-탐색dfsbfs--타겟-넘버" id="markdown-toc-프로그래머스--깊이너비-우선-탐색dfsbfs--타겟-넘버">프로그래머스 &gt; 깊이/너비 우선 탐색(DFS/BFS) &gt; 타겟 넘버</a>    <ul>
+      <li><a href="#1-예전에-한번-풀었었음" id="markdown-toc-1-예전에-한번-풀었었음">1. 예전에 한번 풀었었음..</a></li>
+      <li><a href="#2-코드" id="markdown-toc-2-코드">2. 코드</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="프로그래머스--깊이너비-우선-탐색dfsbfs--타겟-넘버">프로그래머스 &gt; 깊이/너비 우선 탐색(DFS/BFS) &gt; 타겟 넘버</h1>
+<blockquote>
+  <p>AUTHOR: SungwookLE  <br />
+DATE: ‘21.12/12</p>
+  <blockquote>
+    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/43165">문제링크</a><br />
+LEVEL: Lv2</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-예전에-한번-풀었었음">1. 예전에 한번 풀었었음..</h2>
+<ul>
+  <li>한번 풀었던 문제이기도 하고, 풀이가 기억나는 게 있어서 풀기는 함</li>
+  <li>숫자를 더하고 빼는 두가지 경우에 대해서 모든 경우를 다 계산하다가, 마지막에 <code class="language-plaintext highlighter-rouge">sum</code>과 <code class="language-plaintext highlighter-rouge">target</code>이 맞는지 비교하여 답 출력</li>
+  <li>알고리즘은 <code class="language-plaintext highlighter-rouge">Brute Force</code> 처럼 모든 경우를 탐색하는 것과 동일하다.</li>
+</ul>
+
+<h2 id="2-코드">2. 코드</h2>
+<ul>
+  <li>코드</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;string&gt;
+#include &lt;vector&gt;
+</span>
+<span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">iter</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">number</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">answer</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iter</span> <span class="o">==</span> <span class="n">n</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">target</span><span class="p">){</span>
+            <span class="n">answer</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="c1">//더하는 케이스 1)</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span><span class="p">[</span><span class="n">iter</span><span class="p">];</span>
+        <span class="n">bfs</span><span class="p">(</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">answer</span><span class="p">);</span>
+        <span class="c1">//원상복귀</span>
+        <span class="n">sum</span> <span class="o">-=</span> <span class="n">number</span><span class="p">[</span><span class="n">iter</span><span class="p">];</span>
+
+        <span class="c1">//빼는 케이스 2)</span>
+        <span class="n">sum</span> <span class="o">-=</span> <span class="n">number</span><span class="p">[</span><span class="n">iter</span><span class="p">];</span>
+        
+        <span class="n">bfs</span><span class="p">(</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">answer</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">bfs</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">answer</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/algorithm/?tag=DFS"><span class="tag" data-tag="DFS">DFS</span></a>
+        
+        <a href="/algorithm/?tag=BFS"><span class="tag" data-tag="BFS">BFS</span></a>
+        
+        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
