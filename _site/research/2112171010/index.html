@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Shared Memory</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Shared Memory">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2112171010/img/shared_memory.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('img/shared_memory.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                MultiThread
+            </div>
+        </div>
+        <h1 class="post-title">
+            Shared Memory
+        </h1>
+        <h2 class="post-subtitle">
+            Thread management in Python(1)
+        </h2>
+        <h2 class="post-date">
+            2021-12-17 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#shared-memory" id="markdown-toc-shared-memory">Shared Memory</a>    <ul>
+      <li><a href="#1-기본-사용법" id="markdown-toc-1-기본-사용법">1. 기본 사용법</a></li>
+      <li><a href="#2-한계" id="markdown-toc-2-한계">2. 한계</a></li>
+      <li><a href="#3-결론" id="markdown-toc-3-결론">3. 결론</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="shared-memory">Shared Memory</h1>
+<blockquote>
+  <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
+Date  : ‘21.12/17</p>
+  <blockquote>
+    <p>Thread management in Python(1)</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-기본-사용법">1. 기본 사용법</h2>
+<ul>
+  <li>Shared memory란 두 프로세스 간에 특정 메모리를 공유하는 방식입니다. 두 프로세스는 해당 메모리에 접근하여 read/write할 수 있습니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Value</span><span class="p">(</span><span class="s">'i'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+    <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+
+    <span class="n">process_Count_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div></div>
+<ul>
+  <li>위 코드에는 시간을 세는 process_Count_time과 시간을 출력하는 process_Print_time이라는 두 가지 종류의 프로세스가 존재합니다.</li>
+  <li>두 프로세스는 int_Time_counter라는 변수를 서로 공유합니다.</li>
+  <li>해당 함수 실행 결과는 아래와 같습니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">5</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">6</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">7</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">8</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">9</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">11</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">12</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">13</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">14</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">15</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">16</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">17</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">18</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">19</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+</code></pre></div></div>
+<h2 id="2-한계">2. 한계</h2>
+<ul>
+  <li>하지만 shared memory는 동시에 데이터 접근이 가능하며 이러한 특성은 다양한 문제를 발생시킬 수 있습니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">process</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Value</span><span class="p">(</span><span class="s">'i'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">list_Process</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+        <span class="n">list_Process</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_Count_time</span><span class="p">)</span>
+        
+    <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">list_Process</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위 코드는 열개의 process_Count_time과 한 개의 process_Print_time으로 구성됩니다.</li>
+  <li>만약 shared memory가 동시에 한 프로세스에서만 접근이 가능하다면 매 1초마다 print되는 int_Time_counter는 10씩 늘어나야합니다.</li>
+  <li>실제 실행결과는 아래와 같습니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">18</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">25</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">32</span>
+</code></pre></div></div>
+
+<ul>
+  <li>process_Count_time은 실제로 1초에 10번 수행되기는 합니다. 하지만  1초마다 증가하는 숫자는 10은 아니며, 이는 동시에 shared memory에 접근할 수 있기 때문입니다.</li>
+</ul>
+
+<h2 id="3-결론">3. 결론</h2>
+<ul>
+  <li>
+    <p>결론적으로 share memory는 코딩하기 매우 쉽습니다. 해당 변수에 접근하여 read/write하는 것도 굉장히 직관적입니다.</p>
+  </li>
+  <li>
+    <p>하지만, 동시에 write하는 경우 문제가 발생할 수 있으니, 동시에 여러 프로세스에서 연산을 해야하는 변수에는 사용하지 않는 것이 좋겠습니다.</p>
+  </li>
+</ul>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=python"><span class="tag" data-tag="python">python</span></a>
+        
+        <a href="/research/?tag=multi_thread"><span class="tag" data-tag="multi_thread">multi_thread</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
