@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- HTML Meta Tags -->
-  <title>Shared Memory</title>
+  <title>Thread management in Python</title>
   <meta name="description" content="SungwookLE">
 
   
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="Shared Memory">
+  <meta itemprop="name" content="Thread management in Python">
   <meta itemprop="description" content="SungwookLE">
   <meta itemprop="image" content="http://localhost:4000/research/2112171010/img/shared_memory.png">
 
@@ -134,10 +134,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </div>
         </div>
         <h1 class="post-title">
-            Shared Memory
+            Thread management in Python
         </h1>
         <h2 class="post-subtitle">
-            Thread management in Python(1)
+            Shared memory, Server Process, Queue, Pipe
         </h2>
         <h2 class="post-date">
             2021-12-17 10:10
@@ -149,24 +149,47 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
 
     <ul id="markdown-toc">
-  <li><a href="#shared-memory" id="markdown-toc-shared-memory">Shared Memory</a>    <ul>
-      <li><a href="#1-기본-사용법" id="markdown-toc-1-기본-사용법">1. 기본 사용법</a></li>
-      <li><a href="#2-한계" id="markdown-toc-2-한계">2. 한계</a></li>
-      <li><a href="#3-결론" id="markdown-toc-3-결론">3. 결론</a></li>
+  <li><a href="#thread-management-in-python" id="markdown-toc-thread-management-in-python">Thread management in Python</a>    <ul>
+      <li><a href="#1-shared-memory" id="markdown-toc-1-shared-memory">1. Shared Memory</a>        <ul>
+          <li><a href="#1-1-기본-사용법" id="markdown-toc-1-1-기본-사용법">1-1. 기본 사용법</a></li>
+          <li><a href="#1-2-한계" id="markdown-toc-1-2-한계">1-2. 한계</a></li>
+          <li><a href="#1-3-결론" id="markdown-toc-1-3-결론">1-3. 결론</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-server-process" id="markdown-toc-2-server-process">2. Server Process</a>        <ul>
+          <li><a href="#2-1-기본-사용법" id="markdown-toc-2-1-기본-사용법">2-1. 기본 사용법</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-queue" id="markdown-toc-3-queue">3. Queue</a>        <ul>
+          <li><a href="#3-1-기본-사용법" id="markdown-toc-3-1-기본-사용법">3-1. 기본 사용법</a></li>
+          <li><a href="#3-1-장점" id="markdown-toc-3-1-장점">3-1. 장점</a></li>
+        </ul>
+      </li>
+      <li><a href="#4-pipe" id="markdown-toc-4-pipe">4. Pipe</a>        <ul>
+          <li><a href="#4-1-기본-사용법" id="markdown-toc-4-1-기본-사용법">4-1. 기본 사용법</a></li>
+          <li><a href="#4-1-주의점" id="markdown-toc-4-1-주의점">4-1. 주의점</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
-<h1 id="shared-memory">Shared Memory</h1>
+<h1 id="thread-management-in-python">Thread management in Python</h1>
 <blockquote>
   <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
 Date  : ‘21.12/17</p>
   <blockquote>
-    <p>Thread management in Python(1)</p>
+    <ol>
+      <li>Shared Memory</li>
+      <li>Server Process</li>
+      <li>Queue</li>
+      <li>Pipe</li>
+    </ol>
   </blockquote>
 </blockquote>
 
-<h2 id="1-기본-사용법">1. 기본 사용법</h2>
+<h2 id="1-shared-memory">1. Shared Memory</h2>
+<h3 id="1-1-기본-사용법">1-1. 기본 사용법</h3>
 <ul>
   <li>Shared memory란 두 프로세스 간에 특정 메모리를 공유하는 방식입니다. 두 프로세스는 해당 메모리에 접근하여 read/write할 수 있습니다.</li>
 </ul>
@@ -241,7 +264,7 @@ Date  : ‘21.12/17</p>
 <span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
 <span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
 </code></pre></div></div>
-<h2 id="2-한계">2. 한계</h2>
+<h3 id="1-2-한계">1-2. 한계</h3>
 <ul>
   <li>하지만 shared memory는 동시에 데이터 접근이 가능하며 이러한 특성은 다양한 문제를 발생시킬 수 있습니다.</li>
 </ul>
@@ -333,7 +356,7 @@ Date  : ‘21.12/17</p>
   <li>process_Count_time은 실제로 1초에 10번 수행되기는 합니다. 하지만  1초마다 증가하는 숫자는 10은 아니며, 이는 동시에 shared memory에 접근할 수 있기 때문입니다.</li>
 </ul>
 
-<h2 id="3-결론">3. 결론</h2>
+<h3 id="1-3-결론">1-3. 결론</h3>
 <ul>
   <li>
     <p>결론적으로 share memory는 코딩하기 매우 쉽습니다. 해당 변수에 접근하여 read/write하는 것도 굉장히 직관적입니다.</p>
@@ -341,6 +364,261 @@ Date  : ‘21.12/17</p>
   <li>
     <p>하지만, 동시에 write하는 경우 문제가 발생할 수 있으니, 동시에 여러 프로세스에서 연산을 해야하는 변수에는 사용하지 않는 것이 좋겠습니다.</p>
   </li>
+</ul>
+
+<h2 id="2-server-process">2. Server Process</h2>
+
+<h3 id="2-1-기본-사용법">2-1. 기본 사용법</h3>
+<ul>
+  <li>Server process란 여러 process를 관리하는 server가 여러 프로세스에서 사용되는 자원을 관리하는 형태를 말합니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+        <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">manager</span><span class="p">.</span><span class="n">Value</span><span class="p">(</span><span class="n">typecode</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Initial value: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+
+        <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+        <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+
+        <span class="n">process_Count_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">process_Count_time</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+
+        <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">process_Print_time</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위의 코드를 보면 with 문 안에서 process_Count_time, process_Print_time 두 프로세스를 manager가 관리합니다.</li>
+  <li>int_Time_counter라는 manager관리 하의 공용으로 사용되는 object가 선언되고 이를 두 프로세스에서 사용합니다.</li>
+  <li>아래는 수행 결과입니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Initial</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>근데 왜 process_Count_time만 동작할까요?
+    <ul>
+      <li>process.join()은 start()가 끝날 때까지 block 상태로 대기합니다.</li>
+      <li>따라서, 아래 처럼 코드 변경해야합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+        <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">manager</span><span class="p">.</span><span class="n">Value</span><span class="p">(</span><span class="n">typecode</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Initial value: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+
+        <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+        <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,))</span>
+
+        <span class="n">process_Count_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="n">process_Count_time</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="n">process_Print_time</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Initial</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+</code></pre></div></div>
+
+<h2 id="3-queue">3. Queue</h2>
+
+<h3 id="3-1-기본-사용법">3-1. 기본 사용법</h3>
+<ul>
+  <li>multiprocessing 시의 대표적인 communication 방식 중 하나 입니다.</li>
+  <li>Queue에 메시지를 담은 후에 다른 프로세스에서 해당 메시지를 가져감으로써 두 프로세스 간에 메시지를 전달합니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,</span><span class="n">queue_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">int_Time_counter</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">queue_Time_counter</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">queue_Time_counter</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">queue_Time_counter</span><span class="p">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">queue_Time_counter</span><span class="p">.</span><span class="n">get</span><span class="p">()))</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">queue_Time_counter</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
+
+    <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,</span><span class="n">queue_Time_counter</span><span class="p">))</span>
+    <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">queue_Time_counter</span><span class="p">,))</span>
+
+    <span class="n">process_Count_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>코드 수행결과는 아래와 같습니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">5</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">6</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">7</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">8</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">9</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<ul>
+  <li>매초마다 clock이 동작하고 이를 출력하는 두 프로세스가 모두 잘 동작합니다.</li>
+</ul>
+
+<h3 id="3-1-장점">3-1. 장점</h3>
+<ul>
+  <li>queue를 사용하는 방식은 두 프로세스간의 동기화를 보장합니다. 따라서, thread 및 process를 쓸 때 가장 안전합니다.</li>
+</ul>
+
+<h2 id="4-pipe">4. Pipe</h2>
+
+<h3 id="4-1-기본-사용법">4-1. 기본 사용법</h3>
+<ul>
+  <li>pipe는 두 노드 간의 단방향 통신입니다. sender와 receiver를 지정하여 한 방향으로의 변수를 전달합니다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+  
+<span class="k">def</span> <span class="nf">count_Time</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,</span><span class="n">conn</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">int_Time_counter</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Clock activated ..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_Time</span><span class="p">(</span><span class="n">conn</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">recv</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Time: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_Time_counter</span><span class="p">))</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">int_Time_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">conn_Sender</span><span class="p">,</span> <span class="n">conn_Receiver</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Pipe</span><span class="p">()</span>
+
+    <span class="n">process_Count_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">count_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_Time_counter</span><span class="p">,</span><span class="n">conn_Sender</span><span class="p">))</span>
+    <span class="n">process_Print_time</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">print_Time</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">conn_Receiver</span><span class="p">,))</span>
+
+    <span class="n">process_Count_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_Print_time</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>위 코드에서 process_Count_time은 매초마다 int_Time_counter에 1을 더해서 pipe 통신으로 해당 변수를 송신합니다.</p>
+  </li>
+  <li>
+    <p>process_Print_time은 pipe 라인을 통해 변수 값을 수신한 뒤에 프린트합니다.</p>
+  </li>
+  <li>
+    <p>결과는 아래와 같습니다.</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">5</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">6</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">7</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">8</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">9</span>
+<span class="n">Clock</span> <span class="n">activated</span> <span class="p">...</span>
+<span class="n">Time</span><span class="p">:</span> <span class="mi">10</span>
+</code></pre></div></div>
+<ul>
+  <li>조금 희안한 것은 print_Time 함수에서 while() 조건을 따로 걸지 않고 true로 두어도 pipe 통신으로 변수가 송신되었을 때만 호출된다는 것
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">recv()</code>
+  연결의 반대편 끝에서 <code class="language-plaintext highlighter-rouge">send()</code>로 보낸 객체를 반환합니다. 뭔가 수신할 때 까지 블록합니다. 수신할 내용이 없고 반대편 끝이 닫혔으면 <code class="language-plaintext highlighter-rouge">EOFError</code>를 발생시킵니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-1-주의점">4-1. 주의점</h3>
+<ul>
+  <li>pipe 통신 시 두 프로세스가 같은 pipe라인의 변수를 동시에 읽으려하거나 쓰려고 하는 경우 변수가 오염될 수 있습니다.</li>
 </ul>
 
 
