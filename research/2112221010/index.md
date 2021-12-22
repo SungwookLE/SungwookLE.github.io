@@ -7,7 +7,7 @@ title: MySQL
 subtitle: db 구축을 위한 mysql 스터디
 writer: 100
 post-header: true
-header-img: img/
+header-img: img/mysql.jpg
 hash-tag: mysql, mysql.connector, backend, database, db]
 use_math: true
 ---
