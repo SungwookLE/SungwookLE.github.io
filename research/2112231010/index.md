@@ -18,11 +18,11 @@ use_math: true
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.12/23
 > Following Lecture: [Python을 이용한 주가 백테스팅 시스템 구축하기](https://www.inflearn.com/course/python-%EC%A3%BC%EA%B0%80-%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85/dashboard)
+> XingAPI 설명서: [COM개발가이드](./img/02.COM개발가이드.pdf), [COM객체Reference](./img/06.COM객체Reference.pdf)
 >> 1. XingAPI 사용
 >> 2. XingAPI+MySQL(1)
 >> 3. XingAPI+MySQL(2)
 >> 4. XingAPI+MySQL(3)
->> 5. XingAPI+MySQL(4)
 
 ## 1. XingAPI 사용
 
@@ -285,8 +285,9 @@ while cts_date != "":
     print("-------------------------------------------------------------------------")
 ```
 
-## 5. XingAPI+MySQL(4)
--  저장한 테이블(company_list)를 이용하여, 모든 company의 shcode를 가져오고, shcode에 대응하는 일봉 데이터를 `t8413`에서 불러와 mysql에 저장하였다.
+## 4. XingAPI+MySQL(3)
+- 최종적으로 아래 코드를 이용하여 StockD DB를 생성하였다. (시작: 20110101 ~ 끝: 20211223)
+- 저장한 테이블(company_list)를 이용하여, 모든 company의 shcode를 가져오고, shcode에 대응하는 일봉 데이터를 `t8413`에서 불러와 mysql에 저장하였다.
 - mysql에서 인덱스, 저장부터 순서대로 저장하기 c++의 map/unordered_map와 비슷
     1. 클러스터 인덱스 (primary index) -> 저장을 할 때 사전과 같이: 순서대로(알파벳, 오름차순..) ->table 속성에서 PK 지정해주면 클러스터 인덱스가 됨. 또는, 코드에서 PRIMARY KEY (`column` 이름) 을 써주면 됨
     2. 비클러스터 인덱스 (보조 인덱스, secondary index) -> 책 뒤에 잇는 색인처럼, 뒤죽박죽 unordered_map
@@ -436,4 +437,4 @@ for shcode in cursor_list:
     create_table(shcode[0])
 ```
 
-## 끝.
+## 끝
