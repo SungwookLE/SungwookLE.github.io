@@ -34,6 +34,7 @@ use_math: true
 
 5. 그러면, 아래와 같은 `*.py` 파일이 생성되는데, 내가 설정한 gui의 속성 정보를 담고 있다. 
 6. 여기서, 눈여겨 볼 속성은 내가 가져다 둔 `버튼`인 `self.practice_button1`과 같은 변수가 되겠다.
+
 ```python
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -87,6 +88,7 @@ if __name__ == "__main__":
 7. 이제 프로그램을 작성해보자.
 
     - class testClass(QMainWindow, UI_MainWindow)를 보면 QMainWindow를 먼저 두어, `super().__init__()`에서 QMainWindow가 초기화되게 두었다.
+
     ```python
     import sys
     from PyQt5.QtCore import pyqtSlot
