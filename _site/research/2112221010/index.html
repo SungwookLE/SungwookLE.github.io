@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>MySQL</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="MySQL">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2112221010/img/mysql.jpg">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('img/mysql.jpg')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                MySQL
+            </div>
+        </div>
+        <h1 class="post-title">
+            MySQL
+        </h1>
+        <h2 class="post-subtitle">
+            db 구축을 위한 mysql 스터디
+        </h2>
+        <h2 class="post-date">
+            2021-12-22 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#mysql" id="markdown-toc-mysql">MySQL</a>    <ul>
+      <li><a href="#1-환경설정" id="markdown-toc-1-환경설정">1. 환경설정</a>        <ul>
+          <li><a href="#1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자" id="markdown-toc-1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자">1-1. Tip: mysql을 사용하지 않을 때는 서비스를 중지시켜 불필요한 PC 리소스 소모를 방지시키자</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-mysql_connector" id="markdown-toc-2-mysql_connector">2. mysql_connector</a></li>
+      <li><a href="#3-mysql_transaction" id="markdown-toc-3-mysql_transaction">3. mysql_transaction</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="mysql">MySQL</h1>
+<blockquote>
+  <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
+Date  : ‘21.12/22
+Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%B0%80-%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85/dashboard">Python을 이용한 주가 백테스팅 시스템 구축하기</a></p>
+  <blockquote>
+    <ol>
+      <li>환경설정</li>
+      <li>mysql_connector</li>
+      <li>mysql_transaction</li>
+    </ol>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-환경설정">1. 환경설정</h2>
+<ol>
+  <li>anaconda를 이용하여 32bit python3.6 가상환경 생성</li>
+  <li>xingApi 설치 (이베스트 증권, 32bit virenv 필요 이유), 공인인증서 필요</li>
+  <li>mysql server, workbench <strong>2개</strong> 설치</li>
+  <li>pip install mysql-connector-python: python API 활용</li>
+</ol>
+
+<h3 id="1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자">1-1. Tip: mysql을 사용하지 않을 때는 서비스를 중지시켜 불필요한 PC 리소스 소모를 방지시키자</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="syntax"><code>1. window PC
+- 실행-&gt;서비스-&gt;mysql-&gt;중지
+- 재사용할 경우에는 실행-&gt;서비스-&gt;mysql-&gt;시작/재시작
+
+2. ubuntu PC (`service` 명령어가 안될 경우 `systemctl` 사용)
+- 상태확인: `service mysql status`
+- 시작: `service mysql start`
+- 정지: `service mysql stop`
+- 재시작: `service mysql restart`
+
+- `ps -ef | grep mysql`
+- `ps -A | grep mysql`: 프로세스 중 mysql 정보 출력
+- `sudo pkill mysql`: 프로세스 종료(킬)
+</code></pre></div></div>
+
+<h2 id="2-mysql_connector">2. mysql_connector</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">mysql.connector</code>라는 객체를 생성한다. 이 때 <code class="language-plaintext highlighter-rouge">user, password, host</code> 정보를 입력</li>
+  <li><code class="language-plaintext highlighter-rouge">cursor_a</code>는 하나의 실행체(말 그대로 마우스 커서)라고 보면 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">connection.cursor.execute</code>는 sql문을 실행시키는 함수이다. 따라서, <code class="language-plaintext highlighter-rouge">execute("SQL문")</code>의 형태로 써주어야 한다.</li>
+  <li>
+    <p>sql문이 실행된 결과는 <code class="language-plaintext highlighter-rouge">cursor</code>에 담긴다.</p>
+  </li>
+  <li>아래의 코드는 mysql API를 이용하여 mysql db에 접근하고 테이블 데이터를 가져오는 예시이다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">pwd</span> <span class="kn">import</span> <span class="n">credentials</span> <span class="c1">#password파일은 비공개로 하기위해 해당 라인처럼 파일 관리
+</span>
+<span class="s">'''
+방법1) database.table를 query문에 직접 입력
+'''</span>
+<span class="c1"># Connect with the MySQL Server
+</span><span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span> <span class="n">host</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"host"</span><span class="p">])</span>
+<span class="c1"># Get buffered cursors
+</span><span class="n">cursor_a</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">buffered</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Query to get the table data
+</span><span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from backtest_db.table_test"</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"방법1) database.table를 query문에 직접 입력"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="s">'''
+방법2) sql문을 이용하여 `use database`를 입력
+'''</span>
+<span class="c1"># Connect with the MySQL Server
+</span><span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span> <span class="n">host</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"host"</span><span class="p">])</span>
+
+<span class="c1"># Get buffered cursors
+</span><span class="n">cursor_a</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">buffered</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"use backtest_db"</span><span class="p">)</span>
+<span class="c1"># Query to get the table data
+</span><span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from table_test"</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"방법2) sql문을 이용하여 `use database`를 입력"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="s">'''
+방법3) connect에서 database를 명기
+'''</span>
+<span class="c1"># Connect with the MySQL Server
+</span><span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span> <span class="n">host</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"host"</span><span class="p">],</span> <span class="n">database</span><span class="o">=</span><span class="s">"backtest_db"</span><span class="p">)</span>
+<span class="c1"># Get buffered cursors
+</span><span class="n">cursor_a</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">buffered</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Query to get the table data
+</span><span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from table_test"</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"방법3) connect에서 database를 명기"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>또한, mysql에 접속 실패하거나 하였을 때 에러를 핸들링하는 방법도 있다.</li>
+  <li>해당 <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html">docu</a>를 참고해보자</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">mysql.connector</span> <span class="kn">import</span> <span class="n">errorcode</span>
+
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">cnx</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s">'scott'</span><span class="p">,</span>
+                                <span class="n">database</span><span class="o">=</span><span class="s">'employ'</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">err</span><span class="p">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errorcode</span><span class="p">.</span><span class="n">ER_ACCESS_DENIED_ERROR</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Something is wrong with your user name or password"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">err</span><span class="p">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errorcode</span><span class="p">.</span><span class="n">ER_BAD_DB_ERROR</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Database does not exist"</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">cnx</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="3-mysql_transaction">3. mysql_transaction</h2>
+<ul>
+  <li>db를 <code class="language-plaintext highlighter-rouge">commit()</code>하거나, <code class="language-plaintext highlighter-rouge">rollback()</code>하는 것을 말함</li>
+  <li><code class="language-plaintext highlighter-rouge">commit()</code>은 내가 현재 <code class="language-plaintext highlighter-rouge">cursor</code>에서 작업한 것을 db에 최종 저장시키는 것을 말함</li>
+  <li><code class="language-plaintext highlighter-rouge">rollback()</code>은 <code class="language-plaintext highlighter-rouge">cursor</code>에서 작업한 내용을 되돌리는 것을 말한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">from</span> <span class="nn">pwd</span> <span class="kn">import</span> <span class="n">credentials</span> <span class="c1">#password파일은 비공개로 하기위해 해당 라인처럼 파일 관리
+</span>
+<span class="c1"># Connect with the MySQL Server
+</span><span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span> <span class="n">host</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"host"</span><span class="p">])</span>
+<span class="c1"># Get buffered cursors
+</span><span class="n">cursor_a</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">buffered</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="c1"># Query to get the table data
+</span><span class="k">print</span><span class="p">(</span><span class="s">"-------init-----------"</span><span class="p">)</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from backtest_db.table_test"</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+
+<span class="c1">#commit()은 저장하기이고, rollback()은 되돌리기임
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">-------delete-----------"</span><span class="p">)</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"delete from backtest_db.table_test"</span><span class="p">)</span>
+ 
+<span class="n">connection</span><span class="p">.</span><span class="n">rollback</span><span class="p">()</span> <span class="c1">#cursor 작업 내용을 되돌리기
+</span><span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from backtest_db.table_test"</span>
+<span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    
+<span class="n">connection</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1">#cursor 작업 내용을 db에 최종 저장하기
+</span></code></pre></div></div>
+
+<ul>
+  <li>transaction이 필요한 이유는, 은행 입출금을 할 때, 송금자와 수금자가 서로 돈 거래가 잘 db에 반영되었을 때 최종적으로 commit을 하는 것이 안정적이기 때문이다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update toss_table set balance ={} where user = {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">from_user_balance</span><span class="o">-</span><span class="n">mount</span><span class="p">,</span> <span class="n">from_user</span><span class="p">))</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update toss_table set balance ={} where user = {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">to_user_balance</span><span class="o">+</span><span class="n">mount</span><span class="p">,</span> <span class="n">to_user</span><span class="p">))</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">connection</span><span class="p">.</span><span class="n">rollback</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">connection</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=mysql"><span class="tag" data-tag="mysql">mysql</span></a>
+        
+        <a href="/research/?tag=mysql.connector"><span class="tag" data-tag="mysql.connector">mysql.connector</span></a>
+        
+        <a href="/research/?tag=backend"><span class="tag" data-tag="backend">backend</span></a>
+        
+        <a href="/research/?tag=database"><span class="tag" data-tag="database">database</span></a>
+        
+        <a href="/research/?tag=db"><span class="tag" data-tag="db">db</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
