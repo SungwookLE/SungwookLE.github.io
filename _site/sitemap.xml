@@ -40,6 +40,9 @@
 <loc>http://localhost:4000/research/2112221010/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/research/2112231010/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/research/2109041010/</loc>
 </url>
 <url>
@@ -98,6 +101,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/research/2106211010/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/research/2112281010/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/research/2106271010/</loc>
@@ -196,6 +202,9 @@
 <loc>http://localhost:4000/algorithm/2112301010/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/algorithm/2112311010/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/algorithm/2111171010/</loc>
 </url>
 <url>
@@ -241,5 +250,13 @@
 <url>
 <loc>http://localhost:4000/research/2105121010/img/nd209_Robo_syllabus_v2.pdf</loc>
 <lastmod>2021-12-14T00:12:07+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/research/2112231010/img/02.COM%EA%B0%9C%EB%B0%9C%EA%B0%80%EC%9D%B4%EB%93%9C.pdf</loc>
+<lastmod>2021-12-30T15:36:19+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/research/2112231010/img/06.COM%EA%B0%9D%EC%B2%B4Reference.pdf</loc>
+<lastmod>2021-12-30T15:36:19+09:00</lastmod>
 </url>
 </urlset>

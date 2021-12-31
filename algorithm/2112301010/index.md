@@ -3,7 +3,7 @@ layout: post
 type: algorithm
 date: 2021-12-30 10:10
 category: 코딩테스트 연습
-title: 정수삼각형 Lv3
+title: 정수삼각형 Lv3 > 다시 정리..
 subtitle: 동적계획법
 writer: 100
 hash-tag: [DP, Programmers]
@@ -13,9 +13,9 @@ use_math: true
 - toc
 {:toc}
 
-# 프로그래머스 > 동적계획법 > 정수삼각형  
+# 프로그래머스 > 동적계획법 > 정수삼각형  > 다시 정리..
 > AUTHOR: SungwookLE    
-> DATE: '21.12/12  
+> DATE: '21.12/30  
 >> PROBLEM: [문제링크](https://programmers.co.kr/learn/courses/30/lessons/43105)  
 >> LEVEL: Lv3    
 

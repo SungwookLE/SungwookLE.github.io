@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2112281010/img/mysql_pyqt.JPEG">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('img/mysql_pyqt.JPEG')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                XingAPI+MySQL+PyQt5
+            </div>
+        </div>
+        <h1 class="post-title">
+            PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램
+        </h1>
+        <h2 class="post-subtitle">
+            Stock DB 구축 자동화
+        </h2>
+        <h2 class="post-date">
+            2021-12-28 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램" id="markdown-toc-pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</a>    <ul>
+      <li><a href="#1-pyqt-사용하기기본" id="markdown-toc-1-pyqt-사용하기기본">1. PyQt 사용하기(기본)</a></li>
+      <li><a href="#2-pqqt-를-이용한-db-update-gui-프로그램-만들기" id="markdown-toc-2-pqqt-를-이용한-db-update-gui-프로그램-만들기">2. PqQt 를 이용한 DB Update GUI 프로그램 만들기</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+<h1 id="pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</h1>
+<blockquote>
+  <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
+Date  : ‘21.12/28
+Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%B0%80-%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85/dashboard">Python을 이용한 주가 백테스팅 시스템 구축하기</a></p>
+  <blockquote>
+    <ol>
+      <li>PyQt 사용하기(기본)</li>
+      <li>PqQt 를 이용한 DB Update GUI 프로그램 만들기</li>
+    </ol>
+  </blockquote>
+</blockquote>
+
+<h2 id="1-pyqt-사용하기기본">1. PyQt 사용하기(기본)</h2>
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">designer</code>라는 PyQt5 디자인 툴을 사용하여 기본적인 <code class="language-plaintext highlighter-rouge">Layout</code>을 설계할 수 있다.
+<img src="/research/2112281010/img/designer_samp.JPEG" alt="designer_samp" /></p>
+  </li>
+  <li>
+    <p>이런 식으로 <code class="language-plaintext highlighter-rouge">QMainWindow</code>를 생성하고 그 곳에다가 원하는 <code class="language-plaintext highlighter-rouge">Widget</code>들을 가져다 둔다.
+<img src="/research/2112281010/img/designer_begin1.JPEG" alt="designer_begin1" /></p>
+  </li>
+  <li>
+    <p>저장을 하면, <code class="language-plaintext highlighter-rouge">*.ui</code>라는 파일이 생성되는 데, 이를 <code class="language-plaintext highlighter-rouge">python</code>으로 변환하여 class의 구성 요소들을 얻어낸다. 물론 <code class="language-plaintext highlighter-rouge">designer</code> 툴에서 지정한 이름이 class의 attribute가 된다.</p>
+  </li>
+  <li>
+    <p>python 코드 변환 방법(<code class="language-plaintext highlighter-rouge">*.ui</code> –&gt; <code class="language-plaintext highlighter-rouge">*.py</code>): <code class="language-plaintext highlighter-rouge">pyuic5 -x test_ui.ui -o test_ui.py</code></p>
+  </li>
+  <li>그러면, 아래와 같은 <code class="language-plaintext highlighter-rouge">*.py</code> 파일이 생성되는데, 내가 설정한 gui의 속성 정보를 담고 있다.</li>
+  <li>여기서, 눈여겨 볼 속성은 내가 가져다 둔 <code class="language-plaintext highlighter-rouge">버튼</code>인 <code class="language-plaintext highlighter-rouge">self.practice_button1</code>과 같은 변수가 되겠다.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+
+<span class="k">class</span> <span class="nc">Ui_MainWindow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MainWindow</span><span class="p">):</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"MainWindow"</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">589</span><span class="p">,</span> <span class="mi">270</span><span class="p">)</span>
+        <span class="n">sizePolicy</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QtWidgets</span><span class="p">.</span><span class="n">QSizePolicy</span><span class="p">.</span><span class="n">Fixed</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QSizePolicy</span><span class="p">.</span><span class="n">Fixed</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="p">.</span><span class="n">setHorizontalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="p">.</span><span class="n">setVerticalStretch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sizePolicy</span><span class="p">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">.</span><span class="n">sizePolicy</span><span class="p">().</span><span class="n">hasHeightForWidth</span><span class="p">())</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">sizePolicy</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">589</span><span class="p">,</span> <span class="mi">270</span><span class="p">))</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setMaximumSize</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">589</span><span class="p">,</span> <span class="mi">270</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">centralwidget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QWidget</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">centralwidget</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"centralwidget"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button1</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">centralwidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button1</span><span class="p">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QRect</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">161</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button1</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"practice_button1"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button2</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">centralwidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button2</span><span class="p">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QRect</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">161</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button2</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"practice_button2"</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">centralwidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">menubar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QMenuBar</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">menubar</span><span class="p">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">589</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">menubar</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"menubar"</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setMenuBar</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">menubar</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">statusbar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QStatusBar</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">statusbar</span><span class="p">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s">"statusbar"</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setStatusBar</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">statusbar</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+        <span class="n">QtCore</span><span class="p">.</span><span class="n">QMetaObject</span><span class="p">.</span><span class="n">connectSlotsByName</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MainWindow</span><span class="p">):</span>
+        <span class="n">_translate</span> <span class="o">=</span> <span class="n">QtCore</span><span class="p">.</span><span class="n">QCoreApplication</span><span class="p">.</span><span class="n">translate</span>
+        <span class="n">MainWindow</span><span class="p">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">_translate</span><span class="p">(</span><span class="s">"MainWindow"</span><span class="p">,</span> <span class="s">"MainWindow"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button1</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">_translate</span><span class="p">(</span><span class="s">"MainWindow"</span><span class="p">,</span> <span class="s">"버튼1 클릭"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">practice_button2</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">_translate</span><span class="p">(</span><span class="s">"MainWindow"</span><span class="p">,</span> <span class="s">"버튼2 클릭"</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">MainWindow</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="p">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+    <span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_MainWindow</span><span class="p">()</span>
+    <span class="n">ui</span><span class="p">.</span><span class="n">setupUi</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+    <span class="n">MainWindow</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">())</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>이제 프로그램을 작성해보자.</p>
+
+    <ul>
+      <li>class testClass(QMainWindow, UI_MainWindow)를 보면 QMainWindow를 먼저 두어, <code class="language-plaintext highlighter-rouge">super().__init__()</code>에서 QMainWindow가 초기화되게 두었다.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="kn">import</span> <span class="n">pyqtSlot</span>
+ <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QApplication</span>
+ <span class="kn">from</span> <span class="nn">test_ui</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+
+ <span class="k">class</span> <span class="nc">testClass</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+         <span class="bp">self</span><span class="p">.</span><span class="n">practice_button1</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">test_function1</span><span class="p">)</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">practice_button2</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">test_function2</span><span class="p">)</span>
+        
+     <span class="k">def</span> <span class="nf">test_function1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">"버튼1이 클릭되었습니다."</span><span class="p">)</span>
+        
+     <span class="k">def</span> <span class="nf">test_function2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">"버튼2이 클릭되었습니다."</span><span class="p">)</span>
+
+ <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
+ <span class="n">test_window</span> <span class="o">=</span> <span class="n">testClass</span><span class="p">()</span>
+ <span class="n">test_window</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+ <span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>순서에 따라, super() 단계에서 호출되는 클래스가 다르다.</li>
+      <li>직접 작성한 python class <a href="/research/2112281010/img/basic1.py">예시</a>를 살펴보자</li>
+    </ul>
+  </li>
+  <li>위 코드에서 중요한 것이, <code class="language-plaintext highlighter-rouge">self.practice_button2.clicked.connect(self.test_function2)</code> 인데, 내가 만든 <code class="language-plaintext highlighter-rouge">practice_button2</code>가 <code class="language-plaintext highlighter-rouge">.clicked.connect</code> 되면 <code class="language-plaintext highlighter-rouge">self.test_function2</code> 함수를 호출하게 된다.
+    <ul>
+      <li>이러한 형태를 시그널발생-슬롯실행 이라고 한다.</li>
+    </ul>
+  </li>
+  <li>이렇게하여, 간단하게 Qt 프로그램을 생성해보았다.</li>
+</ol>
+
+<h2 id="2-pqqt-를-이용한-db-update-gui-프로그램-만들기">2. PqQt 를 이용한 DB Update GUI 프로그램 만들기</h2>
+<ul>
+  <li>내용 정리는 이어서 하겠다. 일단 코드 부터..</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QApplication</span>
+<span class="kn">from</span> <span class="nn">main_ui</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1">#상위 경로 폴더를 가져오기 위해 선언
+</span><span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))))</span>
+<span class="kn">from</span> <span class="nn">lecture_practice.pwd</span> <span class="kn">import</span> <span class="n">mysql_credentials</span><span class="p">,</span> <span class="n">xing_credentials</span>
+<span class="kn">from</span> <span class="nn">lecture_practice.update_table</span> <span class="kn">import</span> <span class="n">update_table</span>
+
+<span class="c1">#mysql
+</span><span class="kn">import</span> <span class="nn">mysql.connector</span>
+
+<span class="c1">#XingAPI
+</span><span class="kn">import</span> <span class="nn">win32com.client</span>
+<span class="kn">import</span> <span class="nn">pythoncom</span>
+
+<span class="k">class</span> <span class="nc">mysql_status</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">check_mysql_status</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'sc query MySQL80'</span><span class="p">).</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tok</span> <span class="o">==</span> <span class="s">"RUNNING"</span><span class="p">:</span>
+                <span class="n">is_on</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">return</span> <span class="n">is_on</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">is_on</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="n">is_on</span>
+   
+<span class="k">class</span> <span class="nc">loginEventHandler</span><span class="p">:</span>
+    <span class="n">is_login</span><span class="o">=</span> <span class="bp">False</span>
+    <span class="n">is_error</span><span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">is_pwd_wrong</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">is_id_wrong</span> <span class="o">=</span><span class="bp">False</span>
+    <span class="n">is_cert_pwd_wrong</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">OnLogin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_login</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="s">"0000"</span><span class="p">:</span>
+           <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_error</span><span class="o">=</span><span class="bp">True</span>
+           <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="s">"5101"</span><span class="p">:</span>
+           <span class="c1">#     #ID 확인
+</span>               <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_id_wrong</span> <span class="o">=</span> <span class="bp">True</span>
+           <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="s">"8004"</span><span class="p">:</span>
+           <span class="c1">#      #PWD 틀림
+</span>               <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_pwd_wrong</span> <span class="o">=</span> <span class="bp">True</span>
+           <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="s">"2005"</span><span class="p">:</span>
+           <span class="c1"># 공동인증서 비번 틀림
+</span>               <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_cert_pwd_wrong</span> <span class="o">=</span> <span class="bp">True</span>
+        
+    <span class="k">def</span> <span class="nf">reset_flag</span><span class="p">():</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_login</span><span class="o">=</span> <span class="bp">False</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_error</span><span class="o">=</span> <span class="bp">False</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_pwd_wrong</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_id_wrong</span> <span class="o">=</span><span class="bp">False</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_cert_pwd_wrong</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">class</span> <span class="nc">mainWindow</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debug_mode</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">connection</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">session</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">db_login_button</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">db_login</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">xing_login_button</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">api_login</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">db_update_button</span><span class="p">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">db_update_button</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">update_database</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">mysql_status</span><span class="p">.</span><span class="n">check_mysql_status</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_status_text</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">'ON'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_status_text</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">'OFF'</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">debug_mode</span> <span class="o">==</span><span class="bp">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_id_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">mysql_credentials</span><span class="p">[</span><span class="s">"user"</span><span class="p">])</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_pwd_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">mysql_credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">])</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_ip_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">mysql_credentials</span><span class="p">[</span><span class="s">"host"</span><span class="p">])</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_schema_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">"backtest"</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="p">.</span><span class="n">xing_id_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">xing_credentials</span><span class="p">[</span><span class="s">"ID"</span><span class="p">])</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">xing_pwd_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">xing_credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">])</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">cert_pwd_edit</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">xing_credentials</span><span class="p">[</span><span class="s">"cert_password"</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">db_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">db_id_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">db_pwd_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">db_ip_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">db_schema_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span> <span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="c1"># 정말 절대로 이런식으로 예외처리하면 안좋지만 시간관계상 이렇게 진행
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"db 로그인 실패..."</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"db 로그인 성공!!!"</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_login_button</span><span class="p">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="p">.</span><span class="n">check_login_status</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">api_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">win32com</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">DispatchWithEvents</span><span class="p">(</span><span class="s">"XA_Session.XASession"</span><span class="p">,</span> <span class="n">loginEventHandler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">ConnectServer</span><span class="p">(</span><span class="s">"hts.ebestsec.co.kr"</span><span class="p">,</span> <span class="mi">20001</span><span class="p">)</span>
+
+        <span class="n">xing_id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">xing_id_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">xing_pwd</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">xing_pwd_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">cert_pwd</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cert_pwd_edit</span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">IsConnected</span><span class="p">():</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"증권사 서버 연결완료, 로그인 진행 중..."</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">Login</span><span class="p">(</span><span class="n">xing_id</span><span class="p">,</span> <span class="n">xing_pwd</span><span class="p">,</span> <span class="n">cert_pwd</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_login</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">pythoncom</span><span class="p">.</span><span class="n">PumpWaitingMessages</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_error</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_id_wrong</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"Xing API: ID 틀림..."</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_pwd_wrong</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"Xing API: PWD 틀림..."</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">is_cert_pwd_wrong</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"Xing API: 공동인증서 PWD 틀림..."</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"Xing API 로그인 성공!!!"</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">xing_login_button</span><span class="p">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">check_login_status</span><span class="p">()</span>
+        <span class="n">loginEventHandler</span><span class="p">.</span><span class="n">reset_flag</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">log_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">textEdit</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"[+]{} {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d %H:%M:%S'</span><span class="p">),</span> <span class="n">msg</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">check_login_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">db_login_button</span><span class="p">.</span><span class="n">isEnabled</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span> <span class="ow">and</span> <span class="bp">self</span><span class="p">.</span><span class="n">xing_login_button</span><span class="p">.</span><span class="n">isEnabled</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"DB, Xing API 로그인 완료되어 업데이트가 가능합니다."</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">db_update_button</span><span class="p">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_database</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">edate</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#하루 전날까지의 데이터만 업데이트      
+</span>        <span class="n">cursor_a</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">connection</span><span class="p">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">buffered</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select date from sh005930 order by date desc limit 1"</span><span class="p">)</span>
+        <span class="n">database_latest_date</span> <span class="o">=</span> <span class="n">cursor_a</span><span class="p">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">edate</span> <span class="o">-</span> <span class="n">database_latest_date</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"데이터베이스 업데이트를 시작합니다."</span><span class="p">)</span>
+            <span class="n">cursor_a</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select shcode from total_company_list"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">shcode</span> <span class="ow">in</span> <span class="n">cursor_a</span><span class="p">:</span>
+                <span class="n">update_table</span><span class="p">(</span><span class="n">shcode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">connection</span><span class="p">,</span> <span class="n">database_latest_date</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y%m%d'</span><span class="p">),</span> <span class="n">edate</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y%m%d'</span><span class="p">))</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"{} 종목 업데이트 완료"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">shcode</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">log_text</span><span class="p">(</span><span class="s">"이미 데이터베이스가 최신이거나 업데이트가 불가능합니다."</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">test_window</span> <span class="o">=</span> <span class="n">mainWindow</span><span class="p">(</span><span class="n">debug_mode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">test_window</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=PyQt5"><span class="tag" data-tag="PyQt5">PyQt5</span></a>
+        
+        <a href="/research/?tag=backend"><span class="tag" data-tag="backend">backend</span></a>
+        
+        <a href="/research/?tag=database"><span class="tag" data-tag="database">database</span></a>
+        
+        <a href="/research/?tag=db"><span class="tag" data-tag="db">db</span></a>
+        
+        <a href="/research/?tag=XingAPI"><span class="tag" data-tag="XingAPI">XingAPI</span></a>
+        
+        <a href="/research/?tag=Trade"><span class="tag" data-tag="Trade">Trade</span></a>
+        
+        <a href="/research/?tag=Stock"><span class="tag" data-tag="Stock">Stock</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
