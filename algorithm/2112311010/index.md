@@ -3,8 +3,8 @@ layout: post
 type: algorithm
 date: 2021-12-31 10:10
 category: 코딩테스트 연습
-title: 단어 변환
-subtitle: 깊이/너비 우선 탐색(DFS/BFS)
+title: 단어 변환 Lv3
+subtitle: 프로그래머스 깊이/너비 우선 탐색(DFS/BFS)
 writer: 100
 hash-tag: [DFS, BFS, Programmers]
 use_math: true
