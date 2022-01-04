@@ -125,6 +125,14 @@ if __name__ == "__main__":
 
 ## 2. PqQt 를 이용한 DB Update GUI 프로그램 만들기
 - PyQt를 이용하여 DB Update GUI를 작성하였다.
+![DB_Update_GUI.JPEG](./img/DB_Update_GUI.JPEG)
+
+- `COM`객체를 활용하여 증권사 API에 연동하고 `win32com.client.DispatchWithEvents` 를 이용하여 데이터를 받아오는 과정은 복잡하여, 외우려고 하기 보다는 플로우를 기억하자
+    - `COM` 객체를 이벤트 핸들러로 호출하고, 데이터가 들어오면 `mySQL`에 `insert into` 해주었다. 
+- `mySQL` DB 서버에 데이터를 올려준다. DB 구축에 시간이 오래 걸리는 만큼 증권사 API에서 제공하는 모든 정보를 DB에 업로드해주었다.
+    - sh{} (date, open, high, low, close, jdiff_vol, value, jongchk, rate, pricechk, ratevalue, sign)
+
+
 
 ```python
 from logging import log
