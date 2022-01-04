@@ -124,7 +124,7 @@ if __name__ == "__main__":
 9. 이렇게하여, 간단하게 Qt 프로그램을 생성해보았다.
 
 ## 2. PqQt 를 이용한 DB Update GUI 프로그램 만들기
-- 내용 정리는 이어서 하겠다. 일단 코드 부터..
+- PyQt를 이용하여 DB Update GUI를 작성하였다.
 
 ```python
 from logging import log
