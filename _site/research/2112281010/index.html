@@ -286,7 +286,20 @@ Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%
 
 <h2 id="2-pqqt-를-이용한-db-update-gui-프로그램-만들기">2. PqQt 를 이용한 DB Update GUI 프로그램 만들기</h2>
 <ul>
-  <li>내용 정리는 이어서 하겠다. 일단 코드 부터..</li>
+  <li>
+    <p>PyQt를 이용하여 DB Update GUI를 작성하였다.
+<img src="/research/2112281010/img/DB_Update_GUI.JPEG" alt="DB_Update_GUI.JPEG" /></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">COM</code>객체를 활용하여 증권사 API에 연동하고 <code class="language-plaintext highlighter-rouge">win32com.client.DispatchWithEvents</code> 를 이용하여 데이터를 받아오는 과정은 복잡하여, 외우려고 하기 보다는 플로우를 기억하자
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">COM</code> 객체를 이벤트 핸들러로 호출하고, 데이터가 들어오면 <code class="language-plaintext highlighter-rouge">mySQL</code>에 <code class="language-plaintext highlighter-rouge">insert into</code> 해주었다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">mySQL</code> DB 서버에 데이터를 올려준다. DB 구축에 시간이 오래 걸리는 만큼 증권사 API에서 제공하는 모든 정보를 DB에 업로드해주었다.
+    <ul>
+      <li>sh{} (date, open, high, low, close, jdiff_vol, value, jongchk, rate, pricechk, ratevalue, sign)</li>
+    </ul>
+  </li>
 </ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">log</span>
