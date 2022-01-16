@@ -1,63 +1,77 @@
 ---
 layout: post
 type: research
-date: 2022-01-14 10:10
-category: Kaggle
-title: CreateArt using GAN
-subtitle: Use GANs to create art - will you be the next Monet?
+date: 2022-01-16 10:10
+category: DataScience
+title: Machine learning and Optimization
+subtitle: Lec#1~#3
 writer: 100
 post-header: true
 header-img: img/horse2zebra.gif
-hash-tag: [PyQt5, backend, database, db, XingAPI, Trade, Stock]
+hash-tag: [Optimization, LeastSquares, LogisticRegression, DeepLearning]
 use_math: true
 ---
 
 - toc
 {:toc}
 
-# I'm Something of a Painter Myself
-> Author: [SungwookLE](joker1251@naver.com)  
-> Date  : '22.01/14  
-> Kaggle Competition: [LINK HERE](https://www.kaggle.com/c/gan-getting-started/overview)  
-> Reference: [#1](https://www.kaggle.com/amyjang/monet-cyclegan-tutorial), [#2](https://www.kaggle.com/dimitreoliveira/introduction-to-cyclegan-monet-paintings)
-> Paper: [arxiv_paper](https://arxiv.org/pdf/1703.10593.pdf  
-> Repository: [git-repo](https://github.com/junyanz/CycleGAN)
+# Machine Learning and Optimization
+> Writer: SungwookLE    
+> DATE: '21.1/16   
+> REFERENCE: [#1](./img/LS1.pdf), [#2](./img/LS2.pdf), [#3](./img/LS3.pdf), [MyRef](https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md)
+
+## 1. 기계학습이란?
+- input `x`가 들어가서 output `y`가 출력되는 시스템이 있다고 하자.
+- 간단하게, **시스템**$f( .)$을 **data인** $[{x^{(i)}, y^{(i)}}]^m_{i=1}$를 가지고 Training 하는 과정이 기계학습이다.
+![](./img/2022-01-16-23-15-09.png)
+
+## 1-1. 학습은 어떻게?
+- Training via optimzation!
+![](./img/2022-01-16-23-16-16.png)
+
+- $f$라는 시스템을 학습시키는 것은 위의 Loss 함수의 에러를 최소화시키는 과정을 말한다.
+
+## 1-2. 기계학습의 종류와 학습 방법(GD)
+- 딥러닝(뉴럴 네트워크) 외에 기계학습이라 불리우는 고전적인 방식들이 있었는데, Least Squares, Logistic Regression 이 있다.
+
+- $f$라는 시스템을 어떻게 **parameterization** 하느냐에 따라 종류가 나뉜다.
+- paramterization 이란, $f(x) = ax_1 + bx_2 + c$ 라는 식을 예시로 들어 설명하자면, x1과 x2라는 데이터가 들어왔을 때 출력값의 만들어내는 파라미터로 a,b,c를 사용하였는데 이러한 식 구성을 parameterization 이라 부픈다.
+
+## 1-3. Least Squres(선형 회귀)
+- pareamterization: $f(x) = w_1*x_1 + w_2*x_2 ...$
+![](./img/2022-01-16-23-22-53.png)
+
+- closed form이라는 말이, 해당 방정식은 수학적으로 유일해를 가질 수 있는데, 파라미터(w1, w2)에 대한 Loss 함수의 편미분이 0이 되는 지점이 Loss가 가장 작은 지점이므로, 수학적인 해를 풀어볼 수 있다.
+
+## 1-4. Logistic Regression
+- 여기선, Non-linear regression을 설명한다. (Linear Regression도 있다.)
+- parameterization: $f(x) = \frac{1}{1+exp(-w^Tx)}$
+![](./img/2022-01-16-23-26-57.png)
+- Sigmoid 비선형 함수를 두어 $f$를 parameterization 하였고, Loss함수는 `Cross Entropy(CE) Loss`를 사용하였다.
+
+- 비선형 함수 형태의 Loss 함수이므로, 이를 이용하여 에러가 최소화되는 파라미터를 구하는 과정은 **Gradient Descent**를 사용한다.
+
+## 1-5. 학습(Gradient Descent)
+- 아래의 그림과 같이, Loss Function의 편미분 값의 반대방향의 러닝레이트 $\alpha$로 Iterative하게 반복되어 Loss 함수의 최소값으로 수렴시키는 과정을 **Gradient Descent**라 한다.
+![](./img/2022-01-16-23-33-28.png)
+- Logistic Regression과 뉴럴 네트워크(딥러닝) 등의 학습을 Gradient Descent를 따라 학습을 진행한다.
+
+- Least Square, Regression, Neural Network의 Training 을 직접 손으로 유도히고, c++ Project를 수행할 수 있게 정리하였다. [여기 링크](https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md)를 참고하길 바란다.
 
 
-## 1. Overview & Challenge
+## 2. Deep Neural Network(DNN)
+- 뉴럴 네트워크를 여러 Layer 쌓은 것을 말한다.
+![](./img/![](./img/2022-01-16-23-45-26.png).png)
+- $\sigma$는 활성화 함수를 말한다. 시그모이드나 [Relu](./img/2022-01-16-23-51-51.png)가 있다.
 
-- Computer vision has advanced tremendously in recent years and GANs are now capable of mimicking(흉내내다) objects in a very convincing(설득력있는) way. 
-- But creating museum-worthy masterpieces is thought of to be, well, more art than science.
-- So can (data) science, in the form of GANs, trick classifiers into believing you’ve created a true Monet? That’s the **challenge** 
+- 학습은 데이터 $[{x^{(i)}, y^{(i)}}]^m_{i=1}$ 를 가지고 Loss 함수를 최소화(최적화)하는 과정으로 진행한다. 위에서 설명한 바와 같이 Gradient Descent를 사용한다.
 
-### 1-1. Challenge
-- A GAN consists of at least two neural networks: a generator model and a discriminator model. 
-    - The generator is a neural network that creates the images. 
-- For our competition, you should generate images in the style of Monet. This generator is trained using a discriminator.
-- The two models will work against each other, with the generator trying to trick the discriminator, and the discriminator trying to accurately classify the real vs. generated images.
-- Your task is to build a GAN that generates 7,000 to 10,000 Monet-style images.
+![](./img/2022-01-16-23-49-42.png)
+- 각각의 레이어는 체인처럼 이어져 있고 우리는 Layer1의 $W^{[1]}$과 Layer2의 $W^{[2]}$ 파라미터를 Gradient Descent로 학습시켜나갈 것이다.
 
-### 1-2. Data description
+- Loss 함수도 여러 종류가 있는데, 가장 간단하게는 $l=0.5(y-\hat{y})^2$ 있겠지만, Cross-Entropy Loss를 많이 쓴다.
+    - 그 이유가 대부분의 딥러닝 네트워크에서 Optimal Solution을 제공한다는 것이 Observed 되었다나..
 
-- The monet directories contain Monet paintings. Use these images to train your model.
-- The photo directories contain photos. Add Monet-style to these images and submit your generated jpeg images as a zip file. 
-- Files
-    - monet_jpg - 300 Monet paintings sized 256x256 in JPEG format
-    - monet_tfrec - 300 Monet paintings sized 256x256 in TFRecord format
-    - photo_jpg - 7028 photos sized 256x256 in JPEG format
-    - photo_tfrec - 7028 photos sized 256x256 in TFRecord format
-- Submission format
-    - Your kernel's output must be called images.zip and contain 7,000-10,000 images sized 256x256.
+- 당연하게도 Loss 함수는 매끈한 선형의 형태가 아니다. 굴곡진 비선형 형태이기 때문에, Gradient Descent로 학습하였을 때, Saddle Point에 머무르게 될 수도 있다.
 
-
-## 2. 노트북 
-- [#2](https://www.kaggle.com/dimitreoliveira/introduction-to-cyclegan-monet-paintings)
-- virtual-env 구성이 잘 안되어서 노트북 실행을 못하였다.
-- 다시 시도해보자.. (1/14)
-
-<center><img src='https://raw.githubusercontent.com/dimitreOliveira/MachineLearning/master/Kaggle/I%E2%80%99m%20Something%20of%20a%20Painter%20Myself/banner.png' height=350></center>
-
-
-
-
-## 끝
+- 학습 iteration을 증가시키고, 데이터가 많다면 글로벌 minima에 도달할 수 있다는 것이 observed 되었다곤 한다.
