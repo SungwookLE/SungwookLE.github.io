@@ -14,7 +14,7 @@
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Advanced Techniques">
   <meta itemprop="description" content="SungwookLE">
-  <meta itemprop="image" content="http://localhost:4000/research/2201171010/img/2022-01-16-23-16-16.png">
+  <meta itemprop="image" content="http://localhost:4000/research/2201171010/./img/2022-01-17-11-47-26.png">
 
   
 
@@ -119,7 +119,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-<div class="post-header loading-animation" style="background-image: url('img/2022-01-16-23-16-16.png')">
+<div class="post-header loading-animation" style="background-image: url('./img/2022-01-17-11-47-26.png')">
 </div>
 
 
@@ -176,7 +176,11 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/17 <br />
-REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research/2201171010/img/LS5.pdf">#5</a>, <a href="/research/2201171010/img/LS6.pdf">#6</a></p>
+REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research/2201171010/img/LS5.pdf">#5</a>, <a href="/research/2201171010/img/LS6.pdf">#6</a><br />
+실습코드(python): <a href="/research/2201171010/img/keras_with_advanced.py">advanced_techniques</a></p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
 </blockquote>
 
 <h2 id="1-introduction">1. Introduction</h2>
@@ -276,9 +280,41 @@ REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research
   <li>데이터가 들어올 때 마다, 각 레이어의 출력값의 범위가 제 각각이다. 이러한 부분 때문에 학습이 잘 되지 않는다.</li>
   <li>Turns out: Different signal scalings across distinct layers incur training instability
 <img src="/research/2201171010/img/2022-01-17-12-00-47.png" alt="" /></li>
-  <li>레이어의 출력 값을 노말라이제이션 해서 다음 레이어에 전달해주는 것을 <strong>Batch Normalization</strong>이라 한다.</li>
+  <li>
+    <p>레이어의 출력 값을 노말라이제이션 해서 다음 레이어에 전달해주는 것을 <strong>Batch Normalization</strong>이라 한다.</p>
+  </li>
+  <li>tensorflow framework에서는 쉽게 사용 가능하도록 아래와 같은 패턴으로 사용하면 된다.</li>
 </ul>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">ReLU</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.regularizers</span> <span class="kn">import</span> <span class="n">l2</span><span class="p">,</span> <span class="n">l1</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">LearningRateScheduler</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+
+<span class="k">def</span> <span class="nf">scheduler</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]:</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">lr</span>
+    <span class="k">return</span> <span class="n">lr</span>
+
+<span class="n">es_callback</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s">'val_acc'</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">lrs_callback</span> <span class="o">=</span> <span class="n">LearningRateScheduler</span><span class="p">(</span><span class="n">scheduler</span><span class="p">)</span>
+
+<span class="n">Hidden_2layer_MLP</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> 
+                            <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">bias_regularizer</span><span class="o">=</span><span class="n">l1</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span>
+                            <span class="n">kernel_initializer</span><span class="o">=</span> <span class="s">'he_normal'</span> <span class="p">))</span>
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">BatchNormalization</span><span class="p">())</span>
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ReLU</span><span class="p">())</span>
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">,</span>
+                            <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">bias_regularizer</span><span class="o">=</span><span class="n">l1</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span>
+                            <span class="n">kernel_initializer</span><span class="o">=</span> <span class="s">'glorot_normal'</span><span class="p">))</span>
+
+
+<span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'binary_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'acc'</span><span class="p">])</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">Hidden_2layer_MLP</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">es_callback</span><span class="p">,</span> <span class="n">lrs_callback</span><span class="p">],</span> <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span>
+</code></pre></div></div>
 <h2 id="5-hyperparameter-search">5. Hyperparameter Search</h2>
 
 <ul>
@@ -308,13 +344,13 @@ REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research
     
         <span class="tag-emoji"></span>
         
-        <a href="/research/?tag=Optimization"><span class="tag" data-tag="Optimization">Optimization</span></a>
+        <a href="/research/?tag=Regularization"><span class="tag" data-tag="Regularization">Regularization</span></a>
         
-        <a href="/research/?tag=LeastSquares"><span class="tag" data-tag="LeastSquares">LeastSquares</span></a>
+        <a href="/research/?tag=EalryStopping"><span class="tag" data-tag="EalryStopping">EalryStopping</span></a>
         
-        <a href="/research/?tag=LogisticRegression"><span class="tag" data-tag="LogisticRegression">LogisticRegression</span></a>
+        <a href="/research/?tag=Dropout"><span class="tag" data-tag="Dropout">Dropout</span></a>
         
-        <a href="/research/?tag=DeepLearning"><span class="tag" data-tag="DeepLearning">DeepLearning</span></a>
+        <a href="/research/?tag=BatchNormalization"><span class="tag" data-tag="BatchNormalization">BatchNormalization</span></a>
         
     
 </div>

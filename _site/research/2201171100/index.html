@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Convolutional Neural Network</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Convolutional Neural Network">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2201171100/./img/2022-01-17-14-32-42.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-01-17-14-32-42.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            Convolutional Neural Network
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#7~#9
+        </h2>
+        <h2 class="post-date">
+            2022-01-17 11:00
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#convolutional-neural-network" id="markdown-toc-convolutional-neural-network">Convolutional Neural Network</a>    <ul>
+      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
+      <li><a href="#2-invetigate-how-cnn" id="markdown-toc-2-invetigate-how-cnn">2. Invetigate how CNN</a></li>
+      <li><a href="#3-study-the-two-key-building-blocks" id="markdown-toc-3-study-the-two-key-building-blocks">3. Study the two key building blocks</a>        <ul>
+          <li><a href="#3-1-conv-layer" id="markdown-toc-3-1-conv-layer">3-1. Conv layer</a></li>
+          <li><a href="#3-2-pooling-layer" id="markdown-toc-3-2-pooling-layer">3-2. Pooling layer</a></li>
+        </ul>
+      </li>
+      <li><a href="#4-typical-cnn-architecture" id="markdown-toc-4-typical-cnn-architecture">4. Typical CNN architecture</a>        <ul>
+          <li><a href="#4-1-popular-cnn-alexnet" id="markdown-toc-4-1-popular-cnn-alexnet">4-1. Popular CNN (AlexNet)</a></li>
+          <li><a href="#4-2-popular-cnn-resnet" id="markdown-toc-4-2-popular-cnn-resnet">4-2. Popular CNN (ResNet)</a></li>
+          <li><a href="#4-3-application-of-cnns" id="markdown-toc-4-3-application-of-cnns">4-3. Application of CNNs</a></li>
+        </ul>
+      </li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘21.1/17 <br />
+REFERENCE: <a href="/research/2201171100/img/LS7.pdf">#7</a>, <a href="/research/2201171100/img/LS8.pdf">#8</a>, <a href="/research/2201171100/img/LS9.pdf">#9</a><br />
+실습코드(python): <a href="/research/2201171100/img/CNN_practice.py">CNN_lenet</a>, <a href="/research/2201171100/img/CNN_practice2.py">CNN_AlexNet_ResNet</a></p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+<ul>
+  <li>Can <code class="language-plaintext highlighter-rouge">DNNs</code> be <strong>specialized?</strong>
+    <ul>
+      <li>CNNs: Image data</li>
+      <li>RNNs: Text/Audio data(Language) and any sequential data</li>
+    </ul>
+  </li>
+  <li>이번 포스팅에서는 CNN에 대해서 이야기해보자.
+    <ol>
+      <li>Invetigate how CNNs were developed</li>
+      <li>Study the two key building blocks</li>
+    </ol>
+    <ul>
+      <li>Conv layer</li>
+      <li>Pooling layer
+        <ol>
+          <li>Discuss two popular CNN architectures.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-invetigate-how-cnn">2. Invetigate how CNN</h2>
+<ul>
+  <li>Hubel &amp; Wiesel 이라는 사람이 어떤 사물을 시각적으로 판단할 때 특정 뇌의 부분이 활성화 된다는 사실을 알아냄</li>
+  <li>이미지가 들어오면 특정 <code class="language-plaintext highlighter-rouge">receptive field</code>가 반응을 한다.
+<img src="/research/2201171100/img/2022-01-17-14-18-37.png" alt="" /></li>
+  <li>
+    <p>여러 부분을 통과하면서 최종적으로 눈으로 들어온 이미지가 정보가 되어 뇌에 저장된다.</p>
+  </li>
+  <li>이를 프로그래밍화한것을 CNN이라 할 수 있다.</li>
+</ul>
+
+<h2 id="3-study-the-two-key-building-blocks">3. Study the two key building blocks</h2>
+<ul>
+  <li>Convolutional layer(Conv Layer)
+    <ul>
+      <li>Role: Mimick(흉내내다) neurons’ behaviors:
+  Reacting only to receptive fields
+  <img src="/research/2201171100/img/2022-01-17-14-21-30.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>Pooling layer
+    <ul>
+      <li>Role: Downsample to reduce complexity
+  (# parameters &amp; memory size)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-1-conv-layer">3-1. Conv layer</h3>
+<ul>
+  <li>
+    <p>픽셀 이미지가 들어오면 receptive filter(kernel, or filter, weights)가 픽셀을 순회하면서 새로운 출력갓을 만들어낸ㄷ. (pixel-wise)
+<img src="/research/2201171100/img/2022-01-17-14-23-14.png" alt="" /></p>
+  </li>
+  <li>
+    <p>이미지의 끝 부분에서 filter의 사이즈와 맞지 않는 부분은 <code class="language-plaintext highlighter-rouge">padding</code>을 이용하여 사이즈를 맞추고 pixel-wise 계산을 수행한다. (called padding)
+<img src="/research/2201171100/img/2022-01-17-14-24-06.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Conv Layer를 통과해서 출력된 값들을 <strong>feature map</strong>이라 부른다.</p>
+    <ul>
+      <li>Feature map에는 이미지의 pattern들이 담기게 된다. 이러한 필터를 학습시키는 것을 CNN이라 한다.</li>
+      <li>Filter를 Sharing 함으로써 이미지의 일관된 패턴을 추출하게 한다.</li>
+      <li>Filter 한개는 하나의 패턴을 추출하는 목적으로 사용되고, 이러한 필터를 여러개 쌓아서 Conv Layer를 구성한다.
+  <img src="/research/2201171100/img/2022-01-17-14-31-42.png" alt="" />
+  <img src="/research/2201171100/img/2022-01-17-14-32-20.png" alt="" />
+  <img src="/research/2201171100/img/2022-01-17-14-32-42.png" alt="" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-2-pooling-layer">3-2. Pooling layer</h3>
+<ul>
+  <li>파라미터의 개수를 줄여, 메모리 사용량을 줄이기 위함</li>
+  <li>대표적으로 Max pooling, Average Pooling 2개 있다.
+<img src="/research/2201171100/img/2022-01-17-14-34-39.png" alt="" /></li>
+</ul>
+
+<h2 id="4-typical-cnn-architecture">4. Typical CNN architecture</h2>
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Conv + ReLU + Pooling</code>을 Stack 모듈 단위로, 이러한 Stack을 쌓는 방식으로 CNN 아키텍쳐 설계</p>
+
+    <ul>
+      <li>As the network gets deeper:
+        <ol>
+          <li>Feature map size gets smaller;</li>
+          <li>#of feature maps gets bigger.</li>
+        </ol>
+      </li>
+      <li>At the end of the stacks:
+        <ul>
+          <li>Fully-Connected(FC) layers + output layer (e.g., softmax activation)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/research/2201171100/img/2022-01-17-14-37-14.png" alt="" /></p>
+  </li>
+  <li>
+    <p>keras 프레임워크에서 예시코드는 아래를 참고하자.</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># 1st stack
+</span><span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+                       <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                       <span class="n">padding</span><span class="o">=</span><span class="s">'same'</span><span class="p">,</span>
+                       <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+                <span class="p">)</span>
+<span class="n">model_lenet</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+                          <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+                          <span class="n">padding</span><span class="o">=</span> <span class="s">'valid'</span><span class="p">)</span>
+                <span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="4-1-popular-cnn-alexnet">4-1. Popular CNN (AlexNet)</h3>
+<ul>
+  <li>AlexNet의 성능이 아주 우수하게 나오면서, 이후 CNN의 대표적인 아키텍쳐 패턴이 되었다.
+<img src="/research/2201171100/img/2022-01-17-14-38-35.png" alt="" /></li>
+</ul>
+
+<h3 id="4-2-popular-cnn-resnet">4-2. Popular CNN (ResNet)</h3>
+<ul>
+  <li>
+    <p>ResNet은 <code class="language-plaintext highlighter-rouge">skip connection</code>이 특징적인데, 피쳐맵을 더해서(<code class="language-plaintext highlighter-rouge">add</code>) 보는 방식으로 성능의 향상을 만들었다.
+<img src="/research/2201171100/img/2022-01-17-14-40-21.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Skip-connection</code> plays a crucial role to enable <strong>stable &amp; fast training</strong>.</p>
+  </li>
+</ul>
+
+<h3 id="4-3-application-of-cnns">4-3. Application of CNNs</h3>
+<ul>
+  <li>Any <strong>decision</strong> or <strong>manipulation</strong> w.r.t. <em>image</em> data
+    <ul>
+      <li>Image Recognition</li>
+      <li>Image inpainting</li>
+      <li>Object Detection</li>
+      <li>Coloring</li>
+      <li>Defect Dectection</li>
+      <li>Style Transfer</li>
+      <li>Medical Diagnosis</li>
+      <li>Super-resolution image …</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=CNN"><span class="tag" data-tag="CNN">CNN</span></a>
+        
+        <a href="/research/?tag=Convolutional"><span class="tag" data-tag="Convolutional">Convolutional</span></a>
+        
+        <a href="/research/?tag=Pooling"><span class="tag" data-tag="Pooling">Pooling</span></a>
+        
+        <a href="/research/?tag=Conv"><span class="tag" data-tag="Conv">Conv</span></a>
+        
+        <a href="/research/?tag=AlexNet"><span class="tag" data-tag="AlexNet">AlexNet</span></a>
+        
+        <a href="/research/?tag=ResNet"><span class="tag" data-tag="ResNet">ResNet</span></a>
+        
+        <a href="/research/?tag=LeNet"><span class="tag" data-tag="LeNet">LeNet</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

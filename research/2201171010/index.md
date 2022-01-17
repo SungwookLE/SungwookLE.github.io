@@ -7,8 +7,8 @@ title: Advanced Techniques
 subtitle: Lecture#4~#6
 writer: 100
 post-header: true  
-header-img: img/2022-01-16-23-16-16.png
-hash-tag: [Optimization, LeastSquares, LogisticRegression, DeepLearning]
+header-img: ./img/2022-01-17-11-47-26.png
+hash-tag: [Regularization, EalryStopping, Dropout, BatchNormalization]
 use_math: true
 toc : true
 ---
@@ -19,7 +19,10 @@ toc : true
 # Advanced Techniques
 > Writer: SungwookLE    
 > DATE: '21.1/17   
-> REFERENCE: [#4](./img/LS4.pdf), [#5](./img/LS5.pdf), [#6](./img/LS6.pdf)
+> REFERENCE: [#4](./img/LS4.pdf), [#5](./img/LS5.pdf), [#6](./img/LS6.pdf)  
+> 실습코드(python): [advanced_techniques](./img/keras_with_advanced.py)  
+- 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)
+
 
 ## 1. Introduction
 - Overfit, Underfit 되지 않고 학습이 잘~(well) 되게 하기 위해서 사용하는 추가적인 방법들에 대해 설명한다.
@@ -95,7 +98,38 @@ kernel_initializer = 'he_normal' ))
 ![](./img/2022-01-17-12-00-47.png)
 - 레이어의 출력 값을 노말라이제이션 해서 다음 레이어에 전달해주는 것을 **Batch Normalization**이라 한다.
 
+- tensorflow framework에서는 쉽게 사용 가능하도록 아래와 같은 패턴으로 사용하면 된다.
 
+```python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Flatten, Dropout, BatchNormalization, ReLU
+from tensorflow.keras.regularizers import l2, l1
+from tensorflow.keras.callbacks import EarlyStopping, LearningRateScheduler
+from tensorflow.keras.optimizers import Adam
+
+def scheduler(epoch, lr):
+    if epoch in [5, 10, 15]:
+        lr = 0.1*lr
+    return lr
+
+es_callback = EarlyStopping(monitor='val_acc', patience=5)
+lrs_callback = LearningRateScheduler(scheduler)
+
+Hidden_2layer_MLP = Sequential()
+Hidden_2layer_MLP.add(Dense(50, 
+                            kernel_regularizer=l2(0.01), bias_regularizer=l1(0.01),
+                            kernel_initializer= 'he_normal' ))
+Hidden_2layer_MLP.add(BatchNormalization())
+Hidden_2layer_MLP.add(ReLU())
+Hidden_2layer_MLP.add(Dropout(0.5))
+Hidden_2layer_MLP.add(Dense(1, activation='sigmoid',
+                            kernel_regularizer=l2(0.01), bias_regularizer=l1(0.01),
+                            kernel_initializer= 'glorot_normal'))
+
+
+Hidden_2layer_MLP.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
+history = Hidden_2layer_MLP.fit(X_train, y_train, epochs=20, batch_size=128, shuffle=True, callbacks=[es_callback, lrs_callback], validation_data = (X_val, y_val))
+```
 ## 5. Hyperparameter Search
 
 - HyperParameter 종류: #L of layers, # $n^{[n]}$ of hidden neurons, activation learning rate, betas, batch size, # T of epochs, regularization factor, dropout rate ...
