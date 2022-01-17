@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Dimensionality reduction & clustering</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Dimensionality reduction & clustering">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2201181010/./img/2022-01-18-00-13-13.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-01-18-00-13-13.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            Dimensionality reduction & clustering
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#16~#18
+        </h2>
+        <h2 class="post-date">
+            2022-01-18 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#dimensionality-reduction--clustering" id="markdown-toc-dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</a>    <ul>
+      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
+      <li><a href="#2-pca주성분-분석" id="markdown-toc-2-pca주성분-분석">2. PCA(주성분 분석)</a>        <ul>
+          <li><a href="#2-1-kernel-pca" id="markdown-toc-2-1-kernel-pca">2-1. Kernel-PCA</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-t-snedata-visualization" id="markdown-toc-3-t-snedata-visualization">3. t-SNE(data visualization)</a></li>
+      <li><a href="#4-study-clustering-methods" id="markdown-toc-4-study-clustering-methods">4. Study Clustering Methods</a>        <ul>
+          <li><a href="#4-1-k-means" id="markdown-toc-4-1-k-means">4-1. K-Means</a></li>
+          <li><a href="#4-2-k-methoids" id="markdown-toc-4-2-k-methoids">4-2. K-methoids</a></li>
+          <li><a href="#4-3-hierarchical-clustering" id="markdown-toc-4-3-hierarchical-clustering">4-3. Hierarchical Clustering</a></li>
+        </ul>
+      </li>
+      <li><a href="#5-코드" id="markdown-toc-5-코드">5. 코드</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘21.1/18 <br />
+REFERENCE: <a href="/research/2201181010/img/LS16.pdf">#16</a>, <a href="/research/2201181010/img/LS17.pdf">#17</a>, <a href="/research/2201181010/img/LS18.pdf">#18</a><br />
+실습코드(colab):  <a href="https://colab.research.google.com/drive/1oXnz7GRjOo4dHmuEZ06R9Rd0o3Tnr_I4?usp=sharing">PCA&amp;t-SNE&amp;Clustering</a></p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<ul>
+  <li>지금까지 배운것: DNNs, CNNs, RNNs &amp; RFs</li>
+  <li>그럼에도 성능이 잘 나와주지 않는다면?
+    <ul>
+      <li>This may be due to:
+        <ol>
+          <li>Feature 개수 &gt; Sample 개수일 경우: dimension 축소 필요</li>
+          <li>data distribution is pretty wide: clustering 고려 필요</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-pca주성분-분석">2. PCA(주성분 분석)</h2>
+<ul>
+  <li>Principal Component Analysis</li>
+  <li>왜할까?
+    <ul>
+      <li>Reducing #of features in data by obtaining a set of pricipal components
+        <ol>
+          <li><strong>Improve generalization performance</strong></li>
+          <li>Speed up training / Data visualization</li>
+        </ol>
+      </li>
+      <li>SVD(Singular Value Decomposition)을 수행하고 <code class="language-plaintext highlighter-rouge">eigen value</code>가 큰 값부터 추출해내는 과정을 PCA라고 한다.</li>
+      <li>이 때 EVR(<code class="language-plaintext highlighter-rouge">Explained Variance Ratio</code>)가 95% 이상이 되도록 추출하는 것이 일반적이다.</li>
+      <li>
+        <p>EVR 값도 일종의 학습 하이퍼 파라미터이다.
+  <img src="./img/2022-01-18-00-22-04.png" alt="" /></p>
+      </li>
+      <li>위의 그림과 같이 dimension reduction 된 값이 추출됨</li>
+      <li>PCA는 linear techniques 이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-1-kernel-pca">2-1. Kernel-PCA</h3>
+<ul>
+  <li>비선형 PCA라고 이해하자.</li>
+  <li>데이터의 비선형성이 심하다고 하면 이 데이터를 하나의 커널과의 연산을 시키고 나온 매트릭스를 가지고 선형 PCA를 수행하자는게 컨셉이다.</li>
+</ul>
+
+<h2 id="3-t-snedata-visualization">3. t-SNE(data visualization)</h2>
+<ul>
+  <li>t-SNE는 data visualization 용도로 사용함</li>
+  <li>
+    <p>t-SNE는 non-linear data reduction technique이다.
+<img src="./img/2022-01-18-00-25-45.png" alt="" /></p>
+  </li>
+  <li>t-SNE도 주성분 분석이 가능하긴 한데, <strong>visualization</strong>에 장점이 있는 것 말고는 PCA 대비 성능상 장점은 적다.</li>
+  <li>PCA는 SVD를 이용한 closed-form 이고, t-SNE는 gradient descent를 이용하여 차원을 축소하는 방식이다.</li>
+  <li>변형 사용도 가능한데, <code class="language-plaintext highlighter-rouge">비지도학습</code>에서 t-sne의 축소된 결과물을 라벨이라고 보고 학습할 수도 있다. (결과는 그닥..)</li>
+  <li><code class="language-plaintext highlighter-rouge">dim=2,3</code>일 때 사용가능 한 알고리즘이다. 그 이상은 일반화가 잘되진 않는다.</li>
+</ul>
+
+<h2 id="4-study-clustering-methods">4. Study Clustering Methods</h2>
+<ul>
+  <li>대표적인게, K-means clustering이 있다..</li>
+  <li>데이터가 부족한 경우, clustering은 무조건 하는 것이라고 보면 됨</li>
+  <li>clustering 하여, data distribution을 살펴보고, 학습 데이터 set 결정</li>
+  <li>보통 차원 축소를 한 다음에 클러스터링을 한다. (결과 우수)</li>
+</ul>
+
+<h3 id="4-1-k-means">4-1. K-Means</h3>
+<ul>
+  <li>K개의 클러스터를 군집화</li>
+  <li>Howto?
+    <ol>
+      <li>Choose K points randomly</li>
+      <li>(assignment step): Map each data point to either one of the K points dependin on its distance</li>
+      <li>(Update step): Compute the means of such K clusters</li>
+      <li>Repeat 2 &amp; 3 untile assignment is not changed further</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="4-2-k-methoids">4-2. K-methoids</h3>
+<ul>
+  <li>대표값으로 K-means(평균값) 이 아니고 중앙값(median)을 사용하는 클러스터링</li>
+  <li>왜? Robust to outliers</li>
+</ul>
+
+<h3 id="4-3-hierarchical-clustering">4-3. Hierarchical Clustering</h3>
+<ul>
+  <li>bottom up 구조의 계층 순서로 clustering</li>
+  <li>N개의 datae라고 하면, N-1개로 clustering 하고</li>
+  <li>그 다음은 N-1-1로 하면서 목표 지점인 K개로 clustering 할 때까지 군집화한다.</li>
+</ul>
+
+<h2 id="5-코드">5. 코드</h2>
+<ul>
+  <li>
+    <p>실습코드(코랩)는 포스트 상단의 <a href="https://colab.research.google.com/drive/1oXnz7GRjOo4dHmuEZ06R9Rd0o3Tnr_I4?usp=sharing">링크</a>를 참고하여라..</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PCA</code> , <code class="language-plaintext highlighter-rouge">Kernel-PCA</code>, CLustering (<code class="language-plaintext highlighter-rouge">KMeans, KMedoids, AgglomerativeClustering</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">AgglomerativeClustering</code>이 Hierachical Clustering 이다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">AgglomerativeClustering</span>
+<span class="kn">from</span> <span class="nn">sklearn_extra.cluster</span> <span class="kn">import</span> <span class="n">KMedoids</span>
+
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_cluster</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">kmedoids</span> <span class="o">=</span> <span class="n">KMedoids</span><span class="p">(</span><span class="n">n_cluster</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">agglo</span> <span class="o">=</span> <span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">n_cluster</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 이거는 룰대로 하는거니까, 따로 random_seed는 불필요함
+</span></code></pre></div></div>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=PCA"><span class="tag" data-tag="PCA">PCA</span></a>
+        
+        <a href="/research/?tag=t-SNE"><span class="tag" data-tag="t-SNE">t-SNE</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
