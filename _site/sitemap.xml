@@ -112,6 +112,9 @@
 <loc>http://localhost:4000/research/2106291010/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/research/2201171010/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/research/2201161010/</loc>
 </url>
 <url>
@@ -282,5 +285,17 @@
 <url>
 <loc>http://localhost:4000/research/2201161010/img/LS3.pdf</loc>
 <lastmod>2021-09-27T12:23:46+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/research/2201171010/img/LS4.pdf</loc>
+<lastmod>2021-09-28T09:12:32+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/research/2201171010/img/LS5.pdf</loc>
+<lastmod>2021-09-28T11:20:23+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/research/2201171010/img/LS6.pdf</loc>
+<lastmod>2021-09-28T13:47:32+09:00</lastmod>
 </url>
 </urlset>

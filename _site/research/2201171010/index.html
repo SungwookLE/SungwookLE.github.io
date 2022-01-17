@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Advanced Techniques</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Advanced Techniques">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2201171010/img/2022-01-16-23-16-16.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('img/2022-01-16-23-16-16.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            Advanced Techniques
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#4~#6
+        </h2>
+        <h2 class="post-date">
+            2022-01-17 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#advanced-techniques" id="markdown-toc-advanced-techniques">Advanced Techniques</a>    <ul>
+      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
+      <li><a href="#1-data-organization" id="markdown-toc-1-data-organization">1. Data Organization</a></li>
+      <li><a href="#2-generalization-techniques" id="markdown-toc-2-generalization-techniques">2. Generalization Techniques</a>        <ul>
+          <li><a href="#2-1-regularization" id="markdown-toc-2-1-regularization">2-1. Regularization</a></li>
+          <li><a href="#2-2-data-augmentation" id="markdown-toc-2-2-data-augmentation">2-2. Data augmentation</a></li>
+          <li><a href="#2-3-early-stopping" id="markdown-toc-2-3-early-stopping">2-3. Early Stopping</a></li>
+          <li><a href="#2-4-dropout" id="markdown-toc-2-4-dropout">2-4. Dropout</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-weight-initialization" id="markdown-toc-3-weight-initialization">3. Weight Initialization</a></li>
+      <li><a href="#4-techniques-for-training-stability" id="markdown-toc-4-techniques-for-training-stability">4. Techniques for training stability</a>        <ul>
+          <li><a href="#4-1-learning-rate-decay" id="markdown-toc-4-1-learning-rate-decay">4-1. Learning Rate Decay</a></li>
+          <li><a href="#4-2-batch-normalization" id="markdown-toc-4-2-batch-normalization">4-2. Batch Normalization</a></li>
+        </ul>
+      </li>
+      <li><a href="#5-hyperparameter-search" id="markdown-toc-5-hyperparameter-search">5. Hyperparameter Search</a></li>
+      <li><a href="#6-cross-validation" id="markdown-toc-6-cross-validation">6. Cross Validation</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="advanced-techniques">Advanced Techniques</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘21.1/17 <br />
+REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research/2201171010/img/LS5.pdf">#5</a>, <a href="/research/2201171010/img/LS6.pdf">#6</a></p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+<ul>
+  <li>Overfit, Underfit 되지 않고 학습이 잘~(well) 되게 하기 위해서 사용하는 추가적인 방법들에 대해 설명한다.
+    <ol>
+      <li>Data Organization (train/validation/test sets)</li>
+      <li>Generalization Techniques
+        <ul>
+          <li>Regularization</li>
+          <li>Data augmentation</li>
+          <li>Ealry Stopping</li>
+          <li>Dropout</li>
+        </ul>
+      </li>
+      <li>Weight Initialization</li>
+      <li>Techniques for training stability
+        <ul>
+          <li>Adam Optimizer</li>
+          <li>Learning rate decaying</li>
+          <li>Batch Normalization</li>
+        </ul>
+      </li>
+      <li>Hyperparameter search</li>
+      <li>Cross Validation</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="1-data-organization">1. Data Organization</h2>
+<ul>
+  <li>Train/Validation/Test data를 잘 나눠서 쓰라는 말..</li>
+  <li>Train data is for training model weights</li>
+  <li>Validation data is for Hyperparameter Search</li>
+  <li>Test data is for ‘test’ with <strong>unseen</strong> during trainig</li>
+  <li>
+    <p>데이터를 나눌 때는 표본의 개수에 따라 달라짐.
+<img src="/research/2201171010/img/2022-01-17-11-30-58.png" alt="" /></p>
+  </li>
+  <li>데이터를 나눌 때, data 라벨(<code class="language-plaintext highlighter-rouge">y</code>)의 distribution이 편중되지 않게 잘 나눠줘야함</li>
+  <li><code class="language-plaintext highlighter-rouge">train_test_split(x, y, test_size = 0.1 , stratify=y)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">stratify</code> 옵션을 사용해서, y라는 데이터가 split되는 양쪽에 고르게 분포되도록 한다.</li>
+</ul>
+
+<h2 id="2-generalization-techniques">2. Generalization Techniques</h2>
+
+<h3 id="2-1-regularization">2-1. Regularization</h3>
+<ul>
+  <li>모델 weight가 크면, 데이터의 분포에 따라서(또는 노이즈) 출려갓의 oscillation이 커지니까 이를 방지하면 general한(강건한) 성능이 나올 것이다라는 컨셉
+<img src="/research/2201171010/img/2022-01-17-11-41-30.png" alt="" /></li>
+  <li>lambda는 하이퍼파라미터</li>
+</ul>
+
+<h3 id="2-2-data-augmentation">2-2. Data augmentation</h3>
+<ul>
+  <li>이미지 데이터에서 많이 쓰는 방식인데, 이미지 데이터를 <code class="language-plaintext highlighter-rouge">rotate, crop, 반전, 찌그러트리기</code> 등을 해서 임의로 데이터의 분포를 늘리는 것을 말한다.</li>
+  <li>generalization 성능을 높히기 위해서 사용
+<img src="/research/2201171010/img/2022-01-17-11-44-01.png" alt="" /></li>
+</ul>
+
+<h3 id="2-3-early-stopping">2-3. Early Stopping</h3>
+<ul>
+  <li>train loss 는 조금씩 줄어들긴 하지만, validation loss가 증가하고 있는 형태라면, early stopping 하여 training 데이터에 모델이 overfit 되는 것을 방지한다.
+<img src="/research/2201171010/img/2022-01-17-11-45-00.png" alt="" /></li>
+</ul>
+
+<h3 id="2-4-dropout">2-4. Dropout</h3>
+<ul>
+  <li>학습단계에서 몇 노드들을 이미로 cut-off 함으로써, 특정 노드에 크게 의존하지 않게 하는 방법</li>
+  <li>not overfit to a particular NN: hence generalize better
+<img src="/research/2201171010/img/2022-01-17-11-47-26.png" alt="" /></li>
+</ul>
+
+<h2 id="3-weight-initialization">3. Weight Initialization</h2>
+<ul>
+  <li>모델의 weight(파라미터)의 초기값은 어떤 상태로 있는 것이 가장 유리할까에 대한 내용, 수식적으로 정리/증명한 제안자는 기계학습 분야에서 인싸가 되었다.</li>
+  <li>Xavier Initailization , He’s Initialization 이 있는데, weight들의 분산을 노드의 개수에 따라 제한시킨다는 컨셉이다. (레이어가 깊어질수록 발산하거나 vanishing 하는 문제를 최소화하기 위함)</li>
+  <li>아래와 같이 선언하여 사용한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">Hidden_2layers_MLP</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">kernel_regularizer</span> <span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span> <span class="p">,</span> <span class="n">bias_regularizer</span><span class="o">=</span><span class="n">l1</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span> 
+<span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s">'he_normal'</span> <span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="4-techniques-for-training-stability">4. Techniques for training stability</h2>
+<ul>
+  <li>Adam GD는 앞의 포스팅에서 설명하였었는데, GD law에서 에러의 전파율에 따라 weight가 oscillation 하는 것을 방지하기 위해, 이전 스텝의 에러율을 어느정도는 반영해주는 <code class="language-plaintext highlighter-rouge">모멘텀</code>을 적용한 Gradient Descent 기법을 말한다. (가장 많이 씀)</li>
+</ul>
+
+<h3 id="4-1-learning-rate-decay">4-1. Learning Rate Decay</h3>
+<ul>
+  <li>말 그대로, epochs가 커질수록 learning rate를 작게 조정하여 fine training 하게 하는 방법을 말한다.</li>
+</ul>
+
+<h3 id="4-2-batch-normalization">4-2. Batch Normalization</h3>
+<ul>
+  <li>데이터가 들어올 때 마다, 각 레이어의 출력값의 범위가 제 각각이다. 이러한 부분 때문에 학습이 잘 되지 않는다.</li>
+  <li>Turns out: Different signal scalings across distinct layers incur training instability
+<img src="/research/2201171010/img/2022-01-17-12-00-47.png" alt="" /></li>
+  <li>레이어의 출력 값을 노말라이제이션 해서 다음 레이어에 전달해주는 것을 <strong>Batch Normalization</strong>이라 한다.</li>
+</ul>
+
+<h2 id="5-hyperparameter-search">5. Hyperparameter Search</h2>
+
+<ul>
+  <li>HyperParameter 종류: #L of layers, # $n^{[n]}$ of hidden neurons, activation learning rate, betas, batch size, # T of epochs, regularization factor, dropout rate …</li>
+</ul>
+
+<h2 id="6-cross-validation">6. Cross Validation</h2>
+<ul>
+  <li>목적: Obtaint reliable validation loss via averaging</li>
+</ul>
+
+<p><img src="/research/2201171010/img/2022-01-17-12-06-15.png" alt="" /></p>
+
+<ul>
+  <li>train+validation dataset안에서 validation을 돌아가면서 쓰고 이를 평균 낸 값을 가지고 분석을 함으로써, 데이터를 최대한 효율적으로 쓰는 역할을 한다.</li>
+  <li>fold 해서 하는 것은 val은 특정 데이터로 fix안하고 돌아가면서 쓰게함으로써 데이터를 충분히 활용하기 위함이고, 또 특정 데이터로 fix할 경우 운이 나쁠경우 학습이 잘안되는 문제도 해결하기 위함</li>
+  <li>val은 hyperparameter 튜닝을 선정하기 위한 지표로서 활용한다.</li>
+  <li>$val_{loss} = \frac{val_1 + val_2 + val_3 + val_4}{4}$</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=Optimization"><span class="tag" data-tag="Optimization">Optimization</span></a>
+        
+        <a href="/research/?tag=LeastSquares"><span class="tag" data-tag="LeastSquares">LeastSquares</span></a>
+        
+        <a href="/research/?tag=LogisticRegression"><span class="tag" data-tag="LogisticRegression">LogisticRegression</span></a>
+        
+        <a href="/research/?tag=DeepLearning"><span class="tag" data-tag="DeepLearning">DeepLearning</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

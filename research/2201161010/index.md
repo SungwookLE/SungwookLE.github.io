@@ -19,7 +19,9 @@ toc : true
 # Machine Learning and Gradient Descent
 > Writer: SungwookLE    
 > DATE: '21.1/16   
-> REFERENCE: [#1](./img/LS1.pdf), [#2](./img/LS2.pdf), [#3](./img/LS3.pdf), [MyRef](https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md)
+> REFERENCE: [#1](./img/LS1.pdf), [#2](./img/LS2.pdf), [#3](./img/LS3.pdf), [MyNote](https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md)  
+> 실습 코드(python): [mnist](./img/mnist_practice.py), [iris](./img/iris_practice.py), [mnist_with_keras_framework](./img/mnist_keras_practice.py)  
+- 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)
 
 ## 1. 기계학습이란?
 - input `x`가 들어가서 output `y`가 출력되는 시스템이 있다고 하자.
@@ -64,6 +66,9 @@ toc : true
 - 뉴럴 네트워크를 여러 Layer 쌓은 것을 말한다.
 ![](./img/2022-01-16-23-45-26.png)
 - $\sigma$는 활성화 함수를 말한다. 시그모이드나 [Relu](./img/2022-01-16-23-51-51.png)가 있다.
+- y 라벨의 개수가 3개 이상인 경우는 output layer의 활성화 함수로 `softmax` 를 사용한다.
+- softmax는 output node들의 출력값을 (0~1)사이의 상대적인 값으로 환산해주는 함수이다. [softmax](./img/2022-01-17-11-50-05.png)
+
 
 - 학습은 데이터 $[{x^{(i)}, y^{(i)}}]^m_{i=1}$ 를 가지고 Loss 함수를 최소화(최적화)하는 과정으로 진행한다. 위에서 설명한 바와 같이 Gradient Descent를 사용한다.
 

@@ -173,7 +173,11 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/16 <br />
-REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research/2201161010/img/LS2.pdf">#2</a>, <a href="/research/2201161010/img/LS3.pdf">#3</a>, <a href="https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md">MyRef</a></p>
+REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research/2201161010/img/LS2.pdf">#2</a>, <a href="/research/2201161010/img/LS3.pdf">#3</a>, <a href="https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md">MyNote</a><br />
+실습 코드(python): <a href="/research/2201161010/img/mnist_practice.py">mnist</a>, <a href="/research/2201161010/img/iris_practice.py">iris</a>, <a href="/research/2201161010/img/mnist_keras_practice.py">mnist_with_keras_framework</a></p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
 </blockquote>
 
 <h2 id="1-기계학습이란">1. 기계학습이란?</h2>
@@ -239,8 +243,10 @@ REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research
 <ul>
   <li>뉴럴 네트워크를 여러 Layer 쌓은 것을 말한다.
 <img src="/research/2201161010/img/2022-01-16-23-45-26.png" alt="" /></li>
+  <li>$\sigma$는 활성화 함수를 말한다. 시그모이드나 <a href="/research/2201161010/img/2022-01-16-23-51-51.png">Relu</a>가 있다.</li>
+  <li>y 라벨의 개수가 3개 이상인 경우는 output layer의 활성화 함수로 <code class="language-plaintext highlighter-rouge">softmax</code> 를 사용한다.</li>
   <li>
-    <p>$\sigma$는 활성화 함수를 말한다. 시그모이드나 <a href="/research/2201161010/img/2022-01-16-23-51-51.png">Relu</a>가 있다.</p>
+    <p>softmax는 output node들의 출력값을 (0~1)사이의 상대적인 값으로 환산해주는 함수이다. <a href="/research/2201161010/img/2022-01-17-11-50-05.png">softmax</a></p>
   </li>
   <li>학습은 데이터 $[{x^{(i)}, y^{(i)}}]^m_{i=1}$ 를 가지고 Loss 함수를 최소화(최적화)하는 과정으로 진행한다. 위에서 설명한 바와 같이 Gradient Descent를 사용한다.</li>
 </ul>
@@ -270,7 +276,7 @@ REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research
   <li>Backpropagation은 각 레이어마다 <code class="language-plaintext highlighter-rouge">chain-rule</code>로 계산되는 에러의 역전파율을 말한다.</li>
 </ul>
 
-<p><img src="./img/2022-01-17-00-24-53.png" alt="" /></p>
+<p><img src="/research/2201161010/img/2022-01-17-00-24-53.png" alt="" /></p>
 
 <ul>
   <li>
@@ -278,7 +284,7 @@ REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research
   </li>
   <li>
     <p>실제적으로 학습을 할 때에는 Batch 단위로 나누어서 학습을 진행한다. 
-<img src="./img/2022-01-17-00-26-51.png" alt="" /></p>
+<img src="/research/2201161010/img/2022-01-17-00-26-51.png" alt="" /></p>
 
     <ul>
       <li>Operation per Batch is called ‘step’</li>
@@ -293,7 +299,7 @@ REFERENCE: <a href="/research/2201161010/img/LS1.pdf">#1</a>, <a href="/research
   <li>Gradual Smooth 효과를 주기 위해서 모멘텀(과거의 에러율을 어느정도 현재에도 반영)을 주어서 역전파를 시키는 방식을 <code class="language-plaintext highlighter-rouge">adam</code> GD라고 한다.</li>
 </ul>
 
-<p><img src="./img/2022-01-17-00-30-19.png" alt="" /></p>
+<p><img src="/research/2201161010/img/2022-01-17-00-30-19.png" alt="" /></p>
 
 <ul>
   <li>위의 수식은 일반적인 Momentum 방식의 GD 를 기술한 것인데, Adam은 Adaptive Momentum Optimizer로 모멘텀을 하는 이유는 동일한다. (to reduce oscillation)</li>
