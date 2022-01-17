@@ -14,7 +14,7 @@
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Recurrent Neural Networks">
   <meta itemprop="description" content="SungwookLE">
-  <meta itemprop="image" content="http://localhost:4000/research/2201171200/./img/2022-01-17-14-32-42.png">
+  <meta itemprop="image" content="http://localhost:4000/research/2201171200/./img/2022-01-17-21-08-14.png">
 
   
 
@@ -119,7 +119,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-<div class="post-header loading-animation" style="background-image: url('./img/2022-01-17-14-32-42.png')">
+<div class="post-header loading-animation" style="background-image: url('./img/2022-01-17-21-08-14.png')">
 </div>
 
 
@@ -161,6 +161,12 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
           <li><a href="#3-2-grugated-reccurent-units" id="markdown-toc-3-2-grugated-reccurent-units">3-2. GRU(Gated Reccurent units)</a></li>
         </ul>
       </li>
+      <li><a href="#4-keras-프레임워크에서-사용법" id="markdown-toc-4-keras-프레임워크에서-사용법">4. Keras 프레임워크에서 사용법</a>        <ul>
+          <li><a href="#4-1-simplernn" id="markdown-toc-4-1-simplernn">4-1. SimpleRNN</a></li>
+          <li><a href="#4-2-lstm" id="markdown-toc-4-2-lstm">4-2. LSTM</a></li>
+          <li><a href="#4-3-gru" id="markdown-toc-4-3-gru">4-3. GRU</a></li>
+        </ul>
+      </li>
       <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
     </ul>
   </li>
@@ -171,7 +177,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/17 <br />
 REFERENCE: <a href="/research/2201171200/img/LS10.pdf">#10</a>, <a href="/research/2201171200/img/LS11.pdf">#11</a>, <a href="/research/2201171200/img/LS12.pdf">#12</a><br />
-실습코드(colab): [rnn practice with movie review data](https://colab.research.google.com/drive/1CBGBeBDfKvWWrO8-YuB3A0ujJSydZE0N?usp=sharing</p>
+실습코드(colab): <a href="https://colab.research.google.com/drive/1CBGBeBDfKvWWrO8-YuB3A0ujJSydZE0N?usp=sharing">rnn practice with movie review data</a></p>
   <ul>
     <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
   </ul>
@@ -238,6 +244,7 @@ REFERENCE: <a href="/research/2201171200/img/LS10.pdf">#10</a>, <a href="/resear
   </li>
   <li>이 때, 피드백 되는 것을 $y_t$ 전체로 하는 것이 아니고 그 중의 일부만 할 수 있다. $h_t$</li>
   <li>$y_t = h_t$ 인것을 <strong>Basic Cell</strong>이라고 한다.</li>
+  <li>keras 프레임워크에선 <code class="language-plaintext highlighter-rouge">SimpleRNN</code>로 모델을 호출할 수 있다.</li>
 </ul>
 
 <p><img src="/research/2201171200/img/2022-01-17-18-16-45.png" alt="" /></p>
@@ -305,6 +312,35 @@ REFERENCE: <a href="/research/2201171200/img/LS10.pdf">#10</a>, <a href="/resear
   <li>이걸 더 많이 쓴다. 해당 <a href="https://yjjo.tistory.com/18">블로그</a>를 참고해보자.</li>
   <li>구조는 LSTM보다 심플한데, 성능은 LSTM과 동일하기 때문이라고 함</li>
 </ul>
+
+<h2 id="4-keras-프레임워크에서-사용법">4. Keras 프레임워크에서 사용법</h2>
+
+<h3 id="4-1-simplernn">4-1. SimpleRNN</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">SimpleRNN</span><span class="p">,</span> <span class="n">GRU</span>
+
+<span class="c1"># Embedding Layer 예제
+</span><span class="n">simple_rnn</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">simple_rnn</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">output_dim</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="mi">256</span><span class="p">))</span>
+<span class="n">simple_rnn</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">SimpleRNN</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">simple_rnn</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="4-2-lstm">4-2. LSTM</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">LSTM_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">LSTM_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="mi">256</span><span class="p">))</span>
+<span class="n">LSTM_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">LSTM_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="4-3-gru">4-3. GRU</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">GRU_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">GRU_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="mi">256</span><span class="p">))</span>
+<span class="n">GRU_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">GRU</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">GRU_model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">))</span>
+</code></pre></div></div>
 
 <h2 id="끝">끝</h2>
 

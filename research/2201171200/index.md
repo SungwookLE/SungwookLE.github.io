@@ -7,7 +7,7 @@ title: Recurrent Neural Networks
 subtitle: Lecture#10~#12
 writer: 100
 post-header: true  
-header-img: ./img/2022-01-17-14-32-42.png
+header-img: ./img/2022-01-17-21-08-14.png
 hash-tag: [RNN, Recurrent, LSTM, memory_cell]
 use_math: true
 toc : true
@@ -64,6 +64,7 @@ toc : true
 
 - 이 때, 피드백 되는 것을 $y_t$ 전체로 하는 것이 아니고 그 중의 일부만 할 수 있다. $h_t$
 - $y_t = h_t$ 인것을 **Basic Cell**이라고 한다.
+- keras 프레임워크에선 `SimpleRNN`로 모델을 호출할 수 있다.
 
 ![](./img/2022-01-17-18-16-45.png)
 
@@ -107,5 +108,38 @@ toc : true
 ### 3-2. GRU(Gated Reccurent units)
 - 이걸 더 많이 쓴다. 해당 [블로그](https://yjjo.tistory.com/18)를 참고해보자.
 - 구조는 LSTM보다 심플한데, 성능은 LSTM과 동일하기 때문이라고 함
+
+
+## 4. Keras 프레임워크에서 사용법
+
+### 4-1. SimpleRNN
+
+```python
+from tensorflow.keras.layers import LSTM, SimpleRNN, GRU
+
+# Embedding Layer 예제
+simple_rnn = tf.keras.Sequential()
+simple_rnn.add(tf.keras.layers.Embedding(input_dim=1000, output_dim = 100, input_length=256))
+simple_rnn.add(SimpleRNN(units=128))
+simple_rnn.add(Dense(units=1, activation='sigmoid'))
+```
+
+### 4-2. LSTM
+
+```python
+LSTM_model = Sequential()
+LSTM_model.add(Embedding(input_dim= 10000, output_dim=100, input_length=256))
+LSTM_model.add(LSTM(units=128))
+LSTM_model.add(Dense(units=1, activation='sigmoid'))
+```
+
+### 4-3. GRU
+
+```python
+GRU_model = Sequential()
+GRU_model.add(Embedding(input_dim=10000, output_dim=100, input_length=256))
+GRU_model.add(GRU(128))
+GRU_model.add(Dense(1, activation='sigmoid'))
+```
 
 ## 끝
