@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Recurrent Neural Networks</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Recurrent Neural Networks">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2201171200/./img/2022-01-17-14-32-42.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-01-17-14-32-42.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            Recurrent Neural Networks
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#10~#12
+        </h2>
+        <h2 class="post-date">
+            2022-01-17 12:00
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#recurrent-neural-networks" id="markdown-toc-recurrent-neural-networks">Recurrent Neural Networks</a>    <ul>
+      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
+      <li><a href="#2-rnns-block" id="markdown-toc-2-rnns-block">2. RNNs block</a>        <ul>
+          <li><a href="#2-1-recurrent-neurons" id="markdown-toc-2-1-recurrent-neurons">2-1. Recurrent Neurons:</a></li>
+          <li><a href="#2-2-a-momory-cell-basic-cell" id="markdown-toc-2-2-a-momory-cell-basic-cell">2-2. A momory cell, Basic Cell</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-lstm-long-short-term-memory" id="markdown-toc-3-lstm-long-short-term-memory">3. LSTM (Long-Short Term Memory)</a>        <ul>
+          <li><a href="#3-1-lstm-structure" id="markdown-toc-3-1-lstm-structure">3-1. LSTM structure</a></li>
+          <li><a href="#3-2-grugated-reccurent-units" id="markdown-toc-3-2-grugated-reccurent-units">3-2. GRU(Gated Reccurent units)</a></li>
+        </ul>
+      </li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="recurrent-neural-networks">Recurrent Neural Networks</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘21.1/17 <br />
+REFERENCE: <a href="/research/2201171200/img/LS10.pdf">#10</a>, <a href="/research/2201171200/img/LS11.pdf">#11</a>, <a href="/research/2201171200/img/LS12.pdf">#12</a><br />
+실습코드(colab): [rnn practice with movie review data](https://colab.research.google.com/drive/1CBGBeBDfKvWWrO8-YuB3A0ujJSydZE0N?usp=sharing</p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<ul>
+  <li>Study two key building blocks or RNNs:
+    <ul>
+      <li>Reccurrent neurons</li>
+      <li>A memory cell</li>
+    </ul>
+  </li>
+  <li>Investigate basic RNNs</li>
+  <li>Study LSRM(Long Short-Term Memory) cells</li>
+</ul>
+
+<h2 id="2-rnns-block">2. RNNs block</h2>
+
+<ol>
+  <li>Recurrent Neurons
+    <ul>
+      <li>Role: Mimick conjectured neurons’ behavior: having a loop</li>
+    </ul>
+  </li>
+  <li>A memory cell
+    <ul>
+      <li>Role: Preserve some state(memory)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="2-1-recurrent-neurons">2-1. Recurrent Neurons:</h3>
+<ul>
+  <li>
+    <p>일반적인 neurons은 feedback 루프가 없다.
+<img src="/research/2201171200/img/2022-01-17-18-08-20.png" alt="" /></p>
+  </li>
+  <li>
+    <p>recurrent neurons은 피드백 루프를 설계하여, 출력 정보를 기억(memory)하게 하였다.
+<img src="/research/2201171200/img/2022-01-17-18-08-54.png" alt="" /></p>
+  </li>
+  <li>Note: RNN에서는 LOOP 데이터의 부호를 유지하기 위해 activation function으로 <code class="language-plaintext highlighter-rouge">tanh</code>(범위 -1~1)을 많이 쓴다.</li>
+  <li>단일 neuron 의 <code class="language-plaintext highlighter-rouge">time sequence</code> 루프로 살펴보면: <strong>Unrolled Version</strong>
+<img src="/research/2201171200/img/2022-01-17-18-10-52.png" alt="" /></li>
+</ul>
+
+<h3 id="2-2-a-momory-cell-basic-cell">2-2. A momory cell, Basic Cell</h3>
+
+<ul>
+  <li>
+    <p>여러 뉴론이 있는 <code class="language-plaintext highlighter-rouge">neurons</code>의 loop를 살펴보자 (벡터)
+<img src="/research/2201171200/img/2022-01-17-18-13-09.png" alt="" /></p>
+  </li>
+  <li>
+    <p>이것을 타임 시퀀스로 표시해보자 (<strong>unrolled version</strong>)
+<img src="/research/2201171200/img/2022-01-17-18-14-08.png" alt="" /></p>
+  </li>
+  <li>Memory Cell은 Recurrent Neurons 들을 여러개 병렬로 둔, Layer를 말한다.
+    <ul>
+      <li>뉴론들을 합쳐놓은 것을 편하게 <code class="language-plaintext highlighter-rouge">Memory Cell</code>이라고 한다.</li>
+    </ul>
+  </li>
+  <li>이 때, 피드백 되는 것을 $y_t$ 전체로 하는 것이 아니고 그 중의 일부만 할 수 있다. $h_t$</li>
+  <li>$y_t = h_t$ 인것을 <strong>Basic Cell</strong>이라고 한다.</li>
+</ul>
+
+<p><img src="/research/2201171200/img/2022-01-17-18-16-45.png" alt="" /></p>
+
+<p><img src="/research/2201171200/img/2022-01-17-20-47-18.png" alt="" /></p>
+
+<ul>
+  <li>RNN의 back-propagation은 시간 순선에 따라 진행된다.
+    <ul>
+      <li>Idea: BackProp Throuth Time(BPTT)</li>
+      <li>이게 뭐냐면, loss function 을 계산할 때, time-window를 정해주고, time-window 상의 loss 만을 가지고  weight back-propagation을 한다.</li>
+      <li>이 때, time-window가 커지면 layer가 깊어지는 것이 되니, 한번이라도 역전파 값이 작아 학습이 되지 않을 경우 연쇄적으로 학습이 안되는 <code class="language-plaintext highlighter-rouge">vanising gradient</code>가 발생할 수 있다.</li>
+      <li><strong>해결책은?</strong> <code class="language-plaintext highlighter-rouge">Reduce T</code> time-window를 줄여야 한다.</li>
+    </ul>
+
+    <p><img src="/research/2201171200/img/2022-01-17-20-50-51.png" alt="" /></p>
+
+    <ul>
+      <li>근데 T를 너무 줄여버리면, The model cannot learn <strong>long-term patterns</strong>.</li>
+      <li>따라서, long-time information을 저장할 수 있는 방법이 필요하다.</li>
+      <li>이것이 <strong>LSTM</strong>의 등장 배경..</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-lstm-long-short-term-memory">3. LSTM (Long-Short Term Memory)</h2>
+<ul>
+  <li>3가지를 기억하라
+    <ol>
+      <li>What to throw away(<code class="language-plaintext highlighter-rouge">forget</code>): <strong>forget factor</strong> $(0&lt;=f_t&lt;=1)$</li>
+      <li>What to remember(<code class="language-plaintext highlighter-rouge">input</code>): <strong>input factor</strong> $(0&lt;=i_t&lt;=1)$</li>
+      <li>What to read (<code class="language-plaintext highlighter-rouge">output</code>): <strong>output factor</strong> $(0&lt;=o_t&lt;=1)$</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="3-1-lstm-structure">3-1. LSTM structure</h3>
+<ul>
+  <li>Notation:
+    <ul>
+      <li>Short-term state $h_t$</li>
+      <li>Long-term state $c_t$</li>
+    </ul>
+  </li>
+  <li>세세하게 수식에 신경 쓸 필요는 없다. 아래의 구조를 보고, 왜 필요한지 보자
+    <ul>
+      <li>왜? Basic RNN은 오직 Time-window 정해진 구역에서의 정보만 다음 sequence에 넘겨줄 수 있었는데, 그거가지곤 한계가 있다.</li>
+      <li>Long-Term 메모리와 Short-Term 메모리를 잘 섞어서 결과를 추론해야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/research/2201171200/img/2022-01-17-21-08-14.png" alt="" /></p>
+
+<ul>
+  <li>먼저 $f_t$는 forgetting factor로 long-term 메모리를 얼만큼 지워버릴지를 결정한다.</li>
+  <li>$g_t$는 현재의 state가 1차적으로 학습된 결과물인데, 이 때 이것은 $i_t$라는 information factor와 곱하여 현재의 정보를 얼만큼 저장할 것인지를 반영하여 출력하고 <em>long term</em>에 전달한다.</li>
+  <li>forget과 input factor가 반영된 정보 두개를 더하여 output 출력 연산에 사용한다.</li>
+  <li>$o_t$는 output factor로 $X_t$중 어떤 값을 읽어서 출력할 것인지를 결정하는 factor이고 이 루트를 통해 나온 출력값이 $y_t$가 되고 동시에 $h_t$가 되어 피드백된다.</li>
+  <li>long과 short-term information이 피드백 루프에서 순환하면서 두가지 정보를 잘 활용할 수 있게 된다.</li>
+</ul>
+
+<h3 id="3-2-grugated-reccurent-units">3-2. GRU(Gated Reccurent units)</h3>
+<ul>
+  <li>이걸 더 많이 쓴다. 해당 <a href="https://yjjo.tistory.com/18">블로그</a>를 참고해보자.</li>
+  <li>구조는 LSTM보다 심플한데, 성능은 LSTM과 동일하기 때문이라고 함</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=RNN"><span class="tag" data-tag="RNN">RNN</span></a>
+        
+        <a href="/research/?tag=Recurrent"><span class="tag" data-tag="Recurrent">Recurrent</span></a>
+        
+        <a href="/research/?tag=LSTM"><span class="tag" data-tag="LSTM">LSTM</span></a>
+        
+        <a href="/research/?tag=memory_cell"><span class="tag" data-tag="memory_cell">memory_cell</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
