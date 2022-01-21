@@ -7,7 +7,7 @@ title: AutoEncoder
 subtitle: Lecture#19~#21
 writer: 100
 post-header: true  
-header-img: ./img/
+header-img: ./img/2022-01-21-23-01-17.png
 hash-tag: [autoencoder, matrix_completion]
 use_math: true
 toc : true
@@ -20,7 +20,7 @@ toc : true
 > Writer: SungwookLE    
 > DATE: '21.1/21   
 > REFERENCE: [#19](./img/LS19.pdf), [#20](./img/LS20.pdf), [#21](./img/LS21.pdf)  
-> 실습코드(colab):  
+> 실습코드(colab):  실습코드 마저 올리기
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)
 
 ## 1. Introduction
