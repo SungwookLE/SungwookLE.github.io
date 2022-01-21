@@ -112,6 +112,9 @@ toc : true
 
 ## 4. Keras 프레임워크에서 사용법
 
+- 참고사항: 자연어처리 분야에서 RNN을 많이 쓰는데 인풋 전처리 레이어로 `Embedding` 레이어를 많이 사용함
+    - `word embedding` 역할: 단어들을 real-values dense vector로 표현하여 usage에 따른 단어의 representation을 학습할 수 있다. 그 결과 비슷한 의미를 가진 단어들이 비슷한 representation을 갖도록 돕는다. 
+
 ### 4-1. SimpleRNN
 
 ```python

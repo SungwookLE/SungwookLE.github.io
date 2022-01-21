@@ -114,6 +114,7 @@ model_lenet.add(MaxPool2D(pool_size=(2,2),
 ![](./img/2022-01-17-14-40-21.png)
 
 - `Skip-connection` plays a crucial role to enable **stable & fast training**.
+    - gradient highway로써 기존 학습에서 나타나던 vanishing gradient 문제를 해결하고 deep network 학습을 가능하게 하였다.
 
 ### 4-3. Application of CNNs
 - Any **decision** or **manipulation** w.r.t. *image* data

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>AutoEncoder</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="AutoEncoder">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2201211010/./img/">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            AutoEncoder
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#19~#21
+        </h2>
+        <h2 class="post-date">
+            2022-01-21 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <ul id="markdown-toc">
+  <li><a href="#autoencoder" id="markdown-toc-autoencoder">AutoEncoder</a>    <ul>
+      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
+      <li><a href="#2-autoencoder" id="markdown-toc-2-autoencoder">2. AutoEncoder</a>        <ul>
+          <li><a href="#2-1-discuss-several-other-roles-of-autoencoder" id="markdown-toc-2-1-discuss-several-other-roles-of-autoencoder">2-1. Discuss several other roles of <code class="language-plaintext highlighter-rouge">autoencoder</code></a>            <ul>
+              <li><a href="#2-1-1-semi-superviese-learningssl" id="markdown-toc-2-1-1-semi-superviese-learningssl">2-1-1. Semi-superviese learning(<code class="language-plaintext highlighter-rouge">SSL</code>)</a></li>
+              <li><a href="#2-1-2-a-generative-model" id="markdown-toc-2-1-2-a-generative-model">2-1-2. A generative model</a></li>
+              <li><a href="#2-1-3-anomaly-detection" id="markdown-toc-2-1-3-anomaly-detection">2-1-3. Anomaly detection</a></li>
+              <li><a href="#2-1-4-matrix-completion" id="markdown-toc-2-1-4-matrix-completion">2-1-4. Matrix Completion</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#3-참고" id="markdown-toc-3-참고">3. 참고</a></li>
+      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="autoencoder">AutoEncoder</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘21.1/21 <br />
+REFERENCE: <a href="/research/2201211010/img/LS19.pdf">#19</a>, <a href="/research/2201211010/img/LS20.pdf">#20</a>, <a href="/research/2201211010/img/LS21.pdf">#21</a><br />
+실습코드(colab):</p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<ul>
+  <li>Many people in Industrial Fields are interested i:
+    <ol>
+      <li>Anomlay detection: <strong>autoencoder</strong></li>
+      <li>Fusion learning: <strong>matrix completion</strong></li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="2-autoencoder">2. AutoEncoder</h2>
+
+<ul>
+  <li>구조(<strong>Symetric</strong> 하다는 것에 주목)
+<img src="/research/2201211010/img/2022-01-21-23-01-17.png" alt="" /></li>
+  <li><strong>autoencoder</strong> = <code class="language-plaintext highlighter-rouge">encoder</code> + <code class="language-plaintext highlighter-rouge">decoder</code></li>
+  <li>Training Methods: 트레이닝 과정을 보면석 역할을 이해해보자.
+    <ol>
+      <li>Naive method</li>
+      <li>Standard method</li>
+      <li>Standard method with tying weights</li>
+    </ol>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">autoencoder</code>는 Purely 비지도 학습이다.
+    <ul>
+      <li>label 정보를 가지고 트레이닝 하는 것이 아님</li>
+      <li>input layer의 feature 개수와 output layer의 feature 개수가 같은 <code class="language-plaintext highlighter-rouge">symetric</code> 구조임</li>
+      <li>**reconstruction loss`를 가지고 학습한다.
+<img src="/research/2201211010/img/2022-01-21-23-04-26.png" alt="" /></li>
+      <li><strong>symetric</strong>하게 구성된 <code class="language-plaintext highlighter-rouge">autoencoder</code> 같은 경우는 naive하게 전체 layer를 한번에 학습하는 것 보단 각각의 레이어를 단계별로 학습하여 커널의 초기값을 찾고 찾아진 초기값을 기준으로 전체 layer를 fine-tuning 하여 전체적인 성능을 최적으로 찾아낸다.
+<img src="/research/2201211010/img/2022-01-21-23-06-05.png" alt="" />
+<img src="/research/2201211010/img/2022-01-21-23-06-35.png" alt="" /></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">encoder</code>와 <code class="language-plaintext highlighter-rouge">decoder</code> 사이에 있는 <code class="language-plaintext highlighter-rouge">coding layer</code>의 <strong>internel feature</strong>를 뽑기 위해 하는 것으로 <strong>dimension reduction</strong> techniques와 유사함
+<img src="/research/2201211010/img/2022-01-21-23-08-46.png" alt="" /></li>
+</ul>
+
+<h3 id="2-1-discuss-several-other-roles-of-autoencoder">2-1. Discuss several other roles of <code class="language-plaintext highlighter-rouge">autoencoder</code></h3>
+
+<ol>
+  <li>Semi-supervised learning</li>
+  <li>A generative model</li>
+  <li>Matrix completion</li>
+  <li>Anomaly detection</li>
+</ol>
+
+<h4 id="2-1-1-semi-superviese-learningssl">2-1-1. Semi-superviese learning(<code class="language-plaintext highlighter-rouge">SSL</code>)</h4>
+<ul>
+  <li>labled 데이터와 label이 없는 데이터를 같이 쓰는 방법론 전부를 <code class="language-plaintext highlighter-rouge">semi-supervised learning</code>으로 분류</li>
+  <li>A learning methodology that exploits two datasets
+    <ul>
+      <li>우리가 원하는 라벨링이 되어있는 데이터는 매우 적지만, 라벨링이 없는 데이터는 상대적으로 많다.</li>
+      <li>$({X^i})^m_{i=1}$: unlabeld</li>
+      <li>$({X^i, Y^i}) ^m_{i=1}$: labeld</li>
+      <li>$m_{label}$ « $m$</li>
+    </ul>
+  </li>
+  <li>
+    <p>사용하는 방법 (schemetic)
+<img src="/research/2201211010/img/2022-01-21-23-13-24.png" alt="" />
+<img src="/research/2201211010/img/2022-01-21-23-13-43.png" alt="" /></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">autoencoder</code>를 라벨없는 데이터로 학습하고 <code class="language-plaintext highlighter-rouge">encoder</code> 부분만 분리해와서 가져온 다음 몇개의 <code class="language-plaintext highlighter-rouge">fully connected</code> layer로 구성된 <strong>lower</strong>를 붙여 네트워크를 구성한다.</li>
+  <li>fine-tuning의 단계로 labeled data로 지도학습을 하여 전체 네트워크를 학습시킨다.</li>
+  <li><code class="language-plaintext highlighter-rouge">encoder</code>의 역할이 <code class="language-plaintext highlighter-rouge">internel features</code>를 추출하는 것이므로 위와 같이 활용하여 <code class="language-plaintext highlighter-rouge">ssl</code>을 할 수 있다.</li>
+  <li>이 때 <code class="language-plaintext highlighter-rouge">encoder</code>가 아니라 <code class="language-plaintext highlighter-rouge">PCA</code> 기법을 써서 <code class="language-plaintext highlighter-rouge">internel features</code>를 뽑을 수 도 있다.
+    <ul>
+      <li>무얼 쓸지는 성능을 보고 결정</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="2-1-2-a-generative-model">2-1-2. A generative model</h4>
+<ul>
+  <li><strong>VAE</strong> 라고 부름 (<code class="language-plaintext highlighter-rouge">Variational Autoencoder</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">autoencoder</code>의 <code class="language-plaintext highlighter-rouge">decoder</code>를 사용하는 방법</li>
+  <li><code class="language-plaintext highlighter-rouge">decoder</code>를 보면 입력은 <code class="language-plaintext highlighter-rouge">internel feature</code>이다.</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">autoencoder</code>에서 internel feature의 distribution을 보고 동일한 distribution을 갖는 랜덤값을 입력시켜 <code class="language-plaintext highlighter-rouge">fake data</code>를 만드는 방식이다.
+<img src="/research/2201211010/img/2022-01-21-23-21-27.png" alt="" />
+<img src="/research/2201211010/img/2022-01-21-23-22-11.png" alt="" /></p>
+  </li>
+  <li>이렇게 fake 데이터를 만드는 방법 중 다른 것으로는 <code class="language-plaintext highlighter-rouge">GANs</code>, <code class="language-plaintext highlighter-rouge">RBMs</code> 등이 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">GAN</code>은 매우 유명한데, Generative Adversarial Network로서, 아래의 그림을 보면 fake data를 생성할 때에 적대적 학습기를 넣음으로써 성능을 크게 향상시킨 것이다.
+    <ul>
+      <li>다음 포스팅에서 추가 설명을 할 예정이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="2-1-3-anomaly-detection">2-1-3. Anomaly detection</h4>
+<ul>
+  <li>아래의 프로젝트를 예시로 하여 살펴보자</li>
+  <li>주제: <code class="language-plaintext highlighter-rouge">센서 데이터를 활용한 차량 이상감지</code>
+    <ol>
+      <li>
+        <p><strong>이상</strong>신호 관련 example은 매우 부족: 지도학습 어려움
+  <img src="/research/2201211010/img/2022-01-21-23-26-40.png" alt="" />
+  <img src="/research/2201211010/img/2022-01-21-23-26-56.png" alt="" /></p>
+      </li>
+      <li>
+        <p>학습구조
+  <img src="/research/2201211010/img/2022-01-21-23-27-25.png" alt="" />
+  <img src="/research/2201211010/img/2022-01-21-23-27-34.png" alt="" /></p>
+
+        <ul>
+          <li>정상신호로만 autoencoder를 학습 시켰기 때문에, 비정상 신호를 input으로 넣으면 <code class="language-plaintext highlighter-rouge">reconstruction loss</code>가 크게 나올 것이다. 이를 가지고 <strong>anomlay</strong>를 판단하자.</li>
+        </ul>
+      </li>
+      <li>
+        <p>autoencoder에 들어가는 x는 scaling 처리만 한 data 일 수도 있고, feature를 선택하고 차원 축소를 하여 feed 해줄수도 있다.</p>
+        <ul>
+          <li>성능을 보고 결정..</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h4 id="2-1-4-matrix-completion">2-1-4. Matrix Completion</h4>
+<ul>
+  <li>matrix나 복수 개의 채널 데이터가 불완전하여 missing data가 있을 땐 어떻게 할까? 가장 간단하게는 채널별 <code class="language-plaintext highlighter-rouge">rank</code> 정보를 이용하여 아래 예시와 같이 <code class="language-plaintext highlighter-rouge">interpolation</code> 값을 채우는 형태일 것이다.
+<img src="/research/2201211010/img/2022-01-21-23-38-31.png" alt="" /></li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fusion learning</code> (데이터 타입이나 성격이 다른 복수개의 데이터를 활용해서 학습하는 방식)에서 데이터 matrix의 정보(<code class="language-plaintext highlighter-rouge">rank</code>)가 불완전할 때가 많은데, 이 때에도 matrix completion이 필요하다.
+<img src="/research/2201211010/img/2022-01-21-23-38-18.png" alt="" /></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">autoencder</code>를 활용하면 missing 데이터를 채우는 <strong>matrix completion</strong> 역할을 수행할 수 있다.</li>
+  <li>특히 노이즈에 강건한 <code class="language-plaintext highlighter-rouge">Denoising autoencoder</code>(DAE)를 설계할 수 있다.
+    <ol>
+      <li>타입1: Adding Gaussian Noise</li>
+      <li>타입2: Random Masking
+  <img src="/research/2201211010/img/2022-01-21-23-43-47.png" alt="" /></li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="3-참고">3. 참고</h2>
+
+<ul>
+  <li>승객 거동 추정에서 3D keypoints 를 추정할 때 2D keypoints 의 좌표가 필요한데, occlusion 등에 의해 2D keypoints가 추정이 잘 안되면 3D ketpoints 의 추정 성능이 전체적으로 크게 저하되는 문제가 있었다. 이를 개선하기 위한 방식으로 <strong>DAE</strong>를 고려해볼 수 있다.
+    <ul>
+      <li>encoder에서 random masking 기법을 접목하여 학습시킴으로써, 관측되지 않은 2d keypoints에 대해 민감성을 해소(강건성 확보)
+  <img src="./img/skeleton_approach.gif" alt="gif" /></li>
+    </ul>
+  </li>
+  <li>승객 클래스를 구분하는 모델 개발에서 우리가 원하는 라벨링이 되어 있는 데이터의 개수는 현저히 적으나, 실내 승객 이미지는 어느정도 확보할 수 있는 상황이었다. 이러한 특징을 활용하여 아래 과제를 진행하였다. 
+<img src="./img/real_time_demo_driving_sungwook.gif" alt="gif" />
+<a href="https://sungwookle.github.io/research/2111051010/">Passenger Classifier 포스팅</a></li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=autoencoder"><span class="tag" data-tag="autoencoder">autoencoder</span></a>
+        
+        <a href="/research/?tag=matrix_completion"><span class="tag" data-tag="matrix_completion">matrix_completion</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

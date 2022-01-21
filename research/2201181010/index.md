@@ -8,7 +8,7 @@ subtitle: Lecture#16~#18
 writer: 100
 post-header: true  
 header-img: ./img/2022-01-18-00-13-13.png
-hash-tag: [PCA, t-SNE]
+hash-tag: [PCA, t-SNE, Clustering, KMeans]
 use_math: true
 toc : true
 ---
