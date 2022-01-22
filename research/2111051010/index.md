@@ -20,6 +20,7 @@ use_math: true
 > Date  : '21.11/04  
 
 > Project: DataScience Project
+>> - github repository is [here](https://github.com/SungwookLE/Safety_Class)
 >> - Semi-supervised Learning using AutoEncoder     
 >> - For less memory usage, each classifier share one ConvNet branch
 
