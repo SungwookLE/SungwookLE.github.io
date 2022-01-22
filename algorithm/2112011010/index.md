@@ -10,8 +10,6 @@ hash-tag: [GREEDY, Kruskal, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # 프로그래머스 > 그리디 > 섬 연결하기
 > AUTHOR: SungwookLE    
