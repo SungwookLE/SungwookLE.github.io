@@ -12,8 +12,6 @@ hash-tag: [mysql, mysql.connector, backend, database, db, XingAPI, Trade, Stock]
 use_math: true
 ---
 
-- toc
-{:toc}
 # XingAPI + MySQL을 이용한 코스피, 코스닥 Stock DB 자동화 
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.12/23

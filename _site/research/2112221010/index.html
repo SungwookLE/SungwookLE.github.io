@@ -144,24 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#mysql" id="markdown-toc-mysql">MySQL</a>    <ul>
-      <li><a href="#1-환경설정" id="markdown-toc-1-환경설정">1. 환경설정</a>        <ul>
-          <li><a href="#1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자" id="markdown-toc-1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자">1-1. Tip: mysql을 사용하지 않을 때는 서비스를 중지시켜 불필요한 PC 리소스 소모를 방지시키자</a></li>
-        </ul>
-      </li>
-      <li><a href="#2-mysql_connector" id="markdown-toc-2-mysql_connector">2. mysql_connector</a></li>
-      <li><a href="#3-mysql_transaction" id="markdown-toc-3-mysql_transaction">3. mysql_transaction</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#mysql">MySQL</a><ul><li><a href="#1-환경설정">1. 환경설정</a><ul><li><a href="#1-1-tip-mysql을-사용하지-않을-때는-서비스를-중지시켜-불필요한-pc-리소스-소모를-방지시키자">1-1. Tip: mysql을 사용하지 않을 때는 서비스를 중지시켜 불필요한 PC 리소스 소모를 방지시키자</a></li></ul></li><li><a href="#2-mysql_connector">2. mysql_connector</a></li><li><a href="#3-mysql_transaction">3. mysql_transaction</a></li></ul></li></ul>
 
-<h1 id="mysql">MySQL</h1>
+        </div>
+        <h1 id="mysql">MySQL</h1>
 <blockquote>
   <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
 Date  : ‘21.12/22
@@ -329,9 +322,7 @@ Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%
     <span class="n">connection</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div></div>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -379,6 +370,79 @@ Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

@@ -144,31 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#autoencoder" id="markdown-toc-autoencoder">AutoEncoder</a>    <ul>
-      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
-      <li><a href="#2-autoencoder" id="markdown-toc-2-autoencoder">2. AutoEncoder</a>        <ul>
-          <li><a href="#2-1-discuss-several-other-roles-of-autoencoder" id="markdown-toc-2-1-discuss-several-other-roles-of-autoencoder">2-1. Discuss several other roles of <code class="language-plaintext highlighter-rouge">autoencoder</code></a>            <ul>
-              <li><a href="#2-1-1-semi-superviese-learningssl" id="markdown-toc-2-1-1-semi-superviese-learningssl">2-1-1. Semi-superviese learning(<code class="language-plaintext highlighter-rouge">SSL</code>)</a></li>
-              <li><a href="#2-1-2-a-generative-model" id="markdown-toc-2-1-2-a-generative-model">2-1-2. A generative model</a></li>
-              <li><a href="#2-1-3-anomaly-detection" id="markdown-toc-2-1-3-anomaly-detection">2-1-3. Anomaly detection</a></li>
-              <li><a href="#2-1-4-matrix-completion" id="markdown-toc-2-1-4-matrix-completion">2-1-4. Matrix Completion</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#3-참고" id="markdown-toc-3-참고">3. 참고</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#autoencoder">AutoEncoder</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-autoencoder">2. AutoEncoder</a><ul><li><a href="#2-1-discuss-several-other-roles-of-autoencoder">2-1. Discuss several other roles of <code class="language-plaintext highlighter-rouge">autoencoder</code></a><ul><li><a href="#2-1-1-semi-superviese-learningssl">2-1-1. Semi-superviese learning(<code class="language-plaintext highlighter-rouge">SSL</code>)</a></li><li><a href="#2-1-2-a-generative-model">2-1-2. A generative model</a></li><li><a href="#2-1-3-anomaly-detection">2-1-3. Anomaly detection</a></li><li><a href="#2-1-4-matrix-completion">2-1-4. Matrix Completion</a></li></ul></li></ul></li><li><a href="#3-참고">3. 참고</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="autoencoder">AutoEncoder</h1>
+        </div>
+        <h1 id="autoencoder">AutoEncoder</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/21 <br />
@@ -335,9 +321,7 @@ REFERENCE: <a href="/research/2201211010/img/LS19.pdf">#19</a>, <a href="/resear
 <h2 id="끝">끝</h2>
 
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -379,6 +363,79 @@ REFERENCE: <a href="/research/2201211010/img/LS19.pdf">#19</a>, <a href="/resear
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

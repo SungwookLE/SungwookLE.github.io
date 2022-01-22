@@ -10,8 +10,7 @@ hash-tag: [HASH, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
+
 
 # 프로그래머스 > 해쉬 > 베스트앨범
 > AUTHOR: SungwookLE    

@@ -12,9 +12,6 @@ hash-tag: [EKF, Kalman, SensorFusion]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # Lidar+Radar Sensorfusion with Extended Kalman Filter
 
 > Author: SungwookLE  

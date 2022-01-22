@@ -144,36 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#advanced-techniques" id="markdown-toc-advanced-techniques">Advanced Techniques</a>    <ul>
-      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
-      <li><a href="#1-data-organization" id="markdown-toc-1-data-organization">1. Data Organization</a></li>
-      <li><a href="#2-generalization-techniques" id="markdown-toc-2-generalization-techniques">2. Generalization Techniques</a>        <ul>
-          <li><a href="#2-1-regularization" id="markdown-toc-2-1-regularization">2-1. Regularization</a></li>
-          <li><a href="#2-2-data-augmentation" id="markdown-toc-2-2-data-augmentation">2-2. Data augmentation</a></li>
-          <li><a href="#2-3-early-stopping" id="markdown-toc-2-3-early-stopping">2-3. Early Stopping</a></li>
-          <li><a href="#2-4-dropout" id="markdown-toc-2-4-dropout">2-4. Dropout</a></li>
-        </ul>
-      </li>
-      <li><a href="#3-weight-initialization" id="markdown-toc-3-weight-initialization">3. Weight Initialization</a></li>
-      <li><a href="#4-techniques-for-training-stability" id="markdown-toc-4-techniques-for-training-stability">4. Techniques for training stability</a>        <ul>
-          <li><a href="#4-1-learning-rate-decay" id="markdown-toc-4-1-learning-rate-decay">4-1. Learning Rate Decay</a></li>
-          <li><a href="#4-2-batch-normalization" id="markdown-toc-4-2-batch-normalization">4-2. Batch Normalization</a></li>
-        </ul>
-      </li>
-      <li><a href="#5-hyperparameter-search" id="markdown-toc-5-hyperparameter-search">5. Hyperparameter Search</a></li>
-      <li><a href="#6-cross-validation" id="markdown-toc-6-cross-validation">6. Cross Validation</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#advanced-techniques">Advanced Techniques</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#1-data-organization">1. Data Organization</a></li><li><a href="#2-generalization-techniques">2. Generalization Techniques</a><ul><li><a href="#2-1-regularization">2-1. Regularization</a></li><li><a href="#2-2-data-augmentation">2-2. Data augmentation</a></li><li><a href="#2-3-early-stopping">2-3. Early Stopping</a></li><li><a href="#2-4-dropout">2-4. Dropout</a></li></ul></li><li><a href="#3-weight-initialization">3. Weight Initialization</a></li><li><a href="#4-techniques-for-training-stability">4. Techniques for training stability</a><ul><li><a href="#4-1-learning-rate-decay">4-1. Learning Rate Decay</a></li><li><a href="#4-2-batch-normalization">4-2. Batch Normalization</a></li></ul></li><li><a href="#5-hyperparameter-search">5. Hyperparameter Search</a></li><li><a href="#6-cross-validation">6. Cross Validation</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="advanced-techniques">Advanced Techniques</h1>
+        </div>
+        <h1 id="advanced-techniques">Advanced Techniques</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/17 <br />
@@ -338,9 +319,7 @@ REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research
 
 <h2 id="끝">끝</h2>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -386,6 +365,79 @@ REFERENCE: <a href="/research/2201171010/img/LS4.pdf">#4</a>, <a href="/research
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

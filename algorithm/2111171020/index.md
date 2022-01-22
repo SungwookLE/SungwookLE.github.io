@@ -10,8 +10,7 @@ hash-tag: [HASH, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
+
 
 # 프로그래머스 > 해쉬 > 전화번호 목록
 > AUTHOR: SungwookLE    

@@ -13,8 +13,6 @@ use_math: true
 toc : true
 ---
 
-- toc
-{:toc}
 
 # Convolutional Neural Network
 > Writer: SungwookLE    

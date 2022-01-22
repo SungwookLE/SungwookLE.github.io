@@ -144,36 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#distracted_driver_classifier" id="markdown-toc-distracted_driver_classifier">DISTRACTED_DRIVER_CLASSIFIER</a>    <ul>
-      <li><a href="#start" id="markdown-toc-start">START</a></li>
-      <li><a href="#1-eda-explorative-data-analysis-and-preparation" id="markdown-toc-1-eda-explorative-data-analysis-and-preparation">1. EDA, Explorative Data Analysis and Preparation</a>        <ul>
-          <li><a href="#1-1-observation-results" id="markdown-toc-1-1-observation-results">1-1. Observation results</a></li>
-        </ul>
-      </li>
-      <li><a href="#2-feature-engineering" id="markdown-toc-2-feature-engineering">2. Feature Engineering</a></li>
-      <li><a href="#3-modeling" id="markdown-toc-3-modeling">3. Modeling</a>        <ul>
-          <li><a href="#3-1-splitting-into-train-and-test-sets" id="markdown-toc-3-1-splitting-into-train-and-test-sets">3-1. Splitting into Train and Test sets</a></li>
-          <li><a href="#3-2-feed_data-preparation" id="markdown-toc-3-2-feed_data-preparation">3-2. Feed_data preparation</a></li>
-          <li><a href="#3-3-keras-defining-the-model-as-cnn" id="markdown-toc-3-3-keras-defining-the-model-as-cnn">3-3. Keras: Defining the Model as CNN</a></li>
-        </ul>
-      </li>
-      <li><a href="#4-model-analysis" id="markdown-toc-4-model-analysis">4. Model Analysis</a>        <ul>
-          <li><a href="#4-1-score-precision-recall-f1" id="markdown-toc-4-1-score-precision-recall-f1">4-1. Score: Precision Recall F1</a></li>
-        </ul>
-      </li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-      <li><a href="#5-optional-results-test-by-myself" id="markdown-toc-5-optional-results-test-by-myself">5. (Optional) Results Test by myself</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#distracted_driver_classifier">DISTRACTED_DRIVER_CLASSIFIER</a><ul><li><a href="#start">START</a></li><li><a href="#1-eda-explorative-data-analysis-and-preparation">1. EDA, Explorative Data Analysis and Preparation</a><ul><li><a href="#1-1-observation-results">1-1. Observation results</a></li></ul></li><li><a href="#2-feature-engineering">2. Feature Engineering</a></li><li><a href="#3-modeling">3. Modeling</a><ul><li><a href="#3-1-splitting-into-train-and-test-sets">3-1. Splitting into Train and Test sets</a></li><li><a href="#3-2-feed_data-preparation">3-2. Feed_data preparation</a></li><li><a href="#3-3-keras-defining-the-model-as-cnn">3-3. Keras: Defining the Model as CNN</a></li></ul></li><li><a href="#4-model-analysis">4. Model Analysis</a><ul><li><a href="#4-1-score-precision-recall-f1">4-1. Score: Precision Recall F1</a></li></ul></li><li><a href="#끝">끝</a></li><li><a href="#5-optional-results-test-by-myself">5. (Optional) Results Test by myself</a></li></ul></li></ul>
 
-<h1 id="distracted_driver_classifier">DISTRACTED_DRIVER_CLASSIFIER</h1>
+        </div>
+        <h1 id="distracted_driver_classifier">DISTRACTED_DRIVER_CLASSIFIER</h1>
 <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.7/13<br />
 PROBLEM: <a href="https://www.kaggle.com/c/state-farm-distracted-driver-detection">KAGGLE</a><br />
@@ -987,9 +968,7 @@ c8 hair and makeup
 c9 talking to passenger
 </code></pre></div></div>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -1031,6 +1010,79 @@ c9 talking to passenger
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

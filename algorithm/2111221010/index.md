@@ -10,8 +10,7 @@ hash-tag: [SORT, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
+
 
 # 프로그래머스 > 정렬 > 가장 큰 수 
 > AUTHOR: SungwookLE    

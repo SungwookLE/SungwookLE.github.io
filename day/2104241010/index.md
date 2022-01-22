@@ -11,9 +11,6 @@ hash-tag: [맛집]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 <br/>
 *번호는 순위와 무관함을 알려드립니다*
 

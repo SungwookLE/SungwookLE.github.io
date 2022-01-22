@@ -12,9 +12,6 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # KAGGLE: HEART ATTACK PREDICT
 AUTHOR: SungwookLE  
 DATE: '21.7/4  

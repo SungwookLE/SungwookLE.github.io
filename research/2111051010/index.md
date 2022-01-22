@@ -12,9 +12,6 @@ hash-tag: [Vision, Passenger, Classifier, AutoEncoder, Semi-Supervised-Learning]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # Camera based Passenger Class Classifier Project
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.11/04  

@@ -13,9 +13,6 @@ use_math: true
 ---
 
 
-- toc
-{:toc}
-
 # sklearn_TypeA
 - AUTHOR: SungwookLE
 - DATE: '21.6/27

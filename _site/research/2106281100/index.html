@@ -144,30 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#titanic-survived-predict" id="markdown-toc-titanic-survived-predict">Titanic <code class="language-plaintext highlighter-rouge">Survived</code> Predict</a>    <ul>
-      <li><a href="#overview" id="markdown-toc-overview">OVERVIEW</a></li>
-      <li><a href="#start" id="markdown-toc-start">START</a></li>
-      <li><a href="#1-data-analysis" id="markdown-toc-1-data-analysis">1. Data Analysis</a></li>
-      <li><a href="#2-feature-engineering" id="markdown-toc-2-feature-engineering">2. Feature Engineering</a>        <ul>
-          <li><a href="#2-1-categorical--numerical-features-분리하기" id="markdown-toc-2-1-categorical--numerical-features-분리하기">2-1. Categorical + numerical features 분리하기</a></li>
-          <li><a href="#2-2-비어있는-missing-데이터-채우기" id="markdown-toc-2-2-비어있는-missing-데이터-채우기">2-2. 비어있는 missing 데이터 채우기</a></li>
-          <li><a href="#2-3-data의-skewness-줄이기" id="markdown-toc-2-3-data의-skewness-줄이기">2-3. data의 skewness 줄이기</a></li>
-          <li><a href="#2-4-new-feature--del-feature" id="markdown-toc-2-4-new-feature--del-feature">2-4. new feature / del feature</a></li>
-        </ul>
-      </li>
-      <li><a href="#3-modeling" id="markdown-toc-3-modeling">3. Modeling</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#titanic-survived-predict">Titanic <code class="language-plaintext highlighter-rouge">Survived</code> Predict</a><ul><li><a href="#overview">OVERVIEW</a></li></ul></li><li><a href="#start">START</a></li><li><a href="#1-data-analysis">1. Data Analysis</a></li><li><a href="#2-feature-engineering">2. Feature Engineering</a><ul><li><a href="#2-1-categorical--numerical-features-분리하기">2-1. Categorical + numerical features 분리하기</a></li><li><a href="#2-2-비어있는-missing-데이터-채우기">2-2. 비어있는 missing 데이터 채우기</a></li><li><a href="#2-3-data의-skewness-줄이기">2-3. data의 skewness 줄이기</a></li><li><a href="#2-4-new-feature--del-feature">2-4. new feature / del feature</a></li></ul></li><li><a href="#3-modeling">3. Modeling</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="titanic-survived-predict">Titanic <code class="language-plaintext highlighter-rouge">Survived</code> Predict</h1>
+        </div>
+        <h1 id="titanic-survived-predict">Titanic <code class="language-plaintext highlighter-rouge">Survived</code> Predict</h1>
 <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.6/28<br />
 PROBLEM: Classifier <a href="https://www.kaggle.com/c/titanic">Kaggle LINK</a><br />
@@ -987,9 +974,7 @@ Text(0.5, 1.0, 'After skewness elimination using log1p')
 
 <h2 id="끝">끝</h2>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -1031,6 +1016,79 @@ Text(0.5, 1.0, 'After skewness elimination using log1p')
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

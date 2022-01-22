@@ -13,9 +13,6 @@ use_math: true
 toc : true
 ---
 
-- toc
-{:toc}
-
 # AutoEncoder 
 > Writer: SungwookLE    
 > DATE: '21.1/21   

@@ -12,9 +12,6 @@ hash-tag: [LKF, Kalman]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # Kalman Filter: Essential
 AUTHOR: SungwookLE  
 DATE: '21.9/12  

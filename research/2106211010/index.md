@@ -12,10 +12,6 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
-
-- toc
-{:toc}
-
 ### Data Analysis: Kaggle Titanic
 > AUTHOR: SungwookLE  
 > DATE: '21.6/21

@@ -10,9 +10,6 @@ hash-tag: [Divide_Conquer, baekjoon]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 
 # DataStructure: Matrix Power Calculation #10830
 AUTHOR: SungwookLE  

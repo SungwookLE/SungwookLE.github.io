@@ -10,9 +10,6 @@ hash-tag: [FULL_SEARCH, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # 프로그래머스 > 완전탐색 > 소수찾기 
 > AUTHOR: SungwookLE    
 > DATE: '21.11/25  

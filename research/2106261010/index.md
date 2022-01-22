@@ -13,9 +13,6 @@ use_math: true
 ---
 
 
-- toc
-{:toc}
-
 # House `SalePrice` Predict
 AUTHOR: SungwookLE  
 DATE: '21.6/26  

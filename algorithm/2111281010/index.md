@@ -10,9 +10,6 @@ hash-tag: [GREEDY, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # 프로그래머스 > 그리디 > 조이스틱
 > AUTHOR: SungwookLE    
 > DATE: '21.11/28  

@@ -10,8 +10,6 @@ hash-tag: [HEAP, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # 프로그래머스 > 힙 > 더 맵게
 > AUTHOR: SungwookLE    

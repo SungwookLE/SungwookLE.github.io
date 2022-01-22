@@ -10,8 +10,7 @@ hash-tag: [Dynamic_Programming, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
+
 
 # 프로그래머스 > 동적계획법 > 정수 삼각형
 > AUTHOR: SungwookLE    

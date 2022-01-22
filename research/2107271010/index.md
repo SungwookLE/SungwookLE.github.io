@@ -12,9 +12,6 @@ hash-tag: [Humanpose, CMU]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # HumanPose: Panoptic Data
 AUTHOR: SungwookLE  
 DATE: '21.7/28  

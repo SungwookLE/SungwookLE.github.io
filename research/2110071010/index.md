@@ -12,8 +12,6 @@ hash-tag: [Particle, Filter, Localization]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # Localization: Particle Filter 
 > AUTHOR: Sungwook LE    

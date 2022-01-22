@@ -13,9 +13,6 @@ use_math: true
 ---
 
 
-- toc
-{:toc}
-
 
 ### PROJECT: Go Chase It
 > AUTHOR: SungwookLE  

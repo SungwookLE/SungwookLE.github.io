@@ -10,9 +10,6 @@ hash-tag: [DFS, BFS, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # 프로그래머스 > 깊이/너비 우선 탐색(DFS/BFS) > 단어 변환
 > AUTHOR: SungwookLE    
 > DATE: '21.12/31  

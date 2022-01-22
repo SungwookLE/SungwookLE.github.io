@@ -13,8 +13,6 @@ use_math: true
 toc : true
 ---
 
-- toc
-{:toc}
 
 # Small data techniques
 > Writer: SungwookLE    

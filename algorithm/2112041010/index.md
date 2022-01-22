@@ -11,9 +11,6 @@ use_math: true
 ---
 
 
-- toc
-{:toc}
-
 # 문자열 계산기
 > AUTHOR: SungwookLE    
 > DATE: '21.12/04  

@@ -12,8 +12,6 @@ hash-tag: [Localization, Baysian, Filter]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # Localization Essential 
 > AUTHOR: Sungwook LE    

@@ -12,8 +12,6 @@ hash-tag: [PyQt5, backend, database, db, XingAPI, Trade, Stock]
 use_math: true
 ---
 
-- toc
-{:toc}
 # PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.12/28

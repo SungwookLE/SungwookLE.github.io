@@ -12,8 +12,6 @@ hash-tag: [Kaggle, PCA]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # sklearn_TypeB
 - AUTHOR: SungwookLE   

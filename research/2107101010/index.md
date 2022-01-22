@@ -13,9 +13,6 @@ use_math: true
 ---
 
 
-- toc
-{:toc}
-
 # KAGGLE: Natural Language Processing with Diaster Tweets
 AUTHOR: SungwookLE  
 DATE: '21.7/9  

@@ -10,8 +10,6 @@ hash-tag: [Dynamic_Programming, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # 프로그래머스 > 동적계획법 > 도둑질
 > AUTHOR: SungwookLE    

@@ -144,20 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램" id="markdown-toc-pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</a>    <ul>
-      <li><a href="#1-pyqt-사용하기기본" id="markdown-toc-1-pyqt-사용하기기본">1. PyQt 사용하기(기본)</a></li>
-      <li><a href="#2-pqqt-를-이용한-db-update-gui-프로그램-만들기" id="markdown-toc-2-pqqt-를-이용한-db-update-gui-프로그램-만들기">2. PqQt 를 이용한 DB Update GUI 프로그램 만들기</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
-<h1 id="pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</h1>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</a><ul><li><a href="#1-pyqt-사용하기기본">1. PyQt 사용하기(기본)</a></li><li><a href="#2-pqqt-를-이용한-db-update-gui-프로그램-만들기">2. PqQt 를 이용한 DB Update GUI 프로그램 만들기</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="pyqt-이용한-코스피-코스닥-stock-db-업데이트-gui-프로그램">PyQt 이용한 코스피, 코스닥 Stock DB 업데이트 GUI 프로그램</h1>
 <blockquote>
   <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
 Date  : ‘21.12/28
@@ -466,9 +463,7 @@ Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%
 
 <h2 id="끝">끝</h2>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -520,6 +515,79 @@ Following Lecture: <a href="https://www.inflearn.com/course/python-%EC%A3%BC%EA%
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

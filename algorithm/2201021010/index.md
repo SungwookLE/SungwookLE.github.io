@@ -10,8 +10,6 @@ hash-tag: [Binary_Search, Min_index_Find, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # 프로그래머스 > 이분탐색 > 입국심사
 > AUTHOR: SungwookLE    

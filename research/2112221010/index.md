@@ -12,9 +12,6 @@ hash-tag: [mysql, mysql.connector, backend, database, db]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # MySQL
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.12/22

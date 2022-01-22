@@ -144,40 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#camera-based-passenger-class-classifier-project" id="markdown-toc-camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</a>    <ul>
-      <li><a href="#project-file-tree" id="markdown-toc-project-file-tree">Project File Tree</a></li>
-      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
-      <li><a href="#2-ad-function-xai-real-time-demo-processing-" id="markdown-toc-2-ad-function-xai-real-time-demo-processing-">2. Ad Function (xAI, real-time Demo, processing, …)</a>        <ul>
-          <li><a href="#2-1-xaiexplainable-ai-시각화-분석" id="markdown-toc-2-1-xaiexplainable-ai-시각화-분석">2-1. xAI(explainable AI) 시각화 분석</a></li>
-          <li><a href="#2-2-real-time-demo" id="markdown-toc-2-2-real-time-demo">2-2. real-time Demo</a></li>
-          <li><a href="#2-3-preprocessing" id="markdown-toc-2-3-preprocessing">2-3. preprocessing</a></li>
-          <li><a href="#2-4-miscellaneous-techniques" id="markdown-toc-2-4-miscellaneous-techniques">2-4. Miscellaneous techniques</a></li>
-        </ul>
-      </li>
-      <li><a href="#3-classifiers" id="markdown-toc-3-classifiers">3. Classifiers</a>        <ul>
-          <li><a href="#3-1-belt-classifier" id="markdown-toc-3-1-belt-classifier">3-1. Belt Classifier</a></li>
-          <li><a href="#3-2-autoencoder-학습" id="markdown-toc-3-2-autoencoder-학습">3-2. AutoEncoder 학습</a></li>
-          <li><a href="#3-3-encoder를-이용한-multi-output-모델-구조" id="markdown-toc-3-3-encoder를-이용한-multi-output-모델-구조">3-3. Encoder를 이용한 Multi Output 모델 구조</a></li>
-          <li><a href="#3-3-oop-classifier-with-encoder" id="markdown-toc-3-3-oop-classifier-with-encoder">3-3. OOP Classifier with Encoder</a></li>
-          <li><a href="#3-4-weak-classifier-with-encoder" id="markdown-toc-3-4-weak-classifier-with-encoder">3-4. Weak Classifier with Encoder</a></li>
-          <li><a href="#3-5-mask-classifier-with-encoder" id="markdown-toc-3-5-mask-classifier-with-encoder">3-5. Mask Classifier with Encoder</a></li>
-        </ul>
-      </li>
-      <li><a href="#4-results-summary" id="markdown-toc-4-results-summary">4. Results Summary</a></li>
-      <li><a href="#5-discussion" id="markdown-toc-5-discussion">5. Discussion</a></li>
-      <li><a href="#6-future-work" id="markdown-toc-6-future-work">6. Future work</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</a><ul><li><a href="#project-file-tree">Project File Tree</a></li></ul></li><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-ad-function-xai-real-time-demo-processing-">2. Ad Function (xAI, real-time Demo, processing, …)</a><ul><li><a href="#2-1-xaiexplainable-ai-시각화-분석">2-1. xAI(explainable AI) 시각화 분석</a></li><li><a href="#2-2-real-time-demo">2-2. real-time Demo</a></li><li><a href="#2-3-preprocessing">2-3. preprocessing</a></li><li><a href="#2-4-miscellaneous-techniques">2-4. Miscellaneous techniques</a></li></ul></li><li><a href="#3-classifiers">3. Classifiers</a><ul><li><a href="#3-1-belt-classifier">3-1. Belt Classifier</a></li><li><a href="#3-2-autoencoder-학습">3-2. AutoEncoder 학습</a></li><li><a href="#3-3-encoder를-이용한-multi-output-모델-구조">3-3. Encoder를 이용한 Multi Output 모델 구조</a></li><li><a href="#3-3-oop-classifier-with-encoder">3-3. OOP Classifier with Encoder</a></li><li><a href="#3-4-weak-classifier-with-encoder">3-4. Weak Classifier with Encoder</a></li><li><a href="#3-5-mask-classifier-with-encoder">3-5. Mask Classifier with Encoder</a></li></ul></li><li><a href="#4-results-summary">4. Results Summary</a></li><li><a href="#5-discussion">5. Discussion</a></li><li><a href="#6-future-work">6. Future work</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</h1>
+        </div>
+        <h1 id="camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</h1>
 <blockquote>
   <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
 Date  : ‘21.11/04</p>
@@ -187,6 +164,7 @@ Date  : ‘21.11/04</p>
   <p>Project: DataScience Project</p>
   <blockquote>
     <ul>
+      <li>github repository is <a href="https://github.com/SungwookLE/Safety_Class">here</a></li>
       <li>Semi-supervised Learning using AutoEncoder</li>
       <li>For less memory usage, each classifier share one ConvNet branch</li>
     </ul>
@@ -307,12 +285,12 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
   <li>Encoder는 AutoEncoder에서 Encoder 파트만 분리하여 가져온 것으로, 실내 승객 이미지가 가지고 있는 general한 정보를 추출하는 역할을 한다.<br />
 <img src="/research/2111051010/img/samples_png/autoencoder_ssl.png" alt="auto-encoder" /></li>
   <li>자기 자신의 이미지가 입력되어 출력으로 자신의 이미지를 사용하기 때문에 오토인코더는 라벨링이 필요없는 비지도 학습이다. 그렇다 보니 Symetric한 구조의 가운데의 feature는 hidden feature라 부르며, 이미지에서 제일 핵심이 되는 압축 정보를 가지고 있다.</li>
-  <li>safety testset은 직접 취득한 dataset pool에서 랜덤하게 균등 추출한 것으로 <a href="./utils/extract_testset.py">extract_testset.py</a> 코드 이용하여 추출함</li>
+  <li>safety testset은 직접 취득한 dataset pool에서 랜덤하게 균등 추출한 것으로 <a href="/research/2111051010/utils/extract_testset.py">extract_testset.py</a> 코드 이용하여 추출함</li>
 </ul>
 
 <h3 id="2-1-xaiexplainable-ai-시각화-분석">2-1. xAI(explainable AI) 시각화 분석</h3>
 <ul>
-  <li><a href="./utils/xai_viz.py">xai_viz.py</a>
+  <li><a href="/research/2111051010/utils/xai_viz.py">xai_viz.py</a>
     <ul>
       <li>역할: Conv Layer의 Node들의 출력값을 Heatmap으로 표현하고, Input Image에 Overay 시킴으로써, 모델이 어떤 픽셀에 집중하고 있는지 시각적으로 설명</li>
       <li>아래의 분류 모델에 xAI 분석을 통해 주어진 input 이미지의 어떠한 Feature에 주목하여 판단하고 있는지 분석 수행</li>
@@ -322,7 +300,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
 
 <h3 id="2-2-real-time-demo">2-2. real-time Demo</h3>
 <ul>
-  <li>실시간 데모를 위해 코드를 작성하였다. <a href="./run_realtime.py">run_realtime.py</a></li>
+  <li>실시간 데모를 위해 코드를 작성하였다. <a href="/research/2111051010/run_realtime.py">run_realtime.py</a></li>
   <li>역할: 이미지 폴더 또는 비디오 웹캠 아이디를 넘겨주면, 실시간 작동하여 visualize 해준다.
     <ol>
       <li>사용법1: 폴더 안의 이미지들을 비디오처럼 사용
@@ -336,7 +314,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
       </li>
     </ol>
   </li>
-  <li><a href="./utils/process.py">process.py</a>
+  <li><a href="/research/2111051010/utils/process.py">process.py</a>
     <ul>
       <li>이미지 reshape, 이미지 augment, 이미지 normalize, tsne 분석, 이미지 플롯팅, 데이터 shuffler, 라벨 딕션너리, predict score 함수, prediction 값 matching 플롯팅 함수</li>
       <li>학습 데이터의 augmentation을 수행하고 (전체 set의 15% 가량) 합쳐주어, generalization performance를 향상시킴
@@ -393,7 +371,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
   </li>
   <li>학습 결과 아래와 같이 Belt/Unbelt를 구분
  <img src="/research/2111051010/img/samples_png/belt_classifier_sample.png" alt="image" /></li>
-  <li>코드는 <a href="./1_SimpleConv_SingleOut_belt_trainer.ipynb">1_SimpleConv_SingleOut_belt_trainer</a>을 참고</li>
+  <li>코드는 <a href="/research/2111051010/1_SimpleConv_SingleOut_belt_trainer.ipynb">1_SimpleConv_SingleOut_belt_trainer</a>을 참고</li>
   <li><code class="language-plaintext highlighter-rouge">Weak</code>, <code class="language-plaintext highlighter-rouge">OOP</code>, <code class="language-plaintext highlighter-rouge">Mask</code> Task와 달리 <code class="language-plaintext highlighter-rouge">Belt</code> 모델은 input 이미지의 사이즈를 <code class="language-plaintext highlighter-rouge">128x128</code>로 하였다.</li>
   <li>
     <p>벨트는 승객의 의상과 비슷한 색깔일 때도, 옷에 가려 잘 보이지 않는 경우가 많아, input 이미지를 <code class="language-plaintext highlighter-rouge">64x64</code>로 할 경우 학습이 잘 되지 않았다.</p>
@@ -412,7 +390,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
   Test: <span class="o">(</span>387, 128, 128, 3<span class="o">)</span>
 </code></pre></div>        </div>
       </li>
-      <li>구성한 CNN 모델은 아래와 같다.  <a href="./model/model_cnn.py">model_cnn.py</a>
+      <li>구성한 CNN 모델은 아래와 같다.  <a href="/research/2111051010/model/model_cnn.py">model_cnn.py</a>
         <ul>
           <li>모델을 compile할 때 실수가 있었는데,
   <code class="language-plaintext highlighter-rouge">model.compile(loss='categorical_crossentropy', optimizer = adam, metrics=['acc',tf.keras.metrics.TruePositives(),tf.keras.metrics.TrueNegatives(), tf.keras.metrics.AUC(thresholds=[0.5,0.7,0.9,0.95])])</code> 에서 처음에 categorical_crossentropy가 아니고 binary_crossentrpy를 사용하여 학습이 제대로 되지 않았다.</li>
@@ -508,8 +486,8 @@ dec_out (Conv2D)             (None, 64, 64, 3)         4803
       <li><code class="language-plaintext highlighter-rouge">encoder</code> 뒷 부분에 Fully Connected Layer와 Output Layer를 붙여서, 내가 가지고 있는 라벨링 되어 있는 취득데이터로 학습을 (미세 정밀 학습)마무리 지음으로써, 전체 모델의 general 성능을 끌어올릴 수 있는 장점을 취할 수 있다.</li>
     </ol>
   </li>
-  <li>학습 Pipeline은 <a href="./2_Baseline_autoencoder_trainer.ipynb">2_Baseline_autoencoder_trainer.ipynb</a> 참고</li>
-  <li>모델 코드는 <a href="./model/model_autoencoder.py">model_autoencoder.py</a>의 <code class="language-plaintext highlighter-rouge">model_classifier_with_encoder, multihead_classifier_with_encoder</code> 참고</li>
+  <li>학습 Pipeline은 <a href="/research/2111051010/2_Baseline_autoencoder_trainer.ipynb">2_Baseline_autoencoder_trainer.ipynb</a> 참고</li>
+  <li>모델 코드는 <a href="/research/2111051010/model/model_autoencoder.py">model_autoencoder.py</a>의 <code class="language-plaintext highlighter-rouge">model_classifier_with_encoder, multihead_classifier_with_encoder</code> 참고</li>
   <li>가져온 <code class="language-plaintext highlighter-rouge">encoder</code>를 본 프로젝트의 task인 <code class="language-plaintext highlighter-rouge">oop, weak, mask</code>와 결합하여 구성하여 전체 모델 구조를 설계하였다.</li>
   <li>
     <p>이렇게 모델을 구성하면, <code class="language-plaintext highlighter-rouge">encoder</code>부를 각 task의 공통된 <code class="language-plaintext highlighter-rouge">conv</code>, feature 추출기를 갖게되어 메모리 측면에서 효율적이다.
@@ -518,7 +496,7 @@ dec_out (Conv2D)             (None, 64, 64, 3)         4803
   <li>
     <p>Encoder가 앞에 위치함으로써, 이미지의 공통된 feature를 추출하게 되고, 추출된 feature를 가지고 각 task(<code class="language-plaintext highlighter-rouge">oop, weak, mask</code>)가 승객의 <code class="language-plaintext highlighter-rouge">class</code>를 판단하는 구조이다.</p>
   </li>
-  <li>학습 Pipeline은 <a href="./3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask.ipynb</a> 참고</li>
+  <li>학습 Pipeline은 <a href="/research/2111051010/3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask.ipynb</a> 참고</li>
 </ul>
 
 <h3 id="3-3-oop-classifier-with-encoder">3-3. OOP Classifier with Encoder</h3>
@@ -579,7 +557,7 @@ dec_out (Conv2D)             (None, 64, 64, 3)         4803
 <h3 id="3-4-weak-classifier-with-encoder">3-4. Weak Classifier with Encoder</h3>
 <ul>
   <li>취약승객의 데이터로 남자/여자 데이터만을 활용할 수 있는 상황이어서, 노약자와 영유아에 대한 데이터 없이 학습을 진행하였다.</li>
-  <li>학습 Pipeline은 <a href="./3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask.ipynb</a>를 참고</li>
+  <li>학습 Pipeline은 <a href="/research/2111051010/3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask.ipynb</a>를 참고</li>
   <li>
     <p>Weak classifier의 모델 branch만을 표현하면 아래 그림과 같다.
 <img src="/research/2111051010/img/samples_png/encoder_weak_model_struc.png" alt="encoder_weak_model_struc.png" /></p>
@@ -618,7 +596,7 @@ Test: <span class="o">(</span>524, 64, 64, 3<span class="o">)</span>
 <h3 id="3-5-mask-classifier-with-encoder">3-5. Mask Classifier with Encoder</h3>
 <ul>
   <li>승객의 마스크 여부도 판단해보면 좋을 것 같아 구성한 서비스 Task이다.</li>
-  <li>학습 Pipeline은 <a href="./3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask</a> 참고</li>
+  <li>학습 Pipeline은 <a href="/research/2111051010/3_EncoderConv_MultiOut_oop_weak_mask.ipynb">3_EncoderConv_MultiOut_oop_weak_mask</a> 참고</li>
   <li>직접 취득한 데이터를 기준으로 Train/Validation, Test 구성하여 학습 진행
 <img src="/research/2111051010/img/samples_png/mask_calss_label_distribution.png" alt="mask_calss_label_distribution" /></li>
 </ul>
@@ -764,9 +742,7 @@ Belt Classifier: Test Predict is 100.0%
 <h2 id="끝">끝</h2>
 
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -814,6 +790,79 @@ Belt Classifier: Test Predict is 100.0%
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

@@ -10,8 +10,7 @@ hash-tag: [STACK, QUEUE, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
+
 
 # 프로그래머스 > 스택/큐 > 다리를 지나는 트럭
 > AUTHOR: SungwookLE    

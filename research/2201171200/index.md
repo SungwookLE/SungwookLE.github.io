@@ -13,9 +13,6 @@ use_math: true
 toc : true
 ---
 
-- toc
-{:toc}
-
 # Recurrent Neural Networks
 > Writer: SungwookLE    
 > DATE: '21.1/17   

@@ -13,9 +13,6 @@ use_math: true
 toc : true
 ---
 
-- toc
-{:toc}
-
 # Dimensionality reduction & clustering
 > Writer: SungwookLE    
 > DATE: '21.1/18   

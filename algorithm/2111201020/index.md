@@ -10,9 +10,6 @@ hash-tag: [HEAP, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # 프로그래머스 > 힙 > 디스크 컨트롤러
 > AUTHOR: SungwookLE    
 > DATE: '21.11/20  

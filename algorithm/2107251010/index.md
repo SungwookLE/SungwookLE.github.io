@@ -10,9 +10,6 @@ hash-tag: [Divide_Conquer, baekjoon]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 
 # DataStructure: Segment Tree Get highest histogram size #6549  
 AUTHOR: SungwookLE  

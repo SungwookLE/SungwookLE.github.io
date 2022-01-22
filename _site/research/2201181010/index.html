@@ -144,32 +144,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#dimensionality-reduction--clustering" id="markdown-toc-dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</a>    <ul>
-      <li><a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a></li>
-      <li><a href="#2-pca주성분-분석" id="markdown-toc-2-pca주성분-분석">2. PCA(주성분 분석)</a>        <ul>
-          <li><a href="#2-1-kernel-pca" id="markdown-toc-2-1-kernel-pca">2-1. Kernel-PCA</a></li>
-        </ul>
-      </li>
-      <li><a href="#3-t-snedata-visualization" id="markdown-toc-3-t-snedata-visualization">3. t-SNE(data visualization)</a></li>
-      <li><a href="#4-study-clustering-methods" id="markdown-toc-4-study-clustering-methods">4. Study Clustering Methods</a>        <ul>
-          <li><a href="#4-1-k-means" id="markdown-toc-4-1-k-means">4-1. K-Means</a></li>
-          <li><a href="#4-2-k-methoids" id="markdown-toc-4-2-k-methoids">4-2. K-methoids</a></li>
-          <li><a href="#4-3-hierarchical-clustering" id="markdown-toc-4-3-hierarchical-clustering">4-3. Hierarchical Clustering</a></li>
-        </ul>
-      </li>
-      <li><a href="#5-코드" id="markdown-toc-5-코드">5. 코드</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-pca주성분-분석">2. PCA(주성분 분석)</a><ul><li><a href="#2-1-kernel-pca">2-1. Kernel-PCA</a></li></ul></li><li><a href="#3-t-snedata-visualization">3. t-SNE(data visualization)</a></li><li><a href="#4-study-clustering-methods">4. Study Clustering Methods</a><ul><li><a href="#4-1-k-means">4-1. K-Means</a></li><li><a href="#4-2-k-methoids">4-2. K-methoids</a></li><li><a href="#4-3-hierarchical-clustering">4-3. Hierarchical Clustering</a></li></ul></li><li><a href="#5-코드">5. 코드</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</h1>
+        </div>
+        <h1 id="dimensionality-reduction--clustering">Dimensionality reduction &amp; clustering</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘21.1/18 <br />
@@ -291,9 +276,7 @@ REFERENCE: <a href="/research/2201181010/img/LS16.pdf">#16</a>, <a href="/resear
 
 <h2 id="끝">끝</h2>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -339,6 +322,79 @@ REFERENCE: <a href="/research/2201181010/img/LS16.pdf">#16</a>, <a href="/resear
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 

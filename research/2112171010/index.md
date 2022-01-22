@@ -12,9 +12,6 @@ hash-tag: [python, multi_thread]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # Thread management in Python    
 > Author: [SungwookLE](joker1251@naver.com)  
 > Date  : '21.12/17  

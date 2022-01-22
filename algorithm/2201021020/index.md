@@ -10,9 +10,6 @@ hash-tag: [Binary_Search, Max_index_Find, Programmers]
 use_math: true
 ---
 
-- toc
-{:toc}
-
 # 프로그래머스 > 이분탐색 > 징검다리
 > AUTHOR: SungwookLE    
 > DATE: '22.01/02  

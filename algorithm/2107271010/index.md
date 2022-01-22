@@ -10,8 +10,6 @@ hash-tag: [Divide_Conquer, baekjoon]
 use_math: true
 ---
 
-- toc
-{:toc}
 
 # DataStructure: 2D the minist distance value #2261
 AUTHOR: SungwookLE   

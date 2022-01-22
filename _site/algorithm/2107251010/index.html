@@ -141,23 +141,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </h2>
     </div>
 
-
     <!--draft 일 때-->
 
     
 
-    <ul id="markdown-toc">
-  <li><a href="#datastructure-segment-tree-get-highest-histogram-size-6549" id="markdown-toc-datastructure-segment-tree-get-highest-histogram-size-6549">DataStructure: Segment Tree Get highest histogram size #6549</a>    <ul>
-      <li><a href="#1-세그먼트-트리" id="markdown-toc-1-세그먼트-트리">1. 세그먼트 트리</a></li>
-      <li><a href="#2-구간합-구하는-트리" id="markdown-toc-2-구간합-구하는-트리">2. 구간합 구하는 트리</a></li>
-      <li><a href="#3-6549-문제-접근" id="markdown-toc-3-6549-문제-접근">3. #6549 문제 접근</a></li>
-      <li><a href="#4-코드" id="markdown-toc-4-코드">4. 코드</a></li>
-      <li><a href="#끝" id="markdown-toc-끝">끝</a></li>
-    </ul>
-  </li>
-</ul>
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#datastructure-segment-tree-get-highest-histogram-size-6549">DataStructure: Segment Tree Get highest histogram size #6549</a><ul><li><a href="#1-세그먼트-트리">1. 세그먼트 트리</a></li><li><a href="#2-구간합-구하는-트리">2. 구간합 구하는 트리</a></li><li><a href="#3-6549-문제-접근">3. #6549 문제 접근</a></li><li><a href="#4-코드">4. 코드</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-<h1 id="datastructure-segment-tree-get-highest-histogram-size-6549">DataStructure: Segment Tree Get highest histogram size #6549</h1>
+        </div>
+        <h1 id="datastructure-segment-tree-get-highest-histogram-size-6549">DataStructure: Segment Tree Get highest histogram size #6549</h1>
 <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.7/25<br />
 PROBLEM: <a href="https://www.acmicpc.net/problem/6549">백준#10830</a><br />
@@ -428,9 +422,7 @@ REFERENCE: https://cocoon1787.tistory.com/314</p>
 
 <h2 id="끝">끝</h2>
 
-    
-
-
+      </article>
 
     
     <div class="post-tags">
@@ -472,6 +464,79 @@ REFERENCE: https://cocoon1787.tistory.com/314</p>
         </script>
     
 </div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
 
 </main>
 
