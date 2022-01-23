@@ -12,7 +12,6 @@ hash-tag: [PATH, AStar]
 use_math: true
 ---
 
-
 # A star algorithm Review
 > AUTHOR: Sungwook LE  
 > DATE: '21.9/19  

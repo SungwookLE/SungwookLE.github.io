@@ -13,7 +13,6 @@ use_math: true
 toc : true
 ---
 
-
 # Machine Learning and Gradient Descent
 > Writer: SungwookLE    
 > DATE: '21.1/16   

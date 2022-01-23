@@ -12,7 +12,6 @@ hash-tag: [Localization, Baysian, Filter]
 use_math: true
 ---
 
-
 # Localization Essential 
 > AUTHOR: Sungwook LE    
 > DATE: '21.10/5  

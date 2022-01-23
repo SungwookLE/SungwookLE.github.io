@@ -12,7 +12,6 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
-
 # Titanic `Survived` Predict  
 AUTHOR: SungwookLE  
 DATE: '21.6/28  

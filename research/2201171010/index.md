@@ -13,7 +13,6 @@ use_math: true
 toc : true
 ---
 
-
 # Advanced Techniques
 > Writer: SungwookLE    
 > DATE: '21.1/17   

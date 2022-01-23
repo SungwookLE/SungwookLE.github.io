@@ -11,7 +11,6 @@ hash-tag: [Pytorch]
 use_math: true
 ---
 
-
 # Pytorch: Quick Start
 AUTHOR: SungwookLE  
 DATE: '21.8/6  

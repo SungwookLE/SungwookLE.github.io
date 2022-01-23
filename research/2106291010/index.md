@@ -12,7 +12,6 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
-
 # sklearn_TypeC
 - AUTHOR: SungwookLE  
 - DATE: '21.6/29  

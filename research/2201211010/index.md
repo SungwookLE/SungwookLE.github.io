@@ -17,7 +17,7 @@ toc : true
 > Writer: SungwookLE    
 > DATE: '21.1/21   
 > REFERENCE: [#19](./img/LS19.pdf), [#20](./img/LS20.pdf), [#21](./img/LS21.pdf)  
-> 실습코드(colab):  실습코드 마저 올리기
+> 실습코드(colab):  [코랩](https://colab.research.google.com/drive/11mCvWFgDHlMkW2LFOXpuIHk7hyrU_R93?usp=sharing)
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)
 
 ## 1. Introduction

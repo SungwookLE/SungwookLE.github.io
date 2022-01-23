@@ -13,7 +13,6 @@ use_math: true
 toc : true
 ---
 
-
 # Convolutional Neural Network
 > Writer: SungwookLE    
 > DATE: '21.1/17   

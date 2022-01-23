@@ -3,7 +3,7 @@ layout: post
 type: research
 date: 2021-06-30 10:10
 category: Kaggle
-title: DataAnalysis Keras_Basic
+title: DataAnalysis DS_Test
 subtitle: Keras Feed Input(n_dim=4), Overfit & Underfit
 writer: 100
 post-header: true
@@ -12,7 +12,7 @@ hash-tag: [Kaggle, keras_feed]
 use_math: true
 ---
 
-# Keras_Basic
+# DS_Test
 - AUTHOR: SungwookLE
 - DATE: '21.6/30
 

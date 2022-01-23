@@ -12,7 +12,6 @@ hash-tag: [Kaggle, PCA]
 use_math: true
 ---
 
-
 # sklearn_TypeB
 - AUTHOR: SungwookLE   
 - DATE: '21.6/28   

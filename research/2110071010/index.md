@@ -12,7 +12,6 @@ hash-tag: [Particle, Filter, Localization]
 use_math: true
 ---
 
-
 # Localization: Particle Filter 
 > AUTHOR: Sungwook LE    
 > DATE: '21.10/7  

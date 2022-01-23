@@ -12,8 +12,6 @@ hash-tag: [ROS, robot]
 use_math: true
 ---
 
-
-
 ### PROJECT: Go Chase It
 > AUTHOR: SungwookLE  
 > DATE: '21.6/1  

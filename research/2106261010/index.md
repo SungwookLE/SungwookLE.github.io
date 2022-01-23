@@ -12,7 +12,6 @@ hash-tag: [Kaggle, Regressor]
 use_math: true
 ---
 
-
 # House `SalePrice` Predict
 AUTHOR: SungwookLE  
 DATE: '21.6/26  

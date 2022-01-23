@@ -12,7 +12,6 @@ hash-tag: [Kaggle, NLP]
 use_math: true
 ---
 
-
 # DISTRACTED_DRIVER_CLASSIFIER
 AUTHOR: SungwookLE  
 DATE: '21.7/13  

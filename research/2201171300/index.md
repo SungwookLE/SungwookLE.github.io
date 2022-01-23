@@ -13,7 +13,6 @@ use_math: true
 toc : true
 ---
 
-
 # Small data techniques
 > Writer: SungwookLE    
 > DATE: '21.1/17   
