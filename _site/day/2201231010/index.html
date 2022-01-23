@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- HTML Meta Tags -->
-  <title>단속카메라 Lv3</title>
+  <title>크리스마스 데이트</title>
   <meta name="description" content="SungwookLE">
 
   
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="단속카메라 Lv3">
+  <meta itemprop="name" content="크리스마스 데이트">
   <meta itemprop="description" content="SungwookLE">
   <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
 
@@ -95,13 +95,13 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       </li>
       
       <li class="transition">
-        <a href="/algorithm"  class="active" >
+        <a href="/algorithm" >
           Algortihm
         </a>
       </li>
       
       <li class="transition">
-        <a href="/day" >
+        <a href="/day"  class="active" >
           Day
         </a>
       </li>
@@ -127,17 +127,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         <div class="post-type-tag">
             
             <div class="post-type">
-                코딩테스트 연습
+                Date
             </div>
         </div>
         <h1 class="post-title">
-            단속카메라 Lv3
+            크리스마스 데이트
         </h1>
         <h2 class="post-subtitle">
-            프로그래머스 그리디
+            21년의 연말
         </h2>
         <h2 class="post-date">
-            2021-12-01 10:20
+            2022-01-23 10:10
         </h2>
     </div>
 
@@ -148,66 +148,13 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post-article">
         <div class="toc">
           <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#프로그래머스--그리디--단속카메라">프로그래머스 &gt; 그리디 &gt; 단속카메라</a><ul><li><a href="#1-혼자-풀기-실패">1. 혼자 풀기 실패</a></li><li><a href="#2-코드">2. 코드</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#크리스마스-데이트">크리스마스 데이트</a></li></ul>
 
         </div>
-        <h1 id="프로그래머스--그리디--단속카메라">프로그래머스 &gt; 그리디 &gt; 단속카메라</h1>
-<blockquote>
-  <p>AUTHOR: SungwookLE  <br />
-DATE: ‘21.12/01</p>
-  <blockquote>
-    <p>PROBLEM: <a href="https://programmers.co.kr/learn/courses/30/lessons/42884">문제링크</a><br />
-REFERENCE: <a href="https://mungto.tistory.com/49">참고</a><br />
-LEVEL: Lv3</p>
-  </blockquote>
-</blockquote>
-
-<h2 id="1-혼자-풀기-실패">1. 혼자 풀기 실패</h2>
+        <h1 id="크리스마스-데이트">크리스마스 데이트</h1>
 <ul>
-  <li>느낌대로 풀려니까, <code class="language-plaintext highlighter-rouge">sort</code> 한 다음에 연속되어 붙어 있는 <code class="language-plaintext highlighter-rouge">stream</code> 을 덩어리 지어서 각 덩어리 마다 1대 씩 카메라 배치하려고 하였는데, 잘 안되었다</li>
-  <li>쉬운 문제에 속하는 것인데, 바로 느낌대로 코드를 쓰려고만 하니까, 시간 소모만 되고 못 푼 것 같다… ㅠㅠ</li>
-  <li><img src="/algorithm/2112011020/img/1.png" alt="images" /></li>
+  <li>Check Here: <a href="https://youtu.be/qpjWDMhg4a8">Youtu</a></li>
 </ul>
-
-<h2 id="2-코드">2. 코드</h2>
-<ul>
-  <li>코드를 읽어보자.</li>
-</ul>
-
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">routes</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 먼저 카메라 1개는 최소조건으로 있어야 하니 배치해두고</span>
-    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">sort</span><span class="p">(</span><span class="n">routes</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">routes</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-
-    <span class="kt">int</span> <span class="n">prev_end</span> <span class="o">=</span> <span class="n">routes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">routes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-      
-        <span class="c1">// stream이 이어있지 않으면 카메라 1대를 더 추가하고,</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prev_end</span> <span class="o">&lt;</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]){</span>
-            <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
-            <span class="n">prev_end</span> <span class="o">=</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
-        <span class="p">}</span>
-
-        <span class="c1">// stream이 안에 이어져 있으니까, stream의 뒷 부분을 새로운 stream의 끝으로 설정해 둔다.</span>
-        <span class="c1">// 이 때, 카메라 추가는 필요 없음</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prev_end</span> <span class="o">&gt;=</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">prev_end</span> <span class="o">=</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-    
-    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<ul>
-  <li>종이에 쓰고 푸는 것을 습관화해야하는데, 바로 느낌받는대로 끄적여보고 안되면 멘붕 자꾸 이런 패턴이 된다.. 적어보고 시작하자. 그림을 그려보고 코딩 시작ㅜㅜ</li>
-</ul>
-
-<h2 id="끝">끝</h2>
 
       </article>
 
@@ -217,9 +164,7 @@ LEVEL: Lv3</p>
     
         <span class="tag-emoji"></span>
         
-        <a href="/algorithm/?tag=GREEDY"><span class="tag" data-tag="GREEDY">GREEDY</span></a>
-        
-        <a href="/algorithm/?tag=Programmers"><span class="tag" data-tag="Programmers">Programmers</span></a>
+        <a href="/day/?tag=크리스마스"><span class="tag" data-tag="크리스마스">크리스마스</span></a>
         
     
 </div>
@@ -233,11 +178,11 @@ LEVEL: Lv3</p>
     <div class="thumbnail-container">
       <div class='thumbnail'>
         
-        <img class='profile' src='/about/img/100.JPG'/>
+        <img class='profile' src='/about/img/200.jpg'/>
       </div>
-      <div class='name'>SugnwookLE</div>
+      <div class='name'>JieunAn</div>
     </div>
-    <div class='description'>꽥꽥</div>
+    <div class='description'>안초딩</div>
   </div>
 </div>
 
