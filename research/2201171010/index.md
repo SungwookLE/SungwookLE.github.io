@@ -15,7 +15,7 @@ toc : true
 
 # Advanced Techniques
 > Writer: SungwookLE    
-> DATE: '21.1/17   
+> DATE: '22.1/17   
 > REFERENCE: [#4](./img/LS4.pdf), [#5](./img/LS5.pdf), [#6](./img/LS6.pdf)  
 > 실습코드(python): [advanced_techniques](./img/keras_with_advanced.py)  
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)

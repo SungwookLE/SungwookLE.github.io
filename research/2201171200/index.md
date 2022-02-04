@@ -15,7 +15,7 @@ toc : true
 
 # Recurrent Neural Networks
 > Writer: SungwookLE    
-> DATE: '21.1/17   
+> DATE: '22.1/17   
 > REFERENCE: [#10](./img/LS10.pdf), [#11](./img/LS11.pdf), [#12](./img/LS12.pdf)  
 > 실습코드(colab): [rnn practice with movie review data](https://colab.research.google.com/drive/1CBGBeBDfKvWWrO8-YuB3A0ujJSydZE0N?usp=sharing)
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)

@@ -15,7 +15,7 @@ toc : true
 
 # Convolutional Neural Network
 > Writer: SungwookLE    
-> DATE: '21.1/17   
+> DATE: '22.1/17   
 > REFERENCE: [#7](./img/LS7.pdf), [#8](./img/LS8.pdf), [#9](./img/LS9.pdf)  
 > 실습코드(python): [CNN_lenet](./img/CNN_practice.py), [CNN_AlexNet_ResNet](./img/CNN_practice2.py)
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)

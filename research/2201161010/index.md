@@ -15,7 +15,7 @@ toc : true
 
 # Machine Learning and Gradient Descent
 > Writer: SungwookLE    
-> DATE: '21.1/16   
+> DATE: '22.1/16   
 > REFERENCE: [#1](./img/LS1.pdf), [#2](./img/LS2.pdf), [#3](./img/LS3.pdf), [MyNote](https://github.com/SungwookLE/ReND_Car_TensorLab_with_NeuralNet/blob/master/1.Neural_Network_Study/Study_NeuralNet.md)  
 > 실습 코드(python): [mnist](./img/mnist_practice.py), [iris](./img/iris_practice.py), [mnist_with_keras_framework](./img/mnist_keras_practice.py)  
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)

@@ -15,7 +15,7 @@ toc : true
 
 # Small data techniques
 > Writer: SungwookLE    
-> DATE: '21.1/17   
+> DATE: '22.1/17   
 > REFERENCE: [#13](./img/LS13.pdf), [#14](./img/LS14.pdf), [#15](./img/LS15.pdf)  
 > 실습코드(colab): [DT&RF](https://colab.research.google.com/drive/17D7PvraGMwyUv8giC9-a-eHVo3CYZBFK?usp=sharing)
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)

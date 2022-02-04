@@ -15,7 +15,7 @@ toc : true
 
 # Dimensionality reduction & clustering
 > Writer: SungwookLE    
-> DATE: '21.1/18   
+> DATE: '22.1/18   
 > REFERENCE: [#16](./img/LS16.pdf), [#17](./img/LS17.pdf), [#18](./img/LS18.pdf)  
 > 실습코드(colab):  [PCA&t-SNE&Clustering](https://colab.research.google.com/drive/1oXnz7GRjOo4dHmuEZ06R9Rd0o3Tnr_I4?usp=sharing)
 - 블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)
