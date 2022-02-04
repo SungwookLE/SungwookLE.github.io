@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Cloud Service</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Cloud Service">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2202041010/./img/Untitled%201.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/Untitled%201.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Cloud
+            </div>
+        </div>
+        <h1 class="post-title">
+            Cloud Service
+        </h1>
+        <h2 class="post-subtitle">
+            클라우드서비스의 이해 및 튜토리얼
+        </h2>
+        <h2 class="post-date">
+            2022-02-04 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#cloud-service">Cloud Service</a></li><li><a href="#cloud-service-조사">Cloud Service 조사</a><ul><li><a href="#1-클라우드-서비스란">1. 클라우드 서비스란</a><ul><li><a href="#1-1-클라우드-서비스-왜-쓰는-걸까요">1-1. 클라우드 서비스, 왜 쓰는 걸까요?</a></li><li><a href="#1-2-클라우드-서비스-제공-업체">1-2. 클라우드 서비스 제공 업체</a></li></ul></li><li><a href="#2-클라우드-서비스-구분">2. 클라우드 서비스 구분</a><ul><li><a href="#2-1-service-model">2-1. Service Model</a></li><li><a href="#2-2-deployment-model">2-2. Deployment Model</a></li></ul></li><li><a href="#3-클라우드-서비스-용어">3. 클라우드 서비스 용어</a><ul><li><a href="#3-1-기본적인-용어">3-1. 기본적인 용어</a></li><li><a href="#3-2-사용-비용">3-2. 사용 비용</a></li><li><a href="#3-3-aws-ec2를-기준으로-추가-용어-설명">3-3. AWS EC2를 기준으로 추가 용어 설명</a></li></ul></li><li><a href="#4-클라우드-서비스-튜토리얼">4. 클라우드 서비스 튜토리얼</a><ul><li><a href="#4-1-aws-ec2iaas">4-1. AWS EC2(IaaS)</a><ul><li><a href="#1-oruum-backend-환경-docker-이미지-빌드">1. oruum backend 환경 <code class="language-plaintext highlighter-rouge">docker</code> 이미지 빌드</a></li><li><a href="#2-aws-ec2-인스턴스-생성">2. AWS EC2 인스턴스 생성</a></li><li><a href="#3-인스턴스에-도커-설치하기">3. 인스턴스에 도커 설치하기</a></li><li><a href="#4-인스턴스에-도커-image-가져온-후-컨테이너-실행">4. 인스턴스에 도커 image 가져온 후, 컨테이너 실행</a></li><li><a href="#5-인스턴스-내-컨테이너에-위치한-mysql-데이터베이스-세팅">5. 인스턴스 내 컨테이너에 위치한 mysql 데이터베이스 세팅</a></li><li><a href="#6-oruum-backend-webserver-실행">6. oruum backend webserver 실행</a></li><li><a href="#7-public-ip를-이용하여-oruum-backend-webserver-접근">7. public IP를 이용하여 oruum backend webserver 접근</a></li></ul></li><li><a href="#4-2-aws-sagemakerpaas">4-2. AWS Sagemaker(PaaS)</a></li></ul></li><li><a href="#5-기타">5. 기타</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="cloud-service">Cloud Service</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘22.2/4</p>
+</blockquote>
+
+<h1 id="cloud-service-조사">Cloud Service 조사</h1>
+
+<h2 id="1-클라우드-서비스란">1. 클라우드 서비스란</h2>
+
+<ul>
+  <li>클라우드(Cloud)라는 단어가 말해주듯, 인터넷 통신망 어딘가에서 구름에 싸여 보이지 않는 컴퓨팅 자원(CPU, 메모리, 디스크 등)을 원하는 대로 가져다 쓸 수 있는 서비스입니다.</li>
+</ul>
+
+<h3 id="1-1-클라우드-서비스-왜-쓰는-걸까요">1-1. 클라우드 서비스, 왜 쓰는 걸까요?</h3>
+
+<ul>
+  <li>
+    <p>서버를 직접 구매할 때 고려해야 할 전력, 위치, 서버 세팅, 확장성을 고민하지 않고 서비스 운영에만 집중할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>클라우드 서비스를 쓰지 않는다면 백엔드에 필요한 서버와 DB의 기능 뿐 아니라, HW + 시스템 유지 보수를 포함한 네트워크 보안 등의 관리업무가 필요합니다. 또한, 이를 저장하고 운영할 PC와 하드드라이브 구축도 필요하겠죠.</p>
+  </li>
+</ul>
+
+<p><img src="/research/2202041010/img/Untitled.png" alt="Untitled" /></p>
+
+<h3 id="1-2-클라우드-서비스-제공-업체">1-2. 클라우드 서비스 제공 업체</h3>
+
+<ul>
+  <li>AWS(아마존 웹서비스)</li>
+  <li>MS Azure(마이크로소프프)</li>
+  <li>GCP(구글 클라우드 플랫폼)</li>
+  <li>네이버 클라우드</li>
+</ul>
+
+<p><img src="img/Untitled%201.png" alt="Untitled" /></p>
+
+<h2 id="2-클라우드-서비스-구분">2. 클라우드 서비스 구분</h2>
+
+<p><a href="https://www.youtube.com/watch?v=oY8Tc5OQ-JI">클라우드 컴퓨팅의 종류(비전공자도 이해하는)</a></p>
+
+<ul>
+  <li>클라우드 컴퓨팅의 분류 기준은 Service Model과 Deployment Model로 나뉘어요.
+    <ul>
+      <li><strong>Service Model:</strong> IaaS(Infrastructure as a Service), PaaS(Platform as a Sevice), SaaS(Service as a Service)</li>
+      <li><strong>Deployment Model:</strong> Public 클라우드, Private 클라우드, Hybrid 클라우드</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-1-service-model">2-1. Service Model</h3>
+
+<p>서비스 관리 주체와 수준에 따라 클라우드 서비스를 IaaS, PaaS, SaaS로 구분</p>
+
+<ul>
+  <li>컴포넌트 용어 설명
+    <ul>
+      <li>Middleware: RDBMS 등 (DB 매니지먼트시스템)</li>
+      <li>Runtime: JDK, Python 등 프로그램이 작동하는 환경</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="img/Untitled%202.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p><strong>IaaS(Infra as a Service)</strong></p>
+
+    <p><strong>IT 기본 자원만 제공되는 형태로 Server, Storage, Network 제공 (컴퓨터 하나 구매하는 개념)</strong></p>
+
+    <ul>
+      <li>인프라 수준의 클라우드 컴퓨팅을 제공해 사용자가 서버 OS부터 미들웨어, 런타임 그리고 데이터와 어플리케이션까지 직접 구성하고 관리할 수 있다.</li>
+      <li>클라우드 서비스 제공업체(Cloud Service Provider)는 데이터센터를 구축해 다수의 물리 서버를 가상화해 제공하며, 네트워크, 스토리지, 전력 등 서버 운영에 필요한 모든 것은 CSP가 책임지고 관리</li>
+      <li>대표적인 IaaS: <strong>AWS EC2(Elastic Compute Cloud)</strong>와 Google의 Compute Engine(GCE), MS Azure</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>PaaS(Platform as a Sevice)</strong></p>
+
+    <p><strong>IaaS에 OS, Middleware, Runtime 추가한 형태로 코드 개발만 해서 배포하면 서비스 되는 환경 제공</strong></p>
+
+    <ul>
+      <li>PaaS는 IaaS 형태의 가상화된 클라우드 위에 사용자가 원하는 서비스를 개발할 수 있도록 개발 환경(Platform)을 미리 구축해, 이를 서비스 형태로 제공하는 것을 의미한다.</li>
+      <li>PaaS는 운영체제, 미들웨어, 런타임 등을 미리 구축한 상태로 제공하기 때문에 IaaS보다 관리상의 자유도가 낮음</li>
+      <li>하지만, PaaS 사용자는 서비스 외적인 부분에 신경 쓸 필요가 없고, 애플리케이션 개발과 비즈니스에만 집중할 수 있음</li>
+      <li>IaaS와 마찬가지로 별도의 인프라를 유지하고 운영하는 데 별도의 인력이 소요되지 않기에 하드웨어 및 소프트웨어 인프라 관리에 드는 비용을 절약할 수 있다.</li>
+      <li>대표적인 PaaS: <strong>AWS Elastic Beanstalk</strong>, Google App Engine, MS Azure</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>SaaS(Service as a Service)</strong></p>
+
+    <p><strong>모든 기능이 동작하는 SW를 제공</strong></p>
+
+    <ul>
+      <li>SaaS는 클라우드 서비스 형태 중 가장 완성된 형태의 클라우드 서비스입니다.</li>
+      <li>클라우드 인프라 위에 소프트웨어를 탑재해 제공하는 형태로 IT 인프라 자원 뿐만 아니라 소프트웨어 및 업데이트, 버그 개선 등의 서비스를 업체가 도맡아 제공합니다.</li>
+      <li>별도의 비용을 들여 소프트웨어 라이센스를 구입할 필요 없이 월간/연간 구독 형태의 사용료를 지불하고 제공 업체의 소프트웨어를 이용하게 됩니다.</li>
+      <li>대표적인 SaaS:  구글 드라이브, Dropbox, Office365</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-2-deployment-model">2-2. Deployment Model</h3>
+
+<ul>
+  <li>퍼블릭 클라우드
+    <ul>
+      <li>인터넷에 접속 가능한 모든 사용자를 위한 클라우드 서비스 (AWS, GoogleCloud)</li>
+    </ul>
+  </li>
+  <li>프라이빗 클라우드
+    <ul>
+      <li>제한된 네트워크 상에서 특정 기업이나 특정 사용자만을 대상으로 하는 클라우드로 서비스의 자원과 데이터는 기업 내부에 저장됩니다.</li>
+    </ul>
+  </li>
+  <li>하이브리드 클라우드
+    <ul>
+      <li>퍼블릭 클라우드와 프라이빗 클라우드 혼합 방식 또는 가상 서버와 물리 서버를 결합한 형태를 하이브리드 클라우드라고 부른다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-클라우드-서비스-용어">3. 클라우드 서비스 용어</h2>
+
+<ul>
+  <li>클라우드 서비스 사용을 위해선 먼저 가상 컴퓨팅 환경을 설정해주어야 합니다. 유저의 개별적인 가상 컴퓨팅 환경을 인스턴스라고 부르고, 설정은 인스턴스 단위로 이루어집니다.</li>
+  <li>클라우드 서비스를 설정/사용을 위한 기본 용어를 설명하고, AWS EC2를 기준으로 추가 용어 설명을 해볼게요.</li>
+</ul>
+
+<h3 id="3-1-기본적인-용어">3-1. 기본적인 용어</h3>
+
+<ul>
+  <li>Data Center: 서버와 네트워크 자원 등을 제공하는 시설</li>
+  <li>Region: Data Center가 구축 된 국가/도시</li>
+  <li>Availability Zone은 고가용성 위한 Region 내 분산 된 Data Center
+    <ul>
+      <li>물리적 거리가 가까울수록 전송속도가 빠름</li>
+    </ul>
+  </li>
+  <li>Virtualization은 SW 기술로 가상의 Machine을 생성하는 기술
+    <ul>
+      <li>가상의 하드웨어는 VM: Virtual Machine이라 부름</li>
+      <li>Cloud 서비스에서 서버를 사용할 때, 가상화된 서버를 제공받음</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="img/Untitled%203.png" alt="Untitled" /></p>
+
+<h3 id="3-2-사용-비용">3-2. 사용 비용</h3>
+
+<ul>
+  <li>클라우드 서비스는 Computing Resource 자원을 원하는 만큼 쓰고 쓴 만큼 비용을 지불합니다.
+    <ul>
+      <li>OnDemand: 사용한 만큼 돈을 내는 방식</li>
+      <li>대규모 확장성에 유리하다</li>
+      <li>종량제 과금</li>
+    </ul>
+  </li>
+  <li><del>개인 웹사이트를 운영할 경우에 월 2~3만원 정도에서 과금된다는 포스팅이 있었음</del></li>
+</ul>
+
+<h3 id="3-3-aws-ec2를-기준으로-추가-용어-설명">3-3. AWS EC2를 기준으로 추가 용어 설명</h3>
+
+<ul>
+  <li>AWS EC2 제공 기능/용어
+    <ul>
+      <li><strong>인스턴스</strong>: 가상 컴퓨팅 환경</li>
+      <li><strong>Amazon 머신 이미지(AMI):</strong> 서버에 필요한 운영체제와 여러 소프트웨어들이 적절히 구성된 상태로 제공되는 템플릿을 이용하여 인스턴스를 쉽게 만들 수 있음
+  예: 운영 체제, 애플리케이션 서버, 애플리케이션</li>
+      <li><strong>인스턴스 유형(Types):</strong> 인스턴스를 위한 CPU, 메모리, 스토리지, 네트워킹 용량의 여러가지 구성 제공</li>
+      <li><strong>키페어</strong>: 인스턴스 생성 시, 발급되는 키페어를 사용하여 인스턴스 로그인 정보 보호(AWS는 퍼블릭 키를 저장하고 사용자는 개인 키를 안전한 장소에 보관하는 방식)</li>
+      <li><strong>인스턴스 스토어 볼륨</strong>: 임시 데이터를 저장하는 스토리지 볼륨으로 인스턴스 중단, 최대 절전 모드로 전환 또는 종료 시 삭제됨</li>
+      <li><strong>Amazon Elastic Block Store(EBS)</strong>: Amazon EBS 볼륨을 사용해 영구 스토리지 볼륨에 데이터 저장</li>
+      <li>인스턴스와 Amazon EBS 볼륨 등의 리소스를 다른 물리적 장소에서 액세스할 수 있는 <strong>리전 및 가용 영역</strong></li>
+      <li><strong>보안 그룹</strong>을 사용해 인스턴스에 연결할 수 있는 프로토콜, 포트, 소스 IP 범위를 지정하는 방화벽 기능</li>
+      <li><strong>탄력적 IP 주소(EIP)</strong>: 동적 클라우드 컴퓨팅을 위한 고정 IPv4주소</li>
+      <li><strong>Virtual Private Clouds(VPC):</strong> AWS 클라우드에서는 논리적으로 격리되어 있지만 원할 때마다 고객의 네트워크와 간편히 연결할 수 있는 가상 네트워크</li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="https://velog.io/@swhan9404/EC2-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC">AWS 공부 2주차 - EC2 개념정리</a></p>
+
+<ul>
+  <li>인스턴스 유형
+    <ul>
+      <li>인스턴스 유형에 따라 인스턴스에 사용되는 호스트 컴퓨터의 하드웨어가 결정됨</li>
+      <li>각 인스턴스 유형은 서로 다른 컴퓨팅, 메모리, 스토리지 용량을 제공하는데, 이 용량에 따라 서로 다른 인스턴스 패밀리로 분류</li>
+      <li>인스턴스에서 실행하려는 애플리케이션 또는 소프트웨어의 요구 사항에 따라 인스턴스 유형을 선택</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="img/Untitled%204.png" alt="Untitled" /></p>
+
+<p><img src="https://media.vlpt.us/images/swhan9404/post/f6ef372f-09cc-449e-853a-6efa0406b8fe/instance_lifecycle.png" alt="https://media.vlpt.us/images/swhan9404/post/f6ef372f-09cc-449e-853a-6efa0406b8fe/instance_lifecycle.png" /></p>
+
+<ul>
+  <li>인스턴스 종료와 중지
+    <ul>
+      <li>비용이 청구되느냐, 안되느냐에 있어서 구분하는 것이 매우 중요해요 😢</li>
+      <li><del>저는 이것저것 건들면서 하다보니 저는 매우 조금의 비용이 청구되었더라구요…</del></li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>번호</th>
+      <th>인스턴스 상태</th>
+      <th>설명</th>
+      <th>인스턴스 사용 요금</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>pending</td>
+      <td>인스턴스는 running 상태로 될 준비를 하고 있습니다. 인스턴스를 처음 시작하거나 stopped 상태의 인스턴스를 다시 시작하면 pending 상태가 됩니다.</td>
+      <td>미청구</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>running</td>
+      <td>인스턴스를 실행하고 사용할 준비가 되었습니다.</td>
+      <td>청구</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>stopping</td>
+      <td>인스턴스가 중지 또는 중지-최대 절전 모드로 전환할 준비를 하고 있습니다.</td>
+      <td>중지 준비 중인 경우 미청구최대 절전 모드로 전환 준비 중인 경우 청구</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>stopped</td>
+      <td>인스턴스가 종료되고 사용이 불가합니다. 언제든지 인스턴스를 다시 시작할 수 있습니다.</td>
+      <td>미청구</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>shutting-down</td>
+      <td>인스턴스가 종료할 준비를 하고 있습니다.</td>
+      <td>미청구</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>terminated</td>
+      <td>인스턴스가 영구적으로 삭제되었으며 시작할 수 없습니다.</td>
+      <td>미청구참고종료된 인스턴스에 적용되는 예약 인스턴스는 결제 옵션에 따라 기간이 종료될 때까지 요금이 청구됩니다. 자세한 내용은 예약 인스턴스 섹션을 참조하세요.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>인스턴스 중지
+    <ul>
+      <li>인스턴스를 중단하면 실행종료 과정이 이루어지고 <code class="language-plaintext highlighter-rouge">stopped</code> 상태가 됨
+        <ul>
+          <li>인스턴스의 모든 Amazon EBS 볼륨이 연결된 상태로 유지되므로 나중에 언제든지 다시 사작할 수 있음</li>
+          <li>인스턴스가 중지됨 상태에 있는 동안에는 추가 인스턴스 사용량에 대한 요금이 부과되지 않음</li>
+        </ul>
+      </li>
+      <li>인스턴스가 중지인 상태에서 EBS 볼륨을 연결하거나 분리할 수 있음
+        <ul>
+          <li>모든 연결 Amazon EBS 루트 디바이스 사용을 비롯한 인스턴스 사용에 관련된 비용은 일반 Amazon EBS 요금이 적용</li>
+        </ul>
+      </li>
+      <li>인스턴스가 중인 상태에서 커널, 램, 디스크, 인스턴스 유형을 변경할 수 있음</li>
+    </ul>
+  </li>
+  <li>인스턴스 종료
+    <ul>
+      <li>인스턴스가 종료될 때 인스턴스는 일반 종료를 수행
+        <ul>
+          <li><strong>루트 디바이스 볼륨은 기본적으로 삭제되지만 모든 연결된 Amazon EBS 볼륨은 기본적으로 유지</strong></li>
+          <li>각 볼륨의 deleteOnTermination 속성 설정에 따라 조정 가능</li>
+          <li>인스턴스 자체도 삭제되므로 나중에 다시 시작할 수 없음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>EC2 스토리지</p>
+
+    <p>스토리지 옵션은 독립적으로 또는 요구 사항에 맞춰 조합하여 사용할 수 있음</p>
+
+    <ul>
+      <li>Block Storage</li>
+      <li>File Storage</li>
+      <li>Object Storage</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://media.vlpt.us/images/swhan9404/post/a67d52dc-b343-45ff-97d8-8ae0beb5a19f/image-20210617232221080.png" alt="https://media.vlpt.us/images/swhan9404/post/a67d52dc-b343-45ff-97d8-8ae0beb5a19f/image-20210617232221080.png" /></p>
+
+<ul>
+  <li>제공되는 스토리지 옵션
+    <ul>
+      <li>Amazon Elastic Block Store(EBS)
+        <ul>
+          <li>SSD와 HDD로 구분됨</li>
+          <li>EBS 볼륨이 인스턴스에 연결되면, 다른 물리적 하드 드라이브처럼 사용할 수 있음</li>
+          <li>한 인스턴스에서 EBS 볼륨을 분리한 다음 다른 인스턴스에 연결하는 것도 가능, 스냅샷을 생성하여 백업도 가능</li>
+        </ul>
+      </li>
+      <li>Amazon EC2 인스턴스 스토어
+        <ul>
+          <li>stop/start 로 인해 하드웨어가 바뀌면 사라짐(휘발성)</li>
+          <li>디스크 오류, 인스턴스 중지, 인스턴스 종료 시 데이터 소실</li>
+        </ul>
+      </li>
+      <li>Amazon EFS(파일 스토리지)
+        <ul>
+          <li>EC2 인스턴스를 위한 완전 관리형 네트워크 파일 시스템</li>
+          <li>EFS 파일 시스템을 만든 후 파일 시스템을 마운트하도록 인스턴스를 구성할 수 있음</li>
+        </ul>
+      </li>
+      <li>Amazon S3(Simple Storage Service)
+        <ul>
+          <li>웹에서 사용 가능한 오브젝트 저장소</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>CloudWatch 모니터링
+    <ul>
+      <li>Amazon CloudWatch는 Amazon Web Sevices(AWS) 리소스와 AWS에서 실시간으로 실행 중인 애플리케이션을 모니터링</li>
+      <li>지표를 모니터링 하여 알림을 보내거나 임계값을 초과한 경우 리소스를 자동으로 변경할 수 있음
+        <ul>
+          <li>인스턴스 지표</li>
+          <li>CPU 크레딧 지표</li>
+          <li>Nitro 기반 인스턴스용 Amazon EBS 지표</li>
+          <li>상태 확인 지표</li>
+          <li>트래픽 미러링 지표</li>
+          <li>Amazon EC2 사용량 지표</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-클라우드-서비스-튜토리얼">4. 클라우드 서비스 튜토리얼</h2>
+
+<ul>
+  <li>무료버전(프리티어)을 활용하여 AWS 클라우드 서비스(EC2, Sagemaker)를 사용해봅시다.</li>
+  <li><strong>AWS 프리 티어</strong>는 언제 만료됩니까?
+    <ul>
+      <li>12개월 <strong>프리 티어</strong>에 해당하는 서비스를 사용하면 고객이 계정을 생성한 날부터 1년 동안 지정된 한도 내에서 제품을 무료로 사용할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-1-aws-ec2iaas">4-1. AWS EC2(IaaS)</h3>
+
+<ul>
+  <li><strong>아래의 순서대로 진행해볼게요! 😃</strong>
+    <ol>
+      <li><strong>oruum backend 환경 <code class="language-plaintext highlighter-rouge">docker</code>이미지 빌드</strong></li>
+      <li><strong>AWS EC2 인스턴스 생성</strong></li>
+      <li><strong>인스턴스에 도커 설치하기</strong></li>
+      <li><strong>인스턴스에 도커 image 가져온 후, 컨테이너 실행</strong></li>
+      <li><strong>인스턴스 내 컨테이너에 위치한 mysql 데이터베이스 세팅</strong></li>
+      <li><strong>oruum backend webserver 실행</strong></li>
+      <li><strong>public IP를 이용하여 oruum backend webserver 접근</strong></li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="https://blog.kakaocdn.net/dn/bfLlq8/btred1c8e5M/8nGizMwtUUuipyyzZEcsTK/img.jpg" alt="https://blog.kakaocdn.net/dn/bfLlq8/btred1c8e5M/8nGizMwtUUuipyyzZEcsTK/img.jpg" /></p>
+
+<h4 id="1-oruum-backend-환경-docker-이미지-빌드">1. oruum backend 환경 <code class="language-plaintext highlighter-rouge">docker</code> 이미지 빌드</h4>
+<ul>
+  <li>도커 사용법 및 사용 이유
+    <ul>
+      <li>도커는 리눅스 상에서 컨테이너 방식으로 프로세스를 격리해서 실행하고 관리할 수 있도록 도와주며, 계층화된 파일 시스템에 기반해 효율적으로 이미지(프로세스 실행 환경)을 구축할 수 있도록 해줍니다.</li>
+      <li>도커를 사용하면 이 이미지를 기반으로 컨테이너를 실행할 수 있으며, 다시 특정 컨테이너의 상태를 변경해 이미지로 만들 수 있습니다. 이렇게 만들어진 이미지는 파일로 보관하거나 원격 저장소를 사용해 쉽게 공유할 수 있으며, 도커만 설치되어 있다면 필요할 때 언제 어디서나 컨테이너로 실행하는 것이 가능합니다.</li>
+      <li>이미지가 미리 구성된 환경을 저장해 놓은 파일들의 집합이라면, 컨테이너는 이러한 이미지를 기반으로 실행된 격리된 프로세스입니다.</li>
+      <li>
+        <p>왜, 도커를 사용하는가?</p>
+
+        <p><a href="https://www.44bits.io/ko/post/why-should-i-use-docker-container">왜 굳이 도커(컨테이너)를 써야 하나요? - 컨테이너를 사용해야 하는 이유</a></p>
+      </li>
+      <li>
+        <p>도커 설치방법</p>
+
+        <p><a href="https://deepmal.tistory.com/21">Ubuntu 18.04 AWS EC2에서 Docker 설치하기</a></p>
+      </li>
+      <li>
+        <p>도커 입문자 메뉴얼</p>
+
+        <p><a href="https://www.44bits.io/ko/post/easy-deploy-with-docker">도커(Docker) 입문편: 컨테이너 기초부터 서버 배포까지</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>(참고) 쿠버네티스도 들어보셨죠?</p>
+
+    <p><a href="https://wooono.tistory.com/109">[Kubernetes] 도커와 쿠버네티스 간단 비교</a></p>
+
+    <ul>
+      <li>쿠버네티스는 <strong>‘컨테이너 오케스트레이션 툴’</strong> 이다.
+        <ul>
+          <li><strong>오케스트레이션</strong>이란?
+            <ul>
+              <li>컨테이너 역시 그 수가 많아지게 되면 <strong>관리와 운영</strong>에 있어서 어려움이 따른다.</li>
+              <li>컨테이너 오케스트레이션은 이러한 <strong>다수의 컨테이너 실행을 관리 및 조율</strong>하는 시스템이다.</li>
+              <li>오케스트레이션 엔진을 통해 컨테이너의 <strong>생성과 소멸, 시작 및 중단 시점 제어, 스케줄링, 로드 밸런싱, 클러스터링</strong> 등 컨테이너로 <strong>어플리케이션을 구성하는 모든 과정을 관리</strong>할 수 있음</li>
+              <li>다른 컨테이너 오케스트레이션 툴로는 ‘도커 스웜’, ‘ECS’, ‘Nomad’등이 있다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>한 개의 인스턴스만 이용하면 쿠버네티스는 필요 없다.</li>
+      <li>지금은 쿠버네티스는 많은 <strong>컨테이너 관리</strong>에 유용한 것으로 알고 계시면 될 것 같아요.</li>
+    </ul>
+  </li>
+  <li><strong>docker</strong>를 사용하면 간편하게 서버를 분할하고 이식하고 관리할 수 있어요..
+    <ul>
+      <li>튜토리얼 만드는 김에 <code class="language-plaintext highlighter-rouge">oruum backend</code> 기준으로 docker 이미지를 생성하였습니다.</li>
+      <li>해당 작업은 최초 1회만 하면 되는 것으로, 향후에는 서버관리자가 해주면 될 것 같습니다.
+        <ul>
+          <li>oruum backend 구동을 위한 도커 이미지 만들기
+            <ul>
+              <li>docker 이미지 만드는 과정!!!
+                <ol>
+                  <li>
+                    <p>docker 공식 이미지 중 <code class="language-plaintext highlighter-rouge">mysql</code>를 가져와 컨테이너 실행하기</p>
+
+                    <p><a href="https://poiemaweb.com/docker-mysql">Docker를 사용하여 MySQL 설치하고 접속하기</a></p>
+
+                    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="n">docker</span> <span class="n">pull</span> <span class="n">mysql</span> <span class="c1">#도커 공식 이미지 중 mysql 이름을 갖는 이미지 다운로드
+</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">mysql</span><span class="o">-</span><span class="n">container</span> <span class="o">-</span><span class="n">e</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=&lt;</span><span class="n">password</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span> <span class="n">mysql</span><span class="p">:</span><span class="n">latest</span>
+ <span class="c1"># mysql의 root 계정 비밀번호를 test로 하여 3306 포트에 mysql:latest 이미지를 갖는 컨테이너 생성
+</span> <span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">mysql</span><span class="o">-</span><span class="n">container</span> <span class="n">bash</span> <span class="c1"># mysql-container 라는 이름의 컨테이너 실행
+</span></code></pre></div>                    </div>
+                  </li>
+                  <li>
+                    <p>실행한 docker 컨테이너 안에서 커스텀 환경 설치하기</p>
+
+                    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="n">apt</span> <span class="n">update</span>
+ <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="c1">#pip 설치
+</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">git</span> <span class="c1">#git 설치
+</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">YuhyeokJo</span><span class="o">/</span><span class="n">oruum_backend</span><span class="p">.</span><span class="n">git</span> <span class="c1">#oruum clone
+</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">vim</span> <span class="c1">#에디터 설치
+</span>                    
+ <span class="c1"># 설치 중에 문제가 있더라구요, 아래 라인 실행
+</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">installed</span> <span class="n">pip</span> <span class="n">setuptools</span>
+ <span class="c1"># 보니까 requests 설정값이 문제가 있어 에러가 뜨는데, requests&gt;=2.24.0 라인 삭제하고 진행
+</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+                    
+ <span class="n">pip3</span> <span class="n">install</span> <span class="n">sqlalchemy</span> <span class="c1">#sqlalchemy 설치
+</span> <span class="c1"># 문제 없음
+</span>                    
+ <span class="c1">## docker shell이 아닌 다른 bash창 실행하여 3306 포트가 쓰이고 있는지 체크
+</span> <span class="n">netstat</span> <span class="o">-</span><span class="n">nlpt</span>
+ <span class="n">docker</span> <span class="n">diff</span> <span class="o">&lt;</span><span class="n">contrainer</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">head</span> <span class="c1">#docker diff를 걸어보면 초기 이미지에서 얼마나 달라졌는지 확인할 수 있다.
+</span></code></pre></div>                    </div>
+
+                    <p><img src="img/Untitled%205.png" alt="Untitled" /></p>
+                  </li>
+                  <li>
+                    <p>이제 oruum backend만의 이미지를 생성할 수 있어요: <code class="language-plaintext highlighter-rouge">docker commit &lt;container-id&gt;</code></p>
+
+                    <p><img src="img/Untitled%206.png" alt="Untitled" /></p>
+
+                    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="c1"># doker 이미지로 커밋하기 전에 `mysql` 접속 문제 없는지 확인하고 커밋하기
+</span> <span class="n">docker</span> <span class="n">commit</span> <span class="mi">65721</span> <span class="n">mysql</span><span class="p">:</span><span class="n">oruum</span> <span class="c1"># 65721* ID의 컨테이너를 mysql:oruum 이라는 이미지로 생성
+</span> <span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="c1"># 실행중인 컨테이너 확인
+</span> <span class="n">docker</span> <span class="n">stop</span> <span class="o">&lt;</span><span class="n">container</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="c1"># &lt;container-id&gt; 중지
+</span> <span class="n">docker</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">container</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="c1"># &lt;container-id&gt; 삭제 
+</span></code></pre></div>                    </div>
+                  </li>
+                  <li>만든 이미지로 docker 컨테이너 실행해서 체크하기
+                    <ul>
+                      <li>docker 커맨드라인 옵션 설명 참고: https://www.daleseo.com/docker-run/</li>
+                    </ul>
+
+                    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">mysql</span><span class="o">-</span><span class="n">container</span> <span class="o">-</span><span class="n">e</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=&lt;</span><span class="n">password</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span> <span class="n">mysql</span><span class="p">:</span><span class="n">oruum</span>
+ <span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">mysql</span><span class="o">-</span><span class="n">container</span> <span class="n">bash</span>
+ <span class="c1"># 잘되는지 확인
+</span></code></pre></div>                    </div>
+                  </li>
+                  <li>
+                    <p>docker 이미지를 hub repository에 업로드하기(docker hub에 push하기)</p>
+
+                    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="n">docker</span> <span class="n">push</span> <span class="o">&lt;</span><span class="n">docker_hub</span><span class="o">&gt;</span>
+ <span class="n">docker</span> <span class="n">pull</span> <span class="o">&lt;</span><span class="n">docker_hub</span><span class="o">&gt;</span>
+</code></pre></div>                    </div>
+
+                    <p><a href="https://mingyucloud.tistory.com/entry/Docker-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%94%EC%B6%9C-%EB%B0%8F-%EC%A0%80%EC%9E%A5%EC%86%8C-%EC%83%9D%EC%84%B122">Docker 이미지 추출 및 저장소 생성(2/2)</a></p>
+                  </li>
+                  <li>이제 <code class="language-plaintext highlighter-rouge">docker pull joker1251/oruum_backend:oruum</code> 을 실행하면 완성된 docker_backend 이미지를 다운받을 수 있습니다!!! 😊</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>미래의 백엔드 서버 관리자들은 저장소에 push 해둔 docker 이미지를 pull (<code class="language-plaintext highlighter-rouge">docker pull joker1251/oruum_backend:oruum</code>)하여 이미지를 다운받고 컨테이너를 실행시키는 방식으로 서버 환경을 배포/사용하면 될 것 같아요.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="2-aws-ec2-인스턴스-생성">2. AWS EC2 인스턴스 생성</h4>
+<ul>
+  <li>AWS EC2의 공식 튜토리얼</li>
+</ul>
+
+<p><a href="https://aws.amazon.com/ko/ec2/getting-started/">Amazon EC2 시작하기</a></p>
+
+<ul>
+  <li>해당 포스팅에 잘 정리해 놓았더라구요. 공유드립니다.
+    <ul>
+      <li>저도 아래의 포스팅을 따라 인스턴스를 설정하였어요.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="https://youngjinmo.github.io/2020/03/aws-tutorial-create-ec2/">AWS 튜토리얼(1) - Ec2 생성하기</a></p>
+
+<ul>
+  <li>AWS 가입 진행하고, AWS 페이지 내에서 EC2 서비스를 검색하여 실행하고 인스턴스를 생성합니다.
+    <ul>
+      <li>인스턴스의 AMI(이미지), 스토리지 등의 옵션을 적절한 것으로 선택해주세요.</li>
+      <li>인스턴스 생성을 마치면, 키페어가 발급되는데 키페어를 가지고 있어야지만 인스턴스에 접속 가능하므로 매우 중요합니다.
+        <ul>
+          <li>키페어는 보안 관련하여 중요한 파일이기 때문에 잘 관리해주세요!</li>
+          <li>터미널에서 ssh로 ec2 접속할 때 키페어 권한을 바꿔 주어야 합니다.
+  <code class="language-plaintext highlighter-rouge">chmod 600 &lt;키페어파일이름&gt; #읽기 쓰기 권한 부여</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>생성한 EC2 인스턴스에 연결하는 방법
+    <ul>
+      <li>
+        <p>아래와 같이 접속하면 됩니다.</p>
+
+        <p><img src="img/Untitled%207.png" alt="Untitled" /></p>
+      </li>
+      <li>
+        <p>bash에서 실행하면 아래와 같이 <code class="language-plaintext highlighter-rouge">ubuntu@ip-172-31-2-249</code> 표시되며 EC2 인스턴스에 접속됨</p>
+
+        <p><img src="img/Untitled%208.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="3-인스턴스에-도커-설치하기">3. 인스턴스에 도커 설치하기</h4>
+<ul>
+  <li>생성하여 push 해 둔 oruum의 도커이미지를 가져오기 위해 docker를 설치하였어요.</li>
+  <li>
+    <p>아래 포스팅의 안내를 따라 인스턴스에 도커를 설치하였습니다.</p>
+
+    <p><a href="https://deepmal.tistory.com/21">Ubuntu 18.04 AWS EC2에서 Docker 설치하기</a></p>
+  </li>
+</ul>
+
+<h4 id="4-인스턴스에-도커-image-가져온-후-컨테이너-실행">4. 인스턴스에 도커 image 가져온 후, 컨테이너 실행</h4>
+<ul>
+  <li>도커이미지를 가져온다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker pull joker1251/oruum_backend:oruum</code></li>
+    </ul>
+  </li>
+  <li>컨테이너를 실행시킨다.
+    <ul>
+      <li>컨테이너의 이름은 <code class="language-plaintext highlighter-rouge">mysql-container</code> 로 한다.</li>
+      <li>환경변수로 <code class="language-plaintext highlighter-rouge">MYSQL_ROOT_PASSWORD=test</code> 를 주어서, mysql의 root계정 비밀번호를 <code class="language-plaintext highlighter-rouge">test</code>로 한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">-d</code> 옵션을 주어 백그라운드로 컨테이너가 실행되게 한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">-p</code> 옵션을 주어 컨테이너의 포트와 인스턴스의 포트를 매핑해주었다. 아래에선, 컨테이너의 3306포트를 인스턴스의 3306포트에 이어주고, 컨테이너의 5000포트를 인스턴스의 5000포트에 이어주었음, 설정한 3306포트는 mysql의 포트이고, 5000포트는 orrum backend webserver 포트이다.</li>
+      <li>사용한 docker 이미지는 <code class="language-plaintext highlighter-rouge">joker1251/oruum_backend:oruum</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=&lt;password&gt; -d -p 3306:3306 -p 5000:5000 joker1251/oruum_backend:oruum</code></li>
+    </ul>
+  </li>
+  <li>컨테이너의 bash창을 실행시킨다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker exec -it mysql-container bash</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="5-인스턴스-내-컨테이너에-위치한-mysql-데이터베이스-세팅">5. 인스턴스 내 컨테이너에 위치한 mysql 데이터베이스 세팅</h4>
+<ul>
+  <li>mysql 데이터베이스 세팅을 도커 컨테이너 상에서 mysql에 접속하여 쿼리문으로도 진행할 수 있을거예요. 그러나 약간은 불편함이 있습니다.</li>
+  <li>인스턴스 위 컨테이너에 위치한 mysql을 외부의 로컬에서 mysql-workbench로 접속하는 방법을 알려드릴게요. 아래 포스팅을 참고하였습니다.</li>
+</ul>
+
+<p><a href="https://devkingdom.tistory.com/84">[AWS] AWS EC2 인스턴스 (Ubuntu) 에서 MySql 세팅하기</a></p>
+
+<ul>
+  <li>
+    <p>인스턴스의 보안그룹 설정에 인바운드 규칙으로 3306 포트를 열어주고 모든 사용자(<code class="language-plaintext highlighter-rouge">0.0.0.0/0</code>)가 접근할 수 있도록 아래와 같이 설정해주어야 합니다.</p>
+
+    <p><img src="img/Untitled%209.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>backend server나 mysql에 모든 사용자가 접근 가능한 것이 아닌, 특정 IP만 접근 가능하도록 설정할수도 있습니다.</li>
+    </ul>
+  </li>
+  <li>이제 로컬에서 인스턴스 컨테이너에 위치한 mysql에 접속해봅시다.
+    <ul>
+      <li>아래의 화면에서 퍼블릭 IPv4 주소를 확인할 수 있어요</li>
+      <li>
+        <p>해당 주소는 인스턴스가 실행될 때마다 바뀐다고 하는데, 이런 부분을 방지하기 위해 탄력적 IP 주소 설정을 하여 IP 주소가 고정되보이게끔 설정할 수 있다고 합니다.</p>
+
+        <p><img src="img/Untitled%2010.png" alt="Untitled" /></p>
+      </li>
+      <li>
+        <p>로컬에서 <code class="language-plaintext highlighter-rouge">mysql-workbench</code> 를 실행해 주시고, 연결 설정을 아래와 같이 해줍니다.</p>
+
+        <p><img src="img/Untitled%2011.png" alt="Untitled" /></p>
+
+        <ul>
+          <li>Hostname의 IP로 인스턴스의 퍼블릭 IP를 입력하였고, Port는 3306, Username은 root, 비밀번호는 컨테이너 실행할때 설정한 비밀번호를 입력하였습니다.</li>
+        </ul>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">mysql-workbench</code> 로 인스턴스 컨테이너 상의 mysql로 접속 성공하였다면, database , table 등을 세팅해주세요.</p>
+
+        <p><img src="img/Untitled%2012.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>이렇게 하면, 인스턴스 내의 mysql database도 세팅이 끝납니다.
+    <ul>
+      <li>이렇게 신규로 설정해주는 방법 외에도, 기존에 사용하고 있던 db 데이터를 통째로 AWS EC2로 옮기는 방법도 있습니다. <code class="language-plaintext highlighter-rouge">filezila</code> 를 이용하는 방법이예요.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="6-oruum-backend-webserver-실행">6. oruum backend webserver 실행</h4>
+<ul>
+  <li>인스턴스의 컨테이너 bash 창으로 옵니다.
+    <ul>
+      <li>참고로 컨테이너의 bash창은 여러개를 켜놓을 수 있으니, 여러개 켜놓고 작업해도 됩니다.</li>
+    </ul>
+  </li>
+  <li>컨테이너에서 oruum_backend 깃 레포지토리를 clone해서 가져옵니다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">git clone [https://github.com/YuhyeokJo/oruum_backend.git](https://github.com/YuhyeokJo/oruum_backend.git)</code></li>
+    </ul>
+  </li>
+  <li>이미 필요한 패키지나 환경값들은 도커 이미지에 다 씌워놓았기 때문에 해당 폴더로 경로 이동하여 실행만 해주면 됩니다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">python3 oruum_backend_launcher.py</code></li>
+    </ul>
+
+    <p><img src="img/Untitled%2013.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h4 id="7-public-ip를-이용하여-oruum-backend-webserver-접근">7. public IP를 이용하여 oruum backend webserver 접근</h4>
+<ul>
+  <li>
+    <p>인스턴스의 public IPv4 주소를 입력하고 포트에 접근하면, 아래와 같이 웹서버가 열려 있을거예요!</p>
+
+    <p><img src="img/Untitled%2014.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">api_samples_codes/database_api_login.py</code> 샘플 코드를 실행시켜 제대로 웹서버가 반응하고 mysql db에서 데이터가 조회되고 입력되는지 확인해볼게요.</p>
+    <ul>
+      <li>이를 위해서 해당 코드 상의 database_ip 주소를 바꿔주어야 합니다. (바뀌었으니까~)</li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">vim api_sample_codes/database_api_login.py</code> 를 실행하여 ip주소 현재 실행된 백엔드 서버의 IP주소로 바꿔줍니다.</p>
+
+        <p><img src="img/Untitled%2015.png" alt="Untitled" /></p>
+
+        <p><img src="img/Untitled%2016.png" alt="Untitled" /></p>
+      </li>
+      <li>
+        <p>외부 PC에서도 샘플코드를 실행하면 AWS EC2 서버와 잘 정보를 주고받아 아래와 같이 출력됨을 확인할 수 있어요. 이 때 IP 주소는 퍼블릭 IP 주소를 써주어야 겠죠. 같은 local에 존재하는 것이 아니니까</p>
+
+        <p><img src="img/Untitled%2017.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>튜토리얼 끝 😃</strong></p>
+
+<h3 id="4-2-aws-sagemakerpaas">4-2. AWS Sagemaker(PaaS)</h3>
+
+<ul>
+  <li>Amazon SageMaker는 Machine Learning을 위한 PaaS</li>
+  <li>
+    <p>아래의 튜토리얼을 따라 진행하였다.</p>
+
+    <p><a href="https://aws.amazon.com/ko/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/?trk=el_a134p000003yWILAA2&amp;trkCampaign=DS_SageMaker_Tutorial&amp;sc_channel=el&amp;sc_campaign=Data_Scientist_Hands-on_Tutorial&amp;sc_outcome=Product_Marketing&amp;sc_geo=mult">Amazon SageMaker로 기계 학습 모델을 구축, 훈련 및 배포하는 방법 AWS</a></p>
+
+    <p><a href="https://dev.classmethod.jp/articles/yjsong_sagemaker_xgboost/">Amazon SageMaker를 사용해서 기계학습 모델을 구축, 학습 및 배포를 해보았습니다 DevelopersIO</a></p>
+  </li>
+  <li><strong>Sagemaker</strong>, Google 코랩이랑 무엇이 다를까?
+    <ul>
+      <li>머신러닝 프레임워크를 사용하는 것에 있어선 데이터 전처리, 저장, 모델 설계 등 구글 코랩이 편리하다.</li>
+      <li>그러나, AWS의 <strong>Sagemaker</strong>는 학습한 모델을 바로 배포할 수 있다. <code class="language-plaintext highlighter-rouge">endpoint</code>에 deploy 하는 형태로 학습 결과를 바로 유저에게 배포할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="5-기타">5. 기타</h2>
+
+<ul>
+  <li>ASW EC2를 사용하면 서버 관리에 있어 부담이 사라지고, 도커나 쿠버네티스 같은 툴을 사용하여 나름 편리하게 서버를 운영하고 관리할 수 있겠습니다.</li>
+  <li><strong>클라우드서비스 비용이 걱정이 되는 것인데, 사실 우리의 시간도 다 돈이니까요.., 
+월 2~3만원이면 해볼만 하지 않을까요? ㅎㅎ</strong></li>
+</ul>
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=cloud_sevice"><span class="tag" data-tag="cloud_sevice">cloud_sevice</span></a>
+        
+        <a href="/research/?tag=AWS_EC2"><span class="tag" data-tag="AWS_EC2">AWS_EC2</span></a>
+        
+        <a href="/research/?tag=AWS_Sagemaker"><span class="tag" data-tag="AWS_Sagemaker">AWS_Sagemaker</span></a>
+        
+        <a href="/research/?tag=IaaS"><span class="tag" data-tag="IaaS">IaaS</span></a>
+        
+        <a href="/research/?tag=PaaS"><span class="tag" data-tag="PaaS">PaaS</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
