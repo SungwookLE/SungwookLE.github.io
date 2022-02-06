@@ -120,6 +120,8 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 <div class="post-header loading-animation" style="background-image: url('./img/2022-02-06-18-06-04.png')">
+
+
 </div>
 
 
@@ -151,7 +153,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post-article">
         <div class="toc">
           <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#gan--rbms">GAN &amp; RBMs</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</a><ul><li><a href="#2-1-참고fake-data-generator">2-1. 참고(fake data generator)</a></li></ul></li><li><a href="#3-rbmsrestircted-boltzmann-machines">3, RBMs(Restircted Boltzmann Machines)</a><ul><li><a href="#3-1-rbms-역할">3-1. RBMs 역할</a></li><li><a href="#3-2-rbms-독특한점">3-2. RBMs 독특한점</a></li><li><a href="#3-3-training-step">3-3. Training Step</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#gan--rbms">GAN &amp; RBMs</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</a><ul><li><a href="#2-1-gan-등장-배경">2-1. GAN 등장 배경</a></li><li><a href="#2-2-gan의-역할">2-2. GAN의 역할</a></li><li><a href="#2-3-gan-네트워크-이해">2-3. GAN 네트워크 이해</a></li><li><a href="#2-4-참고">2-4. 참고</a></li></ul></li><li><a href="#3-rbmsrestircted-boltzmann-machines">3. RBMs(Restircted Boltzmann Machines)</a><ul><li><a href="#3-1-rbms-역할">3-1. RBMs 역할</a></li><li><a href="#3-2-rbms-독특한점">3-2. RBMs 독특한점</a></li><li><a href="#3-3-training-step">3-3. Training Step</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="gan--rbms">GAN &amp; RBMs</h1>
@@ -159,7 +161,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   <p>Writer: SungwookLE  <br />
 DATE: ‘22.2/6 <br />
 REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/research/2202061010/img/LS23.pdf">#23</a>, <a href="/research/2202061010/img/LS24.pdf">#24</a><br />
-실습코드(colab):  <a href="">코랩</a></p>
+실습코드(colab):  <a href="">코랩</a>, <a href="/research/2202061010/img/Day8_PS.pdf">부연 자료.pdf</a></p>
   <ul>
     <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
   </ul>
@@ -169,23 +171,40 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
 <ul>
   <li>There is a more powerful generative model based on: Generative Adversarial Networks(GANs)</li>
   <li>Prior to GANs, a classical method was often employed: Restricted Boltzmann Machines (RBMs)</li>
-  <li>Generative Model은 기본적으로 아래와 같이 구성됨.
-    <ul>
-      <li>오토인코더의 경우에 디코더 부분을 generative model로 사용할 수 있었음을 기억하자
-<img src="/research/2202061010/img/2022-02-06-17-08-18.png" alt="" /></li>
-    </ul>
-  </li>
-  <li>GAN(Generative Adversarial Networks)은, 일반적인 generative model을 통해 나온 결과물의 성능이 떨어지니, 이를 보완하기 위해 등장한 것으로, 보완하기 위한 방법으로 <code class="language-plaintext highlighter-rouge">Discriminator</code>를 추가하였다.
-<img src="/research/2202061010/img/2022-02-06-17-12-20.png" alt="" /></li>
-  <li><code class="language-plaintext highlighter-rouge">Discriminator</code>의 목적함수를 살펴보면 real data가 들어오면 커지게끔, fake data가 들어오면 작아지게끔 설계하여서 전체 목적함수가 커지면 커질 수록 fake와 real을 잘 구분하는 네트워크가 됨을 알 수 있다.</li>
 </ul>
 
 <h2 id="2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</h2>
+
+<h3 id="2-1-gan-등장-배경">2-1. GAN 등장 배경</h3>
 <ul>
-  <li>GAN 모델에서는 보통 log를 취한 <code class="language-plaintext highlighter-rouge">cross entropy</code> 목적함수를 많이 쓴다. 
+  <li>Generative Model(<code class="language-plaintext highlighter-rouge">Generator</code>)은 기본적으로 아래와 같은 형태이다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">오토인코더</code>의 경우에 <code class="language-plaintext highlighter-rouge">decoder</code> 부분을 잘라내어, generative model로 사용할 수 있었다.
+  <img src="/research/2202061010/img/2022-02-06-17-08-18.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>GAN(Generative Adversarial Networks)은, 일반적인 generative model을 통해 나온 결과물 보다 성능을 향상시키기 위한 방법으로 <code class="language-plaintext highlighter-rouge">Discriminator</code>를 추가하였다. 
+<img src="/research/2202061010/img/2022-02-06-23-11-51.png" alt="" /></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">GAN</code> 네트워크로 <code class="language-plaintext highlighter-rouge">Generator</code>와 <code class="language-plaintext highlighter-rouge">Discriminator</code>를 학습시키고, 학습이 끝나면 <code class="language-plaintext highlighter-rouge">Generator</code>를 잘라내어 가져와서 사용한다.</li>
+</ul>
+
+<h3 id="2-2-gan의-역할">2-2. GAN의 역할</h3>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Generator</code>: 성능이 뛰어난 fake 생성기</li>
+  <li><code class="language-plaintext highlighter-rouge">Discriminator</code>: fake 를 구별해낼 수 있는 감별기</li>
+</ol>
+
+<h3 id="2-3-gan-네트워크-이해">2-3. GAN 네트워크 이해</h3>
+<ul>
+  <li>
+    <p>목적함수를 살펴봄으로써, GAN의 학습원리와 네트워크를 이해하자.
 <img src="/research/2202061010/img/2022-02-06-17-16-10.png" alt="" />
-<img src="/research/2202061010/img/2022-02-06-17-16-31.png" alt="" /></li>
-  <li>위의 그림을 잘 이해하는 것이 중요하다.
+<img src="/research/2202061010/img/2022-02-06-17-16-31.png" alt="" /></p>
+  </li>
+  <li>
+    <p>위의 그림을 잘 이해하는 것이 중요한데, 어떻게 <code class="language-plaintext highlighter-rouge">GAN</code>네트워크가 성능의 뛰어난 <code class="language-plaintext highlighter-rouge">Generator</code>와 <code class="language-plaintext highlighter-rouge">Discriminator</code>를 학습시킬 수 있는 구조인지 살펴보자.</p>
     <ol>
       <li><code class="language-plaintext highlighter-rouge">Discriminator</code>의 D(x)는 real 데이터가 X로 들어오면 큰 값이 출력되게 한다. fake 데이터가 X로 들어오면 작은 값이 출력되게 한다. <code class="language-plaintext highlighter-rouge">Discriminator</code>의 목적함수를 maximize함으로써, real과 fake를 더 잘 구별해내는 <code class="language-plaintext highlighter-rouge">discriminator</code>로 학습시킨다.</li>
       <li>같은 <strong>iteration</strong>에서 <code class="language-plaintext highlighter-rouge">discriminator</code>의 학습이 끝나면, <code class="language-plaintext highlighter-rouge">generator</code>를 학습시킨다. <code class="language-plaintext highlighter-rouge">generator</code>는 <code class="language-plaintext highlighter-rouge">discriminator</code>의 목적함수를 minimize하게 학습시키는 것인데, minimize 한다는 것의 의미는 fake 데이터를 넣어도 <code class="language-plaintext highlighter-rouge">discriminator</code>가 real 데이터라고 착각하게 만들 수 있는 수준의 fake 데이터를 만들어내게 하겠다는 의미이다. 이미 <code class="language-plaintext highlighter-rouge">discriminator</code>의 네트워크 파라미터는 고정(<code class="language-plaintext highlighter-rouge">fix, not trainable</code>)되어 있으니, <code class="language-plaintext highlighter-rouge">discriminator</code>의 눈치를 보면서 <code class="language-plaintext highlighter-rouge">generator</code>를 학습시키는 꼴이 된다.</li>
@@ -193,36 +212,39 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
       <li>이 과정을 계속 반복함으로써 <code class="language-plaintext highlighter-rouge">generator</code>가 더 그럴싸한 fake 데이터를 만들게 한다.</li>
     </ol>
   </li>
-  <li>D와 G 함수 class를 <code class="language-plaintext highlighter-rouge">neural network</code>로 파라미터라이제이션하여 문제를 구체화하고 Gradient-Descent로 해를 찾는다.</li>
-  <li><code class="language-plaintext highlighter-rouge">min/max</code> 문제는 게임이론과 같이 하는 최대화, 하나는 최소화하여야 하기 때문에 목적함수는 <code class="language-plaintext highlighter-rouge">convex+concave</code> 형태이다.
-<img src="/research/2202061010/img/2022-02-06-17-29-32.png" alt="" />
-    <ul>
+</ul>
+
+<p><img src="/research/2202061010/img/2022-02-06-17-29-32.png" alt="" /></p>
+<ul>
+  <li>위 수식의 <code class="language-plaintext highlighter-rouge">min/max</code> 목적함수를 구하는 과정을 살펴보자.
+    <ol>
+      <li>D와 G 함수 class를 <code class="language-plaintext highlighter-rouge">neural network</code>로 파라미터라이제이션하여 문제를 구체화하고 Gradient-Descent로 해를 찾는다.</li>
+      <li><code class="language-plaintext highlighter-rouge">min/max</code> 문제는 게임이론과 같이 하는 최대화, 하나는 최소화하여야 하기 때문에 목적함수는 <code class="language-plaintext highlighter-rouge">convex+concave</code> 형태이다.</li>
       <li><code class="language-plaintext highlighter-rouge">min/max</code> 문제를 푸는 것이고, saddle point가 최적 해이기 때문에 <code class="language-plaintext highlighter-rouge">training instability</code>가 존재하는 것이 고질적인 문제이다.</li>
       <li><code class="language-plaintext highlighter-rouge">training instability</code>를 조금이나마 해소하고 <code class="language-plaintext highlighter-rouge">discriminator</code>와 <code class="language-plaintext highlighter-rouge">generator</code>의 학습을 조금 더 잘 되게 하기 위해 <strong>Alternating Gradient Descent</strong>라는 것을 이용한다.</li>
       <li><strong>Alternating Gradient Descent</strong>는 <code class="language-plaintext highlighter-rouge">generator</code>를 한번 학습할 때, <code class="language-plaintext highlighter-rouge">discriminator</code>는 <strong>k</strong>번 반복학습하는 것으로 <em>highly nonlinear</em>할 때 러닝레이트를 작게하고, 여러번 반복시킴으로써 학습을 조금 더 잘되게 하는 테크닉이다.
   <img src="/research/2202061010/img/2022-02-06-17-43-06.png" alt="" /></li>
-    </ul>
+    </ol>
   </li>
   <li><code class="language-plaintext highlighter-rouge">GANs</code>는 아주 성능이 뛰어난 fake data <code class="language-plaintext highlighter-rouge">generator</code>이고, 성능도 우수하다. 초기값과 random seed에 의해 성능이 크게 좌지우지되는데 이는 <code class="language-plaintext highlighter-rouge">training instability</code>가 존재하여서이다.</li>
 </ul>
 
-<h3 id="2-1-참고fake-data-generator">2-1. 참고(fake data generator)</h3>
+<h3 id="2-4-참고">2-4. 참고</h3>
 <ul>
-  <li>data <code class="language-plaintext highlighter-rouge">generator</code>로 사용할 수 있는 것 중 배운 것들을 소개해보자
+  <li><code class="language-plaintext highlighter-rouge">Generator</code>로 사용할 수 있는 것 중 배운 것들을 소개해보자
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">autoencoder</code> 학습 후 <code class="language-plaintext highlighter-rouge">decoder</code> 사용: 이 때, internel feature는 가우시안 distribution 의 랜덤 인풋,</li>
+      <li><code class="language-plaintext highlighter-rouge">autoencoder</code> 학습 후 <code class="language-plaintext highlighter-rouge">decoder</code> 추출 사용: <code class="language-plaintext highlighter-rouge">decoder</code>의 입력값이 되는 internel feature는 가우시안 distribution 의 랜덤값으로 대체하고, 출력값을 fake data로 한다.</li>
       <li><code class="language-plaintext highlighter-rouge">PCA</code>: 일종의 generator로 쓸 수 있다. (성능이 안좋음)</li>
-      <li><code class="language-plaintext highlighter-rouge">GAN</code></li>
-      <li><code class="language-plaintext highlighter-rouge">RBMs</code>: 밑에서 소개</li>
+      <li><code class="language-plaintext highlighter-rouge">RBMs</code>: 밑에서 소개하겠으나, 성능은 글쎄..</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">GAN</code></strong>: 성능이 매우 뛰어남</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="3-rbmsrestircted-boltzmann-machines">3, RBMs(Restircted Boltzmann Machines)</h2>
+<h2 id="3-rbmsrestircted-boltzmann-machines">3. RBMs(Restircted Boltzmann Machines)</h2>
 <ul>
   <li>수식을 파고들 것 까지는 없고, 컨셉만 잡고 가자 (<code class="language-plaintext highlighter-rouge">sklearn.neural_network</code>에 잘 구현되어 있음)</li>
-  <li>Autoencoder로 결측데이터에 대한 <code class="language-plaintext highlighter-rouge">matrix completion</code>을 수행하였는 데, 결과가 조금 아쉬울 경우 <code class="language-plaintext highlighter-rouge">RBMs</code>를 구려해보면 성능이 향상될 수 도 있다.</li>
-  <li>본 강의에서는 binary random data를 예시로 하여 &lt;1,0&gt;이 나오는 데이터에서 확률만 주어지면 데이터를 생성해낼 수 있다는 예시를 베이스로 해서 시작하겠다. (이를 <code class="language-plaintext highlighter-rouge">깁스 샘플링, Gibs Sampling</code>이라고 한다 함)
+  <li>본 강의에서는 binary random data를 예시로 하여 &lt;1,0&gt;이 나오는 데이터에서 확률만 주어지면 데이터를 생성해낼 수 있다는 예시를 베이스로 해서 시작하겠다. (이를 <code class="language-plaintext highlighter-rouge">Gibs Sampling</code> 이라고 한다 함)
     <ul>
       <li>만약, binary data CASE가 아니라면 본 컨셉을 확장시켜야 함</li>
     </ul>
@@ -236,8 +258,11 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
 
 <h3 id="3-2-rbms-독특한점">3-2. RBMs 독특한점</h3>
 <ul>
-  <li>training path가 단방향이 아니고 visible layer -&gt; hidden layer -&gt; visible layer로 찍고 돌아오는 루트이다. (joint 관계를 표현하기 위한 수식들이 있음)
-<img src="/research/2202061010/img/2022-02-06-17-53-47.png" alt="" /></li>
+  <li>training path가 단방향이 아니고 visible layer -&gt; hidden layer -&gt; visible layer로 찍고 돌아오는 루트이다. (joint 관계를 표현하기 위한 수식들이 있음)</li>
+</ul>
+
+<p><img src="/research/2202061010/img/2022-02-06-17-53-47.png" alt="" /></p>
+<ul>
   <li>모든 수식을 확률 관계로 표현하였다. 따라서, 조건부 확률이 계속 등장하고 독립이라는 가정을 통해 수식을 유도하는 점에서 특이하다.</li>
   <li>단방향으로만 에러가 흐르는 뉴럴 넷의 경우도 파라미터라이제이션을 가중치과 바이어스, 비선형함수로만 구성하였는데, <code class="language-plaintext highlighter-rouge">RBMs</code>에서는 조건부 확률이라는 개념으로 함수의 파라미터라이제이션을 하였다.</li>
   <li>확률 자체를 에너지 관점에서 해석할 수도 있는데, 에너지가 크다는 것은 입자의 운동에너지가 커서 일정 지점에 고정되어 있을 확률은 낮아진다. 즉, 에너지가 낮을수록 확률은 커진다로 해석할 수 있다.</li>
