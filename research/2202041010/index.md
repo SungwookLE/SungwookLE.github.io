@@ -4,7 +4,7 @@ type: research
 date: 2022-02-04 10:10
 category: Cloud
 title: Cloud Service 
-subtitle: 클라우드서비스의 이해 및 튜토리얼
+subtitle: 클라우드 서비스 설명 및 튜토리얼
 writer: 100
 post-header: true  
 header-img: ./img/Untitled%201.png

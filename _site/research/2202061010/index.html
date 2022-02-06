@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>GAN & RBMs</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="GAN & RBMs">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2202061010/./img/2022-02-06-18-06-04.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-02-06-18-06-04.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                DataScience
+            </div>
+        </div>
+        <h1 class="post-title">
+            GAN & RBMs
+        </h1>
+        <h2 class="post-subtitle">
+            Lecture#22~#24
+        </h2>
+        <h2 class="post-date">
+            2022-02-06 10:10
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#gan--rbms">GAN &amp; RBMs</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</a><ul><li><a href="#2-1-참고fake-data-generator">2-1. 참고(fake data generator)</a></li></ul></li><li><a href="#3-rbmsrestircted-boltzmann-machines">3, RBMs(Restircted Boltzmann Machines)</a><ul><li><a href="#3-1-rbms-역할">3-1. RBMs 역할</a></li><li><a href="#3-2-rbms-독특한점">3-2. RBMs 독특한점</a></li><li><a href="#3-3-training-step">3-3. Training Step</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="gan--rbms">GAN &amp; RBMs</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘22.2/6 <br />
+REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/research/2202061010/img/LS23.pdf">#23</a>, <a href="/research/2202061010/img/LS24.pdf">#24</a><br />
+실습코드(colab):  <a href="">코랩</a></p>
+  <ul>
+    <li>블로그를 읽어보시고, 실습코드까지 연습해보는 것을 추천합니다 :)</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+<ul>
+  <li>There is a more powerful generative model based on: Generative Adversarial Networks(GANs)</li>
+  <li>Prior to GANs, a classical method was often employed: Restricted Boltzmann Machines (RBMs)</li>
+  <li>Generative Model은 기본적으로 아래와 같이 구성됨.
+    <ul>
+      <li>오토인코더의 경우에 디코더 부분을 generative model로 사용할 수 있었음을 기억하자
+<img src="/research/2202061010/img/2022-02-06-17-08-18.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>GAN(Generative Adversarial Networks)은, 일반적인 generative model을 통해 나온 결과물의 성능이 떨어지니, 이를 보완하기 위해 등장한 것으로, 보완하기 위한 방법으로 <code class="language-plaintext highlighter-rouge">Discriminator</code>를 추가하였다.
+<img src="/research/2202061010/img/2022-02-06-17-12-20.png" alt="" /></li>
+  <li><code class="language-plaintext highlighter-rouge">Discriminator</code>의 목적함수를 살펴보면 real data가 들어오면 커지게끔, fake data가 들어오면 작아지게끔 설계하여서 전체 목적함수가 커지면 커질 수록 fake와 real을 잘 구분하는 네트워크가 됨을 알 수 있다.</li>
+</ul>
+
+<h2 id="2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</h2>
+<ul>
+  <li>GAN 모델에서는 보통 log를 취한 <code class="language-plaintext highlighter-rouge">cross entropy</code> 목적함수를 많이 쓴다. 
+<img src="/research/2202061010/img/2022-02-06-17-16-10.png" alt="" />
+<img src="/research/2202061010/img/2022-02-06-17-16-31.png" alt="" /></li>
+  <li>위의 그림을 잘 이해하는 것이 중요하다.
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">Discriminator</code>의 D(x)는 real 데이터가 X로 들어오면 큰 값이 출력되게 한다. fake 데이터가 X로 들어오면 작은 값이 출력되게 한다. <code class="language-plaintext highlighter-rouge">Discriminator</code>의 목적함수를 maximize함으로써, real과 fake를 더 잘 구별해내는 <code class="language-plaintext highlighter-rouge">discriminator</code>로 학습시킨다.</li>
+      <li>같은 <strong>iteration</strong>에서 <code class="language-plaintext highlighter-rouge">discriminator</code>의 학습이 끝나면, <code class="language-plaintext highlighter-rouge">generator</code>를 학습시킨다. <code class="language-plaintext highlighter-rouge">generator</code>는 <code class="language-plaintext highlighter-rouge">discriminator</code>의 목적함수를 minimize하게 학습시키는 것인데, minimize 한다는 것의 의미는 fake 데이터를 넣어도 <code class="language-plaintext highlighter-rouge">discriminator</code>가 real 데이터라고 착각하게 만들 수 있는 수준의 fake 데이터를 만들어내게 하겠다는 의미이다. 이미 <code class="language-plaintext highlighter-rouge">discriminator</code>의 네트워크 파라미터는 고정(<code class="language-plaintext highlighter-rouge">fix, not trainable</code>)되어 있으니, <code class="language-plaintext highlighter-rouge">discriminator</code>의 눈치를 보면서 <code class="language-plaintext highlighter-rouge">generator</code>를 학습시키는 꼴이 된다.</li>
+      <li>이 때, <code class="language-plaintext highlighter-rouge">discriminator</code>는 조금 더 fine tune을 해주기 위해 <code class="language-plaintext highlighter-rouge">alternating gradient descent</code>를 사용하고 이 방법은 K번 <code class="language-plaintext highlighter-rouge">discriminator</code>를 작업 learing rate로 학습시키는 방법이다.</li>
+      <li>이 과정을 계속 반복함으로써 <code class="language-plaintext highlighter-rouge">generator</code>가 더 그럴싸한 fake 데이터를 만들게 한다.</li>
+    </ol>
+  </li>
+  <li>D와 G 함수 class를 <code class="language-plaintext highlighter-rouge">neural network</code>로 파라미터라이제이션하여 문제를 구체화하고 Gradient-Descent로 해를 찾는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">min/max</code> 문제는 게임이론과 같이 하는 최대화, 하나는 최소화하여야 하기 때문에 목적함수는 <code class="language-plaintext highlighter-rouge">convex+concave</code> 형태이다.
+<img src="/research/2202061010/img/2022-02-06-17-29-32.png" alt="" />
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">min/max</code> 문제를 푸는 것이고, saddle point가 최적 해이기 때문에 <code class="language-plaintext highlighter-rouge">training instability</code>가 존재하는 것이 고질적인 문제이다.</li>
+      <li><code class="language-plaintext highlighter-rouge">training instability</code>를 조금이나마 해소하고 <code class="language-plaintext highlighter-rouge">discriminator</code>와 <code class="language-plaintext highlighter-rouge">generator</code>의 학습을 조금 더 잘 되게 하기 위해 <strong>Alternating Gradient Descent</strong>라는 것을 이용한다.</li>
+      <li><strong>Alternating Gradient Descent</strong>는 <code class="language-plaintext highlighter-rouge">generator</code>를 한번 학습할 때, <code class="language-plaintext highlighter-rouge">discriminator</code>는 <strong>k</strong>번 반복학습하는 것으로 <em>highly nonlinear</em>할 때 러닝레이트를 작게하고, 여러번 반복시킴으로써 학습을 조금 더 잘되게 하는 테크닉이다.
+  <img src="/research/2202061010/img/2022-02-06-17-43-06.png" alt="" /></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">GANs</code>는 아주 성능이 뛰어난 fake data <code class="language-plaintext highlighter-rouge">generator</code>이고, 성능도 우수하다. 초기값과 random seed에 의해 성능이 크게 좌지우지되는데 이는 <code class="language-plaintext highlighter-rouge">training instability</code>가 존재하여서이다.</li>
+</ul>
+
+<h3 id="2-1-참고fake-data-generator">2-1. 참고(fake data generator)</h3>
+<ul>
+  <li>data <code class="language-plaintext highlighter-rouge">generator</code>로 사용할 수 있는 것 중 배운 것들을 소개해보자
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">autoencoder</code> 학습 후 <code class="language-plaintext highlighter-rouge">decoder</code> 사용: 이 때, internel feature는 가우시안 distribution 의 랜덤 인풋,</li>
+      <li><code class="language-plaintext highlighter-rouge">PCA</code>: 일종의 generator로 쓸 수 있다. (성능이 안좋음)</li>
+      <li><code class="language-plaintext highlighter-rouge">GAN</code></li>
+      <li><code class="language-plaintext highlighter-rouge">RBMs</code>: 밑에서 소개</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-rbmsrestircted-boltzmann-machines">3, RBMs(Restircted Boltzmann Machines)</h2>
+<ul>
+  <li>수식을 파고들 것 까지는 없고, 컨셉만 잡고 가자 (<code class="language-plaintext highlighter-rouge">sklearn.neural_network</code>에 잘 구현되어 있음)</li>
+  <li>Autoencoder로 결측데이터에 대한 <code class="language-plaintext highlighter-rouge">matrix completion</code>을 수행하였는 데, 결과가 조금 아쉬울 경우 <code class="language-plaintext highlighter-rouge">RBMs</code>를 구려해보면 성능이 향상될 수 도 있다.</li>
+  <li>본 강의에서는 binary random data를 예시로 하여 &lt;1,0&gt;이 나오는 데이터에서 확률만 주어지면 데이터를 생성해낼 수 있다는 예시를 베이스로 해서 시작하겠다. (이를 <code class="language-plaintext highlighter-rouge">깁스 샘플링, Gibs Sampling</code>이라고 한다 함)
+    <ul>
+      <li>만약, binary data CASE가 아니라면 본 컨셉을 확장시켜야 함</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-1-rbms-역할">3-1. RBMs 역할</h3>
+<ul>
+  <li>역할: data <code class="language-plaintext highlighter-rouge">generator</code> 또는, <code class="language-plaintext highlighter-rouge">matrix completion</code>에 사용한다.</li>
+</ul>
+
+<h3 id="3-2-rbms-독특한점">3-2. RBMs 독특한점</h3>
+<ul>
+  <li>training path가 단방향이 아니고 visible layer -&gt; hidden layer -&gt; visible layer로 찍고 돌아오는 루트이다. (joint 관계를 표현하기 위한 수식들이 있음)
+<img src="/research/2202061010/img/2022-02-06-17-53-47.png" alt="" /></li>
+  <li>모든 수식을 확률 관계로 표현하였다. 따라서, 조건부 확률이 계속 등장하고 독립이라는 가정을 통해 수식을 유도하는 점에서 특이하다.</li>
+  <li>단방향으로만 에러가 흐르는 뉴럴 넷의 경우도 파라미터라이제이션을 가중치과 바이어스, 비선형함수로만 구성하였는데, <code class="language-plaintext highlighter-rouge">RBMs</code>에서는 조건부 확률이라는 개념으로 함수의 파라미터라이제이션을 하였다.</li>
+  <li>확률 자체를 에너지 관점에서 해석할 수도 있는데, 에너지가 크다는 것은 입자의 운동에너지가 커서 일정 지점에 고정되어 있을 확률은 낮아진다. 즉, 에너지가 낮을수록 확률은 커진다로 해석할 수 있다.</li>
+</ul>
+
+<h3 id="3-3-training-step">3-3. Training Step</h3>
+<ul>
+  <li>학습과정이 hidden layer를 찍고 다시 visible로 돌아오는 과정을 포함하고 있다.
+<img src="/research/2202061010/img/2022-02-06-18-00-58.png" alt="" /></li>
+  <li>RBMs는 목적함수로 <code class="language-plaintext highlighter-rouge">cross entropy</code> 비슷한 것을 사용함으로 <code class="language-plaintext highlighter-rouge">ML(Maximum Likelihood)</code> optimal sense를 갖는다.</li>
+  <li>뉴럴 넷도 목적함수로 크로스 엔트로피 함수를 사용하면 <code class="language-plaintext highlighter-rouge">ML</code> 측면에서 optimal sense를 갖는다.</li>
+  <li>기계학습 방식은 pre-knowledge, previous belief 정보를 사용하지 않기 때문에 <code class="language-plaintext highlighter-rouge">ML</code> 관점에서 접근하여 학습하는 것이다.</li>
+  <li>참고로, 칼만필터 등은 <code class="language-plaintext highlighter-rouge">covariance</code>를 계속 Recursive하게 가지고오기 때문에 (<code class="language-plaintext highlighter-rouge">Marcov Chain</code>), <code class="language-plaintext highlighter-rouge">MAP(Maximum a Posterior)</code>에 속한다.</li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=GAN"><span class="tag" data-tag="GAN">GAN</span></a>
+        
+        <a href="/research/?tag=Generative_Adversarial_Network"><span class="tag" data-tag="Generative_Adversarial_Network">Generative_Adversarial_Network</span></a>
+        
+        <a href="/research/?tag=RBMs"><span class="tag" data-tag="RBMs">RBMs</span></a>
+        
+        <a href="/research/?tag=generator"><span class="tag" data-tag="generator">generator</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
