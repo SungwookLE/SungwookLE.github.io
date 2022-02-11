@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>LESSON1. What's and Why's of APIs</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="LESSON1. What's and Why's of APIs">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2202111735/./img/2022-02-11-17-49-48.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-02-11-17-49-48.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Udacity
+            </div>
+        </div>
+        <h1 class="post-title">
+            LESSON1. What's and Why's of APIs
+        </h1>
+        <h2 class="post-subtitle">
+            Designing RESTful APIs
+        </h2>
+        <h2 class="post-date">
+            2022-02-11 17:35
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#lesson1-whats-and-whys-of-apis">LESSON1. What’s and Why’s of APIs</a><ul><li><a href="#1-apis">1. APIs</a></li><li><a href="#2-web-apis">2. Web APIs</a></li><li><a href="#3-web-api-protocols">3. Web API Protocols</a></li><li><a href="#4-web-service--message-formatting-layer">4. Web Service &amp; Message Formatting Layer</a><ul><li><a href="#4-1-chossing-the-right-technologies">4-1. Chossing the Right Technologies</a></li></ul></li><li><a href="#5-rest-constraints">5. Rest Constraints</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="lesson1-whats-and-whys-of-apis">LESSON1. What’s and Why’s of APIs</h1>
+<blockquote>
+  <p>Designing RESTful APIs<br />
+Writer: SungwookLE  <br />
+DATE: ‘22.2/11</p>
+</blockquote>
+
+<h2 id="1-apis">1. APIs</h2>
+<ul>
+  <li><strong>Application Programming Interface</strong>
+    <ul>
+      <li>의미 그대로, 앱과 앱 사이의 프로그래밍 인터페이스를 의미</li>
+    </ul>
+  </li>
+  <li>API is a great way for controlling the exposure of code, allowing internal functionalities of an application to be used from the outside world without exposing all of the internal code.</li>
+</ul>
+
+<ol>
+  <li><strong>예시1</strong>: 같은 machine 내부에서의 API 구성
+    <ul>
+      <li>OS운영시스템이 어플리케이션과 프로그래밍 입출력값을 주고 받음 (<code class="language-plaintext highlighter-rouge">import os</code>)
+ <img src="./img/2022-02-11-17-43-17.png" alt="" /></li>
+    </ul>
+  </li>
+  <li><strong>예시2</strong>: 서로 다른 machine 끼리 프로그램 입출력 값을 주고 받음
+    <ul>
+      <li>기상/교통 정보를 가지고 있는 서버와 내 machine이 입출력값을 <code class="language-plaintext highlighter-rouge">web</code>환경(인터넷)을 통해 주고 받음
+ <img src="./img/2022-02-11-17-49-48.png" alt="" /></li>
+      <li>이런 구조의 API를 <strong>Web APIs</strong>라고 부른다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="2-web-apis">2. Web APIs</h2>
+<ul>
+  <li>How API’s can enable communication between several machines?
+    <ul>
+      <li>through <code class="language-plaintext highlighter-rouge">Internet</code></li>
+      <li>A machine can use multiple web APIs to create a new application</li>
+    </ul>
+  </li>
+  <li>Why is this important?
+    <ul>
+      <li>개발단계에서 기능개발을 위해서도 중요하고</li>
+      <li>자신의 비즈니스를 확장시키는 것에도 중요하다. (재사용성 및 ..)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-web-api-protocols">3. Web API Protocols</h2>
+<ul>
+  <li>다양한 머신(different os, specifications, data structures .. )들이 커뮤니케이션하기 위해선 동일한 규칙의 방법이 필요하다.
+    <ul>
+      <li>It is called <code class="language-plaintext highlighter-rouge">protocol</code>.</li>
+    </ul>
+  </li>
+  <li>이러한 프로토콜의 하나로 <code class="language-plaintext highlighter-rouge">OSI model</code>이 있다.</li>
+  <li>
+    <p><a href="https://en.wikipedia.org/wiki/OSI_model">Open System Interconnection(OSI)</a>
+<img src="./img/2022-02-11-18-02-04.png" alt="" /></p>
+  </li>
+  <li>OSI 모델의 프로토콜을 따라 어떤 메시지를 다른 machine으로 송신한다고 했을 때, 아래의 그림처럼 진행된다고 보면 된다.
+<img src="./img/2022-02-11-18-04-41.png" alt="" />
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Application</code>은 실제 발송하고자 하는 메세지라고 보면 된다.</li>
+      <li>이를 <code class="language-plaintext highlighter-rouge">Presentation, Session, Transport, Network, DataLink, Physical</code> 레이어 단계를 거치면서 계속 포장해나간다.</li>
+      <li>최종적으로 <code class="language-plaintext highlighter-rouge">Physical</code>에 담긴 정보는 물리적으로 전압신호로 다른 외부로 송출되게 된다.</li>
+      <li>송출된 정보를 수신하고자 할 때에는, OSI 레이어의 역순으로 데이터를 해체해서 받으면 된다.</li>
+      <li>각 단계를 거치면 발송자의 Appication(message)를 확인할 수 있다.</li>
+    </ul>
+  </li>
+  <li>The most popular Application level protocol is <code class="language-plaintext highlighter-rouge">HTTP</code>(Hypertext Transfer Protocol)
+    <ul>
+      <li>HTTP 외에도 FTP, IMAP, POP, SSH 등이 존재한다.
+  <img src="./img/2022-02-11-18-15-38.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>HTTP fuctions via a series of requests and responses between clients and servers respectively
+    <ul>
+      <li>HTTP protocol is the foundation of data communication for the World Wide Web</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-web-service--message-formatting-layer">4. Web Service &amp; Message Formatting Layer</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Web API</code>에서의 프로토콜을 이해하기 위해서, <code class="language-plaintext highlighter-rouge">OSI model</code>의 Application Layer 위에 2개의 레이어(<code class="language-plaintext highlighter-rouge">Web Service, Message Formatting</code> Layers)를 추가하여 살펴보아야 도움이 된다.
+<img src="./img/2022-02-11-18-22-44.png" alt="" /></li>
+</ul>
+
+<ol>
+  <li>Web Service Layer
+    <ul>
+      <li>
+        <p>Web Service Layer 중 유명한 것 중 하나가 <code class="language-plaintext highlighter-rouge">SOAP</code>
+ <img src="./img/2022-02-11-18-41-15.png" alt="" /></p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">REST</code>(REpresentational State Transfer) 매우 유명함</p>
+        <ul>
+          <li>REST is more of a set of styles and guidelines than a protocol
+  <img src="./img/2022-02-11-18-43-36.png" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Message Formatting Layer
+    <ul>
+      <li>
+        <p>These protocols focus mainly on the data structues that contain the information we want to communicate,</p>
+      </li>
+      <li>
+        <p>흔희 쓰는 방식은 <code class="language-plaintext highlighter-rouge">json</code>이나 <code class="language-plaintext highlighter-rouge">xml</code>일 것이다.</p>
+        <ul>
+          <li>xml(eXtensible Markup Language): <code class="language-plaintext highlighter-rouge">HTML</code>과 매우 유사함
+  <img src="./img/2022-02-11-18-49-48.png" alt="" /></li>
+          <li>json(Java Script Object Notation): <code class="language-plaintext highlighter-rouge">python</code>의 <code class="language-plaintext highlighter-rouge">dict</code>와 동일
+  <img src="./img/2022-02-11-18-51-39.png" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>내가 구현하고자 하는 API의 특성에 따라, Web Service &amp; Message Formatting 레이어의 구현 형태를 선택하면 된다.
+<img src="./img/2022-02-11-18-57-52.png" alt="" /></li>
+</ul>
+
+<h3 id="4-1-chossing-the-right-technologies">4-1. Chossing the Right Technologies</h3>
+
+<ol>
+  <li>Web Service Layer
+<img src="./img/2022-02-11-19-00-51.png" alt="" />
+    <ul>
+      <li>최근 <code class="language-plaintext highlighter-rouge">REST</code> 방식의 구현이 <code class="language-plaintext highlighter-rouge">SOAP</code>보다 많은데, <code class="language-plaintext highlighter-rouge">SOAP</code>보다 구현이 쉽기 때문이다.</li>
+    </ul>
+  </li>
+  <li>Message Formatting Layer
+<img src="./img/2022-02-11-19-03-49.png" alt="" />
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">json</code>이 <code class="language-plaintext highlighter-rouge">xml</code>을 많이 따라온 상황이고, 아무래도 <code class="language-plaintext highlighter-rouge">json</code>이 사람이 보기 더 편한 데이터 구조여서 그렇다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="5-rest-constraints">5. Rest Constraints</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">REST</code>는 일종의 가이드라인이기 때문에, 제대로 <code class="language-plaintext highlighter-rouge">REST</code>를 구현하기 위해선 몇가지 constraints를 지켜주어야 한다.
+    <ul>
+      <li><a href="https://classroom.udacity.com/courses/ud388/lessons/4594018829/concepts/52981798390923">Video</a></li>
+      <li>HTTP 프로토콜 위에서 제대로 동작되어야 하므로..</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Client-Server
+<img src="./img/2022-02-11-19-16-51.png" alt="" />
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Request</code> &amp; <code class="language-plaintext highlighter-rouge">Response</code></li>
+    </ul>
+  </li>
+  <li>Stateless
+<img src="./img/2022-02-11-19-17-45.png" alt="" />
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">State</code>(상태)에 영향을 받지 않게</li>
+    </ul>
+  </li>
+  <li>Cacheable
+<img src="./img/2022-02-11-19-19-07.png" alt="" />
+    <ul>
+      <li>받은 정보에서 변함이 없다면 또 받지 않게끔</li>
+    </ul>
+  </li>
+  <li>Uniform Interface
+<img src="./img/2022-02-11-19-19-56.png" alt="" />
+    <ul>
+      <li>모든 machine에서 동일한 인터페이스 구성</li>
+    </ul>
+  </li>
+  <li>Layered System
+<img src="./img/2022-02-11-19-20-40.png" alt="" />
+    <ul>
+      <li>endpoint로 한번에 갈 수 없고 각 layer로 분리</li>
+    </ul>
+  </li>
+  <li>Code on Demand(optional)
+<img src="./img/2022-02-11-19-25-23.png" alt="" /></li>
+</ol>
+
+<h2 id="끝">끝</h2>
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=restful"><span class="tag" data-tag="restful">restful</span></a>
+        
+        <a href="/research/?tag=APIs"><span class="tag" data-tag="APIs">APIs</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
