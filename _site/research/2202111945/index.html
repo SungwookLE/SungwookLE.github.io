@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>LS2. Accessing Published APIs</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="LS2. Accessing Published APIs">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2202111945/./img/2022-02-11-19-49-52.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-02-11-19-49-52.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Udacity
+            </div>
+        </div>
+        <h1 class="post-title">
+            LS2. Accessing Published APIs
+        </h1>
+        <h2 class="post-subtitle">
+            Designing RESTful APIs
+        </h2>
+        <h2 class="post-date">
+            2022-02-11 19:45
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#ls2-accessing-published-apis">LS2. Accessing Published APIs</a><ul><li><a href="#1-http-이해하기">1. HTTP 이해하기</a></li><li><a href="#2-실습1-request--response-using-postman">2. 실습1: Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#3-실습2-google-map-api-request--response-using-postman">3. 실습2: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#4-실습3-google-map-api-request--response-using-python">4. 실습3: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#5-실습4-google-map-api-와-foursquares-api-를-활용한-mashup-프로젝트-in-python">5. 실습4: google map API 와 foursquares API 를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="ls2-accessing-published-apis">LS2. Accessing Published APIs</h1>
+<blockquote>
+  <p>Designing RESTful APIs<br />
+Writer: SungwookLE  <br />
+DATE: ‘22.2/11</p>
+</blockquote>
+
+<h2 id="1-http-이해하기">1. HTTP 이해하기</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">REST</code> 이해를 위해 <code class="language-plaintext highlighter-rouge">HTTP</code>를 알아보자</li>
+</ul>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">HTTP</code> <em>client-server</em> 플로우
+<img src="/research/2202111945/img/2022-02-11-19-49-52.png" alt="" />
+    <ul>
+      <li>클라이언트가 서버에 요청하면 Response로 다양한 형태의 데이터를 받을 수 있다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">HTTP</code> requests는 아래와 같이 구성된다.
+<img src="/research/2202111945/img/2022-02-11-19-52-11.png" alt="" />
+    <ul>
+      <li>예시:
+ <img src="/research/2202111945/img/2022-02-11-19-52-51.png" alt="" /></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">HTTP</code> Response
+<img src="/research/2202111945/img/2022-02-11-19-54-43.png" alt="" />
+    <ul>
+      <li>예시:
+ <img src="/research/2202111945/img/2022-02-11-19-54-55.png" alt="" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="2-실습1-request--response-using-postman">2. 실습1: Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">postman</code>이라는 크롭 확장프로그램을 이용하여 간단하게 HTTP request를 보내고 response를 받아보자.</li>
+</ul>
+
+<ol>
+  <li>
+    <p><a href="/research/2202111945/img/api_server.py">코드</a>를 <code class="language-plaintext highlighter-rouge">python</code> 으로 실행하여 localhost 서버를 열어두고,
+<img src="./img/2022-02-12-17-06-57.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">postman</code>을 실행시켜 나의 서버 ‘url’에 method와 함께 요청을 보내면, response가 날라오는 것을 확인할 수 있다.
+<img src="/research/2202111945/img/2022-02-11-20-19-30.png" alt="" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">HTTP</code>와 <code class="language-plaintext highlighter-rouge">CRUD</code> 사이의 관계</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>HTTP</th>
+      <th>CRUD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>READ</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>CREATE</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>UPDATE/CREATE</td>
+    </tr>
+    <tr>
+      <td>PATCH</td>
+      <td>UPDATE</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>DELETE</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-실습2-google-map-api-request--response-using-postman">3. 실습2: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">google map API</code>를 이용하여 <code class="language-plaintext highlighter-rouge">request</code>와 <code class="language-plaintext highlighter-rouge">response</code>를 주고받자.</li>
+</ul>
+
+<ol>
+  <li>google cloud platform 가입
+    <ul>
+      <li>가입을 해야, Google Maps API key를 준다.</li>
+    </ul>
+  </li>
+  <li>계정정보에서 <code class="language-plaintext highlighter-rouge">API키</code>를 저장해둔다.
+<img src="/research/2202111945/img/2022-02-11-20-52-04.png" alt="" /></li>
+  <li><a href="https://developers.google.com/maps/documentation/geocoding/overview">공식 튜토리얼</a>을 따라 <code class="language-plaintext highlighter-rouge">Google Maps Geocoding API</code>를 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">request</code> 보내고, <code class="language-plaintext highlighter-rouge">response</code> 받기
+    <ul>
+      <li><a href="https://developers.google.com/maps/documentation/geocoding/web-service-best-practices">해당 튜토리얼</a> 을 살펴보면, request <a href="/research/2202111945/img/2022-02-11-20-53-28.png">방법</a>이 나오는데, 아래의 코드를 복사하여 postman 프로그램에 입력하여 <code class="language-plaintext highlighter-rouge">request</code>를 보냈다.</li>
+      <li>실행결과:
+ <img src="/research/2202111945/img/2022-02-11-20-54-26.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>사용법보다 더 중요한건, google map API도 REST로 이루어졌다는 것인데, stateless한 url(<code class="language-plaintext highlighter-rouge">geocode/address=Los Angeles California, USA</code>)에 요청을 하면 <code class="language-plaintext highlighter-rouge">json</code> 형태로 response가 날라왔다.</li>
+</ol>
+
+<h2 id="4-실습3-google-map-api-request--response-using-python">4. 실습3: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">python</code></h2>
+
+<ul>
+  <li><a href="https://developers.google.com/maps/">구글맵API튜토리얼</a></li>
+  <li><code class="language-plaintext highlighter-rouge">python</code> 프로그램에선 아래와 같이 <code class="language-plaintext highlighter-rouge">http</code> request &amp; response를 하면된다.
+    <ul>
+      <li>패키지 <code class="language-plaintext highlighter-rouge">httplib2, json</code>을 이용</li>
+      <li>google API url을 입력해주고, 생성한 <code class="language-plaintext highlighter-rouge">h</code>라는 http 객체에 <code class="language-plaintext highlighter-rouge">request</code>를 보내 return 값으로 <code class="language-plaintext highlighter-rouge">response</code>와 <code class="language-plaintext highlighter-rouge">content</code>를 받는다.</li>
+      <li><code class="language-plaintext highlighter-rouge">content</code>는 <code class="language-plaintext highlighter-rouge">json</code> 포맷으로 변환하여 최종적으로 <code class="language-plaintext highlighter-rouge">python</code> 코드에 return한다.
+  <img src="/research/2202111945/img/2022-02-12-11-25-37.png" alt="" /></li>
+      <li>실행결과
+  <img src="/research/2202111945/img/2022-02-12-16-08-06.png" alt="" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="5-실습4-google-map-api-와-foursquares-api-를-활용한-mashup-프로젝트-in-python">5. 실습4: google map API 와 foursquares API 를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></h2>
+
+<ul>
+  <li>해당 실습은 코드만 분석하였음
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">foursquare</code> API가 몇번 호출하면 회원가입시 받은 credit이 모두 소진되어 추가적으로 api를 사용하는데 돈을 내야하는 제한이 있습니다… ㅠ</li>
+    </ul>
+  </li>
+  <li>Input: <code class="language-plaintext highlighter-rouge">mealType</code>, <code class="language-plaintext highlighter-rouge">location</code></li>
+  <li>프로젝트 구성: <code class="language-plaintext highlighter-rouge">mealType</code>과 <code class="language-plaintext highlighter-rouge">location</code>을 입력하면 location 주변의 mealType을 갖는 식당의 이름, 주소, 대표사진을 리턴해줌</li>
+  <li>
+    <p>코드: <a href="https://github.com/udacity/APIs/tree/master/Lesson_2/12_Make_Your_Own_Mashup/solution_code">솔루션코드</a></p>
+
+    <ol>
+      <li>google API를 이용하여 <code class="language-plaintext highlighter-rouge">inputString</code>을 입력하면 <code class="language-plaintext highlighter-rouge">latitude</code>, <code class="language-plaintext highlighter-rouge">longitude</code>를 리턴</li>
+      <li>return 받은 <code class="language-plaintext highlighter-rouge">latitude</code>와 <code class="language-plaintext highlighter-rouge">longitude</code>를 기준으로 주변의 <code class="language-plaintext highlighter-rouge">mealType</code>의 식당을 검색</li>
+      <li>주변의 식당값이 return되면, return 값을 기준으로 값을 추출(사진 포함) 
+  <img src="/research/2202111945/img/2022-02-12-16-58-07.png" alt="" /></li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=restful"><span class="tag" data-tag="restful">restful</span></a>
+        
+        <a href="/research/?tag=APIs"><span class="tag" data-tag="APIs">APIs</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

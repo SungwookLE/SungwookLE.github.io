@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- HTML Meta Tags -->
-  <title>LESSON1. What's and Why's of APIs</title>
+  <title>LS1. What's and Why's of APIs</title>
   <meta name="description" content="SungwookLE">
 
   
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="LESSON1. What's and Why's of APIs">
+  <meta itemprop="name" content="LS1. What's and Why's of APIs">
   <meta itemprop="description" content="SungwookLE">
   <meta itemprop="image" content="http://localhost:4000/research/2202111735/./img/2022-02-11-17-49-48.png">
 
@@ -134,7 +134,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </div>
         </div>
         <h1 class="post-title">
-            LESSON1. What's and Why's of APIs
+            LS1. What's and Why's of APIs
         </h1>
         <h2 class="post-subtitle">
             Designing RESTful APIs
@@ -151,10 +151,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post-article">
         <div class="toc">
           <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#lesson1-whats-and-whys-of-apis">LESSON1. What’s and Why’s of APIs</a><ul><li><a href="#1-apis">1. APIs</a></li><li><a href="#2-web-apis">2. Web APIs</a></li><li><a href="#3-web-api-protocols">3. Web API Protocols</a></li><li><a href="#4-web-service--message-formatting-layer">4. Web Service &amp; Message Formatting Layer</a><ul><li><a href="#4-1-chossing-the-right-technologies">4-1. Chossing the Right Technologies</a></li></ul></li><li><a href="#5-rest-constraints">5. Rest Constraints</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#ls1-whats-and-whys-of-apis">LS1. What’s and Why’s of APIs</a><ul><li><a href="#1-apis">1. APIs</a></li><li><a href="#2-web-apis">2. Web APIs</a></li><li><a href="#3-web-api-protocols">3. Web API Protocols</a></li><li><a href="#4-web-service--message-formatting-layer">4. Web Service &amp; Message Formatting Layer</a><ul><li><a href="#4-1-chossing-the-right-technologies">4-1. Chossing the Right Technologies</a></li></ul></li><li><a href="#5-rest-constraints">5. Rest Constraints</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
-        <h1 id="lesson1-whats-and-whys-of-apis">LESSON1. What’s and Why’s of APIs</h1>
+        <h1 id="ls1-whats-and-whys-of-apis">LS1. What’s and Why’s of APIs</h1>
 <blockquote>
   <p>Designing RESTful APIs<br />
 Writer: SungwookLE  <br />
@@ -175,13 +175,13 @@ DATE: ‘22.2/11</p>
   <li><strong>예시1</strong>: 같은 machine 내부에서의 API 구성
     <ul>
       <li>OS운영시스템이 어플리케이션과 프로그래밍 입출력값을 주고 받음 (<code class="language-plaintext highlighter-rouge">import os</code>)
- <img src="./img/2022-02-11-17-43-17.png" alt="" /></li>
+ <img src="/research/2202111735/img/2022-02-11-17-43-17.png" alt="" /></li>
     </ul>
   </li>
   <li><strong>예시2</strong>: 서로 다른 machine 끼리 프로그램 입출력 값을 주고 받음
     <ul>
       <li>기상/교통 정보를 가지고 있는 서버와 내 machine이 입출력값을 <code class="language-plaintext highlighter-rouge">web</code>환경(인터넷)을 통해 주고 받음
- <img src="./img/2022-02-11-17-49-48.png" alt="" /></li>
+ <img src="/research/2202111735/img/2022-02-11-17-49-48.png" alt="" /></li>
       <li>이런 구조의 API를 <strong>Web APIs</strong>라고 부른다.</li>
     </ul>
   </li>
@@ -213,10 +213,10 @@ DATE: ‘22.2/11</p>
   <li>이러한 프로토콜의 하나로 <code class="language-plaintext highlighter-rouge">OSI model</code>이 있다.</li>
   <li>
     <p><a href="https://en.wikipedia.org/wiki/OSI_model">Open System Interconnection(OSI)</a>
-<img src="./img/2022-02-11-18-02-04.png" alt="" /></p>
+<img src="/research/2202111735/img/2022-02-11-18-02-04.png" alt="" /></p>
   </li>
   <li>OSI 모델의 프로토콜을 따라 어떤 메시지를 다른 machine으로 송신한다고 했을 때, 아래의 그림처럼 진행된다고 보면 된다.
-<img src="./img/2022-02-11-18-04-41.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-18-04-41.png" alt="" />
     <ul>
       <li><code class="language-plaintext highlighter-rouge">Application</code>은 실제 발송하고자 하는 메세지라고 보면 된다.</li>
       <li>이를 <code class="language-plaintext highlighter-rouge">Presentation, Session, Transport, Network, DataLink, Physical</code> 레이어 단계를 거치면서 계속 포장해나간다.</li>
@@ -228,7 +228,7 @@ DATE: ‘22.2/11</p>
   <li>The most popular Application level protocol is <code class="language-plaintext highlighter-rouge">HTTP</code>(Hypertext Transfer Protocol)
     <ul>
       <li>HTTP 외에도 FTP, IMAP, POP, SSH 등이 존재한다.
-  <img src="./img/2022-02-11-18-15-38.png" alt="" /></li>
+  <img src="/research/2202111735/img/2022-02-11-18-15-38.png" alt="" /></li>
     </ul>
   </li>
   <li>HTTP fuctions via a series of requests and responses between clients and servers respectively
@@ -241,7 +241,7 @@ DATE: ‘22.2/11</p>
 <h2 id="4-web-service--message-formatting-layer">4. Web Service &amp; Message Formatting Layer</h2>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Web API</code>에서의 프로토콜을 이해하기 위해서, <code class="language-plaintext highlighter-rouge">OSI model</code>의 Application Layer 위에 2개의 레이어(<code class="language-plaintext highlighter-rouge">Web Service, Message Formatting</code> Layers)를 추가하여 살펴보아야 도움이 된다.
-<img src="./img/2022-02-11-18-22-44.png" alt="" /></li>
+<img src="/research/2202111735/img/2022-02-11-18-22-44.png" alt="" /></li>
 </ul>
 
 <ol>
@@ -249,13 +249,13 @@ DATE: ‘22.2/11</p>
     <ul>
       <li>
         <p>Web Service Layer 중 유명한 것 중 하나가 <code class="language-plaintext highlighter-rouge">SOAP</code>
- <img src="./img/2022-02-11-18-41-15.png" alt="" /></p>
+ <img src="/research/2202111735/img/2022-02-11-18-41-15.png" alt="" /></p>
       </li>
       <li>
         <p><code class="language-plaintext highlighter-rouge">REST</code>(REpresentational State Transfer) 매우 유명함</p>
         <ul>
           <li>REST is more of a set of styles and guidelines than a protocol
-  <img src="./img/2022-02-11-18-43-36.png" alt="" /></li>
+  <img src="/research/2202111735/img/2022-02-11-18-43-36.png" alt="" /></li>
         </ul>
       </li>
     </ul>
@@ -269,9 +269,9 @@ DATE: ‘22.2/11</p>
         <p>흔희 쓰는 방식은 <code class="language-plaintext highlighter-rouge">json</code>이나 <code class="language-plaintext highlighter-rouge">xml</code>일 것이다.</p>
         <ul>
           <li>xml(eXtensible Markup Language): <code class="language-plaintext highlighter-rouge">HTML</code>과 매우 유사함
-  <img src="./img/2022-02-11-18-49-48.png" alt="" /></li>
+  <img src="/research/2202111735/img/2022-02-11-18-49-48.png" alt="" /></li>
           <li>json(Java Script Object Notation): <code class="language-plaintext highlighter-rouge">python</code>의 <code class="language-plaintext highlighter-rouge">dict</code>와 동일
-  <img src="./img/2022-02-11-18-51-39.png" alt="" /></li>
+  <img src="/research/2202111735/img/2022-02-11-18-51-39.png" alt="" /></li>
         </ul>
       </li>
     </ul>
@@ -280,20 +280,20 @@ DATE: ‘22.2/11</p>
 
 <ul>
   <li>내가 구현하고자 하는 API의 특성에 따라, Web Service &amp; Message Formatting 레이어의 구현 형태를 선택하면 된다.
-<img src="./img/2022-02-11-18-57-52.png" alt="" /></li>
+<img src="/research/2202111735/img/2022-02-11-18-57-52.png" alt="" /></li>
 </ul>
 
 <h3 id="4-1-chossing-the-right-technologies">4-1. Chossing the Right Technologies</h3>
 
 <ol>
   <li>Web Service Layer
-<img src="./img/2022-02-11-19-00-51.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-00-51.png" alt="" />
     <ul>
       <li>최근 <code class="language-plaintext highlighter-rouge">REST</code> 방식의 구현이 <code class="language-plaintext highlighter-rouge">SOAP</code>보다 많은데, <code class="language-plaintext highlighter-rouge">SOAP</code>보다 구현이 쉽기 때문이다.</li>
     </ul>
   </li>
   <li>Message Formatting Layer
-<img src="./img/2022-02-11-19-03-49.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-03-49.png" alt="" />
     <ul>
       <li><code class="language-plaintext highlighter-rouge">json</code>이 <code class="language-plaintext highlighter-rouge">xml</code>을 많이 따라온 상황이고, 아무래도 <code class="language-plaintext highlighter-rouge">json</code>이 사람이 보기 더 편한 데이터 구조여서 그렇다.</li>
     </ul>
@@ -312,37 +312,37 @@ DATE: ‘22.2/11</p>
 
 <ol>
   <li>Client-Server
-<img src="./img/2022-02-11-19-16-51.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-16-51.png" alt="" />
     <ul>
       <li><code class="language-plaintext highlighter-rouge">Request</code> &amp; <code class="language-plaintext highlighter-rouge">Response</code></li>
     </ul>
   </li>
   <li>Stateless
-<img src="./img/2022-02-11-19-17-45.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-17-45.png" alt="" />
     <ul>
       <li><code class="language-plaintext highlighter-rouge">State</code>(상태)에 영향을 받지 않게</li>
     </ul>
   </li>
   <li>Cacheable
-<img src="./img/2022-02-11-19-19-07.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-19-07.png" alt="" />
     <ul>
       <li>받은 정보에서 변함이 없다면 또 받지 않게끔</li>
     </ul>
   </li>
   <li>Uniform Interface
-<img src="./img/2022-02-11-19-19-56.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-19-56.png" alt="" />
     <ul>
       <li>모든 machine에서 동일한 인터페이스 구성</li>
     </ul>
   </li>
   <li>Layered System
-<img src="./img/2022-02-11-19-20-40.png" alt="" />
+<img src="/research/2202111735/img/2022-02-11-19-20-40.png" alt="" />
     <ul>
       <li>endpoint로 한번에 갈 수 없고 각 layer로 분리</li>
     </ul>
   </li>
   <li>Code on Demand(optional)
-<img src="./img/2022-02-11-19-25-23.png" alt="" /></li>
+<img src="/research/2202111735/img/2022-02-11-19-25-23.png" alt="" /></li>
 </ol>
 
 <h2 id="끝">끝</h2>
