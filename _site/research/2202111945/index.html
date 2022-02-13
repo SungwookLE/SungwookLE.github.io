@@ -151,7 +151,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post-article">
         <div class="toc">
           <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#ls2-accessing-published-apis">LS2. Accessing Published APIs</a><ul><li><a href="#1-http-이해하기">1. HTTP 이해하기</a></li><li><a href="#2-실습1-request--response-using-postman">2. 실습1: Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#3-실습2-google-map-api-request--response-using-postman">3. 실습2: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#4-실습3-google-map-api-request--response-using-python">4. 실습3: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#5-실습4-google-map-api-와-foursquares-api-를-활용한-mashup-프로젝트-in-python">5. 실습4: google map API 와 foursquares API 를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#ls2-accessing-published-apis">LS2. Accessing Published APIs</a><ul><li><a href="#1-http-이해하기">1. HTTP 이해하기</a></li><li><a href="#2-실습1-request--response-using-postman">2. 실습1: Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#3-실습2-google-map-api-request--response-using-postman">3. 실습2: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">postman</code></a></li><li><a href="#4-실습3-google-map-api-request--response-using-python">4. 실습3: google map API Request &amp; Response using <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#5-실습4-google-map-api-와-foursquares-api를-활용한-mashup-프로젝트-in-python">5. 실습4: <code class="language-plaintext highlighter-rouge">google map API</code> 와 <code class="language-plaintext highlighter-rouge">foursquares API</code>를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="ls2-accessing-published-apis">LS2. Accessing Published APIs</h1>
@@ -198,7 +198,7 @@ DATE: ‘22.2/11</p>
 <ol>
   <li>
     <p><a href="/research/2202111945/img/api_server.py">코드</a>를 <code class="language-plaintext highlighter-rouge">python</code> 으로 실행하여 localhost 서버를 열어두고,
-<img src="./img/2022-02-12-17-06-57.png" alt="" /></p>
+<img src="/research/2202111945/img/2022-02-12-17-06-57.png" alt="" /></p>
   </li>
   <li>
     <p><code class="language-plaintext highlighter-rouge">postman</code>을 실행시켜 나의 서버 ‘url’에 method와 함께 요청을 보내면, response가 날라오는 것을 확인할 수 있다.
@@ -282,24 +282,30 @@ DATE: ‘22.2/11</p>
   </li>
 </ul>
 
-<h2 id="5-실습4-google-map-api-와-foursquares-api-를-활용한-mashup-프로젝트-in-python">5. 실습4: google map API 와 foursquares API 를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></h2>
+<h2 id="5-실습4-google-map-api-와-foursquares-api를-활용한-mashup-프로젝트-in-python">5. 실습4: <code class="language-plaintext highlighter-rouge">google map API</code> 와 <code class="language-plaintext highlighter-rouge">foursquares API</code>를 활용한 Mashup 프로젝트 in <code class="language-plaintext highlighter-rouge">python</code></h2>
 
 <ul>
-  <li>해당 실습은 코드만 분석하였음
+  <li><code class="language-plaintext highlighter-rouge">foursquare API</code> 사용시 참고
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">foursquare</code> API가 몇번 호출하면 회원가입시 받은 credit이 모두 소진되어 추가적으로 api를 사용하는데 돈을 내야하는 제한이 있습니다… ㅠ</li>
+      <li><code class="language-plaintext highlighter-rouge">foursquare</code> API가 회원가입시, 200달러 토큰 주고, 한번 <code class="language-plaintext highlighter-rouge">API</code> 호출할 때마다 0.01$ 정도 나가니, 아껴서 사용 ㅠ</li>
+      <li>회원가입시 받은 credit이 모두 소진되면 유료로 전환하거나, 회원가입을 다시 해서 하면됩니다.</li>
+      <li>중요한 것이, 해당 강의에서는 <code class="language-plaintext highlighter-rouge">foursquare</code> <strong>v2</strong>를 기준으로 진행하는데 찾아보니, <strong>v2</strong>는 서비스가 종료되었고 <strong>v3</strong>을 사용하여야 함.</li>
+      <li><code class="language-plaintext highlighter-rouge">http</code> 호출할때 url 주소와 파라미터값에 차이가 있으니 참고 아래의 튜토리얼 참고 (다행인것은 튜토리얼이 잘되어 있다.)</li>
+      <li><a href="https://developer.foursquare.com/docs/places-api-overview">포스퀘어 place API 튜토리얼</a></li>
     </ul>
   </li>
   <li>Input: <code class="language-plaintext highlighter-rouge">mealType</code>, <code class="language-plaintext highlighter-rouge">location</code></li>
-  <li>프로젝트 구성: <code class="language-plaintext highlighter-rouge">mealType</code>과 <code class="language-plaintext highlighter-rouge">location</code>을 입력하면 location 주변의 mealType을 갖는 식당의 이름, 주소, 대표사진을 리턴해줌</li>
-  <li>
-    <p>코드: <a href="https://github.com/udacity/APIs/tree/master/Lesson_2/12_Make_Your_Own_Mashup/solution_code">솔루션코드</a></p>
+  <li>프로젝트 구성: <code class="language-plaintext highlighter-rouge">mealType</code>과 <code class="language-plaintext highlighter-rouge">location</code>을 입력하면 location 주변의 mealType을 갖는 식당의 이름, 주소, 대표사진을 리턴해줌
+    <ul>
+      <li>실행결과: <code class="language-plaintext highlighter-rouge">findeARestaurant.py</code> 코드를 실행하면, 아래와 같이 주변의 식당값을 반환해준다.</li>
+      <li>코드: <a href="/research/2202111945/img/findARestaurant.py">findARestautant.py</a>, <a href="/research/2202111945/img/geocode.py">geocode.py</a>
+  <img src="/research/2202111945/img/2022-02-13-16-13-22.png" alt="" /></li>
+    </ul>
 
     <ol>
       <li>google API를 이용하여 <code class="language-plaintext highlighter-rouge">inputString</code>을 입력하면 <code class="language-plaintext highlighter-rouge">latitude</code>, <code class="language-plaintext highlighter-rouge">longitude</code>를 리턴</li>
       <li>return 받은 <code class="language-plaintext highlighter-rouge">latitude</code>와 <code class="language-plaintext highlighter-rouge">longitude</code>를 기준으로 주변의 <code class="language-plaintext highlighter-rouge">mealType</code>의 식당을 검색</li>
-      <li>주변의 식당값이 return되면, return 값을 기준으로 값을 추출(사진 포함) 
-  <img src="/research/2202111945/img/2022-02-12-16-58-07.png" alt="" /></li>
+      <li>주변의 식당값이 return되면, return 값을 기준으로 값(이름, 주소, 대표사진)을 추출</li>
     </ol>
   </li>
 </ul>

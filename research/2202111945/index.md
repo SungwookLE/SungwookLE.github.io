@@ -83,19 +83,23 @@ toc : true
     - 실행결과
     ![](./img/2022-02-12-16-08-06.png)
 
-## 5. 실습4: google map API 와 foursquares API 를 활용한 Mashup 프로젝트 in `python`
+## 5. 실습4: `google map API` 와 `foursquares API`를 활용한 Mashup 프로젝트 in `python`
 
-- 해당 실습은 코드만 분석하였음
-    - `foursquare` API가 몇번 호출하면 회원가입시 받은 credit이 모두 소진되어 추가적으로 api를 사용하는데 돈을 내야하는 제한이 있습니다... ㅠ
+- `foursquare API` 사용시 참고
+    - `foursquare` API가 회원가입시, 200달러 토큰 주고, 한번 `API` 호출할 때마다 0.01$ 정도 나가니, 아껴서 사용 ㅠ 
+    - 회원가입시 받은 credit이 모두 소진되면 유료로 전환하거나, 회원가입을 다시 해서 하면됩니다.
+    - 중요한 것이, 해당 강의에서는 `foursquare` **v2**를 기준으로 진행하는데 찾아보니, **v2**는 서비스가 종료되었고 **v3**을 사용하여야 함.
+    - `http` 호출할때 url 주소와 파라미터값에 차이가 있으니 참고 아래의 튜토리얼 참고 (다행인것은 튜토리얼이 잘되어 있다.)
+    - [포스퀘어 place API 튜토리얼](https://developer.foursquare.com/docs/places-api-overview)
 
 - Input: `mealType`, `location`
 - 프로젝트 구성: `mealType`과 `location`을 입력하면 location 주변의 mealType을 갖는 식당의 이름, 주소, 대표사진을 리턴해줌
-- 코드: [솔루션코드](https://github.com/udacity/APIs/tree/master/Lesson_2/12_Make_Your_Own_Mashup/solution_code)
+    - 실행결과: `findeARestaurant.py` 코드를 실행하면, 아래와 같이 주변의 식당값을 반환해준다.
+    - 코드: [findARestautant.py](./img/findARestaurant.py), [geocode.py](./img/geocode.py)
+    ![](./img/2022-02-13-16-13-22.png)
 
     1. google API를 이용하여 `inputString`을 입력하면 `latitude`, `longitude`를 리턴
     2. return 받은 `latitude`와 `longitude`를 기준으로 주변의 `mealType`의 식당을 검색
-    3. 주변의 식당값이 return되면, return 값을 기준으로 값을 추출(사진 포함) 
-    ![](./img/2022-02-12-16-58-07.png)  
-
+    3. 주변의 식당값이 return되면, return 값을 기준으로 값(이름, 주소, 대표사진)을 추출
 
 ## 끝

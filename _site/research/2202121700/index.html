@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>LS3. Creating your own API endpoints</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="LS3. Creating your own API endpoints">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2202121700/./img/2022-02-13-20-14-49.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-02-13-20-14-49.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                Udacity
+            </div>
+        </div>
+        <h1 class="post-title">
+            LS3. Creating your own API endpoints
+        </h1>
+        <h2 class="post-subtitle">
+            Designing RESTful APIs
+        </h2>
+        <h2 class="post-date">
+            2022-02-12 17:00
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <a href="#">&lt;맨 위로&gt;</a>
+          <ul><li><a href="#ls3-creating-your-own-api-endpoints">LS3. Creating your own API endpoints</a><ul><li><a href="#1-flask-사용하기-기본">1. Flask 사용하기: 기본</a></li><li><a href="#2-flask-사용하기-method-추가">2. Flask 사용하기: <code class="language-plaintext highlighter-rouge">method</code> 추가</a></li><li><a href="#3-flask-사용하기-db-추가하여-serialize--sqlalchemy-db">3. Flask 사용하기: ‘db’ 추가하여 <code class="language-plaintext highlighter-rouge">serialize</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code></a></li><li><a href="#4-flask-사용하기-google-api--foursquare-api--sqlalchemy-db-연동">4. Flask 사용하기: <code class="language-plaintext highlighter-rouge">google API</code> + <code class="language-plaintext highlighter-rouge">foursquare API</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 연동</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="ls3-creating-your-own-api-endpoints">LS3. Creating your own API endpoints</h1>
+<blockquote>
+  <p>Designing RESTful APIs<br />
+Writer: SungwookLE  <br />
+DATE: ‘22.2/12</p>
+</blockquote>
+
+<h2 id="1-flask-사용하기-기본">1. Flask 사용하기: 기본</h2>
+
+<ul>
+  <li>파이썬 기반의 마이크로 웹 프레임워크
+    <ul>
+      <li>간단한 웹 또는 API 서버를 만드는 데 사용</li>
+      <li><a href="https://flask.palletsprojects.com/en/1.0.x/quickstart/">공식 튜토리얼</a></li>
+    </ul>
+  </li>
+  <li>기본적인 사용 형태
+    <ol>
+      <li>
+        <p>main이 되는 app을 선언하고, <code class="language-plaintext highlighter-rouge">@app.route</code> 형태의 <code class="language-plaintext highlighter-rouge">decorator</code>를 사용하여 url 경로를 추가한다.
+  <img src="/research/2202121700/img/2022-02-12-17-47-44.png" alt="" /></p>
+      </li>
+      <li>코드를 실행하면, API 서버가 작동한다.</li>
+      <li>API 서버와 <code class="language-plaintext highlighter-rouge">request, response</code> 하는 형태는 아래와 같다.
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code> <span class="n">address</span> <span class="o">=</span> <span class="s">'http://localhost:5000'</span>
+ <span class="n">url</span> <span class="o">=</span> <span class="n">address</span> <span class="o">+</span> <span class="s">"/puppies"</span>
+ <span class="n">h</span> <span class="o">=</span> <span class="n">httplib2</span><span class="p">.</span><span class="n">Http</span><span class="p">()</span>
+ <span class="n">response</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s">"GET"</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="2-flask-사용하기-method-추가">2. Flask 사용하기: <code class="language-plaintext highlighter-rouge">method</code> 추가</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">flask</code>에서 <code class="language-plaintext highlighter-rouge">method: GET, POST, PUT, DELETE</code>를 추가하고 싶을 땐, <code class="language-plaintext highlighter-rouge">decorator</code>에서 지정해주면 된다.
+<img src="/research/2202121700/img/2022-02-12-18-01-39.png" alt="" /></li>
+</ul>
+
+<h2 id="3-flask-사용하기-db-추가하여-serialize--sqlalchemy-db">3. Flask 사용하기: ‘db’ 추가하여 <code class="language-plaintext highlighter-rouge">serialize</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">sqlalchemy</code> 패키지를 이용하여, 즉석으로 db를 생성하고, 생성한 db에 데이터를 가져오고 업데이트 해보자.</p>
+
+    <ul>
+      <li>View the <a href="https://github.com/udacity/APIs/tree/master/Lesson_3/05_Serializing%20data%20from%20the%20database/Starter%20Code">starter code</a> for this exercise.</li>
+      <li>View the <a href="https://github.com/udacity/APIs/tree/master/Lesson_3/05_Serializing%20data%20from%20the%20database/Solution%20Code">solution code</a> for this exercise.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>datadb class 설계하고 <code class="language-plaintext highlighter-rouge">serialize</code> method 설계 
+ <img src="/research/2202121700/img/2022-02-12-19-17-18.png" alt="" /></p>
+  </li>
+  <li>
+    <p>http 요청으로 데이터를 request 할때, 출력의 형태를 <code class="language-plaintext highlighter-rouge">jsonify</code> 함수를 이용.</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">jsonify</code> 하기 위해 <code class="language-plaintext highlighter-rouge">serialize</code> method 설계 필요한 것이었다.
+<img src="/research/2202121700/img/2022-02-12-19-22-48.png" alt="" />
+<img src="/research/2202121700/img/2022-02-12-19-22-26.png" alt="" /></li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">python</code> 코드에서 <code class="language-plaintext highlighter-rouge">@property</code>가 나오는데, 해당 기능은 이번에 알았는데, <code class="language-plaintext highlighter-rouge">getter</code> method로 변환시켜주는 기능을 부여한다고 한다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">python</code>의 class들은 원칙적으로 <code class="language-plaintext highlighter-rouge">private</code>, <code class="language-plaintext highlighter-rouge">public</code> 변수 분리가 안되서, <code class="language-plaintext highlighter-rouge">private</code>로 따로 지정할 수 없기 때문에 생기는 클래스 변수 오용/오염 문제가 있는데, 이를 코딩 가이던스로서 해결하고자 해당 기능이 있다고 함</li>
+      <li><a href="https://blog.naver.com/codeitofficial/221684462326">코드잇: @property설명</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-flask-사용하기-google-api--foursquare-api--sqlalchemy-db-연동">4. Flask 사용하기: <code class="language-plaintext highlighter-rouge">google API</code> + <code class="language-plaintext highlighter-rouge">foursquare API</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 연동</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">flask</code>로 웹 API 서버를 열어두고, 유저로부터 요청이 오면, 요청에 따라 레스토랑의 정보를 불러오고, 입력하고, 업데이트하고, 삭제하는 (<code class="language-plaintext highlighter-rouge">CRUD, Create, Read, Update, Delete</code>) 하는 프로젝트</li>
+  <li>실습 코드(직접 프로그래밍): <a href="/research/2202121700/img/findARestaurant.py">findARestaurant.py</a>, <a href="/research/2202121700/img/geocode.py">geocode.py</a>, <a href="/research/2202121700/img/models.py">models.py</a>, <a href="/research/2202121700/img/views.py">views.py</a>, <a href="/research/2202121700/img/tester.py">tester.py</a>
+    <ul>
+      <li>views.py 는 웹API 서버를 열어주는 코드</li>
+      <li>models.py 는 DB의 구조를 선언한 코드</li>
+      <li>tester.py 는 테스트 코드</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">sqlalchemy</code>를 활용하여 DB를 만들고 업데이트하고 입력해주었다.</li>
+  <li>실행결과:
+  <img src="/research/2202121700/img/2022-02-13-20-14-49.png" alt="" /></li>
+</ul>
+
+<h2 id="끝">끝</h2>
+
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=restful"><span class="tag" data-tag="restful">restful</span></a>
+        
+        <a href="/research/?tag=APIs"><span class="tag" data-tag="APIs">APIs</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SugnwookLE</div>
+    </div>
+    <div class='description'>꽥꽥</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
