@@ -7,7 +7,7 @@ title: LS3. Creating your own API endpoints
 subtitle: "Designing RESTful APIs"
 writer: 100
 post-header: true  
-header-img: ./img/2022-02-13-20-14-49.png
+header-img: ./img/2022-02-15-23-49-57.png
 hash-tag: [restful, APIs]
 use_math: true
 toc : true
@@ -36,11 +36,10 @@ toc : true
         h = httplib2.Http()
         response, result = h.request(url, "GET")
         ```
-
 ## 2. Flask 사용하기: method 추가
 
 - `flask`에서 `method: GET, POST, PUT, DELETE`를 추가하고 싶을 땐, `decorator`에서 지정해주면 된다.
-![](./img/2022-02-12-18-01-39.png)
+![](./img/2022-02-12-18-01-39.png) 
 
 ## 3. Flask 사용하기: `sqlalchemy DB` 추가
 

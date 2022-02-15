@@ -14,7 +14,7 @@
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="LS3. Creating your own API endpoints">
   <meta itemprop="description" content="SungwookLE">
-  <meta itemprop="image" content="http://localhost:4000/research/2202121700/./img/2022-02-13-20-14-49.png">
+  <meta itemprop="image" content="http://localhost:4000/research/2202121700/./img/2022-02-15-23-49-57.png">
 
   
 
@@ -119,7 +119,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-<div class="post-header loading-animation" style="background-image: url('./img/2022-02-13-20-14-49.png')">
+<div class="post-header loading-animation" style="background-image: url('./img/2022-02-15-23-49-57.png')">
 </div>
 
 
@@ -151,7 +151,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post-article">
         <div class="toc">
           <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#ls3-creating-your-own-api-endpoints">LS3. Creating your own API endpoints</a><ul><li><a href="#1-flask-사용하기-기본">1. Flask 사용하기: 기본</a></li><li><a href="#2-flask-사용하기-method-추가">2. Flask 사용하기: <code class="language-plaintext highlighter-rouge">method</code> 추가</a></li><li><a href="#3-flask-사용하기-db-추가하여-serialize--sqlalchemy-db">3. Flask 사용하기: ‘db’ 추가하여 <code class="language-plaintext highlighter-rouge">serialize</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code></a></li><li><a href="#4-flask-사용하기-google-api--foursquare-api--sqlalchemy-db-연동">4. Flask 사용하기: <code class="language-plaintext highlighter-rouge">google API</code> + <code class="language-plaintext highlighter-rouge">foursquare API</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 연동</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#ls3-creating-your-own-api-endpoints">LS3. Creating your own API endpoints</a><ul><li><a href="#1-flask-사용하기-기본">1. Flask 사용하기: 기본</a></li><li><a href="#2-flask-사용하기-method-추가">2. Flask 사용하기: method 추가</a></li><li><a href="#3-flask-사용하기-sqlalchemy-db-추가">3. Flask 사용하기: <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 추가</a></li><li><a href="#4-flask-사용하기-google-api--foursquare-api--sqlalchemy-db-연동">4. Flask 사용하기: <code class="language-plaintext highlighter-rouge">google API</code> + <code class="language-plaintext highlighter-rouge">foursquare API</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 연동</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="ls3-creating-your-own-api-endpoints">LS3. Creating your own API endpoints</h1>
@@ -183,19 +183,15 @@ DATE: ‘22.2/12</p>
  <span class="n">h</span> <span class="o">=</span> <span class="n">httplib2</span><span class="p">.</span><span class="n">Http</span><span class="p">()</span>
  <span class="n">response</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s">"GET"</span><span class="p">)</span>
 </code></pre></div>        </div>
+        <h2 id="2-flask-사용하기-method-추가">2. Flask 사용하기: method 추가</h2>
       </li>
     </ol>
   </li>
-</ul>
-
-<h2 id="2-flask-사용하기-method-추가">2. Flask 사용하기: <code class="language-plaintext highlighter-rouge">method</code> 추가</h2>
-
-<ul>
   <li><code class="language-plaintext highlighter-rouge">flask</code>에서 <code class="language-plaintext highlighter-rouge">method: GET, POST, PUT, DELETE</code>를 추가하고 싶을 땐, <code class="language-plaintext highlighter-rouge">decorator</code>에서 지정해주면 된다.
 <img src="/research/2202121700/img/2022-02-12-18-01-39.png" alt="" /></li>
 </ul>
 
-<h2 id="3-flask-사용하기-db-추가하여-serialize--sqlalchemy-db">3. Flask 사용하기: ‘db’ 추가하여 <code class="language-plaintext highlighter-rouge">serialize</code> + <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code></h2>
+<h2 id="3-flask-사용하기-sqlalchemy-db-추가">3. Flask 사용하기: <code class="language-plaintext highlighter-rouge">sqlalchemy DB</code> 추가</h2>
 
 <ul>
   <li>
