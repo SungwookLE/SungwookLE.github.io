@@ -45,11 +45,14 @@ use_math: true
 ## 2. 시간복잡도(`BigO`) 먼저 짚고 시작해요
 
 - 알고리즘의 효율성의 가장 기본적인 비교 메트릭은 `BigO` 방법이예요.
-<details>
-<summary>`BigO`는 인풋 사이즈(`N`)에 대한 함수의 실행횟수를 말합니다. </summary>
+
+<details><summary>
+`BigO`는 인풋 사이즈(`N`)에 대한 함수의 실행횟수를 말합니다. </summary>
+
 ![Untitled](./img/Untitled.png)
+
 </details>
-    
+
 - 다음의 대표적인 방식에 대한 `BigO`를 계산해보면,
     1. 인풋 배열(사이즈N)에서 하나의 값을 바로 출력: `O(1)`
     2. 인풋 배열(사이즈N)을 1중 for문으로 조회: `O(N)`
