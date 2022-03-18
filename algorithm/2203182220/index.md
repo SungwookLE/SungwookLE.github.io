@@ -3,8 +3,8 @@ layout: post
 type: algorithm
 date: 2022-03-18 22:20
 category: 알고리즘
-title: Dynamic Programming and BFS, DFS
-subtitle: 알고리즘 강의
+title: DynamicProgramming and BFS, DFS
+subtitle: 알고리즘 강의 노트
 writer: 100
 hash-tag: [코딩테스트준비, 인프런, 동적프로그래밍, DFS, BFS]
 use_math: true
