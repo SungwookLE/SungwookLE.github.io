@@ -49,7 +49,7 @@ use_math: true
 <details><summary>
 `BigO`는 인풋 사이즈(`N`)에 대한 함수의 실행횟수를 말합니다. </summary>
 
-![Untitled](./img/Untitled.png)
+<img src="./img/Untitled.png" alt="--">
 
 </details>
 
