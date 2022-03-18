@@ -33,7 +33,7 @@ use_math: true
 - 시각복잡도`Big O` 에 대해 알아봐요 👊
     
     [개발자라면 이제는 알아야하는 Big O 설명해드림. 10분컷.](https://www.youtube.com/watch?v=BEVnxbxBqi8)
-    
+
 
 ### 1-3. 효율적인 알고리즘 만큼 중요한 것은 `Clean Code` 작성이라는 사실! 
 
