@@ -460,45 +460,36 @@ video {
 .toc {
 	position: absolute;
 	left: 0px;
-	width: 240px;
+	width: 20em;
 	color: $primary;
 	overflow-y: auto;
 	overflow-x: hidden;
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 	padding-top: 0.25rem;
 	padding-bottom: 0.25rem;
 	margin-left: 0px;
 	font-size: 0.9rem;
-	border-right: 2px solid #e47b49;
+	border-right: 0.5px solid #e47b49;
   
 	display: none;
-	@media (min-width: 75em){
-	  width: 240px;
+	@media (min-width: 100em){
+	  width: 20em;
 	  display: block;
 	}
-	@media (min-width: 85em){
-	  width: 300px;
-	  display: block;
-	}
-	@media (min-width: 95em){
-	  width: 360px;
-	  display: block;
-	}
-  
+	
 	a.toc-active {
 	  font-weight: bold; 
 	  transition: all 0.125s ease-in 0s; 
-	  font-size: 1.25rem;
+	  font-size: 1.05rem;
 	  color: $secondary;
 	}
   
 	ul {
-	  list-style-type: decimal;
-	  margin-bottom: 0.1rem;
+	  margin-bottom: 0rem;
 	  padding-left: 0rem;
 	  li {
-		padding-left: .5rem;
+		padding-left: 0rem;
 	  }
 	}
   

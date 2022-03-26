@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- HTML Meta Tags -->
-  <title>Dynamic Programming and BFS, DFS</title>
+  <title>DynamicProgramming and BFS, DFS</title>
   <meta name="description" content="SungwookLE">
 
   
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="Dynamic Programming and BFS, DFS">
+  <meta itemprop="name" content="DynamicProgramming and BFS, DFS">
   <meta itemprop="description" content="SungwookLE">
   <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
 
@@ -131,10 +131,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </div>
         </div>
         <h1 class="post-title">
-            Dynamic Programming and BFS, DFS
+            DynamicProgramming and BFS, DFS
         </h1>
         <h2 class="post-subtitle">
-            알고리즘 강의
+            알고리즘 강의 노트
         </h2>
         <h2 class="post-date">
             2022-03-18 22:20
@@ -147,15 +147,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <article class="post-article">
         <div class="toc">
-          <a href="#">&lt;맨 위로&gt;</a>
-          <ul><li><a href="#algorithm-program-solvingc">Algorithm: Program Solving(c++)</a><ul><li><a href="#1-본-페이지에서는-무엇을-배우나요">1. 본 페이지에서는 무엇을 배우나요?</a><ul><li><a href="#1-1-문제해결-program-solvingps을-위한-알고리즘-설계-문제를-배웁니다">1-1. 문제해결, Program Solving(<code class="language-plaintext highlighter-rouge">PS</code>)을 위한 알고리즘 설계 문제를 배웁니다.</a></li><li><a href="#1-2-데이터베이스나-복잡한-구조에서-효율적인-알고리즘big-o-설계를-위한-방법을-배웁니다">1-2. 데이터베이스나 복잡한 구조에서 효율적인 알고리즘(<code class="language-plaintext highlighter-rouge">Big O</code>) 설계를 위한 방법을 배웁니다.</a></li><li><a href="#1-3-효율적인-알고리즘-만큼-중요한-것은-clean-code-작성이라는-사실">1-3. 효율적인 알고리즘 만큼 중요한 것은 Clean Code 작성이라는 사실!</a></li></ul></li><li><a href="#2-시간복잡도bigo-먼저-짚고-시작해요">2. 시간복잡도(<code class="language-plaintext highlighter-rouge">BigO</code>) 먼저 짚고 시작해요</a></li><li><a href="#3-ps-dynamic-programming-동적-프로그래밍">3. <code class="language-plaintext highlighter-rouge">PS</code> Dynamic Programming 동적 프로그래밍</a><ul><li><a href="#31-컨셉">3.1. 컨셉</a></li><li><a href="#3-2-개념문제1차원">3-2. 개념문제(1차원)</a></li><li><a href="#3-3-연습문제2차원">3-3. 연습문제(2차원)</a></li></ul></li><li><a href="#4-ps-그래프-탐색-bfs-dfs">4. <code class="language-plaintext highlighter-rouge">PS</code> 그래프 탐색 <code class="language-plaintext highlighter-rouge">BFS</code>, <code class="language-plaintext highlighter-rouge">DFS</code></a><ul><li><a href="#4-1-bfs-dfs-컨셉-및-개념문제">4-1. <code class="language-plaintext highlighter-rouge">BFS, DFS</code> 컨셉 및 개념문제</a></li><li><a href="#4-2-bfs-연습문제">4-2. <code class="language-plaintext highlighter-rouge">BFS</code> 연습문제</a></li><li><a href="#4-3-dfs-연습문제">4-3. <code class="language-plaintext highlighter-rouge">DFS</code> 연습문제</a></li></ul></li><li><a href="#5-레퍼런스">5. 레퍼런스</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#algorithm-program-solvingc">Algorithm: Program Solving(c++)</a><ul><li><a href="#1-본-페이지에서는-무엇을-배우나요">1. 본 페이지에서는 무엇을 배우나요?</a><ul><li><a href="#1-1-문제해결-program-solvingps을-위한-알고리즘-설계-문제를-배웁니다">1-1. 문제해결, Program Solving(<code class="language-plaintext highlighter-rouge">PS</code>)을 위한 알고리즘 설계 문제를 배웁니다.</a></li><li><a href="#1-2-데이터베이스나-복잡한-구조에서-효율적인-알고리즘big-o-설계를-위한-방법을-배웁니다">1-2. 데이터베이스나 복잡한 구조에서 효율적인 알고리즘(<code class="language-plaintext highlighter-rouge">Big O</code>) 설계를 위한 방법을 배웁니다.</a></li><li><a href="#1-3-효율적인-알고리즘-만큼-중요한-것은-clean-code-작성이라는-사실">1-3. 효율적인 알고리즘 만큼 중요한 것은 <code class="language-plaintext highlighter-rouge">Clean Code</code> 작성이라는 사실!</a></li></ul></li><li><a href="#2-시간복잡도bigo-먼저-짚고-시작해요">2. 시간복잡도(<code class="language-plaintext highlighter-rouge">BigO</code>) 먼저 짚고 시작해요</a></li><li><a href="#3-ps-dynamic-programming-동적-프로그래밍">3. <code class="language-plaintext highlighter-rouge">PS</code> Dynamic Programming 동적 프로그래밍</a><ul><li><a href="#31-컨셉">3.1. 컨셉</a></li><li><a href="#3-2-개념문제1차원">3-2. 개념문제(1차원)</a></li><li><a href="#3-3-연습문제2차원">3-3. 연습문제(2차원)</a></li></ul></li><li><a href="#4-ps-그래프-탐색-bfs-dfs">4. <code class="language-plaintext highlighter-rouge">PS</code> 그래프 탐색 <code class="language-plaintext highlighter-rouge">BFS</code>, <code class="language-plaintext highlighter-rouge">DFS</code></a><ul><li><a href="#4-1-bfs-dfs-컨셉-및-개념문제">4-1. <code class="language-plaintext highlighter-rouge">BFS, DFS</code> 컨셉 및 개념문제</a></li><li><a href="#4-2-bfs-연습문제">4-2. <code class="language-plaintext highlighter-rouge">BFS</code> 연습문제</a></li><li><a href="#4-3-dfs-연습문제">4-3. <code class="language-plaintext highlighter-rouge">DFS</code> 연습문제</a></li></ul></li><li><a href="#5-레퍼런스">5. 레퍼런스</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="algorithm-program-solvingc">Algorithm: Program Solving(c++)</h1>
 
 <blockquote>
   <p>작성자: SungwookLE<br />
-작성일: 2022년 3월 14일</p>
+작성일: 2022년 3월 14일 
+GoGoGo</p>
 </blockquote>
 
 <h2 id="1-본-페이지에서는-무엇을-배우나요">1. 본 페이지에서는 무엇을 배우나요?</h2>
@@ -185,7 +185,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </li>
 </ul>
 
-<h3 id="1-3-효율적인-알고리즘-만큼-중요한-것은-clean-code-작성이라는-사실">1-3. 효율적인 알고리즘 만큼 중요한 것은 Clean Code 작성이라는 사실!</h3>
+<h3 id="1-3-효율적인-알고리즘-만큼-중요한-것은-clean-code-작성이라는-사실">1-3. 효율적인 알고리즘 만큼 중요한 것은 <code class="language-plaintext highlighter-rouge">Clean Code</code> 작성이라는 사실!</h3>
 
 <ul>
   <li>
@@ -199,11 +199,16 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <ul>
   <li>알고리즘의 효율성의 가장 기본적인 비교 메트릭은 <code class="language-plaintext highlighter-rouge">BigO</code> 방법이예요.</li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">BigO</code>는 인풋 사이즈(<code class="language-plaintext highlighter-rouge">N</code>)에 대한 함수의 실행횟수를 말합니다.</p>
+</ul>
 
-    <p><img src="/algorithm/2203182220/img/Untitled.png" alt="Untitled" /></p>
-  </li>
+<details><summary>
+`BigO`는 인풋 사이즈(`N`)에 대한 함수의 실행횟수를 말합니다. </summary>
+
+<img src="./img/Untitled.png" alt="--" />
+
+</details>
+
+<ul>
   <li>다음의 대표적인 방식에 대한 <code class="language-plaintext highlighter-rouge">BigO</code>를 계산해보면,
     <ol>
       <li>인풋 배열(사이즈N)에서 하나의 값을 바로 출력: <code class="language-plaintext highlighter-rouge">O(1)</code></li>
@@ -1430,18 +1435,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <li>
         <p>문제 설명:</p>
 
-        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  Q) 조이는 nxn의 크기의 딸기밭을 방문했다. 조이는 딸기밭의 딸기를 수확할 수 있는데,
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  Q) 조이는 nxn의 크기의 딸기밭을 방문했다. 조이는 딸기밭의 딸기를 수확할 수 있는데,
   어떤 지역에 있는 딸기를 모두 수확하면 상,하,좌,우 중 한 곳으로 이동을 하고, 그곳에서 딸기를 수확한다.
         
   그런데, 이 조이는 욕심이 많아서 딸기를 수확하고 자리를 옮기면, 새로 도착한 지역에 전 지역보다 딸기가 많아야 한다.
   조이는 어떤 지점에서 수확을 시작하여야 최대한 많은 칸을 방문하여 수확할 수 있는지 고민에 빠져 있다.
   조이를 도와주는 프로그램을 작성하여라
         
-  첫 줄에 딸기밭의 크기 n (1<span class="nt">&lt;</span><span class="err">=</span><span class="na">n</span><span class="err">&lt;=500)</span><span class="na">이</span> <span class="na">주어지고</span><span class="err">,</span> <span class="na">둘째</span> <span class="na">줄부터</span> <span class="na">n</span><span class="err">+1</span><span class="na">번째</span> <span class="na">줄까지는</span> <span class="na">딸기밭의</span> <span class="na">정보가</span> <span class="na">주어진다.</span>
-  <span class="na">딸기밭의</span> <span class="na">정보는</span> <span class="na">공백으로</span> <span class="na">구분되며</span><span class="err">,</span> <span class="na">각</span> <span class="na">지역의</span> <span class="na">딸기의</span> <span class="na">양의</span> <span class="na">정수로</span> <span class="na">주어진다.</span>
-  <span class="err">(</span><span class="na">단</span><span class="err">,</span> <span class="na">딸기의</span> <span class="na">양은</span> <span class="err">1,000,000</span><span class="na">보다</span> <span class="na">작거나</span> <span class="na">같은</span> <span class="na">자연수이다.</span><span class="err">)</span>
+  첫 줄에 딸기밭의 크기 n (1&lt;=n&lt;=500)이 주어지고, 둘째 줄부터 n+1번째 줄까지는 딸기밭의 정보가 주어진다.
+  딸기밭의 정보는 공백으로 구분되며, 각 지역의 딸기의 양의 정수로 주어진다.
+  (단, 딸기의 양은 1,000,000보다 작거나 같은 자연수이다.)
         
-  <span class="na">위와</span> <span class="na">같은</span> <span class="na">입력이</span> <span class="na">주어질</span> <span class="na">때</span><span class="err">,</span> <span class="na">조이가</span> <span class="na">최대로</span> <span class="na">이동할</span> <span class="na">수</span> <span class="na">있는</span> <span class="na">횟수를</span> <span class="na">출력한다.</span>
+  위와 같은 입력이 주어질 때, 조이가 최대로 이동할 수 있는 횟수를 출력한다.
 </code></pre></div>        </div>
 
         <p><img src="./img/Untitled%2069.png" alt="Untitled" /></p>
