@@ -1,7 +1,7 @@
 ---
 layout: post
 type: research
-date: 2022-02-16 00:06
+date: 2022-03-30 17:00
 category: BigData
 title: 빅데이터분석기사 필기
 subtitle: "빅데이터분석기사 필기"
@@ -16,8 +16,8 @@ toc : true
 # 빅데이터분석기사 준비(1)
 > 빅데이터분석기사 필기 준비
 > Writer: SungwookLE    
-> DATE: '22.3/30
-> REFERENCE: [노트정리](https://eatchu.tistory.com/6)
+> DATE: '22.3/30  
+> REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)
 
 ## 1. 빅데이터 분석 기획
 ### 1. 빅데이터의 이해
