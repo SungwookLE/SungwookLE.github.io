@@ -499,7 +499,7 @@ DATE: ‘22.3/30</p>
       <li>특이값분해(SVD, Singular Value Decomposition)
         <ul>
           <li>$M=U\Sigma V^t$</li>
-          <li>$(m<em>n)=(m</em>m)(m<em>n)(n</em>n)$</li>
+          <li>m by n=m by m * m by n * n by n</li>
           <li><img src="/research/2203301700/img/2022-03-31-18-11-27.png" alt="" /></li>
         </ul>
       </li>
@@ -594,12 +594,30 @@ DATE: ‘22.3/30</p>
           </li>
         </ul>
       </li>
-      <li>상관계수
-  |상관계수|피어슨|스피어만|
-  |–|–|–|
-  |변수|등간, 비율|서열자료|
-  |계수|$\rho=\frac{Cov(x,y)}{\sigma_x\sigma_y}$|-|</li>
+      <li>상관계수</li>
     </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>상관계수</th>
+          <th>피어슨</th>
+          <th>스피어만</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>변수</td>
+          <td>등간, 비율</td>
+          <td>서열자료</td>
+        </tr>
+        <tr>
+          <td>계수</td>
+          <td>$\rho=\frac{Cov(x,y)}{\sigma_x\sigma_y}$</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
 </ul>
 
@@ -654,6 +672,8 @@ DATE: ‘22.3/30</p>
   <li>이산형확률분포
     <ul>
       <li>베르누이확률분포, 이항분포, 기하분포, 다항분포, 포아송분포(단위 시간 안에 어떤 사건이 몇 번 발생할 것인지를 표현)</li>
+      <li>베르누이 분포에서의 기대값은 P, 분산은 pq</li>
+      <li>이항분포(베르누이 시행을 n번 독립적으로 시행할 때) 기대값은 np, 분산은 npq</li>
     </ul>
   </li>
   <li>연속형확률분포
@@ -673,8 +693,18 @@ DATE: ‘22.3/30</p>
       <li>일치성, 충분성 …</li>
     </ul>
   </li>
-  <li>
-    <p>구간추정</p>
+  <li>구간추정
+    <ul>
+      <li>신뢰수준(z값)
+        <ul>
+          <li>90%: 1.64</li>
+          <li>95%: 1.96</li>
+          <li>99%: 2.57</li>
+        </ul>
+      </li>
+      <li>$\bar{x}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}} &lt;= \mu &lt;= \bar{x}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$</li>
+      <li>정규화 $z=\frac{x-\mu}{\sigma}$</li>
+    </ul>
   </li>
   <li>
     <p>가설검정(검정: Test)</p>
