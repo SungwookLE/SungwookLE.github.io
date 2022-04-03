@@ -583,4 +583,4 @@ toc : true
 
 ## REFERENCE
 > REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)    
-> 모의 문제: [모의문제 3회분](./img/이기적_모의고사_22년.pdf)  
+> 모의 문제: 필요하신 분 댓글 달아주세요
