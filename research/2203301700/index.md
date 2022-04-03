@@ -8,7 +8,7 @@ subtitle: "빅데이터분석기사 준비"
 writer: 100
 post-header: true  
 header-img: ./img/Data-Science.jpeg
-hash-tag: [restful, APIs]
+hash-tag: [빅분기22, 필기]
 use_math: true
 toc : true
 ---
@@ -16,7 +16,6 @@ toc : true
 # 빅데이터분석기사 준비: 필기편
 > Writer: SungwookLE    
 > DATE: '22.3/30  
-
 
 ## 1. 빅데이터 분석 기획
 ### 1. 빅데이터의 이해
@@ -596,4 +595,4 @@ toc : true
 
 ## REFERENCE
 > REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)    
-> 모의 문제: 필요하신 분 댓글 달아주세요
+> 모의 고사: 필요하신 분은 댓글로..
