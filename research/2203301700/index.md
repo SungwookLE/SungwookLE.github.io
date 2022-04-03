@@ -16,8 +16,7 @@ toc : true
 # 빅데이터분석기사 준비: 필기편
 > Writer: SungwookLE    
 > DATE: '22.3/30  
-> REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)  
-> 모의 문제: [모의문제 3회분](./img/이기적_모의고사_22년.pdf)  
+
 
 ## 1. 빅데이터 분석 기획
 ### 1. 빅데이터의 이해
@@ -581,3 +580,7 @@ toc : true
         - 서로 다른 환경, 모델 저장 공간, 성능 모니터링 부재, 규제 요구사항 준수 등
     - 분석 결과 활용 시나리오 개발
         - 분석 결과 활용 가능분야 파악 $\rightarrow$ 활용가능분야 분류 $\rightarrow$ 활용가능서비스 영역 도출 $\rightarrow$ 서비스모델개발
+
+## REFERENCE
+> REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)    
+> 모의 문제: [모의문제 3회분](./img/이기적_모의고사_22년.pdf)  
