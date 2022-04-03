@@ -828,7 +828,7 @@ DATE: ‘22.3/30</p>
           <li>적합도 검정</li>
           <li>결정계수 $R^2$: 회귀모형이 실제값에 대해 얼마나 잘 적합하는 지에 대한 비율이다(Determination Coefficient).
             <ul>
-              <li>$R^2=1-\frac{\Sigma^n_{i=1}(y_i-\hat{y}<em>i)^2}{\Sigma^n</em>{i=1}(y_i-\bar{y})^2}$</li>
+              <li><img src="img/2022-04-03-19-07-30.png" alt="" /></li>
               <li>결정계수가 1에 가까울수록 설명력이 높다고 판단.</li>
             </ul>
           </li>
@@ -992,17 +992,10 @@ DATE: ‘22.3/30</p>
           <li>연관규칙의 측도
             <ul>
               <li>지지도(support)=P(A∩B)</li>
-              <li>신뢰도(confidence)=$\frac{(A∩B)}{P(A)} = \frac{Support}{P(A)}$</li>
               <li>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>향상도(Lift) =$\frac{P(B</td>
-                      <td>A)}{P(B)} = \frac{P(A∩B)}{P(A)P(B)}$, 1이라면 서로 독립관계라는 의미</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <p>신뢰도(confidence)=$\frac{(A∩B)}{P(A)} = \frac{Support}{P(A)}$</p>
               </li>
+              <li>향상도(Lift) =<img src="img/2022-04-03-19-08-32.png" alt="" /> 1이라면 서로 독립관계라는 의미</li>
             </ul>
           </li>
         </ul>
@@ -1142,16 +1135,11 @@ DATE: ‘22.3/30</p>
       <li>과대적합방지
         <ol>
           <li>훈련데이터 증가시키기</li>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>가중치 감소 (L1: $\lambda</td>
-                  <td>w</td>
-                  <td>$, L2: $\lambda w^2$)</td>
-                </tr>
-              </tbody>
-            </table>
+          <li>가중치 감소
+            <ul>
+              <li>L1: $\lambda {abs(w)}$</li>
+              <li>L2: $\lambda w^2$</li>
+            </ul>
           </li>
           <li>모델의 복잡도 감소: 은닉층 개수 조정</li>
           <li>드롭아웃: 은닉층의 뉴런 무자위 삭제</li>
