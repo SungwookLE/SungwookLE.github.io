@@ -4,10 +4,10 @@ type: research
 date: 2022-03-30 17:00
 category: BigData
 title: 빅데이터분석기사 필기
-subtitle: "빅데이터분석기사 필기"
+subtitle: "빅데이터분석기사 준비"
 writer: 100
 post-header: true  
-header-img: ./img/2022-03-30-19-09-40.png
+header-img: ./img/Data-Science.jpeg
 hash-tag: [restful, APIs]
 use_math: true
 toc : true
@@ -16,7 +16,8 @@ toc : true
 # 빅데이터분석기사 준비: 필기편
 > Writer: SungwookLE    
 > DATE: '22.3/30  
-> REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)
+> REFERENCE: [노트정리 블로그 참고용](https://eatchu.tistory.com/6)  
+> 모의 문제: [모의문제 3회분](./img/이기적_모의고사_22년.pdf)  
 
 ## 1. 빅데이터 분석 기획
 ### 1. 빅데이터의 이해
@@ -515,4 +516,68 @@ toc : true
 
 ## 4. 빅데이터 결과 해석
 ### 1. 분석모형 평가 및 개선
+
+- 범주형 변수 모델
+    - 오차행렬(Confusion Matrix)
+        - ![](img/2022-04-03-18-24-28.png)
+        - 정확도(accuracy)
+        - 정밀도(Precision)
+        - 재현율(Recall)
+
+    - ROC(Receiver Operating Characteristic) 곡선
+        - FPR(False Positive Rate)이 변할 때 민감도인 TPR(TRue Positive Rate)이 어떻게 변화하는지 나타내는 곡선
     
+    - AUC(Area Under Curve): ROC 커브 하단 면적의 값으로 1에 가까울수록 좋다.
+
+- 분석모형 개선
+    - 과대적합방지
+        1. 훈련데이터 증가시키기
+        2. 가중치 감소 (L1: $\lambda|w|$, L2: $\lambda w^2$)
+        3. 모델의 복잡도 감소: 은닉층 개수 조정
+        4. 드롭아웃: 은닉층의 뉴런 무자위 삭제
+
+    - 매개변수 최적화(Optimizer)
+        - 경사하강법(Gradient Descent)
+            - SGD(Sthochastic GD)
+        
+        - 모멘텀 방식(LPF 결합)
+        - 아담 방식 (모멘텀, 가변 웨이트)
+        - 추가 학습을 원할 경우 해당 [페이지](http://sungwookle.site/research/2201161010/#3-1-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-gd%EC%9D%98-%ED%95%9C%EA%B3%84%EC%A0%90-%EB%B0%8F-adam%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1)에서 adam과 모멘텀 방식에 대해 알아보자
+
+### 2. 분석결과 해석 및 활용
+- 데이터 시각화
+    - 시각화 개요
+        1. 정보전달: 객관적 표현 및 데이터 저널리즘 역할
+
+    - 시각화 기능
+        1. 분석결과해석: 설명/탐색/표현
+        2. 규칙화 패턴검증
+            - 범주, 비율
+            - 추세, 패턴
+            - 관계, 연결
+        3. 시각화 표현
+    
+    - 시각화 절차
+        - 구조화 $\rightarrow$ 시각화 $\rightarrow$ 시각표현
+
+    - 시각화도구
+        - 시각화 플랫폼 / 시각화라이브러리 / 인포그래픽스
+    - 시각화 유형
+        - 시각시각화: 시계열 데이터 변화에 대한 패턴을 표현
+            - 이산형: 누적막대/ 막대/ 점그래프
+            - 연속형: 히스토그램/ 선/ 계단식
+        - 공간시각화: 지도상에 해당하는 위치정보를 표현
+            - 카토그램: 지리적 형상 크기를 조절해 재구성(직관적)
+    - 관계시각화: 데이터 사이의 연관성 및 분포와 패턴을 찾음
+        - 산점도 행렬/ 버블차트/ 히스토그램
+    - 비교시각화: 다변량 변수를 제한된 2차원에 표현
+        - 히트맵, 평행좌표계, 스타차트, 다차원척도법
+    - 분포시각화: 파이차트, 도넛차트, 트리맵
+    
+    - 인포그래픽
+
+- 분석결과활용
+    - 모델 배포 과정 이슈
+        - 서로 다른 환경, 모델 저장 공간, 성능 모니터링 부재, 규제 요구사항 준수 등
+    - 분석 결과 활용 시나리오 개발
+        - 분석 결과 활용 가능분야 파악 $\rightarrow$ 활용가능분야 분류 $\rightarrow$ 활용가능서비스 영역 도출 $\rightarrow$ 서비스모델개발
