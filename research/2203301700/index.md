@@ -20,8 +20,8 @@ toc : true
 ## 1. 빅데이터 분석 기획
 ### 1. 빅데이터의 이해
 - 데이터의 유형
-    - 정성적 데이터(qualitative): 언어, 문자 등 주로 주관적, 비정형 데이터 (Unstructured Data) 
-    - 정량적 데이터(qualititative): 수치, 도형, 기호 등 주로 객관적, 정형, 반정형 데이터(Structured, Semi-structured)
+    - 정성적 데이터(Qualitative): 언어, 문자 등 주로 주관적, 비정형 데이터 (Unstructured Data) 
+    - 정량적 데이터(Quantitative): 수치, 도형, 기호 등 주로 객관적, 정형, 반정형 데이터(Structured, Semi-structured)
 
 - 데이터 유형(구조적 관점)
     - 정형(Structured): RDB, CSV 등
