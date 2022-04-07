@@ -433,7 +433,7 @@ toc : true
         - $\dot{X} = AX +Bu$
         - dynamic system에 적합한 시계열 추정 방식임.
 
-### 정형데이터분석기법(structured)
+### 3. 정형데이터분석기법(structured)
 - 분류분석
     - Logistic Regression(로지스틱 분류 회귀)
         - sigmoid 함수를 이용하여 데이터를 가지고 분류 회귀 수행
