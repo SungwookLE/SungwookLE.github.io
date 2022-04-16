@@ -110,7 +110,7 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 .loading-animation { width: 100%; animation-name: moving; animation-duration: 0.6s; animation-timing-function: ease-in-out; }
 
 .about .section { display: grid; }
-.about .title { color: #2154b4; font-size: 20px; font-weight: 600; margin: 30px 0 10px 0; }
+.about .title { color: black; font-size: 20px; font-weight: 600; margin: 30px 0 10px 0; }
 .about .title.list { margin-top: 50px; }
 .about .title.index { font-size: 30px; padding: 0 10px; }
 @media (max-width: 670px) { .about .title.index { font-size: 18px; margin-bottom: 5px; } }
@@ -132,13 +132,10 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 .about .content .group .group-name { clear: both; color: #2154b4; font-size: 19px; font-weight: 600; margin: 0 10px; }
 @media (max-width: 1000px) { .about .content .group .group-name { font-size: 18px; } }
 @media (max-width: 670px) { .about .content .group .group-name { font-size: 17px; } }
-.about .content .group ul.member { display: -webkit-box; flex-wrap: wrap; margin: 0 10px; }
-@media (max-width: 1000px) { .about .content .group ul.member { display: block; } }
-.about .content .group ul.member li { width: 440px; border: none; }
-.about .content .group ul.member li:nth-child(even) { margin-left: auto; }
-@media (max-width: 1200px) { .about .content .group ul.member li { width: 420px; } }
-@media (max-width: 1000px) { .about .content .group ul.member li { width: unset; border-bottom: 1px solid #D8E0E7; }
-  .about .content .group ul.member li:last-child { border: none; } }
+.about A:link { color: blue; text-decoration: none; }
+.about A:visited { color: gray; text-decoration: none; }
+.about A:hover { color: #2154b4; text-decoration: underline; font-weight: bolder; }
+.about A:active { color: red; text-decoration: none; }
 
 .no-wrap { white-space: nowrap; }
 
@@ -148,19 +145,19 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 
 @media (max-width: 670px) { .about-banner { height: 200px !important; } }
 
-.main-banner, .recruit-banner, .about-banner { left: 0; right: 0; height: 400px; }
-@media (max-width: 1000px) { .main-banner, .recruit-banner, .about-banner { height: 300px; } }
-@media (max-width: 670px) { .main-banner, .recruit-banner, .about-banner { bottom: 0; height: 150px; } }
-.main-banner .text-wrapper .main-title, .recruit-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 30px; font-weight: bold; }
-@media (max-width: 1000px) { .main-banner .text-wrapper .main-title, .recruit-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 22px; } }
-@media (max-width: 670px) { .main-banner .text-wrapper .main-title, .recruit-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 23px; margin-top: 5px; } }
-.main-banner .text-wrapper .sub-title, .recruit-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 24px; font-weight: bold; }
-@media (max-width: 1000px) { .main-banner .text-wrapper .sub-title, .recruit-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 18px; } }
-@media (max-width: 670px) { .main-banner .text-wrapper .sub-title, .recruit-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 16px; } }
-.main-banner .text-wrapper .description, .recruit-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 19px; }
-@media (max-width: 1000px) { .main-banner .text-wrapper .description, .recruit-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 15px; } }
-@media (max-width: 670px) { .main-banner .text-wrapper .description, .recruit-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 14px; } }
-.main-banner .text-wrapper .highlight-text, .recruit-banner .text-wrapper .highlight-text, .about-banner .text-wrapper .highlight-text { color: #2154b4; }
+.main-banner, .about-banner { left: 0; right: 0; height: 250px; }
+@media (max-width: 1000px) { .main-banner, .about-banner { height: 350px; } }
+@media (max-width: 670px) { .main-banner, .about-banner { bottom: 0; height: 150px; } }
+.main-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 30px; font-weight: bold; }
+@media (max-width: 1000px) { .main-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 22px; } }
+@media (max-width: 670px) { .main-banner .text-wrapper .main-title, .about-banner .text-wrapper .main-title { font-size: 23px; margin-top: 5px; } }
+.main-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 24px; font-weight: bold; }
+@media (max-width: 1000px) { .main-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 18px; } }
+@media (max-width: 670px) { .main-banner .text-wrapper .sub-title, .about-banner .text-wrapper .sub-title { font-size: 16px; } }
+.main-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 19px; }
+@media (max-width: 1000px) { .main-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 15px; } }
+@media (max-width: 670px) { .main-banner .text-wrapper .description, .about-banner .text-wrapper .description { font-size: 14px; } }
+.main-banner .text-wrapper .highlight-text, .about-banner .text-wrapper .highlight-text { color: #2154b4; }
 
 @media (max-width: 670px) { .main-banner { margin: 30px 0 80px 0; } }
 .main-banner .content { overflow: hidden; position: relative; height: 100%; width: 100%; }

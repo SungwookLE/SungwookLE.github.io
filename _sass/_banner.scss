@@ -18,13 +18,13 @@
   }
 }
 
-.main-banner, .recruit-banner, .about-banner {
+.main-banner, .about-banner {
   left: 0;
   right: 0;
-  height: 400px;
+  height: 250px;
 
   @media (max-width: $break-medium) {
-    height: 300px;
+    height: 350px;
   }
 
   @media (max-width: $break-small) {

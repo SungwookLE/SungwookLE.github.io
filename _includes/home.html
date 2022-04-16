@@ -6,7 +6,7 @@
         <table class="catalogue">
           <tr>
             {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'research' %}
-            {% for page in sorted limit: 2 %}
+            {% for page in sorted limit: 3%}
             {% if page.use_math %}
   {% include mathjax_support.html %}
 {% endif %}
