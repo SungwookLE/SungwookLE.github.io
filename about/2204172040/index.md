@@ -2,6 +2,8 @@
 layout: post
 type: about
 title: Resume
+header-img: ./img/wall2.jpg
+post-header: true
 use_math: true
 ---
 
@@ -44,8 +46,8 @@ use_math: true
         - Deep-learning 기반 승객 keypoints 추정 및 3D 좌표 추정
         - Occlusion 강건화 알고리즘 개발
         - 실내 승객 클래스 판단 알고리즘 개발
-    - 시험 빅데이터 분석 툴 개발
-        - Django, 기계학습을 이용한 빅데이터 분석 툴 개발
+    - 충돌시험 빅데이터 분석 툴 개발
+        - Django, 기계학습을 이용한 웹기반 분석 툴 개발
     - 에어백 SW 검증
         - 요구사항 기반 테스트 케이스 자동화 생성 코드 개발
         - 정적/동적 SW 검증, SILS/HILS 기능 검증
@@ -58,7 +60,7 @@ use_math: true
 - Frameworks: Tensorflow, Keras, Django
 - Tools: Git, MySQL, docker
 
-## 5. PAPERS & PATENTS(*First author)
+## 5. PAPERS & PATENTS(*1st author)
 
 - PAPERS
     - "Control Allocation of Rear Wheel Steering and Electronic Stability Control with Actuator Failure", *IEEE International Conference on Vehicular Electronics and Safety*
