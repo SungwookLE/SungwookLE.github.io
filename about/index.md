@@ -17,8 +17,11 @@ title: About
         <div class="title index">02. Cover</div>
             <div class="content">
                 <ul>
-                    <A href = "./img/resume.md">Resume</A>,  
-                    <A href = "https://github.com/SungwookLE">Github</A>,  
+                    {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'about' %}
+                    {% for page in sorted limit: 1%}
+                    {% include about-list.html %}
+                    {% endfor %}
+                    <A href = "https://github.com/SungwookLE">Github</A>
                     <A href = "https://www.linkedin.com/in/sungwookle/">Linkedin</A>
                 </ul>
             </div>

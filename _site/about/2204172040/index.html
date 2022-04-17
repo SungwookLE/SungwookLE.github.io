@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>Resume</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Resume">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/meta/meta_image.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about"  class="active" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                
+            </div>
+        </div>
+        <h1 class="post-title">
+            Resume
+        </h1>
+        <h2 class="post-subtitle">
+            
+        </h2>
+        <h2 class="post-date">
+            
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <ul><li><a href="#sungwook-lee">Sungwook LEE</a><ul><li><a href="#1-education">1. EDUCATION</a></li><li><a href="#2-research-interest">2. RESEARCH INTEREST</a></li><li><a href="#3-career">3. CAREER</a></li><li><a href="#4-skills">4. SKILLS</a></li><li><a href="#5-papers--patentsfirst-author">5. PAPERS &amp; PATENTS(*First author)</a></li><li><a href="#6-project-experience">6. PROJECT EXPERIENCE</a><ul><li><a href="#1-integrated-chassis-control-176186">1. Integrated Chassis Control (17.6~18.6)</a></li><li><a href="#2-차량-상태-추정-sw-개발-롤각-추정-2042010">2. 차량 상태 추정 SW 개발: 롤각 추정 (20.4~20.10)</a></li><li><a href="#3-승객-영상-인식-sw-개발-2142111">3. 승객 영상 인식 SW 개발 (21.4~21.11)</a></li><li><a href="#4-self-driving-car-nanodegree-udacity-2010212">4. <a href="https://graduation.udacity.com/confirm/WHYAFRLW">Self-Driving Car</a> Nanodegree, Udacity (20.10~21.2)</a></li><li><a href="#5-c-intermediate-nanodegree-udacity-206209">5. <a href="https://graduation.udacity.com/confirm/UZ3U3CZE">C++ Intermediate</a> Nanodegree, Udacity (20.6~20.9)</a></li></ul></li><li><a href="#end">End</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="sungwook-lee">Sungwook LEE</h1>
+<blockquote>
+  <p>010.9853.3641<br />
+joker1251@naver.com<br />
+github.com/sungwookLE</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-education">1. EDUCATION</h2>
+
+<ul>
+  <li>한양대학교 자동차전자제어공학과 석사</li>
+  <li>국민대학교 기계시스템공학과 학사</li>
+</ul>
+
+<h2 id="2-research-interest">2. RESEARCH INTEREST</h2>
+
+<ul>
+  <li>Autonomous Driving SW
+    <ul>
+      <li>Vehicle Control</li>
+      <li>State Estimation &amp; Prediction</li>
+      <li>Localization</li>
+    </ul>
+  </li>
+  <li>Deep Learning with Vision
+    <ul>
+      <li>Deep Learning &amp; Dynamic Model Fusion Algorithm</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-career">3. CAREER</h2>
+
+<ul>
+  <li>Researcher(17.1~19.1): Intelligent Machine Lab, @Hanyang University
+    <ul>
+      <li>Integrated Chassis Control
+        <ul>
+          <li>차량 동역학 모델 기반 최적 ESC + RWS 제어 로직</li>
+          <li>모델 상태변수 추정(슬립각, 타이어포스) 로직</li>
+          <li>Actuator Failure 따른 고장허용제어</li>
+          <li>Lidar + Radar Sensor Fusion SW 알고리즘 개발</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Researcher(19.1~): Safety Control, @Hyundai Motor Company
+    <ul>
+      <li>차량 상태 추정 SW 개발: 전복 감지(<code class="language-plaintext highlighter-rouge">c, c++</code>)
+        <ul>
+          <li>차량 롤각 추정 SW 로직 개발 및 양산</li>
+          <li>주행 중 롤각 추정 성능 개선</li>
+        </ul>
+      </li>
+      <li>승객 영상 인식 자세 추정 SW 개발(<code class="language-plaintext highlighter-rouge">python</code>)
+        <ul>
+          <li>Deep-learning 기반 승객 keypoints 추정 및 3D 좌표 추정</li>
+          <li>Occlusion 강건화 알고리즘 개발</li>
+          <li>실내 승객 클래스 판단 알고리즘 개발</li>
+        </ul>
+      </li>
+      <li>시험 빅데이터 분석 툴 개발
+        <ul>
+          <li>Django, 기계학습을 이용한 빅데이터 분석 툴 개발</li>
+        </ul>
+      </li>
+      <li>에어백 SW 검증
+        <ul>
+          <li>요구사항 기반 테스트 케이스 자동화 생성 코드 개발</li>
+          <li>정적/동적 SW 검증, SILS/HILS 기능 검증</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-skills">4. SKILLS</h2>
+
+<ul>
+  <li>Model Based Development: Control &amp; Estimation
+    <ul>
+      <li>Advanced Control, Optimal Estimation(Kalman)</li>
+    </ul>
+  </li>
+  <li>Programming Languages: C++, C, Python</li>
+  <li>Frameworks: Tensorflow, Keras, Django</li>
+  <li>Tools: Git, MySQL, docker</li>
+</ul>
+
+<h2 id="5-papers--patentsfirst-author">5. PAPERS &amp; PATENTS(*First author)</h2>
+
+<ul>
+  <li>PAPERS
+    <ul>
+      <li>“Control Allocation of Rear Wheel Steering and Electronic Stability Control with Actuator Failure”, <em>IEEE International Conference on Vehicular Electronics and Safety</em></li>
+      <li>“Integrated Chassis Control of Suspension and Steering Systems for LKAS”, <em>International Conference on Control, Automation and Systems</em></li>
+    </ul>
+  </li>
+  <li>PATENTS
+    <ul>
+      <li>RWS, ESC Actuator 고장허용제어 기술 특허 출원</li>
+      <li>6DOF IMU 센서 오프셋 가속 제거 기술 특허 출원</li>
+      <li>기계학습 기반 충돌 승객 상해 예측 안전 제어 기술 특허 출원</li>
+      <li>Kinetics 모델 기반 실내 승객 거동 추정 기술 특허 출원</li>
+      <li>실내 영상 기반 승객 거동 추정 및 안전 제어 기술 특허 출원</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="6-project-experience">6. PROJECT EXPERIENCE</h2>
+<h3 id="1-integrated-chassis-control-176186">1. Integrated Chassis Control (17.6~18.6)</h3>
+<ul>
+  <li>Vehicle Dynamics Model Based, Optimal Control and Estimation SW algorithm(<code class="language-plaintext highlighter-rouge">Matlab/Simulink</code>)
+    <ul>
+      <li>Rear Wheel Steering and Electronic Stability Contorl</li>
+      <li>Controller: Nonlinear Sliding Mode Control</li>
+      <li>Estimator: Tire Force and Side Slip Angle with Dual Extended Kalman Filter (모델 파라미터 및 상태변수 동시 추정)</li>
+      <li>
+        <p>Optimizer: KKT(Karush-Kuhn-Tucker) method for considering Contraints</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="/about/2204172040/img/thesis.png" alt="" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-차량-상태-추정-sw-개발-롤각-추정-2042010">2. 차량 상태 추정 SW 개발: 롤각 추정 (20.4~20.10)</h3>
+<ul>
+  <li>Dynamics Model Based, Roll Angle Estimation SW algorithm( c,c++ )</li>
+  <li>3차원 거동 상황에서의 강건한 롤각 추정 로직 개발</li>
+  <li>차량 신호 분석 기반 Gain Scheduling Domain Design</li>
+  <li>Gain-Scheduled Roll Angle Estimator 개발</li>
+  <li>롤각 추정 Fault-Tolerant 로직 개발</li>
+</ul>
+
+<h3 id="3-승객-영상-인식-sw-개발-2142111">3. 승객 영상 인식 SW 개발 (21.4~21.11)</h3>
+<ul>
+  <li>Deep Learning algorithm(<code class="language-plaintext highlighter-rouge">python, pytorch, opencv</code>)
+    <ul>
+      <li>
+        <p>Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th> </th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="/about/2204172040/img/safety_pose.gif" alt="" /></td>
+              <td><img src="https://github.com/SungwookLE/Safety_Class/raw/master/viz/samples_gif/real_time_demo_driving_sungwook.gif" alt="" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>Occlusion 강건화 알고리즘 개발</li>
+      <li>승객 클래스 판단 알고리즘 개발(<code class="language-plaintext highlighter-rouge">keras, tensorflow</code>)</li>
+      <li>autoencoder 활용한 semi-supervised learning</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-self-driving-car-nanodegree-udacity-2010212">4. <a href="https://graduation.udacity.com/confirm/WHYAFRLW">Self-Driving Car</a> Nanodegree, Udacity (20.10~21.2)</h3>
+<ul>
+  <li>Computer Vision</li>
+  <li>Sensor Fusion
+    <ul>
+      <li>Pedestrian {위치 , 속도} 예측 Lidar+Radar Sensor Fusion</li>
+      <li>Kalman Filter, Extended Kalman Filter</li>
+      <li>
+        <p><a href="https://github.com/SungwookLE/udacity_extended_kf">Lidar+Radar Sensor Fusion with Extended Kalman Filter</a></p>
+
+        <table>
+          <thead>
+            <tr>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="/about/2204172040/img/lidar_radar_fusion.png" alt="" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li>Localization
+    <ul>
+      <li>Particle Filter</li>
+    </ul>
+  </li>
+  <li>Planning, Control</li>
+  <li>System Integration: <code class="language-plaintext highlighter-rouge">ROS</code></li>
+</ul>
+
+<h3 id="5-c-intermediate-nanodegree-udacity-206209">5. <a href="https://graduation.udacity.com/confirm/UZ3U3CZE">C++ Intermediate</a> Nanodegree, Udacity (20.6~20.9)</h3>
+<ul>
+  <li>Object-Oriented Programming
+    <ul>
+      <li>A-Star Search Algorithm</li>
+    </ul>
+  </li>
+  <li>Memory Management</li>
+  <li>Concurrency Programming</li>
+</ul>
+
+<h2 id="end">End</h2>
+
+      </article>
+
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SungwookLE</div>
+    </div>
+    <div class='description'>이성욱</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>

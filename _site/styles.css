@@ -110,7 +110,7 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 .loading-animation { width: 100%; animation-name: moving; animation-duration: 0.6s; animation-timing-function: ease-in-out; }
 
 .about .section { display: grid; }
-.about .title { color: black; font-size: 20px; font-weight: 600; margin: 30px 0 10px 0; }
+.about .title { color: #2c2c2c; font-size: 20px; font-weight: 600; margin: 30px 0 10px 0; }
 .about .title.list { margin-top: 50px; }
 .about .title.index { font-size: 30px; padding: 0 10px; }
 @media (max-width: 670px) { .about .title.index { font-size: 18px; margin-bottom: 5px; } }
@@ -167,17 +167,6 @@ footer .footer_wrap .copyright { text-align: center; font-size: 14px; }
 @media (max-width: 670px) { .main-banner .content .overlay { background: rgba(255, 255, 255, 0.5); } }
 .main-banner .content .text-wrapper { position: absolute; text-align: center; transform: translate(-50%, -50%); left: 50%; top: 50%; width: fit-content; padding: 0 20px; }
 .main-banner .content .text-wrapper a { color: #A4D233; font-weight: bold; }
-
-.recruit-banner .content { overflow: hidden; position: relative; height: 100%; width: 100%; }
-.recruit-banner .content img { position: absolute; left: -1000%; right: -1000%; top: -1000%; bottom: -1000%; margin: auto; min-height: 100%; min-width: 100%; object-fit: contain; }
-.recruit-banner .content .overlay { position: absolute; top: 0; right: 0; left: 0; bottom: 0; }
-@media (max-width: 1000px) { .recruit-banner .content .overlay { background: rgba(255, 255, 255, 0.3); } }
-@media (max-width: 670px) { .recruit-banner .content .overlay { background: rgba(255, 255, 255, 0.5); } }
-.recruit-banner .content .text-wrapper { position: absolute; text-align: center; transform: translate(-50%, -50%); left: 50%; top: 50%; width: fit-content; padding: 0 20px; }
-.recruit-banner .content .text-wrapper .button { background-color: #2154b4; color: white; margin: 40px auto 0 auto; width: fit-content; padding: 15px 25px; }
-@media (max-width: 1000px) { .recruit-banner .content .text-wrapper .button { font-size: 16px; margin-top: 30px; } }
-@media (max-width: 670px) { .recruit-banner .content .text-wrapper .button { font-size: 14px; margin-top: 20px; padding: 10px 20px; } }
-.recruit-banner .content .text-wrapper .button:hover { font-weight: bold; }
 
 .about-banner .content { overflow: hidden; position: relative; height: 100%; width: 100%; }
 .about-banner .content img { margin: auto; min-height: 100%; min-width: 100%; object-fit: contain; }

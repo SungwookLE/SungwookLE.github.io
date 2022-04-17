@@ -1,6 +1,7 @@
 .home {
 	overflow: hidden;
 	margin-top: 15px;
+
 	.section {
 		margin-bottom: 60px;
 
@@ -72,6 +73,7 @@
 				@media (max-width: $break-medium) {
 					height: 300px;
 				}
+
 				@media (max-width: $break-small) {
 					height: 180px;
 				}
@@ -84,6 +86,7 @@
 	from {
 		opacity: 0.3;
 	}
+
 	to {
 		opacity: 1;
 	}

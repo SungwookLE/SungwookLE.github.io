@@ -8,8 +8,8 @@
 ## group: [leader | backend | data | frontend | app]
 
 - id: 100
-  name: SugnwookLE
-  comment: 꽥꽥
+  name: SungwookLE
+  comment: 이성욱
   group:  leader
 
 - id: 200
