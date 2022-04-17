@@ -10,7 +10,6 @@ use_math: true
 > 010.9853.3641  
 > joker1251@naver.com  
 > github.com/sungwookLE  
-
 ---------
 
 ## 1. EDUCATION
@@ -32,16 +31,16 @@ use_math: true
 
 - Researcher(17.1~19.1): Intelligent Machine Lab, @Hanyang University
     - Integrated Chassis Control
-        - 차량 동역학 모델 기반 최적 ESC + RWS 제어 로직
+        - 차량 동역학 모델 기반 최적 ESC+RWS 제어 로직
         - 모델 상태변수 추정(슬립각, 타이어포스) 로직
         - Actuator Failure 따른 고장허용제어
         - Lidar + Radar Sensor Fusion SW 알고리즘 개발
 
 - Researcher(19.1~): Safety Control, @Hyundai Motor Company
-    - 차량 상태 추정 SW 개발: 전복 감지(`c, c++`)
-        - 차량 롤각 추정 SW 로직 개발 및 양산
+    - 차량 상태 추정 SW 개발: 전복 감지
+        - 차량 롤각 추정 SW 로직 개발
         - 주행 중 롤각 추정 성능 개선
-    - 승객 영상 인식 자세 추정 SW 개발(`python`)
+    - 승객 영상 인식 자세 추정 SW 개발
         - Deep-learning 기반 승객 keypoints 추정 및 3D 좌표 추정
         - Occlusion 강건화 알고리즘 개발
         - 실내 승객 클래스 판단 알고리즘 개발
@@ -86,15 +85,15 @@ use_math: true
 
 ### 2. 차량 상태 추정 SW 개발: 롤각 추정 (20.4~20.10)
 - 5DOF IMU 신호 오프셋 제거 (FOC, SOC) 개선 로직 개발
-    - Dynamics Model Based, Roll Angle Estimation SW algorithm( c,c++ )
+    - Dynamics Model Based, Roll Angle Estimation SW algorithm(`c,c++`)
     - 3차원 거동 상황에서의 강건한 롤각 추정 로직 개발
     - 차량 신호 분석 기반 Gain Scheduling Domain Design
     - Gain-Scheduled Roll Angle Estimator 개발
     - 롤각 추정 Fault-Tolerant 로직 개발
 
 ### 3. 승객 영상 인식 SW 개발 (21.4~21.11)
-- Deep Learning algorithm(`python, pytorch, opencv`)
-    - Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정
+- Deep Learning algorithm
+    - Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정(`pytorch, opencv`)
 
         |||
         |-|-|-|
@@ -102,7 +101,7 @@ use_math: true
 
     - Occlusion 강건화 알고리즘 개발
     - 승객 클래스 판단 알고리즘 개발(`keras, tensorflow`)
-    - autoencoder 활용한 semi-supervised learning
+        - autoencoder 활용한 semi-supervised learning
 
 ### 4. Self-Driving Car Nanodegree, Udacity (20.10~21.2)
 - Computer Vision
