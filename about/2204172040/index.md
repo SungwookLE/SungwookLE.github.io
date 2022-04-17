@@ -6,7 +6,6 @@ header-img: ./img/wall2.jpg
 post-header: true
 use_math: true
 ---
-
 # Sungwook LEE
 > 010.9853.3641  
 > joker1251@naver.com  
@@ -57,7 +56,7 @@ use_math: true
 - Model Based Development: Control & Estimation
     - Advanced Control, Optimal Estimation(Kalman)
 - Programming Languages: C++, C, Python
-- Frameworks: Tensorflow, Keras, Django
+- Framework: Tensorflow, Keras, Django
 - Tools: Git, MySQL, docker
 
 ## 5. PAPERS & PATENTS(*1st author)
@@ -86,11 +85,12 @@ use_math: true
         |![](./img/thesis.png)|
 
 ### 2. 차량 상태 추정 SW 개발: 롤각 추정 (20.4~20.10)
-- Dynamics Model Based, Roll Angle Estimation SW algorithm( c,c++ )
-- 3차원 거동 상황에서의 강건한 롤각 추정 로직 개발
-- 차량 신호 분석 기반 Gain Scheduling Domain Design
-- Gain-Scheduled Roll Angle Estimator 개발
-- 롤각 추정 Fault-Tolerant 로직 개발
+- 5DOF IMU 신호 오프셋 제거 (FOC, SOC) 개선 로직 개발
+    - Dynamics Model Based, Roll Angle Estimation SW algorithm( c,c++ )
+    - 3차원 거동 상황에서의 강건한 롤각 추정 로직 개발
+    - 차량 신호 분석 기반 Gain Scheduling Domain Design
+    - Gain-Scheduled Roll Angle Estimator 개발
+    - 롤각 추정 Fault-Tolerant 로직 개발
 
 ### 3. 승객 영상 인식 SW 개발 (21.4~21.11)
 - Deep Learning algorithm(`python, pytorch, opencv`)
@@ -104,7 +104,7 @@ use_math: true
     - 승객 클래스 판단 알고리즘 개발(`keras, tensorflow`)
     - autoencoder 활용한 semi-supervised learning
 
-### 4. [Self-Driving Car](https://graduation.udacity.com/confirm/WHYAFRLW) Nanodegree, Udacity (20.10~21.2)
+### 4. Self-Driving Car Nanodegree, Udacity (20.10~21.2)
 - Computer Vision
 - Sensor Fusion
     - Pedestrian {위치 , 속도} 예측 Lidar+Radar Sensor Fusion
@@ -120,7 +120,7 @@ use_math: true
 - Planning, Control
 - System Integration: `ROS`
 
-### 5. [C++ Intermediate](https://graduation.udacity.com/confirm/UZ3U3CZE) Nanodegree, Udacity (20.6~20.9)
+### 5. C++ Intermediate Nanodegree, Udacity (20.6~20.9)
 - Object-Oriented Programming
     - A-Star Search Algorithm
 - Memory Management
