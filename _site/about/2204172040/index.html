@@ -155,8 +155,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         </div>
         <h1 id="sungwook-lee">Sungwook LEE</h1>
 <blockquote>
-  <p>010.9853.3641<br />
-joker1251@naver.com<br />
+  <p>joker1251@naver.com<br />
 github.com/sungwookLE</p>
 </blockquote>
 
@@ -193,7 +192,7 @@ github.com/sungwookLE</p>
     <ul>
       <li>Integrated Chassis Control
         <ul>
-          <li>차량 동역학 모델 기반 최적 ESC + RWS 제어 로직</li>
+          <li>차량 동역학 모델 기반 최적 ESC+RWS 제어 로직</li>
           <li>모델 상태변수 추정(슬립각, 타이어포스) 로직</li>
           <li>Actuator Failure 따른 고장허용제어</li>
           <li>Lidar + Radar Sensor Fusion SW 알고리즘 개발</li>
@@ -203,13 +202,13 @@ github.com/sungwookLE</p>
   </li>
   <li>Researcher(19.1~): Safety Control, @Hyundai Motor Company
     <ul>
-      <li>차량 상태 추정 SW 개발: 전복 감지(<code class="language-plaintext highlighter-rouge">c, c++</code>)
+      <li>차량 상태 추정 SW 개발: 전복 감지
         <ul>
-          <li>차량 롤각 추정 SW 로직 개발 및 양산</li>
+          <li>차량 롤각 추정 SW 로직 개발</li>
           <li>주행 중 롤각 추정 성능 개선</li>
         </ul>
       </li>
-      <li>승객 영상 인식 자세 추정 SW 개발(<code class="language-plaintext highlighter-rouge">python</code>)
+      <li>승객 영상 인식 자세 추정 SW 개발
         <ul>
           <li>Deep-learning 기반 승객 keypoints 추정 및 3D 좌표 추정</li>
           <li>Occlusion 강건화 알고리즘 개발</li>
@@ -296,7 +295,7 @@ github.com/sungwookLE</p>
 <ul>
   <li>5DOF IMU 신호 오프셋 제거 (FOC, SOC) 개선 로직 개발
     <ul>
-      <li>Dynamics Model Based, Roll Angle Estimation SW algorithm( c,c++ )</li>
+      <li>Dynamics Model Based, Roll Angle Estimation SW algorithm(<code class="language-plaintext highlighter-rouge">c,c++</code>)</li>
       <li>3차원 거동 상황에서의 강건한 롤각 추정 로직 개발</li>
       <li>차량 신호 분석 기반 Gain Scheduling Domain Design</li>
       <li>Gain-Scheduled Roll Angle Estimator 개발</li>
@@ -307,10 +306,10 @@ github.com/sungwookLE</p>
 
 <h3 id="3-승객-영상-인식-sw-개발-2142111">3. 승객 영상 인식 SW 개발 (21.4~21.11)</h3>
 <ul>
-  <li>Deep Learning algorithm(<code class="language-plaintext highlighter-rouge">python, pytorch, opencv</code>)
+  <li>Deep Learning algorithm
     <ul>
       <li>
-        <p>Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정</p>
+        <p>Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정(<code class="language-plaintext highlighter-rouge">pytorch, opencv</code>)</p>
 
         <table>
           <thead>
@@ -328,8 +327,11 @@ github.com/sungwookLE</p>
         </table>
       </li>
       <li>Occlusion 강건화 알고리즘 개발</li>
-      <li>승객 클래스 판단 알고리즘 개발(<code class="language-plaintext highlighter-rouge">keras, tensorflow</code>)</li>
-      <li>autoencoder 활용한 semi-supervised learning</li>
+      <li>승객 클래스 판단 알고리즘 개발(<code class="language-plaintext highlighter-rouge">keras, tensorflow</code>)
+        <ul>
+          <li>autoencoder 활용한 semi-supervised learning</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
