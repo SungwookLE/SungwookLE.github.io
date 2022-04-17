@@ -7,9 +7,9 @@ post-header: true
 use_math: true
 ---
 # Sungwook LEE
-> 010.9853.3641  
 > joker1251@naver.com  
 > github.com/sungwookLE  
+
 ---------
 
 ## 1. EDUCATION
