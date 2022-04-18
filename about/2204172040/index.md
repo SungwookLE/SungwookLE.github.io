@@ -97,7 +97,7 @@ use_math: true
 
         |||
         |-|-|-|
-        |![](./img/safety_pose.gif)|![](https://github.com/SungwookLE/Safety_Class/raw/master/viz/samples_gif/real_time_demo_driving_sungwook.gif)|
+        |![](./img/safety_pose.gif)|![](./img/safety_class.gif)|
 
     - Occlusion 강건화 알고리즘 개발
     - 승객 클래스 판단 알고리즘 개발(`keras, tensorflow`)
