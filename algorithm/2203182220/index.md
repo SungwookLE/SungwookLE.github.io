@@ -1147,6 +1147,246 @@ use_math: true
 2. 프로그래머스(알고리즘 문제)
     
     [코딩테스트 연습](https://programmers.co.kr/learn/challenges)
+
+## 6. 연습문제
+
+### 6-1. BOJ 14499(구현)
+[14499번: 주사위 굴리기](https://www.acmicpc.net/problem/14499)
+
+- 3차원을 머리속에서 굴리려니까 쉽지 않다.
+    - 주사위가 회전하면서 바뀌는 동서남북 이동할 때의 주사위 순번을 덱에 담아서 어떻게 저쩌게 해보려고 햇는데, 틀렸고..., 생각을 해보니, 규칙이 틀린듯 싶다.
+    - 그래프 자료구조를 써서 인접리스트를 만들어야하는건가.. 하고 있었는데, 그것까지는 아닌듯하다.
+- 주사위 회전에 따른 면 배치 규칙을 손으로 그려보고 나서야 규칙을 찾고 풀 수 있었다.
+    - ![](img/2022-04-23-18-26-24.png)
+- 제출 코드(`c++`)
+    ```cpp
+        #include <iostream>
+        
+        using namespace std;
+        
+        int N, M;
+        int x, y;
+        int K;
+        
+        int map[21][21];
+        int order[1001];
+        
+        int dice[7] = {0, 1, 2, 3, 4, 5, 6};
+        int value[7] = {0, 0, 0, 0, 0, 0, 0};
+        
+        int main()
+        {
+        
+            cin >> N >> M >> x >> y >> K;
+            for (int i = 0; i < N; ++i)
+                for (int j = 0; j < M; ++j)
+                    cin >> map[i][j];
+            for (int i = 0; i < K; ++i)
+                cin >> order[i];
+        
+            pair<int, int> cur = {x, y};
+        
+            for (int i = 0; i < K; ++i)
+            {
+                bool in_map = false;
+                switch (order[i])
+                {
+                case (1):
+                    if (cur.second + 1 < M)
+                    {
+                        in_map = true;
+                        cur.second += 1;
+                        int temp = dice[6];
+                        dice[6] = dice[4];
+                        dice[4] = dice[1];
+                        dice[1] = dice[3];
+                        dice[3] = temp;
+                    }
+                    break;
+                case (2):
+                    if (cur.second - 1 >= 0)
+                    {
+                        in_map = true;
+                        cur.second -= 1;
+                        int temp = dice[6];
+                        dice[6] = dice[3];
+                        dice[3] = dice[1];
+                        dice[1] = dice[4];
+                        dice[4] = temp;
+                    }
+                    break;
+        
+                case (3):
+                    if (cur.first - 1 >= 0)
+                    {
+                        in_map = true;
+                        cur.first -= 1;
+                        int temp = dice[6];
+                        dice[6] = dice[5];
+                        dice[5] = dice[1];
+                        dice[1] = dice[2];
+                        dice[2] = temp;
+                    }
+                    break;
+        
+                case (4):
+                    if (cur.first + 1 < N)
+                    {
+                        in_map = true;
+                        cur.first += 1;
+                        int temp = dice[2];
+                        dice[2] = dice[1];
+                        dice[1] = dice[5];
+                        dice[5] = dice[6];
+                        dice[6] = temp;
+                    }
+                    break;
+                }
+        
+                if (in_map)
+                {
+                    if (map[cur.first][cur.second] == 0)
+                    {
+                        map[cur.first][cur.second] = value[dice[1]];
+                    }
+                    else
+                    {
+                        value[dice[1]] = map[cur.first][cur.second];
+                        map[cur.first][cur.second] = 0;
+                    }
+                    cout << value[dice[6]] << endl;
+                }
+            }
+        
+            return 0;
+        }
+    ```
+
+### 6-2. BOJ 11053: `LIS` (DP)
+[11053번: 가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)
     
+- `dyanamic programming` 문제가 항상 어렵다.. **대표문제격인** `LIS` 문제를 풀어보자.
+- `LIS`는 주어진 배열중에 숫자가 증가하는 규칙으로 숫자를 뽑았을 때 가질 수 있는 최장길이를 말한다.
+    - 예: {1,7,2,4,9} 일 때, 최장길이는 4가 된다. (배열: {1,2,4,9})
+- 풀이방법
+    1. DP배열 정의: DP[i] : i번째 수를 끝 수로 하는 최장길이의 개수
+    2. 점화식:`if (arr[k] < arr[i]) DP[i] = max(DP[k] + 1, DP[i])`
+    3. 초기값: `DP[0~n] = 1` 최악의 경우에는 자기 자신이 최장길이의 개수가 된다.
+- 코드
+    ```cpp
+        #include <iostream>
+        #include <vector>
+        
+        using namespace std;
+        
+        int main(){
+            int N = 5;
+            vector<int> A = {1,7,2,4,9};
+        
+            
+            vector<int> DP(N,1);
+            for(int i = 0 ; i < A.size(); ++i){
+                for(int k = 0 ; k < i; ++k){
+                    if (A[i] > A[k]) DP[i] = max(DP[k]+1, DP[i]);
+                }
+            }
+        
+            cout << DP[N-1] << endl;
+        }
+    ```
+        
+### 6-3. 프로그래머스 도둑질 Lv4(DP)
+[코딩테스트 연습 - 도둑질](https://programmers.co.kr/learn/courses/30/lessons/42897)
+    
+- (220422 첫시도) 실패
+    - DP 배열을 하나 잡고서 풀려고 시도했다.(`LIS` 풀이방식과 유사하게 접근) 주어진 테스트케이스는 맞추었으나, 채점 결과 점수가 대부분 틀리게 나왔고, 생각을 해보니 첫번째 집을 털 경우에 끝집을 털면 안되는데, 아래 코드는 그런 부분에 대해서 처리가 안되어 있다.
+        
+    ```cpp
+        int N = money.size();
+            
+            for(int i = 0 ; i < N ; ++i){
+                DP[i] = money[i];
+                
+                for(int k =0 ; k<i ; ++k){
+                    if (abs(i-k) > 1 ){ //이웃의 집은 털지 못하게
+                        DP[i] = max(DP[i], DP[k]+money[i]);
+                    }
+                }
+            }
+    ```
+        
+- 풀이방법(`DP배열을 2개 잡아서 풀어야한다`)
+    - 고민을 꽤 오래 해보았는데, 답이 떠오르지가 않아.. 다른 사람 풀이를 참고해보니, 배열을 **한개가 아닌, 두개를 잡고** 동적프로그래밍을 풀었더라.
+        1. 첫번째 집을 털 경우에 대한 배열: `DP1`
+            - 첫번째 집을 털 경우엔 자동으로 끝에 집을 털 수 없다.
+        2. 첫번째 집을 털지 못한 경우에 대한 배열: `DP2`
+            - 첫번째 집을 털지 않았으니, 끝에 집을 털 수 있다.
+    - DP 배열 정의
+        1. DP1[n] = 첫번째 집을 털었고, n번째 집까지 왔을 때, 털 수 있는 돈의 최대값
+        2. DP2[n] = 첫번째 집은 털지 않았고, n번째 집까지 왔을 때, 털 수 있는 돈의 최대값
+    - DP 초기값 정의
+        1. DP1[0] = money[0] , 첫번째 집을 털었다. DP1[1] = money[0], 두번째 집은 털지 못한다.
+        2. DP2[0] = 0, 첫번째 집을 털지 않았고, DP2[1] = money[1], 두 번째 집은 털었다.
+    - 점화식
+        - `if (i != N-1) DP1[i] = max(DP1[i-2] + money[i] , DP1[i-1]);
+            DP2[i] = max(DP2[i-2]+money[i], DP2[i-1]);`
+        - 최종적으로 답을 구할땐, DP1과 DP2 두 개에 담긴 값중 최대값을 리턴한다.
+            - `return max(DP2[N-1], DP1[N-2]);`
+- 제출코드(`c++`)
+
+    ```cpp
+        #include <string>
+        #include <vector>
+        #include <iostream>
+        
+        using namespace std;
+        
+        int solution(vector<int> money) {
+            int answer = 0;
+            
+            int N = money.size();
+            vector<int> DP1(N,money[0]); //첫번째 집 털었을 때,
+            vector<int> DP2(N,money[1]); //첫번째 집 못 털었을 때,
+            DP2[0] = 0;
+        
+            for(int i = 2 ; i < N ; ++i){
+                if (i != N-1) DP1[i] = max(DP1[i-2] + money[i] , DP1[i-1]);
+                DP2[i] = max(DP2[i-2]+money[i], DP2[i-1]);
+            }
+        
+            return max(DP2[N-1], DP1[N-2]); //DP1과 DP2에 담긴 값중 최대값을 리턴
+        }
+    ```
+
+### 6-4. BOJ 23291(구현)
+[23291번: 어항 정리](https://www.acmicpc.net/problem/23291)
+
+- 구현 문제 (아래 포스팅에 잘 정리해놓은 듯 하다.)
+    - [[BOJ] 백준 23291 어항 정리 포스팅](https://zoosso.tistory.com/1069)
+    - 구현문제는 class를 만들어 푸는 것이 좋다.
+    - 어항쌓는 규칙 찾는 것에서 고민하다가 직접 구현 않고, 포스팅 참고함
+
+    ```cpp
+        class solver;
+        int main(){       
+        	   solver solve_this();
+               while (1)
+               {
+                      solve_this.addFish();           // 1. 물고기 추가
+        
+                      solve_this.roll();              // 2. 어항 쌓기
+                      solve_this.controlFish();       // 3. 물고기 수 조절
+                      solve_this.sortFish();          // 4. 물고기 정렬
+        
+                      solve_this.fold();              // 5. 어항 접기
+                      solve_this.controlFish();       // 6. 물고기 수 조절
+                      solve_this.sortFish();          // 7. 물고기 정렬
+        
+                      ans++;                          // 8. 정리 횟수
+                      if (solve_this.getDiff() <= K) break;
+               }
+               printf("%d\n", ans);
+    ```
+        
 
 ## 끝
