@@ -1,4 +1,6 @@
-User-agent: *
-Allow: /
+user-agent: *
 Disallow: /about/
+Disallow: /day/
+Disallow: /*.gif$
+Allow: /
 Sitemap: http://sungwookle.site/sitemap.xml
