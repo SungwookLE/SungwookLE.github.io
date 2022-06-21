@@ -3,17 +3,17 @@ layout: post
 type: research
 date: 2022-03-30 17:00
 category: BigData
-title: 빅데이터분석기사 필기
-subtitle: "빅데이터분석기사 준비"
+title: 빅데이터분석
+subtitle: "빅데이터분석 준비(1)"
 writer: 100
 post-header: true  
-header-img: ./img/Data-Science.jpeg
-hash-tag: [빅분기22, 필기]
+header-img: ./img/2022-06-21-21-24-08.png
+hash-tag: [빅분기22]
 use_math: true
 toc : true
 ---
 
-# 빅데이터분석기사 준비: 필기편
+# 빅데이터분석기사: 필기
 > Writer: SungwookLE    
 > DATE: '22.3/30  
 

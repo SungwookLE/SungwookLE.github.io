@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="ko">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- HTML Meta Tags -->
+  <title>빅데이터분석</title>
+  <meta name="description" content="SungwookLE">
+
+  
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="빅데이터분석">
+  <meta itemprop="description" content="SungwookLE">
+  <meta itemprop="image" content="http://localhost:4000/research/2206212100/./img/2022-06-21-21-15-53.png">
+
+  
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+  <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  
+
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+
+
+
+<body>
+
+
+<script>
+  function switchMenuVisible() {
+      if ($('ul').hasClass('hide')) {
+          $('ul').removeClass('hide');
+      } else {
+          $('ul').addClass('hide');
+      }
+  }
+</script>
+
+<nav class="nav">
+  <div class="nav-container">
+
+    <div class="logo">
+      <a href="/">
+        <span>SungwookLE</span>
+      </a>
+    </div>
+
+    <ul class="hide">
+      
+      <li class="transition">
+        <a href="/about" >
+          About
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/research"  class="active" >
+          Research
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/algorithm" >
+          Algortihm
+        </a>
+      </li>
+      
+      <li class="transition">
+        <a href="/day" >
+          Day
+        </a>
+      </li>
+      
+    </ul>
+
+    <div class="dropdown" onclick="switchMenuVisible()">
+      <div class="icon">☰</div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="post-header loading-animation" style="background-image: url('./img/2022-06-21-21-15-53.png')">
+</div>
+
+
+
+<main>
+  <div class="post">
+    <div class="post-info">
+        <div class="post-type-tag">
+            
+            <div class="post-type">
+                BigData
+            </div>
+        </div>
+        <h1 class="post-title">
+            빅데이터분석
+        </h1>
+        <h2 class="post-subtitle">
+            빅데이터분석 준비(2)
+        </h2>
+        <h2 class="post-date">
+            2022-06-21 21:00
+        </h2>
+    </div>
+
+    <!--draft 일 때-->
+
+    
+
+    <article class="post-article">
+        <div class="toc">
+          <ul><li><a href="#빅데이터분석기사-실기">빅데이터분석기사: 실기</a><ul><li><a href="#1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</a></li><li><a href="#2-시험-구성">2. 시험 구성</a></li><li><a href="#3-단답형-준비">3. 단답형 준비</a></li><li><a href="#4-작업형-1유형">4. 작업형 1유형</a></li><li><a href="#reference">REFERENCE</a></li></ul></li></ul>
+
+        </div>
+        <h1 id="빅데이터분석기사-실기">빅데이터분석기사: 실기</h1>
+<blockquote>
+  <p>Writer: SungwookLE  <br />
+DATE: ‘22.6/21</p>
+</blockquote>
+
+<h2 id="1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</h2>
+<ul>
+  <li>데이터셋의 사이즈, 목적에 따라 적합한 모델을 선택하여야 해요.
+<a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html"><img src="/research/2206212100/img/2022-06-21-21-15-53.png" alt="" /></a></li>
+</ul>
+
+<h2 id="2-시험-구성">2. 시험 구성</h2>
+<ol>
+  <li>단답형(10문항)</li>
+  <li>작업형 1유형(3문항)</li>
+  <li>작업형 2유형(1문항)
+    <ul>
+      <li>응시환경: <a href="/research/2206212100/img/4%ED%9A%8C%EC%B0%A8_%ED%8C%8C%EC%9D%B4%EC%8D%AC%ED%8C%A8%ED%82%A4%EC%A7%80.txt">파이썬 패키지리스트</a></li>
+      <li>샘플 테스트 환경(구름IDE): <a href="https://dataq.goorm.io/exam/116674/체험하기/quiz/3">샘플</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="3-단답형-준비">3. 단답형 준비</h2>
+<ol>
+  <li>데이터 정제 과정에서 처리해야 하는 것으로, 데이터가 정상의 범주를 벗어난 값은?: <code class="language-plaintext highlighter-rouge">이상치(outlier)</code></li>
+  <li>결측값 처리를 위한 단순 대치법에서 얻어진 데이터자료의 평균값으로 대체하는 방법은?: <code class="language-plaintext highlighter-rouge">평균대치법</code></li>
+  <li>모델에서 외적인 요소로 데이터 분석을 통해 얻어지는 값이 아니라, 사용자가 직접 설정해주는 값은?: <code class="language-plaintext highlighter-rouge">하이퍼파라미터</code></li>
+  <li>데이터 라벨이 없고, 특징, 패턴 도출을 위해 사용하는 것으로 대표기법으로는 군집화, 클러스터링 등이 있는 학습 방법은?: <code class="language-plaintext highlighter-rouge">비지도 학습(unsupervised learning)</code></li>
+  <li>훈련데이터에 대해서는 높은 성능을 보이지만, 테스트셋에서는 아닌 경우 모델을 <code class="language-plaintext highlighter-rouge">오버피팅</code>되었다고 한다.</li>
+  <li>회귀분석에서 전체 변수에서 시작하여 가장 적은 영향을 주는 변수를 하나씩 제거하는 방법은?: <code class="language-plaintext highlighter-rouge">후진제거법</code>
+<img src="/research/2206212100/img/2022-06-21-21-35-10.png" alt="" /></li>
+  <li>앙상블 분석에서 잘못 분류된 개체들에 가중치를 적용하여 새로운 분류 규칙을 만들고 이 과정을 반복해 최종 모형을 만드는 알고리즘은? <code class="language-plaintext highlighter-rouge">부스팅</code>
+<img src="/research/2206212100/img/2022-06-21-21-36-14.png" alt="" /></li>
+  <li>앙상블 모형 알고리즘 중 하나로, 회귀 분류 모델링이 사용되며 부스팅에 속하고, 경사하강법(Gradient Descent)을 이용하여 가중치를 업데이터하여 최적화된 결과를 얻는 알고리즘은? <code class="language-plaintext highlighter-rouge">GBM(Gradient Boost Machine)</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">from sklearn.ensemble import GradientBoostingClassifier</code></li>
+      <li><code class="language-plaintext highlighter-rouge">from sklearn.ensemble import GradientBoostingRegressor</code></li>
+    </ul>
+  </li>
+  <li>혼동행렬(Confusion matrix)의 세로축(TPR), 가로축(FPR)으로 하는 곡선은? <code class="language-plaintext highlighter-rouge">ROC</code>
+    <ul>
+      <li><img src="/research/2206212100/img/2022-06-21-21-41-01.png" alt="" /></li>
+      <li><img src="/research/2206212100/img/2022-06-21-21-41-25.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>여러 명의 사용자들이 컴퓨터에 저장된 많은 자료들을 쉽고 빠르게 조회, 추가, 수정, 삭제할 수 있도록 해주는 SW는? <code class="language-plaintext highlighter-rouge">DBMS</code></li>
+  <li>머신러닝에서 데이터를 민맥스 정규화를 통해 단위가 다른 것을 정규화할 수 있다. kNN(kNeighbor)에서는 단위가 다른 경우 데이터 간 <code class="language-plaintext highlighter-rouge">거리</code>가 달라져 성능에 영향을 준다.</li>
+  <li>범주형(categorical) 변수 안에 속한 자료형: <code class="language-plaintext highlighter-rouge">순서형(ordinal), 명목형(nominal)</code>
+    <ul>
+      <li>nominal: 남자/여자, A/B/O형 등</li>
+      <li>ordinal: 소형/중형/대형, 불만족/평범/만족 등</li>
+    </ul>
+  </li>
+  <li>데이터의 분포를 알 수 없을 때 주료 활용하는 정규화방법으로서 데이터를 0과 1 사이의 값으로 만드는 방법은 무엇인가? <code class="language-plaintext highlighter-rouge">Min-Max Scaler</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">standard scaler</code>는 평균이 0, 표준편차가 1이 되도록 변환하는 방법이다.</li>
+    </ul>
+  </li>
+  <li>군집화시 군집간 거리를 계산하는 방법 중 군집을 합칠 때 사용하는 가중 평균을 사용하는 방법은 무엇인가? <code class="language-plaintext highlighter-rouge">중심연결법</code>
+    <ul>
+      <li>군집 간의 거리측정 방법으로는 최단연결법, 최장연결법, 중심연결법, 와드연결법 등이 있다.</li>
+    </ul>
+  </li>
+  <li>여러가지 동일한 종류 또는 상이한 모형들의 예측 및 분류 결과를 종합하여 최종적인 의사 결정에 활용하는 기법은으로서, 여러 개의 학습 모델을 훈련하고 투표를 통해 최적화된 예측을 수행하고 결정하는 방법을 무엇이라고 하는가?: <code class="language-plaintext highlighter-rouge">앙상블 기법</code></li>
+  <li>raw 데이터를 그룹화하는 데이터 변환 중 하나로서, 예를 들어 일별 매출건수를 월별, 분기별로 변환하는 것을 무엇이라고 하는가?: <code class="language-plaintext highlighter-rouge">데이터 범주화</code></li>
+  <li>회귀와 분류 모두 사용가능한 지도학습 알고리즘으로 경계와 데이터가 멀수록 가장 좋은 모델로 선정하는 알고리즘을 무엇이라고 하는가?: <code class="language-plaintext highlighter-rouge">SVM</code></li>
+  <li>연관성 분석에서 규칙이 우연히 나타난 것이 아님을 확인하기 위해서 사용하는 척도는?: <code class="language-plaintext highlighter-rouge">Lift(향상도)</code>
+    <ul>
+      <li><img src="/research/2206212100/img/2022-06-21-21-53-57.png" alt="" /></li>
+    </ul>
+  </li>
+  <li></li>
+</ol>
+
+<h2 id="4-작업형-1유형">4. 작업형 1유형</h2>
+
+<h2 id="reference">REFERENCE</h2>
+<blockquote>
+  <ol>
+    <li><a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">Choosing the right estimator</a></li>
+    <li><a href="/research/2206212100/img/%EB%B9%85%EB%B6%84%EA%B8%B0%EC%8B%A4%EA%B8%B0%EB%8B%A8%EB%8B%B5%ED%98%95%EB%8C%80%EB%B9%84_1.pdf">실기단답형대비1</a></li>
+    <li><a href="/research/2206212100/img/%EB%B9%85%EB%B6%84%EA%B8%B0%EC%8B%A4%EA%B8%B0%EB%8B%A8%EB%8B%B5%ED%98%95%EB%8C%80%EB%B9%84_2.pdf">실기단답형대비2</a></li>
+  </ol>
+</blockquote>
+
+      </article>
+
+    
+    <div class="post-tags">
+        <div class="post-tags">
+    
+        <span class="tag-emoji"></span>
+        
+        <a href="/research/?tag=빅분기22"><span class="tag" data-tag="빅분기22">빅분기22</span></a>
+        
+    
+</div>
+
+    </div>
+    
+
+    
+<div class='post-footer'>
+  <div class="member_card">
+    <div class="thumbnail-container">
+      <div class='thumbnail'>
+        
+        <img class='profile' src='/about/img/100.JPG'/>
+      </div>
+      <div class='name'>SungwookLE</div>
+    </div>
+    <div class='description'>이성욱</div>
+  </div>
+</div>
+
+    
+        <script src="https://utteranc.es/client.js"
+                repo="SungwookLE/blog_comment"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+    
+</div>
+
+<script>
+    function getTOCNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var tocNodes = nodes.filter(function(elem) {
+          return elem.tagName == "A";
+      });
+      return tocNodes;
+    }
+    function getHeaderNodes(master) {
+      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+      var headerNodes = nodes.filter(function(elem) {
+          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+      });
+      return headerNodes;
+    }
+  
+    var title = document.getElementsByClassName("post-title")[0];
+    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+    
+    var article = document.getElementsByClassName("post-article")[0];
+    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  
+    var toc = document.getElementsByClassName("toc")[0];
+  
+    var headerNodes = getHeaderNodes(article);
+    var tocNodes = getTOCNodes(toc);
+  
+    var before = undefined;
+  
+    document.addEventListener('scroll', function(e) {
+      if (window.scrollY >= articleY-60) {
+        toc.style.cssText = "position: fixed; top: 60px;";
+      }
+      else {
+        toc.style.cssText = "";
+      }
+  
+      var current = headerNodes.filter(function(header) {
+        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+        return window.scrollY >= headerY - 60;
+      });
+  
+      if (current.length > 0) {
+        current = current[current.length-1];
+  
+        var currentA = tocNodes.filter(function(tocNode) {
+          return tocNode.innerHTML == current.innerHTML;
+        })
+        
+        currentA = currentA[0];
+        if (currentA) {
+          if (before == undefined) before = currentA;
+  
+          if (before != currentA) {
+            before.classList.remove("toc-active");
+            before = currentA;
+          }
+  
+          currentA.classList.add("toc-active");
+        }
+        else {
+          if (before) 
+            before.classList.remove("toc-active");
+        }
+      }
+      else {
+        if (before) 
+            before.classList.remove("toc-active");
+      }
+  
+    }, false);
+  </script>
+
+</main>
+
+<footer>
+    <address class="footer_wrap">
+        <div class="copyright">
+            SungwookLE. All rights reserved.
+        </div>
+    </address>
+</footer>
+
+
+</body>
+</html>
