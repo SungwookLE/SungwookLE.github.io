@@ -283,6 +283,7 @@ toc : true
 > 3. [실기단답형대비2](./img/빅분기실기단답형대비_2.pdf)  
 > 4. [실기형단답대비3](./img/빅분기예상.docx)  
 > 5. [문제은행, 데이터마님](https://bit.ly/3rbIlt5)
-> 6. [케글 데이터셋, 데이터마님](https://www.kaggle.com/discussions/general/286991)
+> 6. [케글 데이터셋, 데이터마님](https://www.kaggle.com/discussions/general/286991)  
+> 7. [스코어 sklearn](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter)
 
 ## 끝
