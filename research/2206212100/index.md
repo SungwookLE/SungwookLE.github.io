@@ -157,6 +157,12 @@ toc : true
         col_IQR = df[col].quantile(0.75) - df[col].quantile(0.25)
         df=df.loc[df[col].between(df[col].quantile(q=0.25)-ratio_IQR*col_IQR, df[col].quantile(q=0.75)+ratio_IQR*col_IQR)]
     ```
+- 결측값 처리 `fillna(), dropna(). interpolate()`
+    - 아래 코드와 같이 어떤 값이 비었을 때, 같은 행의 다른변수 집단의 평균값을 가져와서 대체하는 방법도 있음
+        ```
+        per_age = train.groupby("aged")["bmi"].mean() #연령대별 bmi 평균을 저장한다음에
+        train.loc[train["bmi"].isnull(), "bmi"]=train.loc[train["bmi"].isnull()]["aged"].apply(lambda x: per_age[x]) #결측값에 연령대별 bmi 평균을 넣는다.
+        ```
 - `pandas` method 정리
 - Scaler
 - PCA, Clustering
