@@ -142,7 +142,132 @@ toc : true
 96. 표준편차를 평균으로 나눈 것으로, 단위가 다른 두 집단간의 산포를 비교할 때 가장 적합한 척도는: `변동계수`
 97. 계층적 군집 수행시 거리측정 방법 중 하나로, 모든 항목에 대한 거리 평균을 구하면서 군집화를 하는 방식은?: `평균연결법`
 98. 데이터베이스 구조와 조건에 관한 전반적인 명세서로서, 개체, 속성, 관계 및 제약조건 등에 대해 정의한 것은?: `스키마`
----
+
+99. 최소 지지도 보다 큰 집합만을 대상으로 높은 지지도를 갖는 품목집합을 찾는 연관분석 알고리즘으로 다음의 절차를 가지는 알고리즘의 이름은? 1. 최소 지지도 설정 2. 개별 품목 중에서 최소 지지도를 넘는 모든 품목찾음 3. 2에서 찾은 개별 품목만을 이용하는 알고리즘은? `Apriori 알고리즘`
+    - ![](img/2022-06-24-11-56-35.png)
+
+100. 우리가 예측하려는 임의의 데이터와 가장 가까운 거리의 데이터 K개를 찾고, K개가 속한 그룹 중 다수결에 의해 라벨을 예측하는 방법은? : kNN(k nearest neighbor)
+
+## 4. 작업형 1유형
+- [주요코드정리](https://github.com/inrap8206/Bigdata_Analyst_Certificate_Korean/blob/main/01_%EC%A3%BC%EC%9A%94%EC%BD%94%EB%93%9C%EC%A0%95%EB%A6%AC.ipynb)
+
+- 아웃라이어(이상치) 제거
+    ```
+    for col in columns:
+        col_IQR = df[col].quantile(0.75) - df[col].quantile(0.25)
+        df=df.loc[df[col].between(df[col].quantile(q=0.25)-ratio_IQR*col_IQR, df[col].quantile(q=0.75)+ratio_IQR*col_IQR)]
+    ```
+- `pandas` method 정리
+- Scaler
+- PCA, Clustering
+- shapiro 정규성 검정, 등분산성 검정, t-검정(집단 간 평균 차이), 카이제곱 검정(두 집단 차이 유무), ANOVA
+
+<details>
+<summary>통계분석 관련 코드 </summary>
+</p>
+
+```
+    # 정규성 검정
+    from scipy import stats
+
+    stats.normaltest(data)
+
+    stats.kstest(data, "norm") #콜모고로프-스미르노프, 표본수가 많을때
+    # p-value >= 0.05 : 귀무가설 채택 - 정규분포와 동일
+    # p-value < 0.05 : 대립가설 채택  - 정규분포가 아님
+
+    stats.shapiro(data) #샤피로 테스트, 표본수가 적을때 (50개 미만)
+    # p-value >= 0.05 : 귀무가설 채택 - 정규분포와 동일
+    # p-value < 0.05 : 대립가설 채택  - 정규분포가 아님
+    # 등분산성 검정  - 두 표본의 평균 검정 전에 사용한다
+    # p-value >= 0.05 : 귀무가설 채택 - 두 표본의 분산이 동일 = 등분산성 만족 
+    # p-value < 0.05 : 대립가설 채택  - 두 표본의 분산이 다름 = 등분산성 불만족
+
+    from scipy.stats import bartlett, fligner, levene
+
+    bartlett(data1, data2) # 표본이 정규성을 따를 때 사용 가능한 등분산 검정법.
+    fligner(data1, data2)
+    levene(data1, data2)  # 정규성 관계 없이 사용
+    # t-검정, t-test - 집단 간 평균 차이 검정
+    # p-value >= 0.05 : 귀무가설 채택 - 평균이 같다
+    # p-value < 0.05 : 대립가설 채택  - 평균이 같지 않다
+
+    from scipy import stats
+
+    # 1) 한집단 평균 검정
+    stats.ttest_1samp(data, 알려진평균) # 통계량, p-value 출력
+
+    # 2) 두집단 평균 검정
+    stats.ttest_ind(data1, data2)
+
+    # 3) 집단의 전후변화를 검정
+    stats.ttest_rel(x,y)
+    # 카이제곱 검정 - 두개의 집단에 차이가 있는지 검정 (범주형 값 같은 명목척도에 사용)
+    # p-value >= 0.05 : 귀무가설 채택 - 두 집단간 차이가 없다.
+    # p-value < 0.05 : 대립가설 채택  - 두 집단간 차이가 있다.
+    from scipy import stats
+    stats.chisquare(data1, data2) #통계량, #p-value
+
+
+    #x_train 데이터에서 유입경로와 성별이 연관성이 있는지 가설검정을 실시 
+    # 귀무가설 : 성별에 따른 유입경로의 차이가 없다. (서로 독립)
+    # 대립가설 : 성별에 따른 유입경로의 차이가 있다. (서로 독립이 아님)
+
+    import scipy.stats as stats 
+    x_cotigency = pd.crosstab(x_train['성별'],x_train['유입경로']) # 성별에 따른 유입경로 카운트 표 생성 (명목척도->등간척도)
+    print(stats.chi2_contingency(x_cotigency)[0]) # 통계값
+    print(stats.chi2_contingency(x_cotigency)[1]) # P.value 
+    print(stats.chi2_contingency(x_cotigency)[2]) # 자유도 
+    print(stats.chi2_contingency(x_cotigency)[3]) # 기댓값 
+
+    # p.value > 0.05 , 귀무가설기각실패 (귀무가설 참)
+    # 성별에 따른 유입경로의 차이가 없다. (서로 독립)
+```
+</p>
+</details>
+
+
+## 5. 작업형 2유형
+- [연습문제 풀이](https://github.com/inrap8206/Bigdata_Analyst_Certificate_Korean/blob/main/02_%EC%8B%A4%EA%B8%B0_%EC%9E%91%EC%97%85%ED%98%95_%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4.ipynb)
+- 분류문제: roc_acu_score
+    - [대표 풀이, 케글](https://www.kaggle.com/code/sungwookle/rf-classifier-w-gridsearch-roc-auc-75-59)
+- 회귀문제: 결정계수 R2
+    - [대표 풀이, 케글](https://www.kaggle.com/code/sungwookle/rf-regressor-w-gridsearch-r2-92-8)
+- 클러스터링: 실루엣계수
+- 여러 모델을 사용하고 조합하거나 비교하여 score를 끌어올려 제출할 것
+    - 성능을 끌어올리기 위한 전처리, Feature Engineering, 분류 모델 검토, 하이퍼파라미터 최적화, 모델 앙상블이 수반되어야 한다.
+    - 수험번호.csv 파일이 만들어지도록 코드를 제출한다.
+    - 제출한 모델의 성능은 ROC-AU 평가지표에 따라 채점한다.
+
+## 6. 그 외 개념 정리
+
+### 6-1. 공분산(Covariance)
+ - [참고 사이트](https://www.notion.so/sungwookle/22-b446be4170974c0cad657b909aa7822e#baac1a8b64704468afeb1e05ace34ee6)
+ $$Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]$$
+ - **X와 Y가 의존성이 높다는 것은 그렇다면 뭘 의미할까?**
+ - X가 증가할 때, Y도 증가하려고 하고, X가 감소할 때, Y도 감소하려고 하는 것이다. 따라 하니깐, 의존성이 높은 거다.
+ - 의존성이 낮은 상황을 보자.
+    가장 의존성이 낮은 상황은 당연히 서로 독립인 상황이다. X가 어떻게 되든 상관 없이 Y는 어떤 값이든 가질 수 있다. 즉, X가 높은 값을 가졌을 때, Y는 높은 값일 수도 있고, 아닐 수도 있다. 그것이 완전히 랜덤이라면, 편차의 곱 항이 양수와 음수가 골고루 나올 것이고, 그걸 평균하면 0에 가까울 것이다.
+ - 공분산은 서로 다른 변수들 사이에 얼마나 의존하는지를 수치적으로 표현하며, 그것의 직관적 의미는 어떤 변수(X)가 평균으로부터 증가 또는 감소라는 경향을 보일 때, 이러한 경향을 다른 변수(Y 또는 Z 등등)가 따라 하는 정도를 수치화 한 것이다.
+    - 공분산은 또한 두 변수의 선형관계의 관련성을 측정한다라고도 할 수 있다.
+
+### 6-2. 결정계수
+ - Coefficeint of Determination (결정계수, Regressor 문제)
+ - [참고 사이트](https://ko.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/assessing-the-fit-in-least-squares-regression/a/r-squared-intuition)
+ $$R^2  = 1-\frac{SSR}{SST}$$
+ - SST(Total Sum of Squared): Sigma( (y - y.mean())^2 )
+ - SSR(Total Sum of Residual): Sigma( (y_pred - y)^2 )
+ - `1, (100%)`일수록 잘 Fitting 되었다는 의미이다.
+
+ - white noise를 참값으로 하는 어떤 데이터가 있다고 생각해보자.
+    y.mean() = 0 이 될것이고, 이에 대한 SST 값이 존재할 것이다. (예를 들어 10이라고 하자)
+    white noise를 선형회귀 하여도 나올 수 있는 y_pred 의 값은 0일 것이다.
+    각 데이터에 대한 잔차 제곱의 합, 즉 SSR을 계산하면 SST와 같은 값이 것이다.
+    1-SSR/SST = 0%, 즉, white noise를 회귀예측한 모델은 설득력 0%의 모델이라는 의미가 된다.
+
+- `sklearn` regressor에서 `.score` 메쏘드를 호출하면 return 값으로 R^2을 반환한다.
+
+### 6-3. 클러스터링 
 * 클러스터링 분석에 대한 추가 설명
     1. 계층 분석
         - 덴드로그램이라 불리는 그래프를 기반으로 군집을 분석, 별도의 클러스터 개수를 선언할 필요 없음
@@ -150,36 +275,14 @@ toc : true
     2. 분할 분석
         - 정해진 군집(클러스터 개수)에 할당
         - K-평균 군집분석, 밀도기반클러스터링(DBSCAN), 확률분포기반 클러스터링
----
-99. 최소 지지도 보다 큰 집합만을 대상으로 높은 지지도를 갖는 품목집합을 찾는 연관분석 알고리즘으로 다음의 절차를 가지는 알고리즘의 이름은? 1. 최소 지지도 설정 2. 개별 품목 중에서 최소 지지도를 넘는 모든 품목찾음 3. 2에서 찾은 개별 품목만을 이용하는 알고리즘은? `Apriori 알고리즘`
-    - ![](img/2022-06-24-11-56-35.png)
-
-100. 우리가 예측하려는 임의의 데이터와 가장 가까운 거리의 데이터 K개를 찾고, K개가 속한 그룹 중 다수결에 의해 라벨을 예측하는 방법은? : kNN(k nearest neighbor)
-
-
-## 4. 작업형 1유형
-
-- 정리 중
-- pandas method 정리
-- min-max scaler 와 같은 문제
-- PCA 등이 나올 수도 있겠네.
-
-## 5. 작업형 2유형
-
-- 정리 중
-- 분류문제: roc_acu_score로 모델을 평가하여 채점
-- 회귀문제: 결정계수?
-- 클러스터링: 실루엣계수?
-- 한가지 모델만 쓰지말고, 여러 모델을 사용하고 조합하거나 해서 score를 끌어올려 제출할 것
-    - 성능을 끌어올리기 위한 전처리, Feature Engineering, 분류 모델 검토, 하이퍼파라미터 최적화, 모델 앙상블이 수반되어야 한다.
-    - 수험번호.csv 파일이 만들어지도록 코드를 제출한다.
-    - 제출한 모델의 성능은 ROC-AU 평가지표에 따라 채점한다.
 
 ## REFERENCE
 > 1. [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)
-> 2. [준비 관련 repository](https://github.com/inrap8206/bigdata_analyst_certificate_korean)
+> 2. [참고용 실기 코드 깃헙](https://github.com/inrap8206/bigdata_analyst_certificate_korean)
 > 2. [실기단답형대비1](./img/빅분기실기단답형대비_1.pdf)
 > 3. [실기단답형대비2](./img/빅분기실기단답형대비_2.pdf)  
 > 4. [실기형단답대비3](./img/빅분기예상.docx)  
+> 5. [문제은행, 데이터마님](https://bit.ly/3rbIlt5)
+> 6. [케글 데이터셋, 데이터마님](https://www.kaggle.com/discussions/general/286991)
 
 ## 끝
