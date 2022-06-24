@@ -163,69 +163,9 @@ toc : true
 - shapiro 정규성 검정, 등분산성 검정, t-검정(집단 간 평균 차이), 카이제곱 검정(두 집단 차이 유무), ANOVA
 
 <details>
-<summary>통계분석 관련 코드 </summary>
-</p>
-
-```
-    # 정규성 검정
-    from scipy import stats
-
-    stats.normaltest(data)
-
-    stats.kstest(data, "norm") #콜모고로프-스미르노프, 표본수가 많을때
-    # p-value >= 0.05 : 귀무가설 채택 - 정규분포와 동일
-    # p-value < 0.05 : 대립가설 채택  - 정규분포가 아님
-
-    stats.shapiro(data) #샤피로 테스트, 표본수가 적을때 (50개 미만)
-    # p-value >= 0.05 : 귀무가설 채택 - 정규분포와 동일
-    # p-value < 0.05 : 대립가설 채택  - 정규분포가 아님
-    # 등분산성 검정  - 두 표본의 평균 검정 전에 사용한다
-    # p-value >= 0.05 : 귀무가설 채택 - 두 표본의 분산이 동일 = 등분산성 만족 
-    # p-value < 0.05 : 대립가설 채택  - 두 표본의 분산이 다름 = 등분산성 불만족
-
-    from scipy.stats import bartlett, fligner, levene
-
-    bartlett(data1, data2) # 표본이 정규성을 따를 때 사용 가능한 등분산 검정법.
-    fligner(data1, data2)
-    levene(data1, data2)  # 정규성 관계 없이 사용
-    # t-검정, t-test - 집단 간 평균 차이 검정
-    # p-value >= 0.05 : 귀무가설 채택 - 평균이 같다
-    # p-value < 0.05 : 대립가설 채택  - 평균이 같지 않다
-
-    from scipy import stats
-
-    # 1) 한집단 평균 검정
-    stats.ttest_1samp(data, 알려진평균) # 통계량, p-value 출력
-
-    # 2) 두집단 평균 검정
-    stats.ttest_ind(data1, data2)
-
-    # 3) 집단의 전후변화를 검정
-    stats.ttest_rel(x,y)
-    # 카이제곱 검정 - 두개의 집단에 차이가 있는지 검정 (범주형 값 같은 명목척도에 사용)
-    # p-value >= 0.05 : 귀무가설 채택 - 두 집단간 차이가 없다.
-    # p-value < 0.05 : 대립가설 채택  - 두 집단간 차이가 있다.
-    from scipy import stats
-    stats.chisquare(data1, data2) #통계량, #p-value
-
-
-    #x_train 데이터에서 유입경로와 성별이 연관성이 있는지 가설검정을 실시 
-    # 귀무가설 : 성별에 따른 유입경로의 차이가 없다. (서로 독립)
-    # 대립가설 : 성별에 따른 유입경로의 차이가 있다. (서로 독립이 아님)
-
-    import scipy.stats as stats 
-    x_cotigency = pd.crosstab(x_train['성별'],x_train['유입경로']) # 성별에 따른 유입경로 카운트 표 생성 (명목척도->등간척도)
-    print(stats.chi2_contingency(x_cotigency)[0]) # 통계값
-    print(stats.chi2_contingency(x_cotigency)[1]) # P.value 
-    print(stats.chi2_contingency(x_cotigency)[2]) # 자유도 
-    print(stats.chi2_contingency(x_cotigency)[3]) # 기댓값 
-
-    # p.value > 0.05 , 귀무가설기각실패 (귀무가설 참)
-    # 성별에 따른 유입경로의 차이가 없다. (서로 독립)
-```
-</p>
+<summary>기술통계 `scipy` 코드</summary>
+<img src="img/2022-06-24-21-07-39.png">
 </details>
-
 
 ## 5. 작업형 2유형
 - [연습문제 풀이](https://github.com/inrap8206/Bigdata_Analyst_Certificate_Korean/blob/main/02_%EC%8B%A4%EA%B8%B0_%EC%9E%91%EC%97%85%ED%98%95_%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4.ipynb)

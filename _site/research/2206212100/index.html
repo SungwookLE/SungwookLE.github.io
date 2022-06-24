@@ -150,7 +150,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <article class="post-article">
         <div class="toc">
-          <ul><li><a href="#빅데이터분석기사-실기">빅데이터분석기사: 실기</a><ul><li><a href="#1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</a></li><li><a href="#2-시험-구성">2. 시험 구성</a></li><li><a href="#3-단답형-준비">3. 단답형 준비</a></li><li><a href="#4-작업형-1유형">4. 작업형 1유형</a></li><li><a href="#5-작업형-2유형">5. 작업형 2유형</a></li><li><a href="#reference">REFERENCE</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#빅데이터분석기사-실기">빅데이터분석기사: 실기</a><ul><li><a href="#1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</a></li><li><a href="#2-시험-구성">2. 시험 구성</a></li><li><a href="#3-단답형-준비">3. 단답형 준비</a></li><li><a href="#4-작업형-1유형">4. 작업형 1유형</a></li><li><a href="#5-작업형-2유형">5. 작업형 2유형</a></li><li><a href="#6-그-외-개념-정리">6. 그 외 개념 정리</a><ul><li><a href="#6-1-공분산covariance">6-1. 공분산(Covariance)</a></li><li><a href="#6-2-결정계수">6-2. 결정계수</a></li><li><a href="#6-3-클러스터링">6-3. 클러스터링</a></li></ul></li><li><a href="#reference">REFERENCE</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="빅데이터분석기사-실기">빅데이터분석기사: 실기</h1>
@@ -274,7 +274,7 @@ DATE: ‘22.6/21</p>
   <li>정밀도와 재현율의 조화평균 값으로, 정밀도와 재현율 중 한쪽만 클 때보다 두 값이 골고루 클 때 큰 값이 된다: <code class="language-plaintext highlighter-rouge">F1 스코어</code></li>
   <li>주어진 원천 데이터를 랜덤하게 두 분류로 분리하여 교차 검정을 실시하는 방법으로, 하나는 train, 하는 validation 데이터로 활용하는 것: <code class="language-plaintext highlighter-rouge">홀드아웃</code>
     <ul>
-      <li><img src="img/2022-06-22-00-30-02.png" alt="" /></li>
+      <li><img src="/research/2206212100/img/2022-06-22-00-30-02.png" alt="" /></li>
     </ul>
   </li>
   <li>인터넷상의 서버에서 데이터 저장, 처리, 등 서로 다른 물리적인 위치에 존재하는 컴퓨팅 자원을 가상화 기술을 퉁해 IT 관련 서비스를 한번에 제공하는 혁신적인 컴퓨팅 기술은?: <code class="language-plaintext highlighter-rouge">클라우드 컴퓨팅</code></li>
@@ -282,7 +282,7 @@ DATE: ‘22.6/21</p>
   <li>주어진 시간 또는 영역에서 어떤 사건의 발생 횟수를 나타내는 확률 분포는? <code class="language-plaintext highlighter-rouge">포아송분포</code></li>
   <li>비선형적인 관계도 파악할 수 있는 상관계수는: <code class="language-plaintext highlighter-rouge">스피어만 상관계수</code>
     <ul>
-      <li><img src="img/2022-06-22-00-32-53.png" alt="" /></li>
+      <li><img src="/research/2206212100/img/2022-06-22-00-32-53.png" alt="" /></li>
     </ul>
   </li>
   <li>동일한 상대적 거리를 가진 공간의 점들로 데이터를 배치시키고, 개체들 사이의 유사성, 비유사성을 측정하여 공간상에 점으로 표현하여 개체들의 관계를 시각적으로 표현 분석하는 방법: <code class="language-plaintext highlighter-rouge">다차원 분석법</code></li>
@@ -301,7 +301,7 @@ DATE: ‘22.6/21</p>
   <li>고정된 훈련데이터 세트와 테스트 검증데이터 세트로 평가하여 반복적으로 튜닝할 시 테스트 데이터에 과적합되는 결과가 생기는 것을 방지하는 방법: <code class="language-plaintext highlighter-rouge">교차검증</code></li>
   <li>분석 대상 데이터 집합에서 준식별자 속성이 동일한 레코드가 적어도 K개 이상 존재하도록 제한하는 개인정보 보호 기법: <code class="language-plaintext highlighter-rouge">K-익명성</code>
     <ul>
-      <li><img src="img/2022-06-22-00-50-13.png" alt="" /></li>
+      <li><img src="/research/2206212100/img/2022-06-22-00-50-13.png" alt="" /></li>
     </ul>
   </li>
   <li>구글에서 대용량 데이터 처리를 분산 병렬 컴퓨팅에서 처리하기 위한 목적으로 만든 프레임워크, 구글에서 개발, 방대한 데이터를 신속하게 처리하는 모델, 효과적인 병렬 및 분산 처리 지원: <code class="language-plaintext highlighter-rouge">맵리듀스</code></li>
@@ -319,26 +319,54 @@ DATE: ‘22.6/21</p>
   <li>잔차가 정규분포를 잘 따르고 있는지를 확인하는 그래프를 나타내는 용어로 잔차들이 그래프 선상에 있어야 이상적이다. 그래프 이름은?: <code class="language-plaintext highlighter-rouge">Q-Q 플롯</code></li>
   <li>표준편차를 평균으로 나눈 것으로, 단위가 다른 두 집단간의 산포를 비교할 때 가장 적합한 척도는: <code class="language-plaintext highlighter-rouge">변동계수</code></li>
   <li>계층적 군집 수행시 거리측정 방법 중 하나로, 모든 항목에 대한 거리 평균을 구하면서 군집화를 하는 방식은?: <code class="language-plaintext highlighter-rouge">평균연결법</code></li>
-  <li>데이터베이스 구조와 조건에 관한 전반적인 명세서로서, 개체, 속성, 관계 및 제약조건 등에 대해 정의한 것은?: <code class="language-plaintext highlighter-rouge">스키마</code></li>
+  <li>
+    <p>데이터베이스 구조와 조건에 관한 전반적인 명세서로서, 개체, 속성, 관계 및 제약조건 등에 대해 정의한 것은?: <code class="language-plaintext highlighter-rouge">스키마</code></p>
+  </li>
+  <li>최소 지지도 보다 큰 집합만을 대상으로 높은 지지도를 갖는 품목집합을 찾는 연관분석 알고리즘으로 다음의 절차를 가지는 알고리즘의 이름은? 1. 최소 지지도 설정 2. 개별 품목 중에서 최소 지지도를 넘는 모든 품목찾음 3. 2에서 찾은 개별 품목만을 이용하는 알고리즘은? <code class="language-plaintext highlighter-rouge">Apriori 알고리즘</code>
+    <ul>
+      <li><img src="/research/2206212100/img/2022-06-24-11-56-35.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>우리가 예측하려는 임의의 데이터와 가장 가까운 거리의 데이터 K개를 찾고, K개가 속한 그룹 중 다수결에 의해 라벨을 예측하는 방법은? : kNN(k nearest neighbor)</li>
 </ol>
 
 <h2 id="4-작업형-1유형">4. 작업형 1유형</h2>
-
 <ul>
-  <li>정리 중</li>
-  <li>pandas method 정리</li>
-  <li>min-max scaler 와 같은 문제</li>
-  <li>PCA 등이 나올 수도 있겠네.</li>
+  <li>
+    <p><a href="https://github.com/inrap8206/Bigdata_Analyst_Certificate_Korean/blob/main/01_%EC%A3%BC%EC%9A%94%EC%BD%94%EB%93%9C%EC%A0%95%EB%A6%AC.ipynb">주요코드정리</a></p>
+  </li>
+  <li>아웃라이어(이상치) 제거
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  for col in columns:
+      col_IQR = df[col].quantile(0.75) - df[col].quantile(0.25)
+      df=df.loc[df[col].between(df[col].quantile(q=0.25)-ratio_IQR*col_IQR, df[col].quantile(q=0.75)+ratio_IQR*col_IQR)]
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">pandas</code> method 정리</li>
+  <li>Scaler</li>
+  <li>PCA, Clustering</li>
+  <li>shapiro 정규성 검정, 등분산성 검정, t-검정(집단 간 평균 차이), 카이제곱 검정(두 집단 차이 유무), ANOVA</li>
 </ul>
 
-<h2 id="5-작업형-2유형">5. 작업형 2유형</h2>
+<details>
+<summary>기술통계 `scipy` 코드</summary>
+<img src="img/2022-06-24-21-07-39.png" />
+</details>
 
+<h2 id="5-작업형-2유형">5. 작업형 2유형</h2>
 <ul>
-  <li>정리 중</li>
-  <li>분류문제: roc_acu_score로 모델을 평가하여 채점</li>
-  <li>회귀문제: 결정계수?</li>
-  <li>클러스터링: 실루엣계수?</li>
-  <li>한가지 모델만 쓰지말고, 여러 모델을 사용하고 조합하거나 해서 score를 끌어올려 제출할 것
+  <li><a href="https://github.com/inrap8206/Bigdata_Analyst_Certificate_Korean/blob/main/02_%EC%8B%A4%EA%B8%B0_%EC%9E%91%EC%97%85%ED%98%95_%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4.ipynb">연습문제 풀이</a></li>
+  <li>분류문제: roc_acu_score
+    <ul>
+      <li><a href="https://www.kaggle.com/code/sungwookle/rf-classifier-w-gridsearch-roc-auc-75-59">대표 풀이, 케글</a></li>
+    </ul>
+  </li>
+  <li>회귀문제: 결정계수 R2
+    <ul>
+      <li><a href="https://www.kaggle.com/code/sungwookle/rf-regressor-w-gridsearch-r2-92-8">대표 풀이, 케글</a></li>
+    </ul>
+  </li>
+  <li>클러스터링: 실루엣계수</li>
+  <li>여러 모델을 사용하고 조합하거나 비교하여 score를 끌어올려 제출할 것
     <ul>
       <li>성능을 끌어올리기 위한 전처리, Feature Engineering, 분류 모델 검토, 하이퍼파라미터 최적화, 모델 앙상블이 수반되어야 한다.</li>
       <li>수험번호.csv 파일이 만들어지도록 코드를 제출한다.</li>
@@ -347,13 +375,74 @@ DATE: ‘22.6/21</p>
   </li>
 </ul>
 
+<h2 id="6-그-외-개념-정리">6. 그 외 개념 정리</h2>
+
+<h3 id="6-1-공분산covariance">6-1. 공분산(Covariance)</h3>
+<ul>
+  <li><a href="https://www.notion.so/sungwookle/22-b446be4170974c0cad657b909aa7822e#baac1a8b64704468afeb1e05ace34ee6">참고 사이트</a>
+ \(Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]\)</li>
+  <li><strong>X와 Y가 의존성이 높다는 것은 그렇다면 뭘 의미할까?</strong></li>
+  <li>X가 증가할 때, Y도 증가하려고 하고, X가 감소할 때, Y도 감소하려고 하는 것이다. 따라 하니깐, 의존성이 높은 거다.</li>
+  <li>의존성이 낮은 상황을 보자.
+ 가장 의존성이 낮은 상황은 당연히 서로 독립인 상황이다. X가 어떻게 되든 상관 없이 Y는 어떤 값이든 가질 수 있다. 즉, X가 높은 값을 가졌을 때, Y는 높은 값일 수도 있고, 아닐 수도 있다. 그것이 완전히 랜덤이라면, 편차의 곱 항이 양수와 음수가 골고루 나올 것이고, 그걸 평균하면 0에 가까울 것이다.</li>
+  <li>공분산은 서로 다른 변수들 사이에 얼마나 의존하는지를 수치적으로 표현하며, 그것의 직관적 의미는 어떤 변수(X)가 평균으로부터 증가 또는 감소라는 경향을 보일 때, 이러한 경향을 다른 변수(Y 또는 Z 등등)가 따라 하는 정도를 수치화 한 것이다.
+    <ul>
+      <li>공분산은 또한 두 변수의 선형관계의 관련성을 측정한다라고도 할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="6-2-결정계수">6-2. 결정계수</h3>
+<ul>
+  <li>Coefficeint of Determination (결정계수, Regressor 문제)</li>
+  <li><a href="https://ko.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/assessing-the-fit-in-least-squares-regression/a/r-squared-intuition">참고 사이트</a>
+ \(R^2  = 1-\frac{SSR}{SST}\)</li>
+  <li>SST(Total Sum of Squared): Sigma( (y - y.mean())^2 )</li>
+  <li>SSR(Total Sum of Residual): Sigma( (y_pred - y)^2 )</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">1, (100%)</code>일수록 잘 Fitting 되었다는 의미이다.</p>
+  </li>
+  <li>
+    <p>white noise를 참값으로 하는 어떤 데이터가 있다고 생각해보자.
+ y.mean() = 0 이 될것이고, 이에 대한 SST 값이 존재할 것이다. (예를 들어 10이라고 하자)
+ white noise를 선형회귀 하여도 나올 수 있는 y_pred 의 값은 0일 것이다.
+ 각 데이터에 대한 잔차 제곱의 합, 즉 SSR을 계산하면 SST와 같은 값이 것이다.
+ 1-SSR/SST = 0%, 즉, white noise를 회귀예측한 모델은 설득력 0%의 모델이라는 의미가 된다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">sklearn</code> regressor에서 <code class="language-plaintext highlighter-rouge">.score</code> 메쏘드를 호출하면 return 값으로 R^2을 반환한다.</li>
+</ul>
+
+<h3 id="6-3-클러스터링">6-3. 클러스터링</h3>
+<ul>
+  <li>클러스터링 분석에 대한 추가 설명
+    <ol>
+      <li>계층 분석
+        <ul>
+          <li>덴드로그램이라 불리는 그래프를 기반으로 군집을 분석, 별도의 클러스터 개수를 선언할 필요 없음</li>
+          <li>평균연결법, 와드연결법, 최단연결법, 최장연결법</li>
+        </ul>
+      </li>
+      <li>분할 분석
+        <ul>
+          <li>정해진 군집(클러스터 개수)에 할당</li>
+          <li>K-평균 군집분석, 밀도기반클러스터링(DBSCAN), 확률분포기반 클러스터링</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
 <h2 id="reference">REFERENCE</h2>
 <blockquote>
   <ol>
     <li><a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">Choosing the right estimator</a></li>
-    <li><a href="https://github.com/inrap8206/bigdata_analyst_certificate_korean">준비 관련 repository</a></li>
+    <li><a href="https://github.com/inrap8206/bigdata_analyst_certificate_korean">참고용 실기 코드 깃헙</a></li>
     <li><a href="/research/2206212100/img/%EB%B9%85%EB%B6%84%EA%B8%B0%EC%8B%A4%EA%B8%B0%EB%8B%A8%EB%8B%B5%ED%98%95%EB%8C%80%EB%B9%84_1.pdf">실기단답형대비1</a></li>
     <li><a href="/research/2206212100/img/%EB%B9%85%EB%B6%84%EA%B8%B0%EC%8B%A4%EA%B8%B0%EB%8B%A8%EB%8B%B5%ED%98%95%EB%8C%80%EB%B9%84_2.pdf">실기단답형대비2</a></li>
+    <li><a href="/research/2206212100/img/%EB%B9%85%EB%B6%84%EA%B8%B0%EC%98%88%EC%83%81.docx">실기형단답대비3</a></li>
+    <li><a href="https://bit.ly/3rbIlt5">문제은행, 데이터마님</a></li>
+    <li><a href="https://www.kaggle.com/discussions/general/286991">케글 데이터셋, 데이터마님</a></li>
+    <li><a href="https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter">스코어 sklearn</a></li>
   </ol>
 </blockquote>
 
