@@ -21,6 +21,7 @@ toc : true
 - 데이터셋의 사이즈, 목적에 따라 적합한 모델을 선택합시다.
 [![](./img/2022-06-21-21-15-53.png)](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)
 
+- 모델 평가지표는 여러가지가 있으니, 링크 페이지를 읽어봅시다: [scoring parmeter](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter)
 
 ## 2. 시험 구성
 1. 단답형(10문항)
@@ -189,7 +190,9 @@ toc : true
 
 ### 6-1. 공분산(Covariance)
  - [참고 사이트](https://www.notion.so/sungwookle/22-b446be4170974c0cad657b909aa7822e#baac1a8b64704468afeb1e05ace34ee6)
- $$Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]$$
+
+ - $Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]$
+ 
  - **X와 Y가 의존성이 높다는 것은 그렇다면 뭘 의미할까?**
  - X가 증가할 때, Y도 증가하려고 하고, X가 감소할 때, Y도 감소하려고 하는 것이다. 따라 하니깐, 의존성이 높은 거다.
  - 의존성이 낮은 상황을 보자.
@@ -200,7 +203,9 @@ toc : true
 ### 6-2. 결정계수
  - Coefficeint of Determination (결정계수, Regressor 문제)
  - [참고 사이트](https://ko.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/assessing-the-fit-in-least-squares-regression/a/r-squared-intuition)
- $$R^2  = 1-\frac{SSR}{SST}$$
+
+ - $R^2  = 1-\frac{SSR}{SST}$
+ 
  - SST(Total Sum of Squared): Sigma( (y - y.mean())^2 )
  - SSR(Total Sum of Residual): Sigma( (y_pred - y)^2 )
  - `1, (100%)`일수록 잘 Fitting 되었다는 의미이다.

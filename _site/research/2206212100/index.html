@@ -161,8 +161,13 @@ DATE: ‘22.6/21</p>
 
 <h2 id="1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</h2>
 <ul>
-  <li>데이터셋의 사이즈, 목적에 따라 적합한 모델을 선택합시다.
-<a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html"><img src="/research/2206212100/img/2022-06-21-21-15-53.png" alt="" /></a></li>
+  <li>
+    <p>데이터셋의 사이즈, 목적에 따라 적합한 모델을 선택합시다.
+<a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html"><img src="/research/2206212100/img/2022-06-21-21-15-53.png" alt="" /></a></p>
+  </li>
+  <li>
+    <p><a href="https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter">scoring parmeter</a></p>
+  </li>
 </ul>
 
 <h2 id="2-시험-구성">2. 시험 구성</h2>
@@ -341,6 +346,15 @@ DATE: ‘22.6/21</p>
       df=df.loc[df[col].between(df[col].quantile(q=0.25)-ratio_IQR*col_IQR, df[col].quantile(q=0.75)+ratio_IQR*col_IQR)]
 </code></pre></div>    </div>
   </li>
+  <li>결측값 처리 <code class="language-plaintext highlighter-rouge">fillna(), dropna(). interpolate()</code>
+    <ul>
+      <li>아래 코드와 같이 어떤 값이 비었을 때, 같은 행의 다른변수 집단의 평균값을 가져와서 대체하는 방법도 있음
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  per_age = train.groupby("aged")["bmi"].mean() #연령대별 bmi 평균을 저장한다음에
+  train.loc[train["bmi"].isnull(), "bmi"]=train.loc[train["bmi"].isnull()]["aged"].apply(lambda x: per_age[x]) #결측값에 연령대별 bmi 평균을 넣는다.
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
   <li><code class="language-plaintext highlighter-rouge">pandas</code> method 정리</li>
   <li>Scaler</li>
   <li>PCA, Clustering</li>
@@ -379,8 +393,12 @@ DATE: ‘22.6/21</p>
 
 <h3 id="6-1-공분산covariance">6-1. 공분산(Covariance)</h3>
 <ul>
-  <li><a href="https://www.notion.so/sungwookle/22-b446be4170974c0cad657b909aa7822e#baac1a8b64704468afeb1e05ace34ee6">참고 사이트</a>
- \(Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]\)</li>
+  <li>
+    <p><a href="https://www.notion.so/sungwookle/22-b446be4170974c0cad657b909aa7822e#baac1a8b64704468afeb1e05ace34ee6">참고 사이트</a></p>
+  </li>
+  <li>
+    <p>$Cov(X,Y) = E[ (X-\mu_X)(Y-\mu_Y) ]$</p>
+  </li>
   <li><strong>X와 Y가 의존성이 높다는 것은 그렇다면 뭘 의미할까?</strong></li>
   <li>X가 증가할 때, Y도 증가하려고 하고, X가 감소할 때, Y도 감소하려고 하는 것이다. 따라 하니깐, 의존성이 높은 거다.</li>
   <li>의존성이 낮은 상황을 보자.
@@ -395,8 +413,12 @@ DATE: ‘22.6/21</p>
 <h3 id="6-2-결정계수">6-2. 결정계수</h3>
 <ul>
   <li>Coefficeint of Determination (결정계수, Regressor 문제)</li>
-  <li><a href="https://ko.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/assessing-the-fit-in-least-squares-regression/a/r-squared-intuition">참고 사이트</a>
- \(R^2  = 1-\frac{SSR}{SST}\)</li>
+  <li>
+    <p><a href="https://ko.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/assessing-the-fit-in-least-squares-regression/a/r-squared-intuition">참고 사이트</a></p>
+  </li>
+  <li>
+    <p>$R^2  = 1-\frac{SSR}{SST}$</p>
+  </li>
   <li>SST(Total Sum of Squared): Sigma( (y - y.mean())^2 )</li>
   <li>SSR(Total Sum of Residual): Sigma( (y_pred - y)^2 )</li>
   <li>
