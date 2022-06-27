@@ -1,7 +1,7 @@
 ---
 layout: post
 type: day
-date: 2022-06-27 00:00
+date: 2025-06-27 00:00
 category: Dish
 title: 맛집
 subtitle: 고정 게시글

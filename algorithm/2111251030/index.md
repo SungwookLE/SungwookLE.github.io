@@ -1,7 +1,7 @@
 ---
 layout: post
 type: algorithm
-date: 2021-11-25 10:20
+date: 2021-11-25 10:30
 category: 코딩테스트 연습
 title: 체육복 Lv1
 subtitle: 프로그래머스 그리디
