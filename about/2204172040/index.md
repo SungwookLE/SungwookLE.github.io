@@ -113,6 +113,7 @@ use_math: true
 
 - 승객 클래스 판단 알고리즘 개발(`keras, tensorflow`)
     - autoencoder 활용한 semi-supervised learning
+    - xAI(explainable AI) 분석 기능 개발
 
         |||
         |-|-|
