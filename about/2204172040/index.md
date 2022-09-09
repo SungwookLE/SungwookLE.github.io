@@ -23,11 +23,11 @@ use_math: true
 ## 2. RESEARCH INTEREST
 
 - Autonomous Driving SW
-    - Vehicle Control
     - State Estimation & Prediction
     - Localization
+    - Control
 
-- Deep Learning with Camera Vision
+- Deep Learning with Vision
     - Optimized Fusion Algorithm: Inferenced state under Deep Learning + Estimated state based on Dynamic Model
 
 ## 3. CAREER
@@ -42,23 +42,20 @@ use_math: true
     - 기계학습을 이용한 타이어 저압진단 AI 알고리즘 개발 (17.06~17.12, 연구과제)
         - 휠속의 이상 감지를 통한 저압진단 AI 알고리즘 개발
 
-- Researcher(19.1~): `Safety Control, @Hyundai Motor Company`
+- Researcher(19.1~): `Autonomous Driving SW Development Team, @Hyundai Motor Company`
     - 차량 상태 추정 SW 개발: 전복 감지
-        - 차량 롤각 추정 SW 로직 개발
-        - 주행 중 롤각 추정 성능 개선
-        - 6DOF 각가속도 오프셋 제거 로직 개선
-    - 승객 영상 인식 자세 추정 SW 개발
-        - Deep-learning 기반 승객 keypoints 추정 및 3D 좌표 추정
+        - 차량 전복 롤각 추정 SW 로직 개발
+        - 6DOF 각가속도 오프셋 제거 로직 개발
+    - 영상 인식 승객 자세 추정 SW 개발
+        - AI 기반 승객 3D Key-points 추정 알고리즘 개발
         - Occlusion 강건화 알고리즘 개발
         - 실내 승객 클래스 판단 알고리즘 개발
-        - 승객 영상 SW 아키텍쳐 분석 및 요구사항 설계
-    - 에어백 SW 검증
+        - 승객 영상 SW 아키텍쳐 및 요구사항 개발
+    - SW 검증
         - 요구사항 기반 테스트 케이스 자동화 생성 코드 개발
-        - 정적/동적 SW 검증, SILS/HILS 기능 검증
-        - 에어백 SW 디자인리뷰 담당
-    - 충돌시험 빅데이터 분석툴 개발
-        - Django, 충돌데이터 API 개발
-        - 충돌데이터 입출력 및 전처리 자동화 기능 개발
+        - 정적/동적 SW 검증, 기능검증, SW 디자인리뷰
+    - 개발시험 빅데이터 분석툴 개발
+        - 충돌데이터 입출력 및 전처리 자동화 API 개발
         - 기계학습을 이용한 충돌 데이터 분석 기능 개발 
 
 ## 4. SKILLS
@@ -98,7 +95,7 @@ use_math: true
         |-|
         |![](./img/thesis.png)|
 
-### 2. 차량 상태 추정 SW 개발: 롤각 추정 (20.4~20.10)
+### 2. 차량 상태 추정 SW 개발: 전복 롤각 추정 (20.4~20.10)
 - Dynamics Model Based, Roll Angle Estimation SW algorithm(`c,c++`)
     - 3차원 거동 상황에서의 강건한 롤각 추정 로직 개발
     - 차량 신호 분석 기반 Gain Scheduling Domain Design
@@ -106,7 +103,7 @@ use_math: true
     - 롤각 추정 Fault-Tolerant 로직 개발
     - 5DOF IMU 신호 오프셋 제거 (FOC, SOC) 개선 로직 개발
 
-### 3. 승객 영상 인식 SW 개발 (21.4~21.11)
+### 3. 영상 인식 승객 자세 추정 SW 개발 (21.4~21.11)
 - Deep Learning algorithm
     - Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정(`pytorch, opencv`)
     - Occlusion 강건화 알고리즘 개발
