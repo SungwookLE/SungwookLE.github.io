@@ -65,4 +65,11 @@ $ P(S_t|I, S_{0}, ..., S_{t-1}) $ with a Recurrent Neural Network(RNN), where th
 - 결론: 비교 모델 대비 성능 좋음
 - ![](img/2022-09-09-15-42-41.png)
 
+## 6. pytorch로 LSTM
+- hidden_state (= short-term memory)
+- cell_state (= long-term memory)
+- [colab 코드 실습](https://colab.research.google.com/drive/1YV6HiMhohTuBOsyOw9zEyTN2g9vYF13p#scrollTo=jkXZp2R9SEkk)
+- [블로그](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=songblue61&logNo=221853600720)
+
+
 ## 끝
