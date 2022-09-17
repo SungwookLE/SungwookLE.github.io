@@ -264,7 +264,7 @@ DATE: ‘21.10/7</p>
   </li>
   <li>SLAM 결과값: 로봇(빨간 O), 랜드마크(보라색 X)
     <ul>
-      <li><img src="img/2022-09-17-23-56-31.png" alt="" /></li>
+      <li><img src="/research/2110071010/img/2022-09-17-23-56-31.png" alt="" /></li>
     </ul>
   </li>
   <li><a href="https://jay.tech.blog/2017/03/18/graph-slam/">Graph SLAM (Omega and Xi)</a>
@@ -273,19 +273,19 @@ DATE: ‘21.10/7</p>
         <p>SLAM문제를 해결하는 방법중 가장 기본적인 접근방법은 least square method를 이용하는 것이다. 이 방법은 linear algebra측면에서 매우 중요한 방법으로 연립 방정식의 해를 통해 로봇의 이동시 위치 좌표와 landmarks의 위치좌표를 이동거리라는 측정정보와 landmarks와 로봇간의 거리정보를 동시에 이용하여 산술적으로 풀어내는 방식이다. 모든 정보를 축적하고 이 데이터를 통해 robot 위치좌표와 environment map을 한꺼번에 구하는 방법을 full  SLAM이라고 하며, 이동하면서 얻은 정보는 지속적으로 정보로서 추가되면서 연립방정식을 풀어내는 방법을 online SLAM이라고 한다. 그러므로, 후자는 고정된 state dimension내에서 해를 구하는 것이 아니라 dynamic하게 state dimension이 변하지만, 새로운 measurement information을 기존 information을 이용하여 새운 방정식에 쉽게 추가하여 새로운 연립 방정식을 세운다. 구해진 로봇의 위치좌표는 localization을 의미하고, landmarks의 위치좌표는 mapping을 의미한다.</p>
       </li>
       <li>To implement Graph SLAM, a matrix and a vector (omega and xi, respectively) are introduced. The matrix is square and labelled with all the robot poses (xi) and all the landmarks (Li). Every time you make an observation, for example, as you move between two poses by some distance dx and can relate those two positions, you can represent this as a numerical relationship in these matrices.</li>
-      <li><img src="img/2022-09-17-23-57-54.png" alt="" /></li>
+      <li><img src="/research/2110071010/img/2022-09-17-23-57-54.png" alt="" /></li>
       <li>Next, let’s look at a simple example that relates 3 poses to one another.
         <ul>
           <li>When you start out in the world most of these values are zeros or contain only values from the initial robot position</li>
           <li>In this example, you have been given constraints, which relate these poses to one another</li>
           <li>Constraints translate into matrix values</li>
-          <li><img src="img/2022-09-17-23-58-25.png" alt="" /></li>
+          <li><img src="/research/2110071010/img/2022-09-17-23-58-25.png" alt="" /></li>
         </ul>
       </li>
       <li>Solving for x
         <ul>
           <li>To “solve” for all these x values, we can use linear algebra; all the values of x are in the vector mu which can be calculated as a product of the inverse of omega times xi.</li>
-          <li><img src="img/2022-09-17-23-58-51.png" alt="" /></li>
+          <li><img src="/research/2110071010/img/2022-09-17-23-58-51.png" alt="" /></li>
         </ul>
       </li>
       <li>$u=\Omega^{-1}\zeta$
@@ -293,8 +293,8 @@ DATE: ‘21.10/7</p>
           <li>u: 좌표값</li>
           <li>Omega: Constraint Matrix</li>
           <li>zeta: Constraint Value</li>
-          <li><img src="img/2022-09-17-23-59-07.png" alt="" /></li>
-          <li><img src="img/2022-09-18-00-00-57.png" alt="" /></li>
+          <li><img src="/research/2110071010/img/2022-09-17-23-59-07.png" alt="" /></li>
+          <li><img src="/research/2110071010/img/2022-09-18-00-00-57.png" alt="" /></li>
         </ul>
       </li>
     </ul>

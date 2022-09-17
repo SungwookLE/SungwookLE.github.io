@@ -8,8 +8,8 @@ title: About
         <div class="title index">01. Career</div>
             <div class="content">
                 <ul>
-                    Safety Control&Estimation SW Engineer<br>
-                    @Hyundai Motor Company ('19.1~)
+                    Autonomous Driving Software<br>
+                    @Hyundai Motor Company
                 </ul>
             </div>
     </div>
