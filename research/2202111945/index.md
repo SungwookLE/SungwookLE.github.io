@@ -2,8 +2,8 @@
 layout: post
 type: research
 date: 2022-02-11 19:45
-category: Udacity
-title: LS2. Accessing Published APIs
+category: Udacity-Backend
+title: Accessing Published APIs
 subtitle: "Designing RESTful APIs"
 writer: 100
 post-header: true  

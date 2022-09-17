@@ -1,9 +1,9 @@
 ---
 layout: post
 type: research
-date: 2021-06-28 11:00
+date: 2021-06-23 10:10
 category: Kaggle
-title: DataAnalysis Kaggle Titanic_by_myself
+title: DataAnalysis Kaggle Titanic by Myself
 subtitle: Classifier- Classification with feature engineering
 writer: 100
 post-header: true
@@ -12,9 +12,9 @@ hash-tag: [Kaggle, Classifier]
 use_math: true
 ---
 
-# Titanic `Survived` Predict  
+#  Data Analysis: Kaggle Titanic `Survived` Predict  
 AUTHOR: SungwookLE  
-DATE: '21.6/28  
+DATE: '21.6/23  
 PROBLEM: Classifier [Kaggle LINK](https://www.kaggle.com/c/titanic)  
 REFERENCE:  
 - [#1 LECTURE](https://www.youtube.com/watch?v=aqp_9HV58Ls&list=RDCMUCxP77kNgVfiiG6CXZ5WMuAQ&index=3)  

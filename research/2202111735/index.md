@@ -2,8 +2,8 @@
 layout: post
 type: research
 date: 2022-02-11 17:35
-category: Udacity
-title: LS1. What's and Why's of APIs
+category: Udacity-Backend
+title: What's and Why's of APIs
 subtitle: "Designing RESTful APIs"
 writer: 100
 post-header: true  

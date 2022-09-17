@@ -3,8 +3,8 @@ layout: post
 type: research
 date: 2021-05-12 10:10
 category: PLAN
-title: Study Plan
-subtitle: 어떻게 하는게 좋을까
+title: Study Plan @21
+subtitle: 무엇을 공부하는게 좋을까
 writer: 100
 post-header: true
 header-img: 153008571329334.jpeg
@@ -17,7 +17,7 @@ use_math: true
     std::cout << "To infinity" << std::endl;
     return 0;
   }
-  ```
+```
 
 ## 1. Study Plan @2021.5
   > Date: '21.5/12  
@@ -32,12 +32,12 @@ use_math: true
   2. 새로운 분야에 있어선, 인사이트 ex: 프로젝트 참가 등
       - 카메라 기반 opencv 알고리즘 
       - python기반 딥러닝 tensorflow
-      - ROS <- 로직개발에 좀 더 편리한 나에게 유용
+      - ROS 
 
   3. SW 이슈/관리 능력
       - git, SVN, conda, docker
-      - vcdm, jira,, testing/realese
-      - 아키텍트 연습/고민, (품질있는 SW가 경쟁력)
+      - jira, confluence
+      - SW 아키텍트(품질있는 SW가 경쟁력)
 
   4. 출입권: 코딩 테스트(알고리즘)
      - 이건 문제 꾸준히 많이 푸는게,
@@ -46,7 +46,7 @@ use_math: true
 
 ## 2. Study Plan @2021.11
 > Date: '21.11/15  
-> 현실에 맞는 계획으로 
+> 현실에 맞는 계획으로  
 
 ### A. 공부하면 좋겠다고 떠오른 것
 - 학습: [인프런](https://www.inflearn.com/) 등?
@@ -62,28 +62,17 @@ use_math: true
 
 ### C. 프로그래밍 역량
 - 무조건, 헤게모니 전환의 시점은 온다
-    - C++
-    - python
-    - ROS
+    - C++, C
+    - Python
 
-### D. 끝으로..
-내일(11/16) 부터 워밍업..
-코딩테스트 문제 푸는 것으로 시작하자
+## 3. Study Plan @2022.01
 
-## 3. Study Plan @2021.12
-
-### A. [AI for Trading](https://www.udacity.com/course/ai-for-trading--nd880)
-- [SYLLABUS](./img/AI+for+Trading+Learning+Nanodegree+Program+Syllabus.pdf)
-  - 실라버스 안에 내용은, `torch, scikit-learn` 등을 이용하여 `common`한 pipeline을 따라 NLP도 하고, 차트 분석도 하는 것으로 보임
-  - Kaggle의 문제 [예제](https://www.kaggle.com/c/two-sigma-financial-modeling/overview/description) 하나 해보면 좋을 것 같음(12/14)
-    - 사람들 코드도 살펴 보고, 직접 해보면서, 강의를 들을 필요가 있을지 생각해 보자.
-
-### B. [Computer Vision](https://www.udacity.com/course/computer-vision-nanodegree--nd891)
-- 가격: 3개월 간 305,077원
+### A. [Computer Vision](https://www.udacity.com/course/computer-vision-nanodegree--nd891)
 - [SYLLABUS](./img/Computer+Vision+Nanodegree+Syllabus.pdf)
-  - `Human Pose`에 도움이 될까 하여 본 것인데, `Object Detecting` 쪽에 좀 더 맞춰져 있고, `SLAM` 프로젝트가 있어 흥미가 갔는데, `SLAM`은 로보틱스 강의에서 좀 더 자세하게 다룬다. 
+  - `Human Pose`에 도움이 될까 하여 본 것인데, `Object Detecting` 쪽에 좀 더 맞춰져 있고, `SLAM` 프로젝트가 있어 흥미가 갔는데, `SLAM`은 로보틱스 강의에서 좀 더 자세하게 다룬다.
+  - 수강 완료 [v]
 
-### C. [Robotics](https://www.udacity.com/course/robotics-software-engineer--nd209)
+### B. [Robotics](https://www.udacity.com/course/robotics-software-engineer--nd209)
 - [SYLLABUS](./img/nd209_Robo_syllabus_v2.pdf)
   - 기계 제어/추정 SW를 실제적으로 HW와 결합하여 제품으로 끌어내기 위해선, `ROS`라는 플랫폼을 사용하여야 될 것으로 판단하에,,,
   - 지금까지 공부한 것을 하나의 시스템(SW+HW)으로 끌어내보려고 강의에 관심이 있음

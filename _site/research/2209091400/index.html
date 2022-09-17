@@ -150,7 +150,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <article class="post-article">
         <div class="toc">
-          <ul><li><a href="#ai-image-captioning-paper-review">AI: Image captioning paper review</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-model">2. Model</a></li><li><a href="#3-lstm">3. LSTM</a></li><li><a href="#4-training-detail">4. Training Detail</a></li><li><a href="#5-human-evaluation">5. Human Evaluation</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#ai-image-captioning-paper-review">AI: Image captioning paper review</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-model">2. Model</a></li><li><a href="#3-lstm">3. LSTM</a></li><li><a href="#4-training-detail">4. Training Detail</a></li><li><a href="#5-human-evaluation">5. Human Evaluation</a></li><li><a href="#6-pytorch로-lstm">6. pytorch로 LSTM</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
         <h1 id="ai-image-captioning-paper-review">AI: Image captioning paper review</h1>
@@ -180,7 +180,7 @@ Paper: <a href="./img/Show%20and%20Tell%3A%20A%20Neural%20Image%20Caption%20Gene
 <h2 id="2-model">2. Model</h2>
 <ul>
   <li>The model makes use of a recurrent neural network which encodes the variable length input into a fixed dimensional vector, and uses this representation to “decode” it to the desired output sentence. Thus, it is natural to use the same approach where, given an image (instead of an input sentence in the source language), one applies the same principle of “translating” it into its description.</li>
-  <li>it is common to apply the chain rule to model the joint probability over $S_0, …, S_N$, where N is the length of this particular example as <img src="img/2022-09-09-14-52-22.png" alt="" /> where we dropped the dependancy on $theta$ for convenience.
+  <li>it is common to apply the chain rule to model the joint probability over $S_0, …, S_N$, where N is the length of this particular example as <img src="/research/2209091400/img/2022-09-09-14-52-22.png" alt="" /> where we dropped the dependancy on $theta$ for convenience.
     <ul>
       <li>$theta$ are the parameters of our model, $I$ is an image, and $S$ its correct transcription.</li>
     </ul>
@@ -192,7 +192,7 @@ $ P(S_t|I, S_{0}, …, S_{t-1}) $ with a Recurrent Neural Network(RNN), where th
   <li>
     <p>For the representation of images, we use a Convolutional Neural Network(CNN).</p>
   </li>
-  <li><img src="img/2022-09-09-15-15-58.png" alt="" /></li>
+  <li><img src="/research/2209091400/img/2022-09-09-15-15-58.png" alt="" /></li>
 </ul>
 
 <h2 id="3-lstm">3. LSTM</h2>
@@ -200,7 +200,7 @@ $ P(S_t|I, S_{0}, …, S_{t-1}) $ with a Recurrent Neural Network(RNN), where th
   <li><strong>training</strong>
     <ul>
       <li>The LSTM model is trained to predict each word to the sentence after it has seen the images as well as all preceding words as defined by $ P(S_t | I,S_0,…,S_{t-1}) $</li>
-      <li><img src="img/2022-09-09-15-19-01.png" alt="" />
+      <li><img src="/research/2209091400/img/2022-09-09-15-19-01.png" alt="" />
         <ul>
           <li>where we represent each word as a one-hot vector $S_t$ of dimension equal to the size of the dictionary.</li>
         </ul>
@@ -228,9 +228,17 @@ $ P(S_t|I, S_{0}, …, S_{t-1}) $ with a Recurrent Neural Network(RNN), where th
 
 <h2 id="5-human-evaluation">5. Human Evaluation</h2>
 <ul>
-  <li><img src="img/2022-09-09-15-40-00.png" alt="" /></li>
+  <li><img src="/research/2209091400/img/2022-09-09-15-40-00.png" alt="" /></li>
   <li>결론: 비교 모델 대비 성능 좋음</li>
-  <li><img src="img/2022-09-09-15-42-41.png" alt="" /></li>
+  <li><img src="/research/2209091400/img/2022-09-09-15-42-41.png" alt="" /></li>
+</ul>
+
+<h2 id="6-pytorch로-lstm">6. pytorch로 LSTM</h2>
+<ul>
+  <li>hidden_state (= short-term memory)</li>
+  <li>cell_state (= long-term memory)</li>
+  <li><a href="https://colab.research.google.com/drive/1YV6HiMhohTuBOsyOw9zEyTN2g9vYF13p#scrollTo=jkXZp2R9SEkk">colab 코드 실습</a></li>
+  <li><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=songblue61&amp;logNo=221853600720">블로그</a></li>
 </ul>
 
 <h2 id="끝">끝</h2>

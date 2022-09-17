@@ -4,7 +4,7 @@ type: research
 date: 2022-06-21 21:00
 category: BigData
 title: 빅데이터분석
-subtitle: "빅데이터분석 준비(2)"
+subtitle: "빅데이터분석기사 준비(2)"
 writer: 100
 post-header: true  
 header-img: ./img/2022-06-21-21-15-53.png

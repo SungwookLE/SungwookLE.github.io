@@ -2,8 +2,8 @@
 layout: post
 type: research
 date: 2022-02-12 17:00
-category: Udacity
-title: LS3. Creating your own API endpoints
+category: Udacity-Backend
+title: Creating your own API endpoints
 subtitle: "Designing RESTful APIs"
 writer: 100
 post-header: true  

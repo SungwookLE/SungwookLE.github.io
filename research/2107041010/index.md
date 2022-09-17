@@ -3,7 +3,7 @@ layout: post
 type: research
 date: 2021-07-04 10:10
 category: Kaggle
-title: DataAnalysis Kaggle HeartAttack"
+title: DataAnalysis Kaggle HeartAttack
 subtitle: Classifier- Heart Attack probability high or low?
 writer: 100
 post-header: true

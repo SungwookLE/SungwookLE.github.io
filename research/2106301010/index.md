@@ -3,7 +3,7 @@ layout: post
 type: research
 date: 2021-06-30 10:10
 category: Kaggle
-title: DataAnalysis DS_Test
+title: DataAnalysis Pretest
 subtitle: Keras Feed Input(n_dim=4), Overfit & Underfit
 writer: 100
 post-header: true

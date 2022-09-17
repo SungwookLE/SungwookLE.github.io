@@ -3,8 +3,8 @@ layout: post
 type: research
 date: 2021-06-21 10:10
 category: Kaggle
-title: DataAnalysis Kaggle Titanic with Ref
-subtitle: Classifier- pandas, numpy, sklearn 기본 머신러닝 모델 살펴볼 목적으로 해본 Kaggle- 레퍼런스 자료를 참고하면서 따라해봄
+title: DataAnalysis Kaggle Titanic with Reference
+subtitle: Classifier- Classfication following reference material
 writer: 100
 post-header: true
 header-img: https://static1.squarespace.com/static/5006453fe4b09ef2252ba068/t/5090b249e4b047ba54dfd258/1351660113175/TItanic-Survival-Infographic.jpg?format=1500w

@@ -50,7 +50,6 @@ use_math: true
         - AI 기반 승객 3D Key-points 추정 알고리즘 개발
         - Occlusion 강건화 알고리즘 개발
         - 실내 승객 클래스 판단 알고리즘 개발
-        - 승객 영상 SW 아키텍쳐 및 요구사항 개발
     - SW 검증
         - 요구사항 기반 테스트 케이스 자동화 생성 코드 개발
         - 정적/동적 SW 검증, 기능검증, SW 디자인리뷰
@@ -116,19 +115,21 @@ use_math: true
         |-|-|
         |![](./img/safety_pose.gif)|![](./img/safety_class.gif)|
 
-- 승객 영상 SW 아키텍쳐 분석 및 설계 (22.6~)
-
 ## 7. EDUCATION
-### 1. Self-Driving Car Nanodegree, Udacity (20.10~21.2)
+
+### 1. Computer Vision Nanodegree, Udacity [(22.09)](https://graduation.udacity.com/confirm/KH2G5KMS)
+- Advanced Computer Vision and Deep Learning
+    - Image Captioning(CNN+RNN)
+- Object Tracking Localization
+    - SLAM
+
+### 2. Self-Driving Car Nanodegree, Udacity [(21.02)](https://graduation.udacity.com/confirm/WHYAFRLW)
 - Computer Vision
 - Sensor Fusion
     - Pedestrian {위치 , 속도} 예측 Lidar+Radar Sensor Fusion
     - Kalman Filter, Extended Kalman Filter
     - [Lidar+Radar Sensor Fusion with Extended Kalman Filter](https://github.com/SungwookLE/udacity_extended_kf)
-
-        ||
-        |-|
-        |![](./img/lidar_radar_fusion.png)|
+        ![](./img/lidar_radar_fusion.png)
 
 - Localization
     - Particle Filter
@@ -136,15 +137,11 @@ use_math: true
 - Planning, Control
 - System Integration: `ROS`
 
-### 2. C++ Intermediate Nanodegree, Udacity (20.6~20.9)
+### 3. C++ Intermediate Nanodegree, Udacity [(20.09)](https://graduation.udacity.com/confirm/UZ3U3CZE)
 - Object-Oriented Programming
-    - A-Star Search Algorithm
+    - A-Star Search Algorithm   
 - Memory Management
 - Concurrency Programming
 
-### 3. Computer Vision Nanodegree, Udacity (22.6~22.9)
-- Advanced Computer Vision and Deep Learning
-- Object Tracking Localization
-    - SLAM
 
 ## End

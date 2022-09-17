@@ -160,6 +160,28 @@
 
     <url>
     
+      <loc>http://localhost:4000/research/2106231010/</loc>
+      
+        <lastmod>2021-06-23T10:10:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>0.5</priority>
+      
+
+    </url>
+   
+   
+  
+   
+   
+
+    <url>
+    
       <loc>http://localhost:4000/research/2206212100/</loc>
       
         <lastmod>2022-06-21T21:00:00+09:00</lastmod>
@@ -424,53 +446,9 @@
 
     <url>
     
-      <loc>http://localhost:4000/research/2105071010/</loc>
-      
-        <lastmod>2021-05-07T10:10:00+09:00</lastmod>
-      
-
-      
-        <changefreq>weekly</changefreq>
-      
-
-      
-          <priority>0.5</priority>
-      
-
-    </url>
-   
-   
-  
-   
-   
-
-    <url>
-    
       <loc>http://localhost:4000/research/2109041010/</loc>
       
         <lastmod>2021-09-04T10:10:00+09:00</lastmod>
-      
-
-      
-        <changefreq>weekly</changefreq>
-      
-
-      
-          <priority>0.5</priority>
-      
-
-    </url>
-   
-   
-  
-   
-   
-
-    <url>
-    
-      <loc>http://localhost:4000/research/2106281100/</loc>
-      
-        <lastmod>2021-06-28T11:00:00+09:00</lastmod>
       
 
       

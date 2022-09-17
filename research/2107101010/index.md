@@ -3,7 +3,7 @@ layout: post
 type: research
 date: 2021-07-10 10:10
 category: Kaggle
-title: DataAnalysis Kaggle Disaster Tweets"
+title: DataAnalysis Kaggle Disaster Tweets
 subtitle: NLP Classifier- Natural Language Processing, Disaster or Not?
 writer: 100
 post-header: true

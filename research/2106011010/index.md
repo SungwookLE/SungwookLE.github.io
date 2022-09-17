@@ -3,8 +3,8 @@ layout: post
 type: research
 date: 2021-06-01 10:10
 category: ROS
-title: Robotics Go Chase It"
-subtitle: 흰 공을 따라다니는 모바일 로봇(카메라 픽셀만 찾아서)
+title: Robotics Go Chase It
+subtitle: 흰 공을 따라다니는 모바일 로봇(카메라)
 writer: 100
 post-header: true
 header-img: /assets/images/GoChaseIt1.gif
@@ -12,18 +12,16 @@ hash-tag: [ROS, robot]
 use_math: true
 ---
 
-### PROJECT: Go Chase It
+## PROJECT: Go Chase It
 > AUTHOR: SungwookLE  
 > DATE: '21.6/1  
 
-#### [1]  
-- 채워나가야 함  
-- 프로젝트, 가제보 환경 구성 (로봇'xacro', world, Service) 설명하고,  
+### 1. 흰 공을 따라서 움직이는 모바일 로봇  
+- ROS 환경에서 서비스, pub/sub, 클라이언트 <-> 센서데이터 등 환경 구성
+- Gazebo 연계하여 시뮬레이션
 
-- 이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯,  
-
-#### [2] source code
-drive_bot.cpp, process_image.cpp
+### 2. source code
+- drive_bot.cpp, process_image.cpp
 
 ```c++
 // : process_image.cpp
@@ -208,9 +206,9 @@ int main(int argc, char** argv)
 
 
 
-#### RESULTS  
+### 3. RESULTS  
 ![image](/assets/images/GoChaseIt1.gif)  
 ![image](/assets/images/GoChaseIt2.gif)  
 ![image](/assets/images/GoChaseIt3.gif)  
 
-#### 끝
+### 끝

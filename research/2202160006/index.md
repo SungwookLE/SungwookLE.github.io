@@ -2,8 +2,8 @@
 layout: post
 type: research
 date: 2022-02-16 00:06
-category: Udacity
-title: LS4&LS5. Securing your API, Writing Developer-Friendly APIs
+category: Udacity-Backend
+title: Securing your API, Writing Developer-Friendly APIs
 subtitle: "Designing RESTful APIs"
 writer: 100
 post-header: true  

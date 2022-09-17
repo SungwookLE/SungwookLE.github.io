@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- HTML Meta Tags -->
-  <title>Robotics Go Chase It"</title>
+  <title>Robotics Go Chase It</title>
   <meta name="description" content="SungwookLE">
 
   
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="Robotics Go Chase It"">
+  <meta itemprop="name" content="Robotics Go Chase It">
   <meta itemprop="description" content="SungwookLE">
   <meta itemprop="image" content="http://localhost:4000/research/2106011010//assets/images/GoChaseIt1.gif">
 
@@ -134,10 +134,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </div>
         </div>
         <h1 class="post-title">
-            Robotics Go Chase It"
+            Robotics Go Chase It
         </h1>
         <h2 class="post-subtitle">
-            흰 공을 따라다니는 모바일 로봇(카메라 픽셀만 찾아서)
+            흰 공을 따라다니는 모바일 로봇(카메라)
         </h2>
         <h2 class="post-date">
             2021-06-01 10:10
@@ -150,26 +150,25 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <article class="post-article">
         <div class="toc">
-          <ul><li><a href="#project-go-chase-it">PROJECT: Go Chase It</a><ul><li><a href="#1">[1]</a></li><li><a href="#2-source-code">[2] source code</a></li><li><a href="#results">RESULTS</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#project-go-chase-it">PROJECT: Go Chase It</a><ul><li><a href="#1-흰-공을-따라서-움직이는-모바일-로봇">1. 흰 공을 따라서 움직이는 모바일 로봇</a></li><li><a href="#2-source-code">2. source code</a></li><li><a href="#3-results">3. RESULTS</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
-        <h3 id="project-go-chase-it">PROJECT: Go Chase It</h3>
+        <h2 id="project-go-chase-it">PROJECT: Go Chase It</h2>
 <blockquote>
   <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.6/1</p>
 </blockquote>
 
-<h4 id="1">[1]</h4>
+<h3 id="1-흰-공을-따라서-움직이는-모바일-로봇">1. 흰 공을 따라서 움직이는 모바일 로봇</h3>
 <ul>
-  <li>채워나가야 함</li>
-  <li>
-    <p>프로젝트, 가제보 환경 구성 (로봇’xacro’, world, Service) 설명하고,</p>
-  </li>
-  <li>이번 프로젝트는 소스코드는 간단하고, 그 대신 ROS에서 환경 구성하고 서비스 펍/섭 클라이언트 하고 센서 데이터 받고 등을 잘 설명해야 할 듯,</li>
+  <li>ROS 환경에서 서비스, pub/sub, 클라이언트 &lt;-&gt; 센서데이터 등 환경 구성</li>
+  <li>Gazebo 연계하여 시뮬레이션</li>
 </ul>
 
-<h4 id="2-source-code">[2] source code</h4>
-<p>drive_bot.cpp, process_image.cpp</p>
+<h3 id="2-source-code">2. source code</h3>
+<ul>
+  <li>drive_bot.cpp, process_image.cpp</li>
+</ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1">// : process_image.cpp</span>
 <span class="cp">#include "ros/ros.h"
@@ -348,12 +347,12 @@ DATE: ‘21.6/1</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="results">RESULTS</h4>
+<h3 id="3-results">3. RESULTS</h3>
 <p><img src="/assets/images/GoChaseIt1.gif" alt="image" /><br />
 <img src="/assets/images/GoChaseIt2.gif" alt="image" /><br />
 <img src="/assets/images/GoChaseIt3.gif" alt="image" /></p>
 
-<h4 id="끝">끝</h4>
+<h3 id="끝">끝</h3>
 
       </article>
 
