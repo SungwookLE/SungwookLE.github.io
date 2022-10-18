@@ -161,8 +161,8 @@ Code: <a href="https://github.com/SungwookLE/ReND_Cpp_Astar/tree/Review">My Code
 Reference:</p>
   <ul>
     <li><a href="https://github.com/SungwookLE/ReND_Cpp_Astar/blob/master/readme.md">My Implementation A*</a></li>
-    <li><a href="/algorithm/2202011010/img/AppH-astar-dstar_howie.pdf">CMU AStar &amp; DStar</a></li>
-    <li><a href="https://github.com/Sollimann/Dstar-lite-pathplanner.git">D* Code</a></li>
+    <li><a href="/algorithm/2202011010/img/AppH-astar-dstar_howie.pdf">CMU AStar &amp; DStar Matrial</a></li>
+    <li><a href="https://github.com/SungwookLE/Dstar-lite-pathplanner">D* Code</a></li>
   </ul>
 </blockquote>
 
@@ -352,16 +352,17 @@ Reference:</p>
 
 <h2 id="3-학술적-정리-search-in-path-planning">3. 학술적 정리: Search in Path Planning</h2>
 <ul>
-  <li>Find a path between two locations in an unknown, partially known, or know environment
-    <ol>
-      <li>Uninformed Search</li>
-    </ol>
+  <li>Find a path between two locations in an unknown, partially known, or know environment</li>
+  <li>Uninformed Search
     <ul>
       <li>Use no information obtained fron the environment</li>
-      <li>Blind Search: BFS, DFS, Dijkstra
-    2. Informed Search</li>
+      <li>Blind Search: BFS, DFS, Dijkstra</li>
+    </ul>
+  </li>
+  <li>Informed Search
+    <ul>
       <li>Use evaluation function, More efficient</li>
-      <li>Heuristic Search: A<em>, D</em>, etc..</li>
+      <li>Heuristic Search: AStar, DStar, etc..</li>
     </ul>
   </li>
 </ul>
@@ -385,14 +386,14 @@ Reference:</p>
   <li><strong>A Star Replanner</strong>: 새로운 맵(장애물) 정보가 들어오면, 그 지점을 시작점으로 하여 A* 알고리즘 재수행</li>
   <li><img src="/algorithm/2202011010/img/2022-10-18-23-55-57.png" alt="" /></li>
   <li>Optimal but, Inefficient and impractical..!</li>
-  <li>D<em>(Dynamic A</em>) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)</li>
+  <li>DStar(Dynamic AStar) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)</li>
 </ul>
 
 <h2 id="4-d-lite-introduction">4. D* Lite Introduction</h2>
 <ul>
-  <li>Based on A<em>, there are various version of D</em>(D<em>, Focused D</em>, D* Lite…)</li>
+  <li>Based on A*, there are various version of DStar(Dstar, Focused DStar, DStar Lite…)</li>
   <li>Incrementally repair solution paths when changes occur -&gt; <strong>Fast replanngin</strong></li>
-  <li>D<em>(Dynamic A</em>) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
+  <li>DStar(Dynamic AStar) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
     <ul>
       <li>왜 효율적이냐, InConsistent한 Node만을 Openlist에 추가하고, 탐색함으로써 새로운 장애물/맵정보가 들어왔을때 영향을 받는 Node만을 대상으로 길찾기 알고리즘 재수행이 가능</li>
     </ul>
@@ -431,13 +432,13 @@ Reference:</p>
 <ul>
   <li><img src="/algorithm/2202011010/img/2022-10-19-00-12-52.png" alt="" /></li>
   <li><img src="/algorithm/2202011010/img/2022-10-19-00-13-36.png" alt="" /></li>
-  <li><a href="/algorithm/2202011010/img/AppH-astar-dstar_howie.pdf">CMU AStar &amp; DStar</a> 자료의 p75~p131 의 예제를 쭉 따라가며 살펴보자.</li>
+  <li><a href="/algorithm/2202011010/img/AppH-astar-dstar_howie.pdf">CMU AStar &amp; DStar Matrial</a> 자료의 p75~p131 의 예제 문제를 따라가며 살펴보자!!</li>
 </ul>
 
 <h3 id="4-3-d-demo">4-3. D* Demo</h3>
 <ul>
-  <li><a href="https://github.com/Sollimann/Dstar-lite-pathplanner.git">D* Code</a></li>
-  <li><img src="/algorithm/2202011010/img/2022-10-19-00-35-34.png" alt="" /></li>
+  <li><a href="https://github.com/SungwookLE/Dstar-lite-pathplanner">D* Code</a></li>
+  <li><img src="img/2022-10-19-00-56-16.png" alt="" /></li>
 </ul>
 
 <h2 id="끝">끝</h2>

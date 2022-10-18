@@ -17,7 +17,7 @@ use_math: true
 > Code: [My Code A*](https://github.com/SungwookLE/ReND_Cpp_Astar/tree/Review)  
 > Reference:
   - [My Implementation A*](https://github.com/SungwookLE/ReND_Cpp_Astar/blob/master/readme.md)
-  - [CMU AStar & DStar](/img/AppH-astar-dstar_howie.pdf)  
+  - [CMU AStar & DStar Matrial](/img/AppH-astar-dstar_howie.pdf)  
   - [D* Code](https://github.com/SungwookLE/Dstar-lite-pathplanner)  
 
 ## 1. A* Introduction
@@ -190,12 +190,12 @@ std::vector<std::vector<std::string>> A_star::Search(){
 
 ## 3. 학술적 정리: Search in Path Planning 
 - Find a path between two locations in an unknown, partially known, or know environment
-1. Uninformed Search
+- Uninformed Search
   - Use no information obtained fron the environment
   - Blind Search: BFS, DFS, Dijkstra
-2. Informed Search
+- Informed Search
   - Use evaluation function, More efficient
-  - Heuristic Search: A*, D*, etc..
+  - Heuristic Search: AStar, DStar, etc..
 
 ### 3-1. A* algorithm Flow Chart
 - ![](img/2022-10-18-23-48-32.png)
@@ -210,12 +210,12 @@ std::vector<std::vector<std::string>> A_star::Search(){
 - **A Star Replanner**: 새로운 맵(장애물) 정보가 들어오면, 그 지점을 시작점으로 하여 A* 알고리즘 재수행
 - ![](img/2022-10-18-23-55-57.png)
 - Optimal but, Inefficient and impractical..!
-- D*(Dynamic A*) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
+- DStar(Dynamic AStar) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
 
 ## 4. D* Lite Introduction
-- Based on A*, there are various version of D*(D*, Focused D*, D* Lite...)
+- Based on A*, there are various version of DStar(Dstar, Focused DStar, DStar Lite...)
 - Incrementally repair solution paths when changes occur -> **Fast replanngin**
-- D*(Dynamic A*) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
+- DStar(Dynamic AStar) 등장 이유, 동적인(partially known, unknown map) 환경에서 효율적인 길찾기 알고리즘(재수행)
   - 왜 효율적이냐, InConsistent한 Node만을 Openlist에 추가하고, 탐색함으로써 새로운 장애물/맵정보가 들어왔을때 영향을 받는 Node만을 대상으로 길찾기 알고리즘 재수행이 가능
 
 ### 4-1. terminology
@@ -235,12 +235,12 @@ std::vector<std::vector<std::string>> A_star::Search(){
 ### 4-2. D* Lite Algorithm
 - ![](img/2022-10-19-00-12-52.png)
 - ![](img/2022-10-19-00-13-36.png)
-- [CMU AStar & DStar](./img/AppH-astar-dstar_howie.pdf) 자료의 p75~p131 의 예제를 쭉 따라가며 살펴보자.
+- [CMU AStar & DStar Matrial](./img/AppH-astar-dstar_howie.pdf) 자료의 p75~p131 의 예제 문제를 따라가며 살펴보자!!
 
 
 ### 4-3. D* Demo
 - [D* Code](https://github.com/SungwookLE/Dstar-lite-pathplanner)
-- ![](img/2022-10-19-00-35-34.png)
+- ![](img/2022-10-19-00-56-16.png)
 
 
 ## 끝
