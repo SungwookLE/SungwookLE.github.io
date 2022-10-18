@@ -18,7 +18,7 @@ use_math: true
 > Reference:
   - [My Implementation A*](https://github.com/SungwookLE/ReND_Cpp_Astar/blob/master/readme.md)
   - [CMU AStar & DStar](/img/AppH-astar-dstar_howie.pdf)  
-  - [D* Code](https://github.com/Sollimann/Dstar-lite-pathplanner.git)  
+  - [D* Code](https://github.com/SungwookLE/Dstar-lite-pathplanner)  
 
 ## 1. A* Introduction
 - A star algorithm은 효율적인 최단거리 길찾기 알고리즘으로, autonomous parking system에서 쓰인다.
@@ -239,7 +239,7 @@ std::vector<std::vector<std::string>> A_star::Search(){
 
 
 ### 4-3. D* Demo
-- [D* Code](https://github.com/Sollimann/Dstar-lite-pathplanner.git)
+- [D* Code](https://github.com/SungwookLE/Dstar-lite-pathplanner)
 - ![](img/2022-10-19-00-35-34.png)
 
 
