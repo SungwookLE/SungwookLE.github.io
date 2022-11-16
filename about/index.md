@@ -16,7 +16,6 @@ title: About
         <div class="title index">02. Cover</div>
             <div class="content">
                 <ul>
-                    <A href = "https://www.linkedin.com/in/sungwookle/">Linkedin,</A>
                     <A href = "https://github.com/SungwookLE">Github</A>
                 </ul>
             </div>
