@@ -7,19 +7,17 @@ title: Passenger Classifier
 subtitle: Belt/OOP(close/far/behind/phone/center)/Weak(man,woman,child,old)/Mask
 writer: 100
 post-header: true
-header-img: img/samples_gif/real_time_demo_driving_sungwook.gif
+header-img: ./img/samples_gif/skeleton_approach.gif
 hash-tag: [Vision, Passenger, Classifier, AutoEncoder, Semi-Supervised-Learning]
 use_math: true
 ---
 
-# Camera based Passenger Class Classifier Project
-> Author: [SungwookLE](joker1251@naver.com)  
-> Date  : '21.11/04  
-
-> Project: DataScience Project
->> - github repository is [here](https://github.com/SungwookLE/Safety_Class)
->> - Semi-supervised Learning using AutoEncoder     
->> - For less memory usage, each classifier share one ConvNet branch
+# Camera based Passenger Class Classifier
+> Author: SungwookLE  
+> Date  : '21.11/04    
+> github repository is [here](https://github.com/SungwookLE/Safety_Class)  
+> Semi-supervised Learning using AutoEncoder      
+> For less memory usage, each classifier share one ConvNet branch  
 
 ### Project File Tree
 ```bash
@@ -95,7 +93,7 @@ Data/ (not commited)
     1. 4개의 main tasks 분류 성능이 우수한 모델을 개발하는 것이 본 프로젝트의 주된 목적이다.
         - Target Performance: `AUC&Accuracy` > **0.93**  
         - AUC는 True positive , False positive 커브 영역의 넓이로써, THD에 따른 모델의 종합적인 Accuracy를 표현해주는 [지표](https://bioinformaticsandme.tistory.com/328)이다.
-    2. 현업의 부족한 데이터를 극복한 모델 성능을 확보
+    2. 부족한 취득 데이터 볼륨을 극복하여, 모델 성능을 확보
         - Semi-Supervised Learning (w/ Large Open dataset) 적용함
         - opendataset은 이미지는 많으나, 이미지의 라벨링이 본 프로젝트의 class와 다르므로, 직접 지도학습에 사용하는 것에 한계가 있음
         - 그러나, opendataset에는 실내 승객 이미지가 가지고 있는 일반적인 정보가 있기 때문에, 비지도학습 방법인 autoencoder를 활용하여 학습하고 encoder 부분만 분리하여 사용함으로써, 이미지의 `hidden feature`를 추출하고자 하였음
@@ -103,7 +101,7 @@ Data/ (not commited)
         - xAI(Explainable AI) 분석 방법 적용함
 
 - 최종적으로 구현한 Classifier 모델 Realtime 데모  
-[![Classifier_demo](./img/samples_gif/real_time_demo_driving_sungwook.gif)](./img/samples_gif/real_time_demo_driving_sungwook.mp4)  
+[![Classifier_demo](./img/samples_gif/realtime_demo_minseok.gif)](./img/samples_gif/realtime_demo_minseok.mp4)  
 - 실행 명령어: `python run_realtime.py --model_multi 'model_encoder_multihead' --model_belt 'model_belt_cnn' --video 0`
 - 최종적으로 학습 완료된 모델
     1. EncoderConv_MultiOut_oop_weak_mask: `./ckpt/model_encoder_multihead`
@@ -401,31 +399,23 @@ Belt Classifier: Test Predict is 100.0%
 ```
 
 - real_time_demo results:
-    1. [realtime_demo_yukhyun.mp4](./img/samples_gif/realtime_demo_yukhyun.mp4)  
-    ![realtime_demo_yukhyun](./img/samples_gif/realtime_demo_yukhyun.gif) 
-    2. [realtime_demo_sungwook.mp4](./img/samples_gif/realtime_demo_sungwook.mp4)  
-    ![realtime_demo_sungwook](./img/samples_gif/realtime_demo_sungwook.gif) 
-    3. [realtime_demo_sujin.mp4](./img/samples_gif/realtime_demo_sujin.mp4)   
-    ![realtime_demo_sujin](./img/samples_gif/realtime_demo_sujin.gif)  
-    4. [realtime_demo_minseok.mp4](./img/samples_gif/realtime_demo_minseok.mp4)  
+    1. [realtime_demo_minseok.mp4](./img/samples_gif/realtime_demo_minseok.mp4)  
     ![realtime_demo_minseok](./img/samples_gif/realtime_demo_minseok.gif)
-    5. [realtime_demo_juwon.mp4](./img/samples_gif/realtime_demo_juwon.mp4)  
-    ![realtime_demo_juwon](./img/samples_gif/realtime_demo_juwon.gif)  
-    6. [realtime_demo_jieun.mp4](./img/samples_gif/realtime_demo_jieun.mp4)  
+    2. [realtime_demo_jieun.mp4](./img/samples_gif/realtime_demo_jieun.mp4)  
     ![realtime_demo_jieun.gif](./img/samples_gif/realtime_demo_jieun.gif)  
 
 ## 5. Discussion
-1. 현업에서 취득할 수 있는 승객 영상 데이터는 배우가 한정적이고, 환경도 실제 고객의 주행 조건 만큼 다양하지 못하기 때문에 이미지 data의 분포는 좋지 않음
+1. 직접 취득할 수 있는 승객 영상 데이터는 배우가 한정적이고, 환경도 실제 운전자들의 주행 조건 만큼 다양하지 못하기 때문에 이미지 data의 분포는 좋지 않음
     - 이런 경우, 학습될 모델의 성능도 overfitting 되어 좋지 못함
     - 따라서, 다양한 이미지 데이터 셋을 다양한 소스(ex: 구글, 오픈데이터셋)에서 충분히 활용하는 것이 좋으나, 우리가 원하는 라벨링이 붙어있지 않는 데이터가 대다수
     - 이를 보완하기 위한 방법으로 Semi-Supervised Learning 고려해야 하며, 본 프로젝트에서는 `autoencoder`를 활용함
-2. 딥러닝 로직의 판단 과정은 블랙박스이기 때문에, 이를 차량에 적용하고 안전제어에 직접 사용하기 위해서는, 사람이 납득할 수 있는 수준의 해석 도구가 필요함
+2. 딥러닝 로직의 판단 과정은 블랙박스이기 때문에, 이를 제어에 직접 사용하기 위해서는, 사람이 납득할 수 있는 수준의 해석 도구가 필요함
     - xAI라고 불리우는 방법을 같이 활용하여 감지 성능을 개발단계에서 지속적으로 살펴볼 필요가 있음
     - 성능 개발 단계에서, 개발 support 툴로써 같이 활용(GUI 툴)
 3. 머신러닝 모델의 성능만큼이나 차량에 들어갔을 때, 리소스 측면에서 LIGHT한 모델 고려 필요
     - 당연히, 가벼울수록 전력 사용량이나 발열량 측면에서도 유리함
     - 따라서, 최대한 공유할 수 있는 부분은 공유하고, 개별적으로 분기가 필요한 부분에서만 모델 PATH를 분기시켜 설계
-4. 머신로닝 추론 값을 제어 로직에 적용하기 위해선, 인터페이싱 알고리즘이 필요함
+4. 머신러닝 추론 값을 제어 로직에 적용하기 위해선, 인터페이싱 알고리즘이 필요함
     - 추론 값은 불안정하게 흔들리므로, 이를 차량제어에 사용하기 위해선, 간단하게는 `LPF`를 붙이거나, 역학 모델과 `fusion`하는 방식을 통해 값을 보완하여 사용하여야 함
 
 ## 6. Future work

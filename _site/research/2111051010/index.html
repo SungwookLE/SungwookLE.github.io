@@ -14,7 +14,7 @@
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Passenger Classifier">
   <meta itemprop="description" content="SungwookLE">
-  <meta itemprop="image" content="http://localhost:4000/research/2111051010/img/samples_gif/real_time_demo_driving_sungwook.gif">
+  <meta itemprop="image" content="http://localhost:4000/research/2111051010/./img/samples_gif/skeleton_approach.gif">
 
   
 
@@ -119,7 +119,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-<div class="post-header loading-animation" style="background-image: url('img/samples_gif/real_time_demo_driving_sungwook.gif')">
+<div class="post-header loading-animation" style="background-image: url('./img/samples_gif/skeleton_approach.gif')">
 </div>
 
 
@@ -150,24 +150,16 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <article class="post-article">
         <div class="toc">
-          <ul><li><a href="#camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</a><ul><li><a href="#project-file-tree">Project File Tree</a></li></ul></li><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-ad-function-xai-real-time-demo-processing-">2. Ad Function (xAI, real-time Demo, processing, …)</a><ul><li><a href="#2-1-xaiexplainable-ai-시각화-분석">2-1. xAI(explainable AI) 시각화 분석</a></li><li><a href="#2-2-real-time-demo">2-2. real-time Demo</a></li><li><a href="#2-3-preprocessing">2-3. preprocessing</a></li><li><a href="#2-4-miscellaneous-techniques">2-4. Miscellaneous techniques</a></li></ul></li><li><a href="#3-classifiers">3. Classifiers</a><ul><li><a href="#3-1-belt-classifier">3-1. Belt Classifier</a></li><li><a href="#3-2-autoencoder-학습">3-2. AutoEncoder 학습</a></li><li><a href="#3-3-encoder를-이용한-multi-output-모델-구조">3-3. Encoder를 이용한 Multi Output 모델 구조</a></li><li><a href="#3-3-oop-classifier-with-encoder">3-3. OOP Classifier with Encoder</a></li><li><a href="#3-4-weak-classifier-with-encoder">3-4. Weak Classifier with Encoder</a></li><li><a href="#3-5-mask-classifier-with-encoder">3-5. Mask Classifier with Encoder</a></li></ul></li><li><a href="#4-results-summary">4. Results Summary</a></li><li><a href="#5-discussion">5. Discussion</a></li><li><a href="#6-future-work">6. Future work</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+          <ul><li><a href="#camera-based-passenger-class-classifier">Camera based Passenger Class Classifier</a><ul><li><a href="#project-file-tree">Project File Tree</a></li></ul></li><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-ad-function-xai-real-time-demo-processing-">2. Ad Function (xAI, real-time Demo, processing, …)</a><ul><li><a href="#2-1-xaiexplainable-ai-시각화-분석">2-1. xAI(explainable AI) 시각화 분석</a></li><li><a href="#2-2-real-time-demo">2-2. real-time Demo</a></li><li><a href="#2-3-preprocessing">2-3. preprocessing</a></li><li><a href="#2-4-miscellaneous-techniques">2-4. Miscellaneous techniques</a></li></ul></li><li><a href="#3-classifiers">3. Classifiers</a><ul><li><a href="#3-1-belt-classifier">3-1. Belt Classifier</a></li><li><a href="#3-2-autoencoder-학습">3-2. AutoEncoder 학습</a></li><li><a href="#3-3-encoder를-이용한-multi-output-모델-구조">3-3. Encoder를 이용한 Multi Output 모델 구조</a></li><li><a href="#3-3-oop-classifier-with-encoder">3-3. OOP Classifier with Encoder</a></li><li><a href="#3-4-weak-classifier-with-encoder">3-4. Weak Classifier with Encoder</a></li><li><a href="#3-5-mask-classifier-with-encoder">3-5. Mask Classifier with Encoder</a></li></ul></li><li><a href="#4-results-summary">4. Results Summary</a></li><li><a href="#5-discussion">5. Discussion</a></li><li><a href="#6-future-work">6. Future work</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
         </div>
-        <h1 id="camera-based-passenger-class-classifier-project">Camera based Passenger Class Classifier Project</h1>
+        <h1 id="camera-based-passenger-class-classifier">Camera based Passenger Class Classifier</h1>
 <blockquote>
-  <p>Author: <a href="joker1251@naver.com">SungwookLE</a><br />
-Date  : ‘21.11/04</p>
-</blockquote>
-
-<blockquote>
-  <p>Project: DataScience Project</p>
-  <blockquote>
-    <ul>
-      <li>github repository is <a href="https://github.com/SungwookLE/Safety_Class">here</a></li>
-      <li>Semi-supervised Learning using AutoEncoder</li>
-      <li>For less memory usage, each classifier share one ConvNet branch</li>
-    </ul>
-  </blockquote>
+  <p>Author: SungwookLE<br />
+Date  : ‘21.11/04  <br />
+github repository is <a href="https://github.com/SungwookLE/Safety_Class">here</a><br />
+Semi-supervised Learning using AutoEncoder    <br />
+For less memory usage, each classifier share one ConvNet branch</p>
 </blockquote>
 
 <h3 id="project-file-tree">Project File Tree</h3>
@@ -252,7 +244,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
           <li>AUC는 True positive , False positive 커브 영역의 넓이로써, THD에 따른 모델의 종합적인 Accuracy를 표현해주는 <a href="https://bioinformaticsandme.tistory.com/328">지표</a>이다.</li>
         </ul>
       </li>
-      <li>현업의 부족한 데이터를 극복한 모델 성능을 확보
+      <li>부족한 취득 데이터 볼륨을 극복하여, 모델 성능을 확보
         <ul>
           <li>Semi-Supervised Learning (w/ Large Open dataset) 적용함</li>
           <li>opendataset은 이미지는 많으나, 이미지의 라벨링이 본 프로젝트의 class와 다르므로, 직접 지도학습에 사용하는 것에 한계가 있음</li>
@@ -267,7 +259,7 @@ Data/ <span class="o">(</span>not commited<span class="o">)</span>
     </ol>
   </li>
   <li>최종적으로 구현한 Classifier 모델 Realtime 데모<br />
-<a href="./img/samples_gif/real_time_demo_driving_sungwook.mp4"><img src="/research/2111051010/img/samples_gif/real_time_demo_driving_sungwook.gif" alt="Classifier_demo" /></a></li>
+<a href="./img/samples_gif/realtime_demo_minseok.mp4"><img src="/research/2111051010/img/samples_gif/realtime_demo_minseok.gif" alt="Classifier_demo" /></a></li>
   <li>실행 명령어: <code class="language-plaintext highlighter-rouge">python run_realtime.py --model_multi 'model_encoder_multihead' --model_belt 'model_belt_cnn' --video 0</code></li>
   <li>최종적으로 학습 완료된 모델
     <ol>
@@ -652,16 +644,8 @@ Belt Classifier: Test Predict is 100.0%
   </li>
   <li>real_time_demo results:
     <ol>
-      <li><a href="/research/2111051010/img/samples_gif/realtime_demo_yukhyun.mp4">realtime_demo_yukhyun.mp4</a><br />
-  <img src="/research/2111051010/img/samples_gif/realtime_demo_yukhyun.gif" alt="realtime_demo_yukhyun" /></li>
-      <li><a href="/research/2111051010/img/samples_gif/realtime_demo_sungwook.mp4">realtime_demo_sungwook.mp4</a><br />
-  <img src="/research/2111051010/img/samples_gif/realtime_demo_sungwook.gif" alt="realtime_demo_sungwook" /></li>
-      <li><a href="/research/2111051010/img/samples_gif/realtime_demo_sujin.mp4">realtime_demo_sujin.mp4</a> <br />
-  <img src="/research/2111051010/img/samples_gif/realtime_demo_sujin.gif" alt="realtime_demo_sujin" /></li>
       <li><a href="/research/2111051010/img/samples_gif/realtime_demo_minseok.mp4">realtime_demo_minseok.mp4</a><br />
   <img src="/research/2111051010/img/samples_gif/realtime_demo_minseok.gif" alt="realtime_demo_minseok" /></li>
-      <li><a href="/research/2111051010/img/samples_gif/realtime_demo_juwon.mp4">realtime_demo_juwon.mp4</a><br />
-  <img src="/research/2111051010/img/samples_gif/realtime_demo_juwon.gif" alt="realtime_demo_juwon" /></li>
       <li><a href="/research/2111051010/img/samples_gif/realtime_demo_jieun.mp4">realtime_demo_jieun.mp4</a><br />
   <img src="/research/2111051010/img/samples_gif/realtime_demo_jieun.gif" alt="realtime_demo_jieun.gif" /></li>
     </ol>
@@ -670,14 +654,14 @@ Belt Classifier: Test Predict is 100.0%
 
 <h2 id="5-discussion">5. Discussion</h2>
 <ol>
-  <li>현업에서 취득할 수 있는 승객 영상 데이터는 배우가 한정적이고, 환경도 실제 고객의 주행 조건 만큼 다양하지 못하기 때문에 이미지 data의 분포는 좋지 않음
+  <li>직접 취득할 수 있는 승객 영상 데이터는 배우가 한정적이고, 환경도 실제 운전자들의 주행 조건 만큼 다양하지 못하기 때문에 이미지 data의 분포는 좋지 않음
     <ul>
       <li>이런 경우, 학습될 모델의 성능도 overfitting 되어 좋지 못함</li>
       <li>따라서, 다양한 이미지 데이터 셋을 다양한 소스(ex: 구글, 오픈데이터셋)에서 충분히 활용하는 것이 좋으나, 우리가 원하는 라벨링이 붙어있지 않는 데이터가 대다수</li>
       <li>이를 보완하기 위한 방법으로 Semi-Supervised Learning 고려해야 하며, 본 프로젝트에서는 <code class="language-plaintext highlighter-rouge">autoencoder</code>를 활용함</li>
     </ul>
   </li>
-  <li>딥러닝 로직의 판단 과정은 블랙박스이기 때문에, 이를 차량에 적용하고 안전제어에 직접 사용하기 위해서는, 사람이 납득할 수 있는 수준의 해석 도구가 필요함
+  <li>딥러닝 로직의 판단 과정은 블랙박스이기 때문에, 이를 제어에 직접 사용하기 위해서는, 사람이 납득할 수 있는 수준의 해석 도구가 필요함
     <ul>
       <li>xAI라고 불리우는 방법을 같이 활용하여 감지 성능을 개발단계에서 지속적으로 살펴볼 필요가 있음</li>
       <li>성능 개발 단계에서, 개발 support 툴로써 같이 활용(GUI 툴)</li>
@@ -689,7 +673,7 @@ Belt Classifier: Test Predict is 100.0%
       <li>따라서, 최대한 공유할 수 있는 부분은 공유하고, 개별적으로 분기가 필요한 부분에서만 모델 PATH를 분기시켜 설계</li>
     </ul>
   </li>
-  <li>머신로닝 추론 값을 제어 로직에 적용하기 위해선, 인터페이싱 알고리즘이 필요함
+  <li>머신러닝 추론 값을 제어 로직에 적용하기 위해선, 인터페이싱 알고리즘이 필요함
     <ul>
       <li>추론 값은 불안정하게 흔들리므로, 이를 차량제어에 사용하기 위해선, 간단하게는 <code class="language-plaintext highlighter-rouge">LPF</code>를 붙이거나, 역학 모델과 <code class="language-plaintext highlighter-rouge">fusion</code>하는 방식을 통해 값을 보완하여 사용하여야 함</li>
     </ul>

@@ -8,8 +8,7 @@ title: About
         <div class="title index">01. Career</div>
             <div class="content">
                 <ul>
-                    Autonomous Driving Software<br>
-                    @Hyundai Motor Company
+                    Autonomous Driving SW<br>
                 </ul>
             </div>
     </div>
@@ -17,12 +16,8 @@ title: About
         <div class="title index">02. Cover</div>
             <div class="content">
                 <ul>
-                    {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'about' %}
-                    {% for page in sorted limit: 1%}
-                    {% include about-list.html %}
-                    {% endfor %}
+                    <A href = "https://www.linkedin.com/in/sungwookle/">Linkedin,</A>
                     <A href = "https://github.com/SungwookLE">Github</A>
-                    <A href = "https://www.linkedin.com/in/sungwookle/">Linkedin</A>
                 </ul>
             </div>
     </div>

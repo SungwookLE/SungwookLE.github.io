@@ -89,12 +89,9 @@ use_math: true
     - Controller: Nonlinear Sliding Mode Control
     - Estimator: Tire Force and Side Slip Angle with Dual Extended Kalman Filter (모델 파라미터 및 상태변수 동시 추정)
     - Optimizer: KKT(Karush-Kuhn-Tucker) method for considering Contraints
+    - ![](./img/thesis.png)
 
-        ||
-        |-|
-        |![](./img/thesis.png)|
-
-### 2. 차량 상태 추정 SW 개발: 전복 롤각 추정 (20.4~20.10)
+### 2. 차량 상태 추정 SW: 전복 롤각 추정 (20.4~20.10)
 - Dynamics Model Based, Roll Angle Estimation SW algorithm(`c,c++`)
     - 3차원 거동 상황에서의 강건한 롤각 추정 로직 개발
     - 차량 신호 분석 기반 Gain Scheduling Domain Design
@@ -102,7 +99,7 @@ use_math: true
     - 롤각 추정 Fault-Tolerant 로직 개발
     - 5DOF IMU 신호 오프셋 제거 (FOC, SOC) 개선 로직 개발
 
-### 3. 영상 인식 승객 자세 추정 SW 개발 (21.4~21.11)
+### 3. 영상 인식 승객 자세 추정 SW (21.4~21.11)
 - Deep Learning algorithm
     - Deep-learning 기반 승객 2D keypoints 추정 및 3D 자세 추정(`pytorch, opencv`)
     - Occlusion 강건화 알고리즘 개발
@@ -110,10 +107,7 @@ use_math: true
 - 승객 클래스 판단 알고리즘 개발(`keras, tensorflow`)
     - autoencoder 활용한 semi-supervised learning
     - xAI(explainable AI) 분석 기능 개발
-
-        |||
-        |-|-|
-        |![](./img/safety_pose.gif)|![](./img/safety_class.gif)|
+    - ![](./img/safety_pose.gif), ![](./img/safety_class.gif)
 
 ## 7. EDUCATION
 
@@ -129,13 +123,12 @@ use_math: true
     - Pedestrian {위치 , 속도} 예측 Lidar+Radar Sensor Fusion
     - Kalman Filter, Extended Kalman Filter
     - [Lidar+Radar Sensor Fusion with Extended Kalman Filter](https://github.com/SungwookLE/udacity_extended_kf)
-        ![](./img/lidar_radar_fusion.png)
 
 - Localization
     - Particle Filter
 
 - Planning, Control
-- System Integration: `ROS`
+- System Integration
 
 ### 3. C++ Intermediate Nanodegree, Udacity [(20.09)](https://graduation.udacity.com/confirm/UZ3U3CZE)
 - Object-Oriented Programming
