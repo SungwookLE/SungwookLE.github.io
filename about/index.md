@@ -16,6 +16,10 @@ title: About
         <div class="title index">02. Cover</div>
             <div class="content">
                 <ul>
+                    <!-- {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'about' %}
+                    {% for page in sorted limit: 1%}
+                    {% include about-list.html %}
+                    {% endfor %} -->
                     <A href = "https://github.com/SungwookLE">Github</A>
                 </ul>
             </div>
