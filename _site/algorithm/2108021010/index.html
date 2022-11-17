@@ -123,34 +123,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                Study
-            </div>
-        </div>
-        <h1 class="post-title">
-            CODING TEST Binary Search Problem
-        </h1>
-        <h2 class="post-subtitle">
-            Binary Search for finding the biggest answer
-        </h2>
-        <h2 class="post-date">
-            2021-08-02 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        Study
+      </div>
     </div>
+    <h1 class="post-title">
+      CODING TEST Binary Search Problem
+    </h1>
+    <h2 class="post-subtitle">
+      Binary Search for finding the biggest answer
+    </h2>
+    <h2 class="post-date">
+      2021-08-02 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#datastructure-binary-search">DataStructure: Binary Search</a><ul><li><a href="#1-binary-search">1. Binary Search</a></li><li><a href="#2-가장-기본적인-바이너리-서치">2. 가장 기본적인 바이너리 서치</a></li><li><a href="#3-여러-가능한-해-중-가장-큰-값을-찾기">3. 여러 가능한 해 중, 가장 큰 값을 찾기</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#datastructure-binary-search">DataStructure: Binary Search</a><ul><li><a href="#1-binary-search">1. Binary Search</a></li><li><a href="#2-가장-기본적인-바이너리-서치">2. 가장 기본적인 바이너리 서치</a></li><li><a href="#3-여러-가능한-해-중-가장-큰-값을-찾기">3. 여러 가능한 해 중, 가장 큰 값을 찾기</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="datastructure-binary-search">DataStructure: Binary Search</h1>
+    </div>
+    <h1 id="datastructure-binary-search">DataStructure: Binary Search</h1>
 <p>AUTHOR: SungwookLE <br />
 DATE: ‘21.8/2<br />
 PROBLEM: <a href="https://www.acmicpc.net/problem/1920">백준#1920</a>, <a href="https://www.acmicpc.net/problem/10816">백준#10816</a>, <a href="https://www.acmicpc.net/problem/1645">백준#1645</a>, <a href="https://www.acmicpc.net/problem/2805">백준#2805</a>, <a href="https://www.acmicpc.net/problem/2110">백준#2110</a></p>
@@ -240,11 +240,11 @@ PROBLEM: <a href="https://www.acmicpc.net/problem/1920">백준#1920</a>, <a href
 <h2 id="끝">끝</h2>
 
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -255,10 +255,10 @@ PROBLEM: <a href="https://www.acmicpc.net/problem/1920">백준#1920</a>, <a href
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -272,90 +272,90 @@ PROBLEM: <a href="https://www.acmicpc.net/problem/1920">백준#1920</a>, <a href
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

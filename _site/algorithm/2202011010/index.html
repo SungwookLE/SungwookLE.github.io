@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                Path
-            </div>
-        </div>
-        <h1 class="post-title">
-            Search as A* & D*
-        </h1>
-        <h2 class="post-subtitle">
-            Motion Planning - AStar & DStar
-        </h2>
-        <h2 class="post-date">
-            2022-02-01 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        Path
+      </div>
     </div>
+    <h1 class="post-title">
+      Search as A* & D*
+    </h1>
+    <h2 class="post-subtitle">
+      Motion Planning - AStar & DStar
+    </h2>
+    <h2 class="post-date">
+      2022-02-01 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#search-algorithm-a-star--d-star">Search algorithm: A star &amp; D star</a><ul><li><a href="#1-a-introduction">1. A* Introduction</a></li><li><a href="#2-a-구현">2. A* 구현</a><ul><li><a href="#2-1-a-코드c">2-1. A* 코드(<code class="language-plaintext highlighter-rouge">C++</code>)</a></li><li><a href="#2-2-a-results">2-2. A* Results</a></li><li><a href="#2-3-구현-결과">2-3. 구현 결과</a></li></ul></li><li><a href="#3-학술적-정리-search-in-path-planning">3. 학술적 정리: Search in Path Planning</a><ul><li><a href="#3-1-a-algorithm-flow-chart">3-1. A* algorithm Flow Chart</a></li><li><a href="#3-2-a-star-replanner">3-2. A* Star Replanner</a></li></ul></li><li><a href="#4-d-lite-introduction">4. D* Lite Introduction</a><ul><li><a href="#4-1-terminology">4-1. terminology</a></li><li><a href="#4-2-d-lite-algorithm">4-2. D* Lite Algorithm</a></li><li><a href="#4-3-d-demo">4-3. D* Demo</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#search-algorithm-a-star--d-star">Search algorithm: A star &amp; D star</a><ul><li><a href="#1-a-introduction">1. A* Introduction</a></li><li><a href="#2-a-구현">2. A* 구현</a><ul><li><a href="#2-1-a-코드c">2-1. A* 코드(<code class="language-plaintext highlighter-rouge">C++</code>)</a></li><li><a href="#2-2-a-results">2-2. A* Results</a></li><li><a href="#2-3-구현-결과">2-3. 구현 결과</a></li></ul></li><li><a href="#3-학술적-정리-search-in-path-planning">3. 학술적 정리: Search in Path Planning</a><ul><li><a href="#3-1-a-algorithm-flow-chart">3-1. A* algorithm Flow Chart</a></li><li><a href="#3-2-a-star-replanner">3-2. A* Star Replanner</a></li></ul></li><li><a href="#4-d-lite-introduction">4. D* Lite Introduction</a><ul><li><a href="#4-1-terminology">4-1. terminology</a></li><li><a href="#4-2-d-lite-algorithm">4-2. D* Lite Algorithm</a></li><li><a href="#4-3-d-demo">4-3. D* Demo</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="search-algorithm-a-star--d-star">Search algorithm: A star &amp; D star</h1>
+    </div>
+    <h1 id="search-algorithm-a-star--d-star">Search algorithm: A star &amp; D star</h1>
 <blockquote>
   <p>AUTHOR: Sungwook LE<br />
 DATE: ‘22.2/01  <br />
@@ -443,11 +443,11 @@ Reference:</p>
 
 <h2 id="끝">끝</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -462,10 +462,10 @@ Reference:</p>
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -479,90 +479,90 @@ Reference:</p>
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                Kalman
-            </div>
-        </div>
-        <h1 class="post-title">
-            Kalman Filter- Unscented
-        </h1>
-        <h2 class="post-subtitle">
-            Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터
-        </h2>
-        <h2 class="post-date">
-            2021-09-18 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        Kalman
+      </div>
     </div>
+    <h1 class="post-title">
+      Kalman Filter- Unscented
+    </h1>
+    <h2 class="post-subtitle">
+      Unscented 칼만 필터는 비선형 함수 자체를 모사하는 것보다는 이 함수의 확률 분포를 모사하는 게 더 낫다는 전략에 따라 고안된 비선형 칼만 필터
+    </h2>
+    <h2 class="post-date">
+      2021-09-18 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#unsented-칼만-필터">Unsented 칼만 필터</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-내용">2. 내용</a><ul><li><a href="#2-1-flow">2-1. FLOW</a></li><li><a href="#2-2-unscented-transform">2-2. <code class="language-plaintext highlighter-rouge">Unscented Transform</code></a><ul><li><a href="#2-2-1-sigma-point-selection">2-2-1. Sigma point selection</a></li><li><a href="#2-2-2-weight-selection">2-2-2. Weight Selection</a></li><li><a href="#2-2-3-gaussian-distribution-calculation">2-2-3. Gaussian Distribution Calculation</a></li></ul></li></ul></li><li><a href="#3-구현">3. 구현</a><ul><li><a href="#3-1-code">3-1. <a href="https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp">Code</a></a></li></ul></li><li><a href="#4-conclusion">4. Conclusion</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#unsented-칼만-필터">Unsented 칼만 필터</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-내용">2. 내용</a><ul><li><a href="#2-1-flow">2-1. FLOW</a></li><li><a href="#2-2-unscented-transform">2-2. <code class="language-plaintext highlighter-rouge">Unscented Transform</code></a><ul><li><a href="#2-2-1-sigma-point-selection">2-2-1. Sigma point selection</a></li><li><a href="#2-2-2-weight-selection">2-2-2. Weight Selection</a></li><li><a href="#2-2-3-gaussian-distribution-calculation">2-2-3. Gaussian Distribution Calculation</a></li></ul></li></ul></li><li><a href="#3-구현">3. 구현</a><ul><li><a href="#3-1-code">3-1. <a href="https://github.com/SungwookLE/Codingtest_Baekjoon/blob/master/kalman_filter_xyro_UnscentedKF.cpp">Code</a></a></li></ul></li><li><a href="#4-conclusion">4. Conclusion</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="unsented-칼만-필터">Unsented 칼만 필터</h1>
+    </div>
+    <h1 id="unsented-칼만-필터">Unsented 칼만 필터</h1>
 <blockquote>
   <p>AUTHOR: Sungwook LE<br />
 DATE: ‘21.9/18<br />
@@ -385,11 +385,11 @@ Sigma point가 mean값과 매우 가까운 경우는 Taylor expansion을 통한 
 
 <h2 id="끝">끝</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -400,10 +400,10 @@ Sigma point가 mean값과 매우 가까운 경우는 Taylor expansion을 통한 
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -417,90 +417,90 @@ Sigma point가 mean값과 매우 가까운 경우는 Taylor expansion을 통한 
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

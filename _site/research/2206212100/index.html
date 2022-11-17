@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                BigData
-            </div>
-        </div>
-        <h1 class="post-title">
-            빅데이터분석
-        </h1>
-        <h2 class="post-subtitle">
-            빅데이터분석기사 준비(2)
-        </h2>
-        <h2 class="post-date">
-            2022-06-21 21:00
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        BigData
+      </div>
     </div>
+    <h1 class="post-title">
+      빅데이터분석
+    </h1>
+    <h2 class="post-subtitle">
+      빅데이터분석기사 준비(2)
+    </h2>
+    <h2 class="post-date">
+      2022-06-21 21:00
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#빅데이터분석기사-실기">빅데이터분석기사: 실기</a><ul><li><a href="#1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</a></li><li><a href="#2-시험-구성">2. 시험 구성</a></li><li><a href="#3-단답형-준비">3. 단답형 준비</a></li><li><a href="#4-작업형-1유형">4. 작업형 1유형</a></li><li><a href="#5-작업형-2유형">5. 작업형 2유형</a></li><li><a href="#6-그-외-개념-정리">6. 그 외 개념 정리</a><ul><li><a href="#6-1-공분산covariance">6-1. 공분산(Covariance)</a></li><li><a href="#6-2-결정계수">6-2. 결정계수</a></li><li><a href="#6-3-클러스터링">6-3. 클러스터링</a></li></ul></li><li><a href="#reference">REFERENCE</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#빅데이터분석기사-실기">빅데이터분석기사: 실기</a><ul><li><a href="#1-ml분석-모델-선택-가이드">1. ML분석 모델 선택 가이드</a></li><li><a href="#2-시험-구성">2. 시험 구성</a></li><li><a href="#3-단답형-준비">3. 단답형 준비</a></li><li><a href="#4-작업형-1유형">4. 작업형 1유형</a></li><li><a href="#5-작업형-2유형">5. 작업형 2유형</a></li><li><a href="#6-그-외-개념-정리">6. 그 외 개념 정리</a><ul><li><a href="#6-1-공분산covariance">6-1. 공분산(Covariance)</a></li><li><a href="#6-2-결정계수">6-2. 결정계수</a></li><li><a href="#6-3-클러스터링">6-3. 클러스터링</a></li></ul></li><li><a href="#reference">REFERENCE</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="빅데이터분석기사-실기">빅데이터분석기사: 실기</h1>
+    </div>
+    <h1 id="빅데이터분석기사-실기">빅데이터분석기사: 실기</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘22.6/21</p>
@@ -470,11 +470,11 @@ DATE: ‘22.6/21</p>
 
 <h2 id="끝">끝</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -483,10 +483,10 @@ DATE: ‘22.6/21</p>
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -500,90 +500,90 @@ DATE: ‘22.6/21</p>
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

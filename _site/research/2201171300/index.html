@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                DataScience
-            </div>
-        </div>
-        <h1 class="post-title">
-            Small data techniques
-        </h1>
-        <h2 class="post-subtitle">
-            Lecture#13~#15
-        </h2>
-        <h2 class="post-date">
-            2022-01-17 13:00
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        DataScience
+      </div>
     </div>
+    <h1 class="post-title">
+      Small data techniques
+    </h1>
+    <h2 class="post-subtitle">
+      Lecture#13~#15
+    </h2>
+    <h2 class="post-date">
+      2022-01-17 13:00
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#small-data-techniques">Small data techniques</a><ul><li><a href="#1-decisiontree">1. DecisionTree</a></li><li><a href="#2-ensemble-learning">2. Ensemble Learning</a></li><li><a href="#3-ensemble-approach-random-forest">3. Ensemble Approach: Random Forest</a></li><li><a href="#4-further-discussion">4. Further discussion</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#small-data-techniques">Small data techniques</a><ul><li><a href="#1-decisiontree">1. DecisionTree</a></li><li><a href="#2-ensemble-learning">2. Ensemble Learning</a></li><li><a href="#3-ensemble-approach-random-forest">3. Ensemble Approach: Random Forest</a></li><li><a href="#4-further-discussion">4. Further discussion</a></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="small-data-techniques">Small data techniques</h1>
+    </div>
+    <h1 id="small-data-techniques">Small data techniques</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘22.1/17 <br />
@@ -246,11 +246,11 @@ REFERENCE: <a href="/research/2201171300/img/LS13.pdf">#13</a>, <a href="/resear
 <h2 id="끝">끝</h2>
 
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -263,10 +263,10 @@ REFERENCE: <a href="/research/2201171300/img/LS13.pdf">#13</a>, <a href="/resear
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -280,90 +280,90 @@ REFERENCE: <a href="/research/2201171300/img/LS13.pdf">#13</a>, <a href="/resear
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

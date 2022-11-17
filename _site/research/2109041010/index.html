@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                ComputerScience
-            </div>
-        </div>
-        <h1 class="post-title">
-            Build Process Review and CI, CD
-        </h1>
-        <h2 class="post-subtitle">
-            Build preprocessing-comilation-assemble-linking, Continuous Integration, Continuous Delivery, Continuous Deployment
-        </h2>
-        <h2 class="post-date">
-            2021-09-04 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        ComputerScience
+      </div>
     </div>
+    <h1 class="post-title">
+      Build Process Review and CI, CD
+    </h1>
+    <h2 class="post-subtitle">
+      Build preprocessing-comilation-assemble-linking, Continuous Integration, Continuous Delivery, Continuous Deployment
+    </h2>
+    <h2 class="post-date">
+      2021-09-04 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</a><ul><li><a href="#1-build란">1. Build란?</a></li><li><a href="#2-build-process-종류">2. Build Process 종류</a></li><li><a href="#2-1--compile-type">2-1.  Compile Type</a><ul><li><a href="#compile-type-1-preprocessing-전처리">Compile Type: (1) Preprocessing 전처리</a></li><li><a href="#compile-type-2-compilation-컴파일">Compile Type: (2) Compilation 컴파일</a></li><li><a href="#compile-type-3-assemble-어셈블">Compile Type: (3) assemble 어셈블</a></li><li><a href="#compile-type-4-linking-링크링킹">Compile Type: (4) linking 링크/링킹</a></li></ul></li><li><a href="#2-2--interpreted-type">2-2.  Interpreted Type</a></li><li><a href="#2-3-hybrid-type">2-3. Hybrid Type</a></li><li><a href="#3-정리">3. 정리</a></li><li><a href="#4-ci-cd란">4. CI, CD란?</a></li><li><a href="#끝">끝.</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</a><ul><li><a href="#1-build란">1. Build란?</a></li><li><a href="#2-build-process-종류">2. Build Process 종류</a></li><li><a href="#2-1--compile-type">2-1.  Compile Type</a><ul><li><a href="#compile-type-1-preprocessing-전처리">Compile Type: (1) Preprocessing 전처리</a></li><li><a href="#compile-type-2-compilation-컴파일">Compile Type: (2) Compilation 컴파일</a></li><li><a href="#compile-type-3-assemble-어셈블">Compile Type: (3) assemble 어셈블</a></li><li><a href="#compile-type-4-linking-링크링킹">Compile Type: (4) linking 링크/링킹</a></li></ul></li><li><a href="#2-2--interpreted-type">2-2.  Interpreted Type</a></li><li><a href="#2-3-hybrid-type">2-3. Hybrid Type</a></li><li><a href="#3-정리">3. 정리</a></li><li><a href="#4-ci-cd란">4. CI, CD란?</a></li><li><a href="#끝">끝.</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</h1>
+    </div>
+    <h1 id="빌드-프로세스-review-및-ci-cd">빌드 프로세스 Review 및 CI, CD</h1>
 <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.9/4<br />
 REFERENCE: <a href="https://st-lab.tistory.com/176">REF</a><br />
@@ -310,11 +310,11 @@ CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment <a hre
 
 <h2 id="끝">끝.</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -329,10 +329,10 @@ CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment <a hre
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -346,90 +346,90 @@ CI/CD:Continuout Integration , Continuous Delivery, Continuous Deployment <a hre
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

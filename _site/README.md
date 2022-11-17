@@ -1,6 +1,4 @@
-# SungwookLE 홈페이지
-
-안녕하세요.
+# 블로그
 
 블로그는 [GitHub Pages](https://pages.github.com/)와 [Jekyll](https://jekyllrb.com/)을 사용하여 퍼블리싱하였으며, 마크다운 문법을 사용하여 글을 작성합니다.
 
@@ -12,10 +10,8 @@
   1. [로컬에 블로그 실행](#로컬에-블로그-실행)
 
 - [블로그 포스팅](#️-블로그-포스팅)
-  1. [Typora 설치 (옵션)](#typora-설치-옵션)
   1. [글-작성](#글-작성)
   1. [commit과 push](#commit과-push)
-  1. [Pull request 요청](#Pull-request-요청)
   
 ----
   
@@ -48,10 +44,6 @@ $ jekyll serve 안되면 $bundle exec jekyll serve
 
 ## ✍️ 블로그 포스팅
 
-### Typora 설치 (옵션)
-마크다운 제너레이터 없이도 마크다운을 잘 작성한다면 설치하지 않아도 무관하나, 우리는 도구를 사용하는 영장류이기 때문에 툴을 사용하면 좋습니다.
-[Typora](https://typora.io/) 공식 사이트에 접속하여 프로그램을 설치합니다.
-
 ### 글 작성
 1. 작성하고자하는 폴더로 이동합니다. (Research: `research` / Algorithm: `algorithm` / Day: `day`)
 1. 현재시간 기준으로 `yyyymmddhhMM` 폴더를 생성합니다. (다른 폴더와 동명이지만 않으면 됩니다.)
@@ -63,10 +55,5 @@ $ jekyll serve 안되면 $bundle exec jekyll serve
 1. `git add .` 명령어를 통해 추가/수정 된 전체 파일을 changes list에 추가해줍니다. (일부 파일만 추가하고싶은 경우 `git add [파일명]` 명령어를 통해 일일이 추가할 수 있습니다.)
 1. `git commit -m "[커밋 메시지]"` 명령어를 통해 커밋 메시지를 입력해줍니다. 커밋 메시지는 컨벤션에 맞게 작성합니다.
 1. `git push -u origin master` 명령어를 통해 코드를 푸시합니다.
-
-### Pull request 요청
-1. github에 로그인하여 [repository](https://github.com/SungwookLE/SungwookLE.github.io)에 접속합니다.
-1. 상단의 `Pull requests`를 눌러 좀 전에 push한 프로젝트를 `master`에 머지할 수 있도록 PR을 생성합니다.
-1. 1명 이상의 팀원이 approve하여 merge하면, 몇 분 내로 [블로그](https://sungwookle.github.io/)에 글이 게재됩니다!
 
 ---- 

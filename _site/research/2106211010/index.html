@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                Kaggle
-            </div>
-        </div>
-        <h1 class="post-title">
-            DataAnalysis Kaggle Titanic with Reference
-        </h1>
-        <h2 class="post-subtitle">
-            Classifier- Classfication following reference material
-        </h2>
-        <h2 class="post-date">
-            2021-06-21 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        Kaggle
+      </div>
     </div>
+    <h1 class="post-title">
+      DataAnalysis Kaggle Titanic with Reference
+    </h1>
+    <h2 class="post-subtitle">
+      Classifier- Classfication following reference material
+    </h2>
+    <h2 class="post-date">
+      2021-06-21 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#data-analysis-kaggle-titanic">Data Analysis: Kaggle Titanic</a></li><li><a href="#the-challenge">The Challenge</a></li><li><a href="#overview">Overview</a></li><li><a href="#data-dictionary">Data Dictionary</a></li><li><a href="#variable-notes">Variable Notes</a></li><li><a href="#데이터-분석">데이터 분석</a></li><li><a href="#1단계-데이터-살펴보기">1단계: 데이터 살펴보기</a></li><li><a href="#2단계-feature-추출하기">2단계: Feature 추출하기</a></li><li><a href="#blinning">Blinning</a></li><li><a href="#3단계-학습">3단계: 학습</a></li><li><a href="#끝">끝</a></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#data-analysis-kaggle-titanic">Data Analysis: Kaggle Titanic</a></li><li><a href="#the-challenge">The Challenge</a></li><li><a href="#overview">Overview</a></li><li><a href="#data-dictionary">Data Dictionary</a></li><li><a href="#variable-notes">Variable Notes</a></li><li><a href="#데이터-분석">데이터 분석</a></li><li><a href="#1단계-데이터-살펴보기">1단계: 데이터 살펴보기</a></li><li><a href="#2단계-feature-추출하기">2단계: Feature 추출하기</a></li><li><a href="#blinning">Blinning</a></li><li><a href="#3단계-학습">3단계: 학습</a></li><li><a href="#끝">끝</a></li></ul>
 
-        </div>
-        <h3 id="data-analysis-kaggle-titanic">Data Analysis: Kaggle Titanic</h3>
+    </div>
+    <h3 id="data-analysis-kaggle-titanic">Data Analysis: Kaggle Titanic</h3>
 <blockquote>
   <p>AUTHOR: SungwookLE<br />
 DATE: ‘21.6/21</p>
@@ -1131,11 +1131,11 @@ memory usage: 26.2 KB
 
 <h3 id="끝">끝</h3>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -1146,10 +1146,10 @@ memory usage: 26.2 KB
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -1163,90 +1163,90 @@ memory usage: 26.2 KB
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                DataScience
-            </div>
-        </div>
-        <h1 class="post-title">
-            Convolutional Neural Network
-        </h1>
-        <h2 class="post-subtitle">
-            Lecture#7~#9
-        </h2>
-        <h2 class="post-date">
-            2022-01-17 11:00
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        DataScience
+      </div>
     </div>
+    <h1 class="post-title">
+      Convolutional Neural Network
+    </h1>
+    <h2 class="post-subtitle">
+      Lecture#7~#9
+    </h2>
+    <h2 class="post-date">
+      2022-01-17 11:00
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#convolutional-neural-network">Convolutional Neural Network</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-invetigate-how-cnn">2. Invetigate how CNN</a></li><li><a href="#3-study-the-two-key-building-blocks">3. Study the two key building blocks</a><ul><li><a href="#3-1-conv-layer">3-1. Conv layer</a></li><li><a href="#3-2-pooling-layer">3-2. Pooling layer</a></li></ul></li><li><a href="#4-typical-cnn-architecture">4. Typical CNN architecture</a><ul><li><a href="#4-1-popular-cnn-alexnet">4-1. Popular CNN (AlexNet)</a></li><li><a href="#4-2-popular-cnn-resnet">4-2. Popular CNN (ResNet)</a></li><li><a href="#4-3-application-of-cnns">4-3. Application of CNNs</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#convolutional-neural-network">Convolutional Neural Network</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-invetigate-how-cnn">2. Invetigate how CNN</a></li><li><a href="#3-study-the-two-key-building-blocks">3. Study the two key building blocks</a><ul><li><a href="#3-1-conv-layer">3-1. Conv layer</a></li><li><a href="#3-2-pooling-layer">3-2. Pooling layer</a></li></ul></li><li><a href="#4-typical-cnn-architecture">4. Typical CNN architecture</a><ul><li><a href="#4-1-popular-cnn-alexnet">4-1. Popular CNN (AlexNet)</a></li><li><a href="#4-2-popular-cnn-resnet">4-2. Popular CNN (ResNet)</a></li><li><a href="#4-3-application-of-cnns">4-3. Application of CNNs</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
+    </div>
+    <h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘22.1/17 <br />
@@ -324,11 +324,11 @@ REFERENCE: <a href="/research/2201171100/img/LS7.pdf">#7</a>, <a href="/research
 
 <h2 id="끝">끝</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -349,10 +349,10 @@ REFERENCE: <a href="/research/2201171100/img/LS7.pdf">#7</a>, <a href="/research
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -366,90 +366,90 @@ REFERENCE: <a href="/research/2201171100/img/LS7.pdf">#7</a>, <a href="/research
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

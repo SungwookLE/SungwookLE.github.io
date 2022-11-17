@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                PLAN
-            </div>
-        </div>
-        <h1 class="post-title">
-            Study Plan @21
-        </h1>
-        <h2 class="post-subtitle">
-            무엇을 공부하는게 좋을까
-        </h2>
-        <h2 class="post-date">
-            2021-05-12 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        PLAN
+      </div>
     </div>
+    <h1 class="post-title">
+      Study Plan @21
+    </h1>
+    <h2 class="post-subtitle">
+      무엇을 공부하는게 좋을까
+    </h2>
+    <h2 class="post-date">
+      2021-05-12 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#1-study-plan-20215">1. Study Plan @2021.5</a><ul><li><a href="#a-세팅">A. 세팅</a></li></ul></li><li><a href="#2-study-plan-202111">2. Study Plan @2021.11</a><ul><li><a href="#a-공부하면-좋겠다고-떠오른-것">A. 공부하면 좋겠다고 떠오른 것</a></li><li><a href="#b-직업적-전공-영역">B. 직업적 전공 영역</a></li><li><a href="#c-프로그래밍-역량">C. 프로그래밍 역량</a></li></ul></li><li><a href="#3-study-plan-202201">3. Study Plan @2022.01</a><ul><li><a href="#a-computer-vision">A. <a href="https://www.udacity.com/course/computer-vision-nanodegree--nd891">Computer Vision</a></a></li><li><a href="#b-robotics">B. <a href="https://www.udacity.com/course/robotics-software-engineer--nd209">Robotics</a></a></li></ul></li><li><a href="#끝">끝</a></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#1-study-plan-20215">1. Study Plan @2021.5</a><ul><li><a href="#a-세팅">A. 세팅</a></li></ul></li><li><a href="#2-study-plan-202111">2. Study Plan @2021.11</a><ul><li><a href="#a-공부하면-좋겠다고-떠오른-것">A. 공부하면 좋겠다고 떠오른 것</a></li><li><a href="#b-직업적-전공-영역">B. 직업적 전공 영역</a></li><li><a href="#c-프로그래밍-역량">C. 프로그래밍 역량</a></li></ul></li><li><a href="#3-study-plan-202201">3. Study Plan @2022.01</a><ul><li><a href="#a-computer-vision">A. <a href="https://www.udacity.com/course/computer-vision-nanodegree--nd891">Computer Vision</a></a></li><li><a href="#b-robotics">B. <a href="https://www.udacity.com/course/robotics-software-engineer--nd209">Robotics</a></a></li></ul></li><li><a href="#끝">끝</a></li></ul>
 
-        </div>
-        <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    </div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code>  <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"To infinity"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
@@ -263,11 +263,11 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <img src="/research/2105121010/img/153008571329334.jpeg" alt="image" /></li>
 </ul>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -276,10 +276,10 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -293,90 +293,90 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>

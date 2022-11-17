@@ -126,34 +126,34 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <main>
   <div class="post">
-    <div class="post-info">
-        <div class="post-type-tag">
-            
-            <div class="post-type">
-                DataScience
-            </div>
-        </div>
-        <h1 class="post-title">
-            GAN & RBMs
-        </h1>
-        <h2 class="post-subtitle">
-            Lecture#22~#24
-        </h2>
-        <h2 class="post-date">
-            2022-02-06 10:10
-        </h2>
+  <div class="post-info">
+    <div class="post-type-tag">
+      
+      <div class="post-type">
+        DataScience
+      </div>
     </div>
+    <h1 class="post-title">
+      GAN & RBMs
+    </h1>
+    <h2 class="post-subtitle">
+      Lecture#22~#24
+    </h2>
+    <h2 class="post-date">
+      2022-02-06 10:10
+    </h2>
+  </div>
 
-    <!--draft 일 때-->
+  <!--draft 일 때-->
 
-    
+  
 
-    <article class="post-article">
-        <div class="toc">
-          <ul><li><a href="#gan--rbms">GAN &amp; RBMs</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</a><ul><li><a href="#2-1-gan-등장-배경">2-1. GAN 등장 배경</a></li><li><a href="#2-2-gan의-역할">2-2. GAN의 역할</a></li><li><a href="#2-3-gan-네트워크-이해">2-3. GAN 네트워크 이해</a></li><li><a href="#2-4-참고">2-4. 참고</a></li></ul></li><li><a href="#3-rbmsrestircted-boltzmann-machines">3. RBMs(Restircted Boltzmann Machines)</a><ul><li><a href="#3-1-rbms-역할">3-1. RBMs 역할</a></li><li><a href="#3-2-rbms-독특한점">3-2. RBMs 독특한점</a></li><li><a href="#3-3-training-step">3-3. Training Step</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
+  <article class="post-article">
+    <div class="toc">
+      <ul><li><a href="#gan--rbms">GAN &amp; RBMs</a><ul><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-gansgenerative-adversarial-networks">2. GANs(Generative Adversarial Networks)</a><ul><li><a href="#2-1-gan-등장-배경">2-1. GAN 등장 배경</a></li><li><a href="#2-2-gan의-역할">2-2. GAN의 역할</a></li><li><a href="#2-3-gan-네트워크-이해">2-3. GAN 네트워크 이해</a></li><li><a href="#2-4-참고">2-4. 참고</a></li></ul></li><li><a href="#3-rbmsrestircted-boltzmann-machines">3. RBMs(Restircted Boltzmann Machines)</a><ul><li><a href="#3-1-rbms-역할">3-1. RBMs 역할</a></li><li><a href="#3-2-rbms-독특한점">3-2. RBMs 독특한점</a></li><li><a href="#3-3-training-step">3-3. Training Step</a></li></ul></li><li><a href="#끝">끝</a></li></ul></li></ul>
 
-        </div>
-        <h1 id="gan--rbms">GAN &amp; RBMs</h1>
+    </div>
+    <h1 id="gan--rbms">GAN &amp; RBMs</h1>
 <blockquote>
   <p>Writer: SungwookLE  <br />
 DATE: ‘22.2/6 <br />
@@ -277,11 +277,11 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
 
 <h2 id="끝">끝</h2>
 
-      </article>
+  </article>
 
-    
+  
+  <div class="post-tags">
     <div class="post-tags">
-        <div class="post-tags">
     
         <span class="tag-emoji"></span>
         
@@ -296,10 +296,10 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
     
 </div>
 
-    </div>
-    
+  </div>
+  
 
-    
+  
 <div class='post-footer'>
   <div class="member_card">
     <div class="thumbnail-container">
@@ -313,90 +313,90 @@ REFERENCE: <a href="/research/2202061010/img/LS22.pdf">#22</a>, <a href="/resear
   </div>
 </div>
 
-    
-        <script src="https://utteranc.es/client.js"
-                repo="SungwookLE/blog_comment"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-    
+  
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  
 </div>
 
 <script>
-    function getTOCNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var tocNodes = nodes.filter(function(elem) {
-          return elem.tagName == "A";
-      });
-      return tocNodes;
-    }
-    function getHeaderNodes(master) {
-      var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-      var headerNodes = nodes.filter(function(elem) {
-          return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-      });
-      return headerNodes;
-    }
-  
-    var title = document.getElementsByClassName("post-title")[0];
-    var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-    
-    var article = document.getElementsByClassName("post-article")[0];
-    var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-  
-    var toc = document.getElementsByClassName("toc")[0];
-  
-    var headerNodes = getHeaderNodes(article);
-    var tocNodes = getTOCNodes(toc);
-  
-    var before = undefined;
-  
-    document.addEventListener('scroll', function(e) {
-      if (window.scrollY >= articleY-60) {
-        toc.style.cssText = "position: fixed; top: 60px;";
-      }
-      else {
-        toc.style.cssText = "";
-      }
-  
-      var current = headerNodes.filter(function(header) {
-        var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-        return window.scrollY >= headerY - 60;
-      });
-  
-      if (current.length > 0) {
-        current = current[current.length-1];
-  
-        var currentA = tocNodes.filter(function(tocNode) {
-          return tocNode.innerHTML == current.innerHTML;
-        })
-        
-        currentA = currentA[0];
-        if (currentA) {
-          if (before == undefined) before = currentA;
-  
-          if (before != currentA) {
-            before.classList.remove("toc-active");
-            before = currentA;
-          }
-  
-          currentA.classList.add("toc-active");
-        }
-        else {
-          if (before) 
-            before.classList.remove("toc-active");
-        }
-      }
-      else {
-        if (before) 
-            before.classList.remove("toc-active");
-      }
-  
-    }, false);
-  </script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
 
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
 </main>
 
 <footer>
