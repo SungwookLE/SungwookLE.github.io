@@ -3,4 +3,4 @@ Allow: /
 Disallow: /about/
 Disallow: /day/
 Disallow: /*.gif$
-Sitemap: http://sungwookle.site/sitemap.xml
+Sitemap: http://sungwookle.github.io/sitemap.xml
