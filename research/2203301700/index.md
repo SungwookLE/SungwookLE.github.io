@@ -561,7 +561,7 @@ toc : true
         
         - 모멘텀 방식(LPF 결합)
         - 아담 방식 (모멘텀, 가변 웨이트)
-        - 추가 학습을 원할 경우 해당 [페이지](http://sungwookle.site/research/2201161010/#3-1-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-gd%EC%9D%98-%ED%95%9C%EA%B3%84%EC%A0%90-%EB%B0%8F-adam%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1)에서 adam과 모멘텀 방식에 대해 알아보자
+        - 추가 학습을 원할 경우 해당 [페이지](http://sungwookle.github.io/research/2201161010/#3-1-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-gd%EC%9D%98-%ED%95%9C%EA%B3%84%EC%A0%90-%EB%B0%8F-adam%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1)에서 adam과 모멘텀 방식에 대해 알아보자
 
 ### 2. 분석결과 해석 및 활용
 - 데이터 시각화
