@@ -1,0 +1,52 @@
+pre,
+code {
+  font-family: $serif;
+}
+
+code {
+  background-color: $grey-4;
+  border-radius: 5px;
+  color: $grey-0-80;
+  font-size: 85%;
+  padding: .1em .1em;
+}
+
+pre {
+  margin: 0 0 1rem;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 95%;
+  padding: 0;
+  font-size: 13px;
+  border-color: $red
+}
+
+.syntax {
+  line-height: 1.3;
+}
+
+.highlight {
+  background-color: $grey-3;
+  border: 1px solid $grey-2-70;
+  border-radius: 10px;
+  margin: 0 0 1rem;
+  padding: 1em;
+
+  pre {
+    margin-bottom: 0;
+    overflow-x: auto;
+  }
+
+  .lineno {
+    color: $default-tint;
+    display: inline-block; // Ensures the null space also isn't selectable
+    padding: 0 .75rem 0 .25rem;
+    // Make sure numbers aren't selectable
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+  }
+}

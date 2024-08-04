@@ -1,0 +1,11 @@
+- id: about
+  label: About
+
+- id: research
+  label: Research
+
+- id: algorithm
+  label: Algortihm
+
+- id: day
+  label: Day

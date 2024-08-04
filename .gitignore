@@ -1,0 +1,10 @@
+# JEKYLL CACHE
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.vscode/
+Gemfile.lock
+
+# PERSONAL
+about/2204172040/

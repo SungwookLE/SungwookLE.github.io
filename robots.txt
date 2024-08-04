@@ -1,0 +1,5 @@
+user-agent: *
+Allow: /
+Disallow: /about/
+Disallow: /day/
+Disallow: /*.gif$

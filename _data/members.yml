@@ -1,0 +1,18 @@
+
+# [[ 작성방법 ]]
+
+## id: 숫자
+## name: 닉네임
+## emoji: 이모지
+## comment: 한줄설명
+## group: [leader | backend | data | frontend | app]
+
+- id: 100
+  name: sungwook
+  comment: Mr
+  group:  leader
+
+- id: 200
+  name: jieun
+  comment: Ms
+  group:  leader

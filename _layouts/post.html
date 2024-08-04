@@ -1,0 +1,137 @@
+---
+layout: main
+---
+
+<div class="post">
+  <div class="post-info">
+    <div class="post-type-tag">
+      {% if page.draft == true %}
+      <div class="catalogue-tag">
+        Coming Soon
+      </div>
+      {% endif %}
+      <div class="post-type">
+        {{ page.category }}
+      </div>
+    </div>
+    <h1 class="post-title">
+      {{ page.title }}
+    </h1>
+    <h2 class="post-subtitle">
+      {{ page.subtitle }}
+    </h2>
+    <h2 class="post-date">
+      {{ page.date }}
+    </h2>
+  </div>
+
+  <!--draft 일 때-->
+
+  {% if page.draft == true %}
+  <div class="catalogue-draft-message">
+    <h1>
+      &#x1F64B; Coming Soon!
+    </h1>
+    현재 열심히 글을 쓰고 있어요. 조금만 기다려주세요!
+  </div>
+  {% endif %}
+
+  <article class="post-article">
+    <div class="toc">
+      {% include toc.html html=content %}
+    </div>
+    {{ content }}
+  </article>
+
+  {% if page.hash-tag %}
+  <div class="post-tags">
+    {% include post-hashtag.html %}
+  </div>
+  {% endif %}
+
+  {% include post-footer.html %}
+
+  {% if page.layout == 'post' %}
+  <script src="https://utteranc.es/client.js"
+        repo="SungwookLE/blog_comment"
+        issue-term="pathname"
+        label="utterances"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+  {% endif %}
+</div>
+
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
