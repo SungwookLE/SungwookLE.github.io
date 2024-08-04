@@ -10,6 +10,20 @@
             {% if page.use_math %}
             {% include mathjax_support.html %}
             {% endif %}
+            {% if page.post-header == true %}
+            {% include post-card.html %}
+            {% endif %}
+            {% endfor %}
+          </tr>
+        </table>
+        <hr>
+        <table class="catalogue" style="border-style:none;">
+          <tr>
+            {% assign sorted = site.pages | sort: 'date' | reverse | where: 'type', 'algorithm' %}
+            {% for page in sorted limit: 2%}
+            {% if page.use_math %}
+            {% include mathjax_support.html %}
+            {% endif %}
             {% include post-card.html %}
             {% endfor %}
           </tr>

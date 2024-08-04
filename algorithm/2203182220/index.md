@@ -4,7 +4,7 @@ type: algorithm
 date: 2022-03-18 22:20
 category: 알고리즘
 title: DynamicProgramming and BFS, DFS
-subtitle: 알고리즘 강의 노트
+subtitle: DP and Search
 writer: 100
 hash-tag: [코딩테스트준비, 인프런, 동적프로그래밍, DFS, BFS]
 use_math: true
@@ -13,8 +13,7 @@ use_math: true
 # Algorithm: Program Solving(c++)
 
 > 작성자: SungwookLE  
-> 작성일: 2022년 3월 14일 
-> GoGoGo
+> 작성일: '22.3/14   
 
 ## 1. 본 페이지에서는 무엇을 배우나요?
 

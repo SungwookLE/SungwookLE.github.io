@@ -4,11 +4,11 @@ type: research
 date: 2024-08-03 14:30
 category: AI
 title: Vectorized Scene Representation for Efficient Autonomous Driving
-subtitle: End to End
+subtitle: VAD as E2E
 writer: 100
 post-header: true
 header-img: ./img/2024-08-03-14-31-33.png
-hash-tag: [E2E, Autonomous]
+hash-tag: [VAD, E2E, Autonomous, End to End]
 use_math: true
 toc : true
 ---
