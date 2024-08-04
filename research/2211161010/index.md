@@ -3,7 +3,7 @@ layout: post
 type: research
 date: 2022-11-16 10:10
 category: AI
-title: AI 세미나
+title: AI 컨퍼런스
 subtitle: Insight
 writer: 100
 post-header: true  
@@ -13,7 +13,7 @@ use_math: true
 toc : true
 ---
 
-# AI 세미나
+# AI 컨퍼런스
 > Writer: SungwookLE    
 > DATE: '22.11/16    
 
@@ -75,9 +75,6 @@ toc : true
     - https://www.nuscenes.org/prediction?externalData=all&mapData=all&modalities=Any
     - https://paperswithcode.com/sota/trajectory-prediction-on-nuscenes
         - nuscene에서 오픈데이터가 있으니, 관련한 논문 서치하고, 목적 및 구현 난이도 등을 확인하며 스터디 진행하기
-
-2. 무얼 깊이 스터디하면 좋을까.
-    - 주제.., 주제 잡기!!!
 
 
 ## 끝

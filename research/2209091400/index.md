@@ -3,8 +3,8 @@ layout: post
 type: research
 date: 2022-09-09 14:00
 category: AI
-title: AI, Image captioning paper review
-subtitle: with CNN+RNN(LSTM)
+title: Image Captioning
+subtitle: CNN+RNN(LSTM)
 writer: 100
 post-header: true  
 header-img: ./img/2022-09-09-14-23-43.png
@@ -13,13 +13,13 @@ use_math: true
 toc : true
 ---
 
-# AI: Image captioning paper review 
+# Paper Review: Image Captioning
 > Writer: SungwookLE    
 > DATE: '22.9/9    
 > Paper: [Review this >> Paper1](./img/Show%20and%20Tell%3A%20A%20Neural%20Image%20Caption%20Generator.pdf), [Additional paper >> Paper2](./img/Show%2C%20Attend%20and%20Tell%3A%20Neural%20Image%20Caption.pdf)  
 > 겉핡기 논문 리뷰이오니, 참고바랍니다.  
 
-- Udacity 과제 Image Captioning 중, 살펴본 논문입니다. 
+Image Captioning 관련한 논문
 
 ## 1. Introduction
 - Being able to automatically describe the content of an image using properly formed English sentences is a very challenging task, but it could have great impact, for instance by helping visually impaired people better understand the content of images.
