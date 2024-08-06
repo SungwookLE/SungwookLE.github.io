@@ -88,12 +88,9 @@ toc : true
 
 - Planning via Interaction
     - vectorized scene 정보를 입력받았으면, 이제 플래닝을 할 차례
-    1. Ego-Agent Interaction
-        -  Ego와 Agent의 인터랙션을 트랜스포머 디코더를 통해 학습함
-    2. Ego-Map Interaction
-        - Ego-Map 인터랙션을 트랜스포머를 통해 학습함
-    3. Planning Head
-        - 운전자 커맨드 (좌회전, 우회전, 직진 등)에 따른 플래닝
+    1. Ego-Agent Interaction: Ego와 Agent의 인터랙션을 트랜스포머 디코더를 통해 학습함
+    2. Ego-Map Interaction: Ego-Map 인터랙션을 트랜스포머를 통해 학습함
+    3. Planning Head: 운전자 커맨드 (좌회전, 우회전, 직진 등)에 따른 플래닝
 
 - Vectorized Planning Constraint
     - Vectorzied 된 제약조건을 생성하기 위함
