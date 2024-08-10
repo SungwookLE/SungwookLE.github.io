@@ -19,6 +19,8 @@ toc : true
 > [Paper](https://arxiv.org/pdf/2303.12077), [Git](https://github.com/hustvl/VAD)
 
 - 23년 8월에 SOTA 성능을 보여준 E2E Planning 논문임**
+- VAD v2가 출판되었음 
+    - VADv2: End-to-End Vectorized Autonomous Driving via Probabilistic Planning [2024 arXiv]
 
 ## Abstraction
 - 자율주행차량의 경로 계획을 위해선 주변 환경에 대해 comprehensive understanding이 필요함
