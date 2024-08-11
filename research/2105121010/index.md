@@ -11,7 +11,7 @@ use_math: true
 
 
 It ain't about how hard you hit,  
-it is about how hard you can get hit and keep moving forward, how much can you take and keep moving forward. 
+it is about how hard you can get hit and keep moving forward, how much you can take and keep moving forward. 
 
 ---
 

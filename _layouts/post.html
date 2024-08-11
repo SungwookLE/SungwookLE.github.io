@@ -34,14 +34,14 @@ layout: main
     </h1>
     현재 열심히 글을 쓰고 있어요. 조금만 기다려주세요!
   </div>
-  {% endif %}
-
+  {% else %}
   <article class="post-article">
     <div class="toc">
       {% include toc.html html=content %}
     </div>
     {{ content }}
   </article>
+  {% endif %}
 
   {% if page.hash-tag %}
   <div class="post-tags">

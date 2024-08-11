@@ -11,11 +11,13 @@ header-img: ./img/2024-08-10-21-38-58.png
 hash-tag: [AI, Transformer]
 use_math: true
 toc : true
+draft: false
 ---
 
 # Transformer Review
 > Writer: SungwookLE    
 > DATE: '24.08/10    
+> 출처: 혁펜하임님의 강의 TTT(Transformer)    
 
 ## 01. RNN
 - 연속적인 데이터 (자연어 등)
@@ -60,6 +62,94 @@ toc : true
             ![](img/2024-08-10-22-37-37.png)
             - decoder는 `next token predictor`임
             - encoder의 마지막 h(context vector)를 decoder의 처음h로 사용
-            - 53''
+            - cell은 plain RNN보다는 LSTM이나 GRU를 주로 사용
+                ![](img/2024-08-11-13-35-14.png)
+                - 그러나, 멀수록 잊혀지는 문제는 해결되지 못함
+                - LSTM은 인풋(X)와 히든(h)에 대한 밸브(0~1)를 두고 학습시킴으로써 문제를 해결하려고 했으나, 여전히 멀리 위치할 수록 학습 시에 누적(곱)에 의해 영향을 덜 받게 됨
+        - seq2seq 구조의 문제점
+            1. 멀수록 잊혀진다. (인코더, 디코더 모두에 해당)
+            2. context vector에 마지막 단어의 정보가 가장 뚜렷하게 담기니, 그런 h로 decoder가 번역하다 보니 마지막 단어만 제일 열심히 본다. (인간의 사고 방식이 아님)
+                - 트랜스포머는 'Attention`을 이용한 것으로, 어떤 단어에 집중할지를 선택할 수 있게 된다.
 
+- Insight for Attention
+    - `RNN+Attention`
+        - 인식한 문제점 
+            1. seq2seq는 왜 마지막 context vector만을 디코더에 전달하느냐,
+            2. 입력된 단어 토큰 중, 어떤것을 더 집중해야할지를 반영할 수 있어야 하는데 말이지.
+        - 개선 
+            ![](img/2024-08-11-15-21-17.png)
+            1. 디코더에서 사용하는 context vector를 전달하는 부분에서 Attention mechanism을 이용하자!
+            2. seq2seq에서 $\hat{y_4} = s_4W+y + x_4W_x$였다면, $\hat{y_4} = s_4W_y + c_4W_y'+x_4W_x$로 바꾼 뒤 $c_4$를 attention으로 만들어보자
+                - 내적과 가중합을 이용
+                - $c_4 = <s_4,h_1>h_1 + <s_4, h_2>h_2 + <s_4, h_3>h_3$로 구함으로써, 어떤 임베딩 벡터 $h$에 주목하여야할지를 학습하자.
+        - 한계
+            1. 문제는 여전히 h와 s를 RNN의 chain을 이용하기 때문에 발생하는 멀수록/갈수록 잊혀지는 문제
+            2. 디코더에서만 attention된 context vector를 사용하는 것이기 때문에 `멀수록 잊혀지는 문제`는 여전함
+            3. 심지어, 시점상 뒤에 있는 단어는 참고조차 하지 않는 문제가 있음 (Chain으로 이어져 있으니까)
+            - 즉, 의미를 제대로 못 담은 h에 attention 한다.
 
+    - 트랜스포머는 위의 문제를 해결하기 위해, chain을 다 끊어버림
+        - chain을 끊었다는 의미가, RNN을 없애고 self-attention을 사용했다는 의미임
+        - [트랜스포머는 attention을 적극 활용](./img/필기1.jpg)
+            - RNN을 완전히 버렸다.
+            1. Decoder가 마지막 단어만 열심히 보는 문제(갈수록 흐려진다)를 attention으로 해결
+            2. 학습 시, 멀수록 잊혀지는 문제를 self-attention으로 해결 
+            3. 의미를 제대로 못 담은 h에 attention (갈수록 흐려진다)를 self-attention으로 해결
+        - `Self Attention` 
+            - c: context vector (attention, 인코더-디코더 연결)
+                - $c_4 = <s_4, h_1>h_1 + <s_4, h_2>h_2 + <s_4, h_3>h_3$
+            - s: sequence vector (self-attention, decoder, `masked self attention`)
+                - $s_4 = <s_4, s_1>s_1 + <s_4, s_2>s_2 + <s_4, s_3>s_3 + <s_4, s_4>s_4 $
+                - $s_5$는 정답이기 때문에 알려주어선 안되지
+                    - ~~+<s_5, s_4>s_5~~
+            - h: word embedding vector (self-attention, encoder)
+                - $h_2 = <h_2, h_1>h_1 + <h_2, h_2>h_2 + <h_2, h_3>h_3$
+            ![](img/2024-08-11-15-26-44.png)
+            - 참고: 위의 수식에서 h를 생성하는데 사용하는 x는 (단어와 위치 정보)가 임베딩된 상태여야 한다.
+                - chain을 끊어냈기 때문에, 순서정보를 담아서 전달해 주어야함
+
+## 02. Transformer - Attention is all you need
+
+- 자연어 언어 모델에서 강력한 성능
+- 이미지 분야에서 CNN이 있다면, 언어 분야에는 트랜스포머(self-attention)가 있는 것
+- self-attention을 활용한 모델로, 내적을 이용한 weighted sum을 이용하여 단어 간의 관계를 효과적으로 학습하고 표현함
+![](img/2024-08-11-15-36-58.png)
+
+1. Transformer
+
+    1. Embedding 구조
+        - input이 이미지라면 (`개수x채널x사이즈hx사이즈w`)
+            - 개/채/행/열
+        - input이 문장이라면 (`문장 개수x가장 긴 문장의 단어 개수x임베딩된 단어의 차원 크기`)
+            - 개/단/차
+            - 문장마다 단어 개수가 다르니, 이를 맞춰주기 위해 <pad> 토큰을 이용해서 길이를 맞춰준다.
+
+        1. Input Embedding
+            - one-hot 인코딩 되어 있는 것을 FC layer에 통과시키는 것
+        2. Positional Encoding 
+            - Embedding만 되어서는 순서정보를 담을 수 없다.
+            - 단어의 위치를 one-hot 해서, 그것을 FC layer에 통과시키는 것
+            - 순서 정보를 알려주어야 한다.
+            - `트랜스포머 논문 자체`에서는 Positional Encoding 자체의 FC는 학습시키지 않고 고정된 벡터를 사용함
+                - `sin, cos` 함수 사용함
+            - 이후 논문에서는 여기에서의 파라미터도 학습의 대상으로 함
+        3. Input Embedding + Positional Encoding 두개를 더하여 Embedding 정보를 만든다.
+
+    2. Multi-Head Attention 구조
+        - ![](img/2024-08-11-16-24-41.png)
+        - Key, Query, Value
+            - ![](img/2024-08-11-16-39-08.png)
+        - Query: 관계를 물어볼 기준 단어 벡터 
+            - `질문`
+        - Key: Query와 관계를 알아볼 단어 벡터
+            - `답변`
+        - Value: 키 단어의 의미를 담은 벡터
+            - `표현`
+        - 키,쿼리,밸류의 역할은 각각 다르기 때문에 이를 각각의 FC 레이어로 학습함
+        - 이러한 키,쿼리,밸류 set을 CNN의 필터 개수처럼 여러개 배치한 것을 `Multi-Head Attention`이라 부름
+            - 질문!!
+                -  똑같은 Loss를 가지고 Back-propagation 하는 건데, 멀티 헤드로 한다고 해서 각각의 어텐션 모듈이 다르게 학습될 수 있나?
+                - 랜덤성 때문에 다른 바이어스를 가지게 학습된다는 의미일까?
+        - `Multi-Head Attention`의 효과
+            - 2시간 38분 부터~
+ 
