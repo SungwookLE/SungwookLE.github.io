@@ -135,21 +135,54 @@ draft: false
             - 이후 논문에서는 여기에서의 파라미터도 학습의 대상으로 함
         3. Input Embedding + Positional Encoding 두개를 더하여 Embedding 정보를 만든다.
 
-    2. Multi-Head Attention 구조
-        - ![](img/2024-08-11-16-24-41.png)
-        - Key, Query, Value
-            - ![](img/2024-08-11-16-39-08.png)
-        - Query: 관계를 물어볼 기준 단어 벡터 
-            - `질문`
-        - Key: Query와 관계를 알아볼 단어 벡터
-            - `답변`
-        - Value: 키 단어의 의미를 담은 벡터
-            - `표현`
-        - 키,쿼리,밸류의 역할은 각각 다르기 때문에 이를 각각의 FC 레이어로 학습함
-        - 이러한 키,쿼리,밸류 set을 CNN의 필터 개수처럼 여러개 배치한 것을 `Multi-Head Attention`이라 부름
-            -  멀티 헤드에서 똑같은 Loss를 가지고 Back-propagation 하더라도, 파라미터 초기값이 서로 다르니, 각각 다르게 바이어스를 가지게끔 학습됨
-            - 멀티헤드를 둠으로써, 여러 필터를 두는 것과 같은 효과가 발생한다. (~=CNN의 복수개의 필터)
-                - `집단지성`
-        - `Multi-Head Attention`의 효과
-            - 2h 42'~
+    2. Encoder 전체 구조
+        - Multi-Head Attention
+            - ![](img/2024-08-11-16-24-41.png)
+            - Key, Query, Value
+                - ![](img/2024-08-11-16-39-08.png)
+            - Query: 관계를 물어볼 기준 단어 벡터 
+                - `질문`
+            - Key: Query와 관계를 알아볼 단어 벡터
+                - `답변`
+            - Value: 키 단어의 의미를 담은 벡터
+                - `표현`
+            - 키,쿼리,밸류의 역할은 각각 다르기 때문에 이를 각각의 FC 레이어로 학습함
+            - 이러한 키,쿼리,밸류 set을 CNN의 필터 개수처럼 여러개 배치한 것을 `Multi-Head Attention`이라 부름
+                - 멀티 헤드에서 똑같은 Loss를 가지고 Back-propagation 하더라도, 파라미터 초기값이 서로 다르니, 각각 다르게 바이어스를 가지게끔 학습됨
+                - 멀티 헤드를 둠으로써, 여러 필터를 두는 것과 같은 효과가 발생한다. (~=CNN의 복수개의 필터)
+            - `Multi-Head Attention`의 효과
+                - 멀티 헤드의 하나의 헤드 헤드가 각각 바이어스를 가지고 학습되니, 앙상블의 효과, `집단지성`과 유사한 효과가 나타남
+            - Scaled Dot-Product Attention 이후 Concat->Linear를 통과하게 되면서 여러 헤드의 출력이 조화가 이루어지게 됨
+                - `의견교류`
+            - 이 전체를 N번 반복하여 인코더에서 `word embedding vector(h)`를 만들어냄
+        
+    3. Decoder 구조
+        - `Masked Multi-Head Attention`
+        - 학습 시에는 `next token`의 참값을 집어넣어서 지도학습하고, test 땐 자신의 출력을 입력으로 사용함
+        - `Masked`를 해주어야 하는 이유는 정답을 보여주고 학습시킬 순 없으니까..!
+
+    4. Encoder-Decoder Attention 구조
+        - ![](img/2024-08-13-23-48-22.png)
+        - Q로는 디코더 레이어에서의 출력 임베딩 벡터를, K/V는 인코더 레이어에서의 출력 임베딩 벡터를 사용함
+
+        - 3번+4번 `self-atten -> enc-dec-atten -> FF` 순서로 통과하게됨
+            - 디코더로 문장을 파악 -> 입력 문장에서 뭘 주목하는지 보고 -> 다음 단어 예측
+        
+    - softmax(내적+가중합)를 수행하는 attention 함수
+        - 이를 통해 어떤 것에 주목하여야하는지를 학습할 수 있게 됨
+        - ![](img/2024-08-13-23-59-02.png)
+
+    - 단어 사이 사이에 어떤 단어 끼리 관계가 있는지를 학습하는 것이 Attention 임
+        - ![](img/2024-08-14-00-03-45.png)
  
+    - 추론할때는 단어 SET을 넣어주어야함
+        - 질문: `한번 더 체크해보기`
+
+2. Transformer Evaluation
+    - 문장은 주관적이니까, 이미지 분류 문제처럼 1/0으로 평가할 수는 없음
+    - `PPL(Perplexity), BLEU score`를 주로 사용함
+    1. `PPL(Perplexity)`
+        - 당혹감, 헷갈려하는 정도를 평가하기 위한 것
+        - CrossEntropy에 exp를 취하면 PPL이 됨
+        - 문장 전체에 대해서 헷갈려하는 정도에 대한 metric임
+    - 3h 23'~
