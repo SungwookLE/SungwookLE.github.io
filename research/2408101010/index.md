@@ -116,7 +116,6 @@ draft: false
 ![](img/2024-08-11-15-36-58.png)
 
 1. Transformer
-
     1. Embedding 구조
         - input이 이미지라면 (`개수x채널x사이즈hx사이즈w`)
             - 개/채/행/열
@@ -160,7 +159,6 @@ draft: false
         - `Masked Multi-Head Attention`
         - 학습 시에는 `next token`의 참값을 집어넣어서 지도학습하고, test 땐 자신의 출력을 입력으로 사용함
         - `Masked`를 해주어야 하는 이유는 정답을 보여주고 학습시킬 순 없으니까..!
-
     4. Encoder-Decoder Attention 구조
         - ![](img/2024-08-13-23-48-22.png)
         - Q로는 디코더 레이어에서의 출력 임베딩 벡터를, K/V는 인코더 레이어에서의 출력 임베딩 벡터를 사용함
@@ -171,18 +169,34 @@ draft: false
     - softmax(내적+가중합)를 수행하는 attention 함수
         - 이를 통해 어떤 것에 주목하여야하는지를 학습할 수 있게 됨
         - ![](img/2024-08-13-23-59-02.png)
+        - ![](img/2024-08-15-15-24-05.png)
 
     - 단어 사이 사이에 어떤 단어 끼리 관계가 있는지를 학습하는 것이 Attention 임
         - ![](img/2024-08-14-00-03-45.png)
- 
+        - 왜 관련 없는 단어이 벡터가 Query에 수직이 아닐까?
+            - 수직이면 cos 내적은 0이 될텐데
+            - 소프트맥스를 취하였기 때문임
+                - 내적이 0이 나오는거 보다 음수로 나오는게 더 작은 값이 되니까
+
     - 추론할때는 단어 SET을 넣어주어야함
-        - 질문: `한번 더 체크해보기`
+        - `next token predictor`이기 때문에 알고자하는 단어 이전에 등장한 모든 단어를 입력해주어야함
 
 2. Transformer Evaluation
-    - 문장은 주관적이니까, 이미지 분류 문제처럼 1/0으로 평가할 수는 없음
-    - `PPL(Perplexity), BLEU score`를 주로 사용함
-    1. `PPL(Perplexity)`
+    - 평가를 위한 지수임
+    - 문장은 주관적이니까, 이미지 분류 문제처럼 1 또는, 0으로 평가할 수는 없음
+    - `PPL, BLEU score`를 주로 사용함
+    
+    1. PPL(Perplexity)
         - 당혹감, 헷갈려하는 정도를 평가하기 위한 것
         - CrossEntropy에 exp를 취하면 PPL이 됨
         - 문장 전체에 대해서 헷갈려하는 정도에 대한 metric임
-    - 3h 23'~
+
+    2. BLEU score
+        - 번역task에 있어선 많이 쓰이는 편
+        - N-gram precision을 이용: 연속한 n 개 단어가 정답 문장에 존재하는지
+        - Unigram이 아니라, N-gram을 쓰는 이유는 순서까지도 맞추어야하기 때문임
+
+    - 0h 35'~ 부터
+
+## 03.
+
