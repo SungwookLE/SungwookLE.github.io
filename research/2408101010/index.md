@@ -196,7 +196,8 @@ draft: false
         - N-gram precision을 이용: 연속한 n 개 단어가 정답 문장에 존재하는지
         - Unigram이 아니라, N-gram을 쓰는 이유는 순서까지도 맞추어야하기 때문임
 
-    - 0h 35'~ 부터
+3. Overall
+    - attention 구조에 FC만을 사용하였는데, (학습 대상은 오직 FC임) 혁신적 성능을 보여줌
 
-## 03.
-
+## 03. 
+    - 0h 37'~ 부터
