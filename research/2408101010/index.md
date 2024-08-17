@@ -198,6 +198,276 @@ draft: false
 
 3. Overall
     - attention 구조에 FC만을 사용하였는데, (학습 대상은 오직 FC임) 혁신적 성능을 보여줌
+    - 여러 문제 (이미지: `ViT`)에 적용이 확장되고 있다.
 
-## 03. 
-    - 0h 37'~ 부터
+## 03. Code
+
+1. Basic 블록
+
+    1. 멀티 헤드 어텐션
+    ```python
+        class MHA(nn.Module):
+        def __init__(self, d_model, n_heads):
+            super().__init__()
+
+            self.n_heads = n_heads
+
+            self.fc_q = nn.Linear(d_model, d_model) # 차 or 개x차 or 개x개x차 로 입력해줘야
+            self.fc_k = nn.Linear(d_model, d_model)
+            self.fc_v = nn.Linear(d_model, d_model)
+            self.fc_o = nn.Linear(d_model, d_model)
+
+            self.scale = torch.sqrt(torch.tensor(d_model / n_heads))
+
+        def forward(self, Q, K, V, mask = None):
+            Q = self.fc_q(Q) # 개단차
+            K = self.fc_k(K)
+            V = self.fc_v(V)
+
+            Q = rearrange(Q, '개 단 (헤 차) -> 개 헤 단 차', 헤 = self.n_heads) # 개단차 -> 개헤단차
+            K = rearrange(K, '개 단 (헤 차) -> 개 헤 단 차', 헤 = self.n_heads)
+            V = rearrange(V, '개 단 (헤 차) -> 개 헤 단 차', 헤 = self.n_heads)
+
+            attention_score = Q @ K.transpose(-2,-1)/self.scale # 개헤단단
+
+            if mask is not None:
+                attention_score[mask] = -1e10
+
+            attention_weights = torch.softmax(attention_score, dim=-1) # 개헤단단
+
+            attention = attention_weights @ V # 개헤단차
+
+            x = rearrange(attention, '개 헤 단 차 -> 개 단 (헤 차)') # 개헤단차 -> 개단차
+            x = self.fc_o(x) # 개단차
+
+            return x, attention_weights
+    ```
+
+    2. Feed Forward(FC)
+    ```python
+    class FeedForward(nn.Module):
+        def __init__(self, d_model, d_ff, drop_p):
+            super().__init__()
+            self.linear = nn.Sequential(nn.Linear(d_model, d_ff),
+                                        nn.ReLU(),
+                                        nn.Dropout(drop_p), 
+                                        nn.Linear(d_ff, d_model))
+
+        def forward(self, x):
+            x = self.linear(x)
+            return x
+    ```
+
+2. Encoder 모듈
+
+    1. 인코더 레이어
+    ```python
+    class EncoderLayer(nn.Module):
+    def __init__(self, d_model, d_ff, n_heads, drop_p):
+        super().__init__()
+
+        self.self_atten = MHA(d_model, n_heads)
+        self.self_atten_LN = nn.LayerNorm(d_model)
+
+        self.FF = FeedForward(d_model, d_ff, drop_p)
+        self.FF_LN = nn.LayerNorm(d_model)
+
+        self.dropout = nn.Dropout(drop_p)
+
+    def forward(self, x, enc_mask):
+        residual, atten_enc = self.self_atten(x, x, x, enc_mask) # 인코더에도 마스크 존재함: 패딩 토큰이 학습에 영향을 주지 않게 하려고
+        residual = self.dropout(residual)
+        x = self.self_atten_LN(x + residual)
+
+        residual = self.FF(x)  
+        residual = self.dropout(residual)
+        x = self.FF_LN(x + residual)
+
+        return x, atten_enc
+    ```
+
+    2. 인코더 모듈(`Nx`번 인코더를 배치)
+    ```python
+    class Encoder(nn.Module):
+    def __init__(self, input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
+        super().__init__()
+
+        self.scale = torch.sqrt(torch.tensor(d_model))
+        self.input_embedding = input_embedding
+        self.pos_embedding = nn.Embedding(max_len, d_model)
+
+        self.dropout = nn.Dropout(drop_p)
+
+        self.layers = nn.ModuleList([EncoderLayer(d_model, d_ff, n_heads, drop_p) for _ in range(n_layers)])
+
+    def forward(self, src, mask, atten_map_save = False): # src.shape = 개단, mask.shape = 개헤단단
+        pos = torch.arange(src.shape[1]).expand_as(src).to(DEVICE) # 개단
+
+        x = self.scale*self.input_embedding(src) + self.pos_embedding(pos) # 개단차
+        # self.scale 을 곱해주면 position 보다 token 정보를 더 보게 된다 (gradient에 self.scale 만큼이 더 곱해짐)
+        x = self.dropout(x)
+
+        for layer in self.layers:
+            x, atten_enc = layer(x, mask)
+
+        return x, atten_encs
+    ```
+
+3. Decoder 모듈
+
+    1. 디코더 레이어
+    ```python
+    class DecoderLayer(nn.Module):
+    def __init__(self, d_model, d_ff, n_heads, drop_p):
+        super().__init__()
+
+        self.self_atten = MHA(d_model, n_heads)
+        self.self_atten_LN = nn.LayerNorm(d_model)
+
+        self.enc_dec_atten = MHA(d_model, n_heads)
+        self.enc_dec_atten_LN = nn.LayerNorm(d_model)
+
+        self.FF = FeedForward(d_model, d_ff, drop_p)
+        self.FF_LN = nn.LayerNorm(d_model)
+
+        self.dropout = nn.Dropout(drop_p)
+
+    def forward(self, x, enc_out, dec_mask, enc_dec_mask):
+        residual, atten_dec = self.self_atten(x, x, x, dec_mask)
+        residual = self.dropout(residual)
+        x = self.self_atten_LN(x + residual)
+
+        residual, atten_enc_dec = self.enc_dec_atten(x, enc_out, enc_out, enc_dec_mask) # Q는 디코더로부터 K,V는 인코더로부터!!
+        residual = self.dropout(residual)
+        x = self.enc_dec_atten_LN(x + residual)
+
+        residual = self.FF(x)
+        residual = self.dropout(residual)
+        x = self.FF_LN(x + residual)
+
+        return x, atten_dec, atten_enc_dec
+    ```
+
+    2. 디코더 모듈(`Nx`번 디코더를 배치)
+    ```python
+    class Decoder(nn.Module):
+    def __init__(self, input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
+        super().__init__()
+
+        self.scale = torch.sqrt(torch.tensor(d_model))
+        self.input_embedding = input_embedding
+        self.pos_embedding = nn.Embedding(max_len, d_model)
+
+        self.dropout = nn.Dropout(drop_p)
+
+        self.layers = nn.ModuleList([DecoderLayer(d_model, d_ff, n_heads, drop_p) for _ in range(n_layers)])
+
+        self.fc_out = nn.Linear(d_model, vocab_size)
+
+    def forward(self, trg, enc_out, dec_mask, enc_dec_mask, atten_map_save = False): # trg.shape = 개단, enc_out.shape = 개단차, dec_mask.shape = 개헤단단
+        pos = torch.arange(trg.shape[1]).expand_as(trg).to(DEVICE) # 개단
+
+        x = self.scale*self.input_embedding(trg) + self.pos_embedding(pos) # 개단차
+        # self.scale 을 곱해주면 position 보다 token 정보를 더 보게 된다 (gradient에 self.scale 만큼이 더 곱해짐)
+        x = self.dropout(x)
+
+        for layer in self.layers:
+            x, atten_dec, atten_enc_dec = layer(x, enc_out, dec_mask, enc_dec_mask)
+
+        x = self.fc_out(x)
+
+        return x, atten_decs, atten_enc_decs
+    ```
+
+4. Transformer 조립
+```python
+class Transformer(nn.Module):
+    def __init__(self, vocab_size, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
+        super().__init__()
+
+        self.input_embedding = nn.Embedding(vocab_size, d_model)
+        self.encoder = Encoder(self.input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p)
+        self.decoder = Decoder(self.input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p)
+
+        self.n_heads = n_heads
+
+        # for m in self.modules():
+        #     if hasattr(m,'weight') and m.weight.dim() > 1: # layer norm에 대해선 initial 안하겠다는 뜻
+        #         nn.init.kaiming_uniform_(m.weight) # Kaiming의 분산은 2/Nin
+
+        for m in self.modules():
+            if hasattr(m,'weight') and m.weight.dim() > 1:
+                nn.init.xavier_uniform_(m.weight) # xavier의 분산은 2/(Nin+Nout) 즉, 분산이 더 작다. => 그래서 sigmoid/tanh에 적합한 것! (vanishing gradient 막기 위해)
+
+    def make_enc_mask(self, src): # src.shape = 개단
+
+        enc_mask = (src == pad_idx).unsqueeze(1).unsqueeze(2) # 개11단
+        enc_mask = enc_mask.expand(src.shape[0], self.n_heads, src.shape[1], src.shape[1]) # 개헤단단
+        """ src pad mask (문장 마다 다르게 생김. 이건 한 문장에 대한 pad 행렬)
+        F F T T
+        F F T T
+        F F T T
+        F F T T
+        """
+        return enc_mask
+
+    def make_dec_mask(self, trg): # trg.shape = 개단
+
+        trg_pad_mask = (trg == pad_idx).unsqueeze(1).unsqueeze(2) # 개11단
+        trg_pad_mask = trg_pad_mask.expand(trg.shape[0], self.n_heads, trg.shape[1], trg.shape[1]) # 개헤단단
+        """ trg pad mask
+        F F F T T
+        F F F T T
+        F F F T T
+        F F F T T
+        F F F T T
+        """
+        trg_future_mask = torch.tril(torch.ones(trg.shape[0], self.n_heads, trg.shape[1], trg.shape[1]))==0 # 개헤단단
+        trg_future_mask = trg_future_mask.to(DEVICE) # pad_mask | future_mask 할 때 같은 DEVICE 여야
+        """ trg future mask
+        F T T T T
+        F F T T T
+        F F F T T
+        F F F F T
+        F F F F F
+        """
+        dec_mask = trg_pad_mask | trg_future_mask # dec_mask.shape = 개헤단단
+        """ decoder mask
+        F T T T T
+        F F T T T
+        F F F T T
+        F F F T T
+        F F F T T
+        """
+        return dec_mask
+
+    def make_enc_dec_mask(self, src, trg):
+
+        enc_dec_mask = (src == pad_idx).unsqueeze(1).unsqueeze(2) # 개11단
+        enc_dec_mask = enc_dec_mask.expand(trg.shape[0], self.n_heads, trg.shape[1], src.shape[1]) # 개헤단단
+        """ src pad mask
+        F F T T
+        F F T T
+        F F T T
+        F F T T
+        F F T T
+        """
+        return enc_dec_mask
+
+    def forward(self, src, trg):
+
+        enc_mask = self.make_enc_mask(src)
+        dec_mask = self.make_dec_mask(trg)
+        enc_dec_mask = self.make_enc_dec_mask(src, trg)
+
+        enc_out, atten_encs = self.encoder(src, enc_mask)
+        out, atten_decs, atten_enc_decs = self.decoder(trg, enc_out, dec_mask, enc_dec_mask)
+
+        return out, atten_encs, atten_decs, atten_enc_decs 
+```
+
+5. feature map (attention) 살펴보기
+- 헤드마다의 attention이 어느 토큰을 보고 피처를 만들어내는지 살펴보니, 잘 학습된 것을 확인할 수 있음
+
+
+- 2h 50'~
