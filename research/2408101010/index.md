@@ -72,6 +72,7 @@ draft: false
                 - 트랜스포머는 'Attention`을 이용한 것으로, 어떤 단어에 집중할지를 선택할 수 있게 된다.
 
 - Insight for Attention
+    - 직관적 이해를 위한 [어텐션 강의](https://www.youtube.com/watch?v=8E6-emm_QVg)
     - `RNN+Attention`
         - 인식한 문제점 
             1. seq2seq는 왜 마지막 context vector만을 디코더에 전달하느냐,
@@ -202,10 +203,11 @@ draft: false
 
 ## 03. Code
 
-1. Basic 블록
+### 1. Basic 블록
 
-    1. 멀티 헤드 어텐션
-    ```python
+1-1. 멀티 헤드 어텐션
+
+```python
         class MHA(nn.Module):
         def __init__(self, d_model, n_heads):
             super().__init__()
@@ -241,10 +243,10 @@ draft: false
             x = self.fc_o(x) # 개단차
 
             return x, attention_weights
-    ```
+```
 
-    2. Feed Forward(FC)
-    ```python
+1-2. Feed Forward(FC)
+```python
     class FeedForward(nn.Module):
         def __init__(self, d_model, d_ff, drop_p):
             super().__init__()
@@ -256,12 +258,12 @@ draft: false
         def forward(self, x):
             x = self.linear(x)
             return x
-    ```
+```
+### 2. Encoder 모듈
 
-2. Encoder 모듈
+2-1. 인코더 레이어
 
-    1. 인코더 레이어
-    ```python
+```python
     class EncoderLayer(nn.Module):
     def __init__(self, d_model, d_ff, n_heads, drop_p):
         super().__init__()
@@ -284,10 +286,11 @@ draft: false
         x = self.FF_LN(x + residual)
 
         return x, atten_enc
-    ```
+```
 
-    2. 인코더 모듈(`Nx`번 인코더를 배치)
-    ```python
+2-1. 인코더 모듈(`Nx`번 인코더를 배치)
+
+```python
     class Encoder(nn.Module):
     def __init__(self, input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
         super().__init__()
@@ -311,12 +314,12 @@ draft: false
             x, atten_enc = layer(x, mask)
 
         return x, atten_encs
-    ```
+```
 
-3. Decoder 모듈
+### 3. Decoder 모듈
+3-1. 디코더 레이어
 
-    1. 디코더 레이어
-    ```python
+```python
     class DecoderLayer(nn.Module):
     def __init__(self, d_model, d_ff, n_heads, drop_p):
         super().__init__()
@@ -346,10 +349,11 @@ draft: false
         x = self.FF_LN(x + residual)
 
         return x, atten_dec, atten_enc_dec
-    ```
+```
 
-    2. 디코더 모듈(`Nx`번 디코더를 배치)
-    ```python
+3-2. 디코더 모듈(`Nx`번 디코더를 배치)
+
+```python
     class Decoder(nn.Module):
     def __init__(self, input_embedding, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
         super().__init__()
@@ -377,9 +381,10 @@ draft: false
         x = self.fc_out(x)
 
         return x, atten_decs, atten_enc_decs
-    ```
+```
 
-4. Transformer 조립
+### 4. Transformer 조립
+
 ```python
 class Transformer(nn.Module):
     def __init__(self, vocab_size, max_len, n_layers, d_model, d_ff, n_heads, drop_p):
@@ -466,7 +471,7 @@ class Transformer(nn.Module):
         return out, atten_encs, atten_decs, atten_enc_decs 
 ```
 
-5. feature map (attention) 살펴보기
+### 5. feature map (attention) 분석
 - 헤드마다의 attention이 어느 토큰을 보고 피처를 만들어내는지 살펴보니, 잘 학습된 것을 확인할 수 있음
 
 
@@ -477,3 +482,27 @@ class Transformer(nn.Module):
         2. receptive filed의 사이즈도 적절하게 학습되도록 AI가 해주게 한다면 더 나아지지 않을까? -> `ViT`
         3. 이를 위해, 패치를 쪼개서 입력하면, attention mechanism에 의해 필요한 부분에서 자기가 attention 해서 recpetive field 사이즈를 학습하게 되는 것임
         4. 그래서, 성능이 좋았다. (데이터가 많아진다면,)
+
+- 그 외1: Batch Normalization, Layer Normalization
+    - [정규화 관련 강의](https://www.youtube.com/watch?v=daDQUBTISVg&list=PL_iJu012NOxdDZEygsVG4jS8srnSdIgdn&index=26)
+    - 비유: 모래알들을 들어서 activation 함수의 어디에다가 뿌려줄지를 학습시키기 위함임
+        - 그렇게 되면, vanishing gradient도 해결해줄 수 있고, 필요에 따라 비선형 activation을 필요로하는지, 선형 activation을 필요로하는지도 학습시킬 수 있기 때문
+
+- 그 외2: Resnet의 Skip Connection
+    - [Skip Connection 강의](https://www.youtube.com/watch?v=Fypk0ec32BU&list=PL_iJu012NOxd_lWvBM8RfXeB7nPYDwafn&index=14)
+    - ![](img/2024-08-18-16-10-51.png)
+    - 레이어가 깊을 수록.., 한 레이어가 학습의 모든 역할을 담당하는게 아니고, 적절하게 분배해서 가져가는 것이 성능이 더 좋을 것이다. 한 쪽에 모든걸 다 담당하게 되면 오버피팅될 가능성이 높다는 의미니까.
+    - 해서 skip connection을 두어서 천천히 학습되게끔 한것이다.
+        - `X'=f(X)+X`
+        - `X'=f(X)` 
+    - 위의 두 식이 있다고 헀을 때, 첫번째 수식은 `f`는 0이면 달성가능할 거고, 두번째 수식은 `f`는 1이면 달성가능할거다
+    - weight의 초기값은 0근처의 값으로 하니까, Loss는 크지 않게 나오겠지.
+    - 그렇게 됨으로써, 천천히 학습하라고 하는 네트워크 설계를 통한 가이드가 이루어지는 것임
+
+
+
+## 05. TO DO
+1. 코드와 논문, 강의를 살펴보며 체득화한 포스팅 작성 하기 (8/18)
+
+
+## 끝
