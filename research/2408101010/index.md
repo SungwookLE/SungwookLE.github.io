@@ -470,4 +470,10 @@ class Transformer(nn.Module):
 - 헤드마다의 attention이 어느 토큰을 보고 피처를 만들어내는지 살펴보니, 잘 학습된 것을 확인할 수 있음
 
 
-- 2h 50'~
+## 04. More
+- ViT(Vision Transformer)
+    - 패치를 나눠서 입력해주는 게 `ViT`인데, 이건 무슨 역할을 한걸까?
+        1. 기존 CNN은 receptive field의 사이즈를 하이퍼 파라미터로 고정한 뒤, 레이어가 깊어질 수록 이미지픽셀을 작게보다가 점점 넓게보는 (즉, 작은 픽셀에서 큰 픽셀로의 inductive bias가 설정되어지는) 네트워크의 특징이 있었음
+        2. receptive filed의 사이즈도 적절하게 학습되도록 AI가 해주게 한다면 더 나아지지 않을까? -> `ViT`
+        3. 이를 위해, 패치를 쪼개서 입력하면, attention mechanism에 의해 필요한 부분에서 자기가 attention 해서 recpetive field 사이즈를 학습하게 되는 것임
+        4. 그래서, 성능이 좋았다. (데이터가 많아진다면,)
