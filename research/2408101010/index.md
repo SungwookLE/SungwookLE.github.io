@@ -11,7 +11,7 @@ header-img: ./img/2024-08-10-21-38-58.png
 hash-tag: [AI, Transformer]
 use_math: true
 toc : true
-draft: false
+draft: true
 ---
 
 # Transformer Review
