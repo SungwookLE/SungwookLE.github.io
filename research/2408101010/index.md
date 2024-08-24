@@ -11,7 +11,7 @@ header-img: ./img/2024-08-10-21-38-58.png
 hash-tag: [AI, Transformer]
 use_math: true
 toc : true
-draft: true
+draft: false
 ---
 
 # Transformer Review
@@ -555,6 +555,7 @@ class Transformer(nn.Module):
     - `decoder`는 `next token predictor`임
     - `cell`은 plain RNN보다는 LSTM, GRU를 주로 사용함
         - LSTM과 GRU의 아이디어는 `X` 입력에 대한 `h`입력에 대한 반영정도를 Valve로서 조정해야하고, 이 Valve 파라미터를 학습시킨다는 컨셉임
+        - ![](img/2024-08-24-21-17-52.png)
         - 그러나, 여전히 멀수록/길수록 잊혀지는 문제는 해결되지 못함
             - 왜냐면, 누적(곱)에 의한 영향력은 그대로인 상황이기 때문임
 - Seq2Seq의 문제점
@@ -564,7 +565,39 @@ class Transformer(nn.Module):
     - 트랜스포머는 `Attention`을 이용함으로써, 어떤 단어에 집중할지를 선택할 수 있는 구조를 갖는다. 이것이 Seq2Seq의 구조적 단점을 해결하는 핵심 아이디어가 된다.
 
 ### 1-3. Insight for Attention
+- 직관적 이해를 위한 [어텐션 강의](https://www.youtube.com/watch?v=8E6-emm_QVg)
+- RNN에 Attention을 접목한 모델을 살펴보자
+    - 문제의식
+        - seq2seq는 마지막 context vector를 디코더에 전달하는 문제가 있음
+            - RNN의 특징에 의한 현상임
+        - 입력된 단어 토큰 중, 어떠한 단어 토큰에 집중해야하는지도 학습할 수 있어야함
+    - 개선구조
+        - 디코더에서 사용하는 context vector에 attention 메커니즘을 적용하자.
+        - 이를 위해, 디코더의 네트워크 구조를 다음과 같이 변경
+            - 기존: $\hat{y_4} = s_4W+y + x_4W_x$
+            - 변경: $\hat{y_4} = s_4W_y + c_4W_y'+x_4W_x$
+            - 이제 해야할 것 $c_4$를 잘 만들어보자 (내적과 가중합을 이용한 attention 이용)
+        - attention을 이용한 context vector 구하기
+            - $c_4 = <s_4,h_1>h_1 + <s_4, h_2>h_2 + <s_4, h_3>h_3$로 구함으로써, 어떤 임베딩 벡터 $h$에 주목하여야할지를 학습하자.
+    - 한계
+        - 그럼에도, 한계는 있다.
+        - 여전히 `h`와 `s`은 RNN의 chain 구조로 되어있기 때문에 멀수록/갈수록 잊혀지는 문제는 해결되지 못하였음
+        - 디코더에서만 attention된 context vector를 사용하는 것이기 때문에 `멀수록 잊혀지는 문제`는 여전함
+        - h의 경우 입력 단어가 현재의 word 임베딩 벡터보다 뒤에 위치한다면, 참고조차 하지 못하고 임베딩벡터 h를 생성하게 되는것도 문제임 (왜? Chain으로 이어져 있으니까)
+            - 즉, 의미를 제대로 못 담은 h에 attention 한다.
 
+- 트랜스포머는 위의 문제를 한번 더 개선한 모델임
+    - How? 아예 RNN을 사용하지 않음으로써, `Chain`을 다 끊어버림으로써!
+    - [트랜스포머는 attention을 적극 활용](./img/필기1.jpg)
+    - 완전히 RNN을 버림으로써,
+        1. Decoder가 마지막 단어만 열심히 보는 문제를 attention으로 해결
+        2. 학습시, `h, s` 멀수록 잊혀지는 문제를 self-attention으로 해결
+        3. 의미를 제대로 못 담은 `h`가 아닌 self-attention을 통한 `h` 생성으로 멀수록/갈수록 흐려지는 문제를 해결
+    
+- Self Attention
+    - 얼마나 대단한 녀석인데?
+
+    
 
 
 
