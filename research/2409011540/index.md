@@ -13,11 +13,10 @@ use_math: true
 toc : true
 ---
 
-
 # Paper Review
 > Writer: SungwookLE    
 > DATE: '24.9/1    
-> UniAD:: Planning-oriented Autonomous Driving  
+> [UniAD:Planning-oriented Autonomous Driving](https://arxiv.org/pdf/2212.10156)
 
 ## 1. Abstract
 - 모듈러 방식으로 구성된 자율주행 SW는 모듈을 통과할 때마다의 출력 오차가 누적되는 현상으로 인해, 많은 문제를 겪고 있음
@@ -39,7 +38,7 @@ toc : true
         - Panoptic SegFormer
 2. Prediction: Motion Forecasting
     - MotionFormer: agent의 미래 경로를 예측
-        - agent-agent ㅌ-map, agent-goal point 정보를 입력으로 받음
+        - agent-agent, agent-map, agent-goal point 정보를 입력으로 받음
         - ![](img/2024-09-01-17-40-56.png)
     - OccFormer: occupancy 맵 상의 정보를  (Occupancy Prediction)
         - pixel-agent interaction, instance-level occupancy
@@ -59,3 +58,8 @@ toc : true
 - 통합시킴으로써, 얻는 이점이 있음 (원하는건 결국 planning 결과이니까)
 - 장애물 회피 주행
     - ![](img/2024-09-01-17-42-50.png)
+- 개선이 필요한 부분
+    - 객체 인식이 잘되지 않았고, 그로 인해 플래닝이 잘되지 못함
+    - ![](img/2024-09-01-17-48-17.png)
+
+## 끝
